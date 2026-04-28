@@ -1,0 +1,2 @@
+-- Referencia inicial del esquema SQL MVP
+-- Ver también: ../SQL_INICIAL_MVP_FACTURAS_COMPRA.sql
