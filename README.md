@@ -23,3 +23,4 @@ Scaffold técnico inicial del MVP web para `facturascompra.gecorp.cl`.
 - implementación de review_decisions
 - auditoría real
 - protección efectiva de middleware
+
