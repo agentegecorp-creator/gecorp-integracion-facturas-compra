@@ -82,6 +82,43 @@ export async function getReviewCaseById(id: string) {
   return result.rows[0] ?? null;
 }
 
+export async function getNextPendingCaseId(currentCaseId?: string) {
+  if (currentCaseId) {
+    const current = await db.query(
+      `select created_at from review_cases where id = $1 limit 1`,
+      [currentCaseId],
+    );
+
+    const currentCreatedAt = current.rows[0]?.created_at;
+
+    if (currentCreatedAt) {
+      const next = await db.query(
+        `select id
+         from review_cases
+         where status = 'new'
+           and created_at < $1
+         order by created_at desc
+         limit 1`,
+        [currentCreatedAt],
+      );
+
+      if (next.rows[0]?.id) {
+        return next.rows[0].id as string;
+      }
+    }
+  }
+
+  const fallback = await db.query(
+    `select id
+     from review_cases
+     where status = 'new'
+     order by created_at desc
+     limit 1`,
+  );
+
+  return fallback.rows[0]?.id ?? null;
+}
+
 export async function getUserByEmail(email: string) {
   const result = await db.query(
     `select id, name, email, password_hash, role, active
