@@ -19,13 +19,34 @@ export async function getDashboardSummary() {
   };
 }
 
-export async function listReviewCases(limit = 20) {
+export async function listReviewCases(
+  limit = 20,
+  filters?: { bucket?: string; status?: string },
+) {
+  const conditions: string[] = [];
+  const values: Array<string | number> = [];
+
+  if (filters?.bucket) {
+    values.push(filters.bucket);
+    conditions.push(`bucket = $${values.length}`);
+  }
+
+  if (filters?.status) {
+    values.push(filters.status);
+    conditions.push(`status = $${values.length}`);
+  }
+
+  values.push(limit);
+
+  const whereClause = conditions.length > 0 ? `where ${conditions.join(' and ')}` : '';
+
   const result = await db.query(
     `select id, vendor_name, vendor_rut, folio, bucket, status, amount_total, created_at
      from review_cases
+     ${whereClause}
      order by created_at desc
-     limit $1`,
-    [limit],
+     limit $${values.length}`,
+    values,
   );
 
   return result.rows;

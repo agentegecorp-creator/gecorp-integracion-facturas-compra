@@ -1,10 +1,21 @@
 import Link from 'next/link';
 import { requireSession } from '@/lib/auth/guards';
 import { listReviewCases } from '@/lib/db/queries';
+import { ReviewFilters } from '@/components/review/review-filters';
 
-export default async function PendingReviewPage() {
+export default async function PendingReviewPage({
+  searchParams,
+}: {
+  searchParams?: Promise<{ bucket?: string; status?: string }>;
+}) {
   await requireSession();
-  const items = await listReviewCases();
+  const resolvedSearchParams = (await searchParams) ?? {};
+  const bucket = resolvedSearchParams.bucket || '';
+  const status = resolvedSearchParams.status || '';
+  const items = await listReviewCases(20, {
+    bucket: bucket || undefined,
+    status: status || undefined,
+  });
 
   return (
     <main className="p-8">
@@ -17,6 +28,8 @@ export default async function PendingReviewPage() {
           Volver al dashboard
         </Link>
       </div>
+
+      <ReviewFilters currentBucket={bucket} currentStatus={status} />
 
       <div className="mt-6 overflow-hidden rounded-2xl bg-white shadow-sm">
         <table className="min-w-full divide-y divide-slate-200 text-sm">
@@ -31,20 +44,28 @@ export default async function PendingReviewPage() {
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100 bg-white">
-            {items.map((item) => (
-              <tr key={item.id} className="hover:bg-slate-50">
-                <td className="px-4 py-3">{item.vendor_name || '-'}</td>
-                <td className="px-4 py-3">{item.folio || '-'}</td>
-                <td className="px-4 py-3">{item.bucket}</td>
-                <td className="px-4 py-3">{item.status}</td>
-                <td className="px-4 py-3">{item.amount_total || '-'}</td>
-                <td className="px-4 py-3">
-                  <Link href={`/caso/${item.id}`} className="text-sm font-medium text-slate-900 underline underline-offset-2">
-                    Ver caso
-                  </Link>
+            {items.length === 0 ? (
+              <tr>
+                <td colSpan={6} className="px-4 py-8 text-center text-sm text-slate-500">
+                  No hay casos para los filtros seleccionados.
                 </td>
               </tr>
-            ))}
+            ) : (
+              items.map((item) => (
+                <tr key={item.id} className="hover:bg-slate-50">
+                  <td className="px-4 py-3">{item.vendor_name || '-'}</td>
+                  <td className="px-4 py-3">{item.folio || '-'}</td>
+                  <td className="px-4 py-3">{item.bucket}</td>
+                  <td className="px-4 py-3">{item.status}</td>
+                  <td className="px-4 py-3">{item.amount_total || '-'}</td>
+                  <td className="px-4 py-3">
+                    <Link href={`/caso/${item.id}`} className="text-sm font-medium text-slate-900 underline underline-offset-2">
+                      Ver caso
+                    </Link>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>
