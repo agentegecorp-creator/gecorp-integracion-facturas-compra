@@ -160,7 +160,7 @@ export function ReviewDecisionForm({ caseId, currentValues, nextCaseId }: Review
         return;
       }
 
-      if (data.nextCaseId) {
+      if (data.nextCaseId && data.nextCaseId !== caseId) {
         router.push(`/caso/${data.nextCaseId}`);
         router.refresh();
       } else {
@@ -196,7 +196,7 @@ export function ReviewDecisionForm({ caseId, currentValues, nextCaseId }: Review
         return;
       }
 
-      if (nextCaseId) {
+      if (nextCaseId && nextCaseId !== caseId) {
         router.push(`/caso/${nextCaseId}`);
         router.refresh();
       } else {

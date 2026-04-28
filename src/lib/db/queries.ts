@@ -96,10 +96,11 @@ export async function getNextPendingCaseId(currentCaseId?: string) {
         `select id
          from review_cases
          where status = 'new'
+           and id <> $2
            and created_at < $1
          order by created_at desc
          limit 1`,
-        [currentCreatedAt],
+        [currentCreatedAt, currentCaseId],
       );
 
       if (next.rows[0]?.id) {
@@ -108,13 +109,23 @@ export async function getNextPendingCaseId(currentCaseId?: string) {
     }
   }
 
-  const fallback = await db.query(
-    `select id
-     from review_cases
-     where status = 'new'
-     order by created_at desc
-     limit 1`,
-  );
+  const fallback = currentCaseId
+    ? await db.query(
+        `select id
+         from review_cases
+         where status = 'new'
+           and id <> $1
+         order by created_at desc
+         limit 1`,
+        [currentCaseId],
+      )
+    : await db.query(
+        `select id
+         from review_cases
+         where status = 'new'
+         order by created_at desc
+         limit 1`,
+      );
 
   return fallback.rows[0]?.id ?? null;
 }
