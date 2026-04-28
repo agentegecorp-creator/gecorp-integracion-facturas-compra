@@ -3,6 +3,13 @@ import { requireSession } from '@/lib/auth/guards';
 import { getNextPendingCaseId, getReviewCaseById, getReviewDecisionsByCaseId } from '@/lib/db/queries';
 import { ReviewDecisionForm } from '@/components/review/review-decision-form';
 
+function formatDateTime(value: string | null | undefined) {
+  if (!value) return '-';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return String(value);
+  return date.toLocaleString('es-CL');
+}
+
 type CaseDetailPageProps = {
   params: Promise<{
     id: string;
@@ -82,7 +89,7 @@ export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
                     <div key={decision.id} className="rounded-2xl border border-slate-200 p-4">
                       <div className="flex flex-wrap items-center justify-between gap-2">
                         <p className="font-medium text-slate-900">{decision.decision_type}</p>
-                        <p className="text-xs text-slate-500">{new Date(decision.created_at).toLocaleString('es-CL')}</p>
+                        <p className="text-xs text-slate-500">{formatDateTime(decision.created_at)}</p>
                       </div>
                       <p className="mt-1 text-sm text-slate-600">{decision.user_name} ({decision.user_email})</p>
                       <p className="mt-3 text-sm text-slate-800">{decision.notes || 'Sin notas.'}</p>
