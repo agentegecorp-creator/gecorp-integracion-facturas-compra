@@ -161,8 +161,7 @@ export function ReviewDecisionForm({ caseId, currentValues, nextCaseId }: Review
       }
 
       if (data.nextCaseId && data.nextCaseId !== caseId) {
-        router.push(`/caso/${data.nextCaseId}`);
-        router.refresh();
+        window.location.assign(`/caso/${data.nextCaseId}`);
       } else {
         setMessage('No quedan casos pendientes por revisar.');
       }
@@ -197,8 +196,7 @@ export function ReviewDecisionForm({ caseId, currentValues, nextCaseId }: Review
       }
 
       if (nextCaseId && nextCaseId !== caseId) {
-        router.push(`/caso/${nextCaseId}`);
-        router.refresh();
+        window.location.assign(`/caso/${nextCaseId}`);
       } else {
         setMessage('Decisión guardada. No quedan más casos pendientes.');
         router.refresh();

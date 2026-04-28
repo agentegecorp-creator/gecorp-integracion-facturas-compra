@@ -104,9 +104,9 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
               <p className="mt-1 text-sm text-slate-800">{selected.summary_text || 'Sin resumen.'}</p>
             </div>
             <div className="flex flex-wrap gap-3 pt-2">
-              <Link href={`/caso/${selected.id}`} className="rounded-xl bg-indigo-600 px-4 py-2 text-sm text-white hover:bg-indigo-500">
+              <a href={`/caso/${selected.id}`} className="rounded-xl bg-indigo-600 px-4 py-2 text-sm text-white hover:bg-indigo-500">
                 Revisar caso completo
-              </Link>
+              </a>
               <Link href="/auditoria" className="rounded-xl border border-slate-300 px-4 py-2 text-sm hover:bg-slate-100">
                 Ver auditoría
               </Link>
