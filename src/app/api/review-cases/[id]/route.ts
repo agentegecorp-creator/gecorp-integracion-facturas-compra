@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server';
 import { getReviewCaseById } from '@/lib/db/queries';
 
-export async function GET(_: Request, { params }: { params: { id: string } }) {
+export async function GET(_: Request, context: { params: Promise<{ id: string }> }) {
   try {
-    const item = await getReviewCaseById(params.id);
+    const { id } = await context.params;
+    const item = await getReviewCaseById(id);
 
     if (!item) {
       return NextResponse.json({ ok: false, message: 'Caso no encontrado.' }, { status: 404 });
