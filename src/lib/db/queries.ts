@@ -5,6 +5,20 @@ export async function healthcheckDb() {
   return result.rows[0];
 }
 
+export async function getDashboardSummary() {
+  const [totalCases, byBucket, byStatus] = await Promise.all([
+    db.query(`select count(*)::int as total from review_cases`),
+    db.query(`select bucket, count(*)::int as total from review_cases group by bucket order by bucket`),
+    db.query(`select status, count(*)::int as total from review_cases group by status order by status`),
+  ]);
+
+  return {
+    totalCases: totalCases.rows[0]?.total ?? 0,
+    byBucket: byBucket.rows,
+    byStatus: byStatus.rows,
+  };
+}
+
 export async function listReviewCases(limit = 20) {
   const result = await db.query(
     `select id, vendor_name, vendor_rut, folio, bucket, status, amount_total, created_at
