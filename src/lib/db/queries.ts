@@ -5,6 +5,27 @@ export async function healthcheckDb() {
   return result.rows[0];
 }
 
+export async function listAuditLog(limit = 50) {
+  const result = await db.query(
+    `select a.id,
+            a.user_id,
+            a.action,
+            a.entity_type,
+            a.entity_id,
+            a.details_json,
+            a.created_at,
+            u.name as user_name,
+            u.email as user_email
+     from audit_log a
+     left join users u on u.id = a.user_id
+     order by a.created_at desc
+     limit $1`,
+    [limit],
+  );
+
+  return result.rows;
+}
+
 export async function getDashboardSummary() {
   const [totalCases, byBucket, byStatus] = await Promise.all([
     db.query(`select count(*)::int as total from review_cases`),
@@ -131,11 +152,30 @@ export async function createReviewDecision(params: {
       ],
     );
 
+    const nextStatus = nextStatusMap[params.decisionType];
+
     await client.query(
       `update review_cases
        set status = $2
        where id = $1`,
-      [params.caseId, nextStatusMap[params.decisionType]],
+      [params.caseId, nextStatus],
+    );
+
+    await client.query(
+      `insert into audit_log (user_id, action, entity_type, entity_id, details_json)
+       values ($1, $2, $3, $4, $5::jsonb)`,
+      [
+        params.userId,
+        'review_decision_created',
+        'review_case',
+        params.caseId,
+        JSON.stringify({
+          decisionType: params.decisionType,
+          nextStatus,
+          notes: params.notes ?? null,
+          correctionJson: params.correctionJson ?? {},
+        }),
+      ],
     );
 
     await client.query('commit');
