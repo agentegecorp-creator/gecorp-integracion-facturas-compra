@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { accountOptions, documentTypeOptions, vendorOptions } from '@/lib/review/catalogs';
 
 type DecisionType = 'approve' | 'correct_and_approve' | 'exception' | 'reject_for_learning';
 type CorrectionField = 'account_id' | 'vendor_name' | 'accounting_date' | 'document_type';
@@ -15,20 +16,6 @@ type ReviewDecisionFormProps = {
   };
   nextCaseId?: string | null;
 };
-
-const ACCOUNT_OPTIONS = [
-  { value: '112', label: '112 · 212013 COMPRAS ACUMULADAS' },
-  { value: '694', label: '694 · 450205 ALMACENAJE' },
-  { value: '699', label: '699 · 460104 ASESORIA CONTABLE' },
-  { value: '704', label: '704 · 460109 GASTOS GENERALES' },
-  { value: '1048', label: '1048 · 212008 FACTURAS POR RECIBIR' },
-];
-
-const DOCUMENT_TYPE_OPTIONS = [
-  { value: '33', label: '33 · Factura afecta' },
-  { value: '34', label: '34 · Factura exenta' },
-  { value: '61', label: '61 · Nota de crédito' },
-];
 
 export function ReviewDecisionForm({ caseId, currentValues, nextCaseId }: ReviewDecisionFormProps) {
   const router = useRouter();
@@ -98,7 +85,7 @@ export function ReviewDecisionForm({ caseId, currentValues, nextCaseId }: Review
           className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
         >
           <option value="">Selecciona cuenta contable</option>
-          {ACCOUNT_OPTIONS.map((option) => (
+          {accountOptions.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>
@@ -115,7 +102,7 @@ export function ReviewDecisionForm({ caseId, currentValues, nextCaseId }: Review
           className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
         >
           <option value="">Selecciona tipo documental</option>
-          {DOCUMENT_TYPE_OPTIONS.map((option) => (
+          {documentTypeOptions.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>
@@ -132,6 +119,23 @@ export function ReviewDecisionForm({ caseId, currentValues, nextCaseId }: Review
           onChange={(e) => setCorrectionValue(e.target.value)}
           className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
         />
+      );
+    }
+
+    if (correctionField === 'vendor_name') {
+      return (
+        <select
+          value={correctionValue}
+          onChange={(e) => setCorrectionValue(e.target.value)}
+          className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
+        >
+          <option value="">Selecciona proveedor</option>
+          {vendorOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
       );
     }
 
