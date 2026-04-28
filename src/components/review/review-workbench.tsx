@@ -22,10 +22,8 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
   const selected = useMemo(() => items.find((item) => item.id === selectedId) ?? items[0] ?? null, [items, selectedId]);
   const nextCaseId = useMemo(() => {
     if (!selected) return null;
-    const pending = items.filter((item) => item.status === 'new');
-    const idx = pending.findIndex((item) => item.id === selected.id);
-    if (idx === -1) return pending[0]?.id ?? null;
-    return pending[idx + 1]?.id ?? null;
+    const pending = items.filter((item) => item.status === 'new' && item.id !== selected.id);
+    return pending[0]?.id ?? null;
   }, [items, selected]);
 
   return (
