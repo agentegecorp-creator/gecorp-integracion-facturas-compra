@@ -52,6 +52,27 @@ export async function getUserByEmail(email: string) {
   return result.rows[0] ?? null;
 }
 
+export async function getReviewDecisionsByCaseId(caseId: string) {
+  const result = await db.query(
+    `select d.id,
+            d.case_id,
+            d.user_id,
+            d.decision_type,
+            d.notes,
+            d.correction_json,
+            d.created_at,
+            u.name as user_name,
+            u.email as user_email
+     from review_decisions d
+     join users u on u.id = d.user_id
+     where d.case_id = $1
+     order by d.created_at desc`,
+    [caseId],
+  );
+
+  return result.rows;
+}
+
 export async function createReviewDecision(params: {
   caseId: string;
   userId: string;

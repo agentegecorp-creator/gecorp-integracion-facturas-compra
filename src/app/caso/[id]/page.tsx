@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { requireSession } from '@/lib/auth/guards';
-import { getReviewCaseById } from '@/lib/db/queries';
+import { getReviewCaseById, getReviewDecisionsByCaseId } from '@/lib/db/queries';
 import { ReviewDecisionForm } from '@/components/review/review-decision-form';
 
 type CaseDetailPageProps = {
@@ -13,6 +13,7 @@ export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
   await requireSession();
   const { id } = await params;
   const item = await getReviewCaseById(id);
+  const decisions = await getReviewDecisionsByCaseId(id);
 
   return (
     <main className="p-8">
@@ -65,6 +66,31 @@ export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
           </div>
 
           <ReviewDecisionForm caseId={id} />
+
+          <div className="rounded-2xl bg-white p-6 shadow-sm">
+            <h2 className="text-lg font-semibold">Historial de decisiones</h2>
+            <p className="mt-1 text-sm text-slate-600">Trazabilidad operativa del caso.</p>
+
+            {decisions.length === 0 ? (
+              <p className="mt-4 text-sm text-slate-500">Todavía no hay decisiones registradas para este caso.</p>
+            ) : (
+              <div className="mt-4 space-y-4">
+                {decisions.map((decision) => (
+                  <div key={decision.id} className="rounded-xl border border-slate-200 p-4">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <p className="font-medium">{decision.decision_type}</p>
+                      <p className="text-xs text-slate-500">{new Date(decision.created_at).toLocaleString('es-CL')}</p>
+                    </div>
+                    <p className="mt-1 text-sm text-slate-600">{decision.user_name} ({decision.user_email})</p>
+                    <p className="mt-3 text-sm text-slate-800">{decision.notes || 'Sin notas.'}</p>
+                    <pre className="mt-3 overflow-auto rounded-lg bg-slate-50 p-3 text-xs text-slate-700">
+                      {JSON.stringify(decision.correction_json, null, 2)}
+                    </pre>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
 
           <div className="rounded-2xl bg-slate-900 p-4 text-sm text-slate-100 shadow-sm">
             <p className="mb-3 text-xs uppercase tracking-wide text-slate-400">Payload técnico</p>
