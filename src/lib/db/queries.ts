@@ -51,3 +51,56 @@ export async function getUserByEmail(email: string) {
 
   return result.rows[0] ?? null;
 }
+
+export async function createReviewDecision(params: {
+  caseId: string;
+  userId: string;
+  decisionType: 'approve' | 'correct_and_approve' | 'exception' | 'reject_for_learning';
+  notes?: string;
+  correctionJson?: Record<string, unknown>;
+}) {
+  const nextStatusMap = {
+    approve: 'resolved',
+    correct_and_approve: 'resolved',
+    exception: 'exception',
+    reject_for_learning: 'rejected_for_learning',
+  } as const;
+
+  const client = await db.connect();
+
+  try {
+    await client.query('begin');
+
+    const caseResult = await client.query(`select id from review_cases where id = $1 limit 1`, [params.caseId]);
+
+    if (!caseResult.rows[0]) {
+      throw new Error('Caso no encontrado');
+    }
+
+    await client.query(
+      `insert into review_decisions (case_id, user_id, decision_type, notes, correction_json)
+       values ($1, $2, $3, $4, $5::jsonb)`,
+      [
+        params.caseId,
+        params.userId,
+        params.decisionType,
+        params.notes ?? null,
+        JSON.stringify(params.correctionJson ?? {}),
+      ],
+    );
+
+    await client.query(
+      `update review_cases
+       set status = $2
+       where id = $1`,
+      [params.caseId, nextStatusMap[params.decisionType]],
+    );
+
+    await client.query('commit');
+  } catch (error) {
+    await client.query('rollback');
+    throw error;
+  } finally {
+    client.release();
+  }
+}

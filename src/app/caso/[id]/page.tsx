@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { requireSession } from '@/lib/auth/guards';
 import { getReviewCaseById } from '@/lib/db/queries';
+import { ReviewDecisionForm } from '@/components/review/review-decision-form';
 
 type CaseDetailPageProps = {
   params: Promise<{
@@ -62,6 +63,8 @@ export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
               <p className="font-medium">{item.summary_text || '-'}</p>
             </div>
           </div>
+
+          <ReviewDecisionForm caseId={id} />
 
           <div className="rounded-2xl bg-slate-900 p-4 text-sm text-slate-100 shadow-sm">
             <p className="mb-3 text-xs uppercase tracking-wide text-slate-400">Payload técnico</p>
