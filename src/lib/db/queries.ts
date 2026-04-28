@@ -62,7 +62,7 @@ export async function listReviewCases(
   const whereClause = conditions.length > 0 ? `where ${conditions.join(' and ')}` : '';
 
   const result = await db.query(
-    `select id, vendor_name, vendor_rut, folio, bucket, status, amount_total, summary_text, created_at
+    `select id, vendor_name, vendor_rut, folio, document_type, issue_date, bucket, status, amount_total, summary_text, created_at
      from review_cases
      ${whereClause}
      order by created_at desc

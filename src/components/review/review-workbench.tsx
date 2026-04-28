@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
+import { ReviewDecisionForm } from '@/components/review/review-decision-form';
 
 type ReviewItem = {
   id: string;
@@ -11,12 +12,21 @@ type ReviewItem = {
   bucket: string;
   status: string;
   amount_total: string | null;
+  document_type?: string | null;
+  issue_date?: string | null;
   summary_text?: string | null;
 };
 
 export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
   const [selectedId, setSelectedId] = useState<string | null>(items[0]?.id ?? null);
   const selected = useMemo(() => items.find((item) => item.id === selectedId) ?? items[0] ?? null, [items, selectedId]);
+  const nextCaseId = useMemo(() => {
+    if (!selected) return null;
+    const pending = items.filter((item) => item.status === 'new');
+    const idx = pending.findIndex((item) => item.id === selected.id);
+    if (idx === -1) return pending[0]?.id ?? null;
+    return pending[idx + 1]?.id ?? null;
+  }, [items, selected]);
 
   return (
     <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
@@ -102,6 +112,18 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
               <Link href="/auditoria" className="rounded-xl border border-slate-300 px-4 py-2 text-sm hover:bg-slate-100">
                 Ver auditoría
               </Link>
+            </div>
+
+            <div className="pt-2">
+              <ReviewDecisionForm
+                caseId={selected.id}
+                currentValues={{
+                  vendorName: selected.vendor_name,
+                  documentType: selected.document_type,
+                  issueDate: selected.issue_date,
+                }}
+                nextCaseId={nextCaseId}
+              />
             </div>
           </div>
         )}
