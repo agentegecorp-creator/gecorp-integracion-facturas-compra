@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { requireSession } from '@/lib/auth/guards';
-import { getNextPendingCaseId, getReviewCaseById, getReviewDecisionsByCaseId } from '@/lib/db/queries';
+import { getReviewCaseById, getReviewDecisionsByCaseId } from '@/lib/db/queries';
 import { ReviewDecisionForm } from '@/components/review/review-decision-form';
 
 function formatDateTime(value: string | null | undefined) {
@@ -21,7 +21,6 @@ export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
   const { id } = await params;
   const item = await getReviewCaseById(id);
   const decisions = await getReviewDecisionsByCaseId(id);
-  const nextCaseId = await getNextPendingCaseId(id);
 
   return (
     <main className="p-8">
@@ -116,7 +115,6 @@ export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
                 documentType: item.document_type,
                 issueDate: item.issue_date,
               }}
-              nextCaseId={nextCaseId}
             />
           </div>
         </div>

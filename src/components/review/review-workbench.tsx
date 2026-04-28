@@ -20,12 +20,6 @@ type ReviewItem = {
 export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
   const [selectedId, setSelectedId] = useState<string | null>(items[0]?.id ?? null);
   const selected = useMemo(() => items.find((item) => item.id === selectedId) ?? items[0] ?? null, [items, selectedId]);
-  const nextCaseId = useMemo(() => {
-    if (!selected) return null;
-    const pending = items.filter((item) => item.status === 'new' && item.id !== selected.id);
-    return pending[0]?.id ?? null;
-  }, [items, selected]);
-
   return (
     <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
       <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
@@ -104,9 +98,6 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
               <p className="mt-1 text-sm text-slate-800">{selected.summary_text || 'Sin resumen.'}</p>
             </div>
             <div className="flex flex-wrap gap-3 pt-2">
-              <a href={`/caso/${selected.id}`} className="rounded-xl bg-indigo-600 px-4 py-2 text-sm text-white hover:bg-indigo-500">
-                Revisar caso completo
-              </a>
               <Link href="/auditoria" className="rounded-xl border border-slate-300 px-4 py-2 text-sm hover:bg-slate-100">
                 Ver auditoría
               </Link>
@@ -120,7 +111,6 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                   documentType: selected.document_type,
                   issueDate: selected.issue_date,
                 }}
-                nextCaseId={nextCaseId}
               />
             </div>
           </div>
