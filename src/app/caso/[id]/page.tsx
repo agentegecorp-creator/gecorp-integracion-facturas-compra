@@ -65,7 +65,14 @@ export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
             </div>
           </div>
 
-          <ReviewDecisionForm caseId={id} />
+          <ReviewDecisionForm
+            caseId={id}
+            currentValues={{
+              vendorName: item.vendor_name,
+              documentType: item.document_type,
+              issueDate: item.issue_date,
+            }}
+          />
 
           <div className="rounded-2xl bg-white p-6 shadow-sm">
             <h2 className="text-lg font-semibold">Historial de decisiones</h2>
