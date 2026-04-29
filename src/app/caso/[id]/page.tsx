@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { requireSession } from '@/lib/auth/guards';
 import { getReviewCaseById, getReviewDecisionsByCaseId } from '@/lib/db/queries';
 import { ReviewDecisionForm } from '@/components/review/review-decision-form';
+import { decisionLabel, estadoLabel, etapaLabel } from '@/lib/review/labels';
 
 function formatDateTime(value: string | null | undefined) {
   if (!value) return '-';
@@ -42,13 +43,13 @@ export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
               <div className="flex flex-wrap items-start justify-between gap-4">
                 <div>
                   <div className="inline-flex rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-700 ring-1 ring-amber-200">
-                    {item.status}
+                    {estadoLabel(item.status)}
                   </div>
                   <h2 className="mt-4 text-xl font-semibold text-slate-900">{item.vendor_name || '-'}</h2>
                   <p className="mt-1 text-sm text-slate-600">{item.vendor_rut || 'RUT no informado'} · Folio {item.folio || '-'}</p>
                 </div>
                 <div className="rounded-2xl bg-slate-50 px-4 py-3 text-sm text-slate-700 ring-1 ring-slate-200">
-                  Bucket: <strong>{item.bucket}</strong>
+                  Etapa del caso: <strong>{etapaLabel(item.bucket)}</strong>
                 </div>
               </div>
 
@@ -87,7 +88,7 @@ export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
                   {decisions.map((decision) => (
                     <div key={decision.id} className="rounded-2xl border border-slate-200 p-4">
                       <div className="flex flex-wrap items-center justify-between gap-2">
-                        <p className="font-medium text-slate-900">{decision.decision_type}</p>
+                        <p className="font-medium text-slate-900">{decisionLabel(decision.decision_type)}</p>
                         <p className="text-xs text-slate-500">{formatDateTime(decision.created_at)}</p>
                       </div>
                       <p className="mt-1 text-sm text-slate-600">{decision.user_name} ({decision.user_email})</p>

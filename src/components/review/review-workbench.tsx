@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import { ReviewDecisionForm } from '@/components/review/review-decision-form';
+import { estadoLabel, etapaLabel, fieldLabel } from '@/lib/review/labels';
 
 type ReviewItem = {
   id: string;
@@ -40,14 +41,7 @@ type ReviewCaseDetail = ReviewItem & {
 };
 
 function bucketLabel(bucket: string) {
-  const labels: Record<string, string> = {
-    pending_review: 'Pendiente revisión',
-    revision_oc: 'Revisión OC',
-    error_real: 'Error real',
-    rejected_sii: 'Rechazada SII',
-  };
-
-  return labels[bucket] || bucket;
+  return etapaLabel(bucket);
 }
 
 function bucketChipClass(bucket: string) {
@@ -85,15 +79,7 @@ function formatDate(value: string | null | undefined) {
 }
 
 function statusLabel(status: string) {
-  const labels: Record<string, string> = {
-    new: 'Nuevo',
-    resolved: 'Resuelto',
-    exception: 'Excepción',
-    rejected_for_learning: 'Rechazado para aprendizaje',
-    in_review: 'En revisión',
-  };
-
-  return labels[status] || status;
+  return estadoLabel(status);
 }
 
 function statusChipClass(status: string) {
@@ -263,10 +249,10 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
               </div>
               <div className="rounded-2xl bg-slate-50 p-4">
                 <p className="text-sm text-slate-500">Estado</p>
-                <p className="mt-1 font-medium text-slate-900">{selected.status}</p>
+                <p className="mt-1 font-medium text-slate-900">{statusLabel(selected.status)}</p>
               </div>
               <div className="rounded-2xl bg-slate-50 p-4 md:col-span-2">
-                <p className="text-sm text-slate-500">Bucket</p>
+                <p className="text-sm text-slate-500">Etapa del caso</p>
                 <div className={`mt-1 inline-flex rounded-full px-2.5 py-1 text-sm font-medium ring-1 ${bucketChipClass(selected.bucket)}`}>
                   {bucketLabel(selected.bucket)}
                 </div>
@@ -280,55 +266,55 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
               <div className="grid gap-3 md:grid-cols-2">
                 {typeof context.entity === 'number' ? (
                   <div className="rounded-2xl bg-slate-50 p-4">
-                    <p className="text-sm text-slate-500">Entity</p>
+                    <p className="text-sm text-slate-500">{fieldLabel('entity')}</p>
                     <p className="mt-1 font-medium text-slate-900">{context.entity}</p>
                   </div>
                 ) : null}
                 {typeof context.referenciaAccount === 'number' ? (
                   <div className="rounded-2xl bg-slate-50 p-4">
-                    <p className="text-sm text-slate-500">Cuenta referencial</p>
+                    <p className="text-sm text-slate-500">{fieldLabel('referenciaAccount')}</p>
                     <p className="mt-1 font-medium text-slate-900">{context.referenciaAccount}</p>
                   </div>
                 ) : null}
                 {context.terminosNs ? (
                   <div className="rounded-2xl bg-slate-50 p-4">
-                    <p className="text-sm text-slate-500">Términos de pago</p>
+                    <p className="text-sm text-slate-500">{fieldLabel('terminosNs')}</p>
                     <p className="mt-1 font-medium text-slate-900">{context.terminosNs}</p>
                   </div>
                 ) : null}
                 {context.accountCorrecta ? (
                   <div className="rounded-2xl bg-slate-50 p-4">
-                    <p className="text-sm text-slate-500">Cuenta correcta sugerida</p>
+                    <p className="text-sm text-slate-500">{fieldLabel('accountCorrecta')}</p>
                     <p className="mt-1 font-medium text-slate-900">{context.accountCorrecta}</p>
                   </div>
                 ) : null}
                 {context.ocPolicyCorrecta || context.categoriaOc ? (
                   <div className="rounded-2xl bg-slate-50 p-4">
-                    <p className="text-sm text-slate-500">Política OC</p>
+                    <p className="text-sm text-slate-500">{fieldLabel('ocPolicyCorrecta')}</p>
                     <p className="mt-1 font-medium text-slate-900">{context.ocPolicyCorrecta || context.categoriaOc}</p>
                   </div>
                 ) : null}
                 {context.matchConfianza ? (
                   <div className="rounded-2xl bg-slate-50 p-4">
-                    <p className="text-sm text-slate-500">Confianza del match</p>
+                    <p className="text-sm text-slate-500">{fieldLabel('matchConfianza')}</p>
                     <p className="mt-1 font-medium text-slate-900">{context.matchConfianza}</p>
                   </div>
                 ) : null}
                 {context.learningCategory ? (
                   <div className="rounded-2xl bg-slate-50 p-4">
-                    <p className="text-sm text-slate-500">Learning category</p>
+                    <p className="text-sm text-slate-500">{fieldLabel('learningCategory')}</p>
                     <p className="mt-1 font-medium text-slate-900">{context.learningCategory}</p>
                   </div>
                 ) : null}
                 {context.requiereRevisionManual ? (
                   <div className="rounded-2xl bg-slate-50 p-4">
-                    <p className="text-sm text-slate-500">Requiere revisión manual</p>
+                    <p className="text-sm text-slate-500">{fieldLabel('requiereRevisionManual')}</p>
                     <p className="mt-1 font-medium text-slate-900">{context.requiereRevisionManual}</p>
                   </div>
                 ) : null}
                 {context.comentariosGonzalo ? (
                   <div className="rounded-2xl bg-slate-50 p-4 md:col-span-2">
-                    <p className="text-sm text-slate-500">Comentarios Gonzalo</p>
+                    <p className="text-sm text-slate-500">{fieldLabel('comentariosGonzalo')}</p>
                     <p className="mt-1 text-sm text-slate-900">{context.comentariosGonzalo}</p>
                   </div>
                 ) : null}

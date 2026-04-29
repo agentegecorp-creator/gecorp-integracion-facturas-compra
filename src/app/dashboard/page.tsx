@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { requireSession } from '@/lib/auth/guards';
 import { getDashboardSummary, listReviewCases } from '@/lib/db/queries';
+import { estadoLabel, etapaLabel } from '@/lib/review/labels';
 
 function StatCard({ label, value, help }: { label: string; value: string | number; help: string }) {
   return (
@@ -73,7 +74,7 @@ export default async function DashboardPage() {
                 <tr>
                   <th className="px-4 py-3 text-left font-medium text-slate-600">Proveedor</th>
                   <th className="px-4 py-3 text-left font-medium text-slate-600">Folio</th>
-                  <th className="px-4 py-3 text-left font-medium text-slate-600">Bucket</th>
+                  <th className="px-4 py-3 text-left font-medium text-slate-600">Etapa del caso</th>
                   <th className="px-4 py-3 text-left font-medium text-slate-600">Estado</th>
                 </tr>
               </thead>
@@ -82,8 +83,8 @@ export default async function DashboardPage() {
                   <tr key={item.id} className="hover:bg-slate-50">
                     <td className="px-4 py-3">{item.vendor_name || '-'}</td>
                     <td className="px-4 py-3">{item.folio || '-'}</td>
-                    <td className="px-4 py-3">{item.bucket}</td>
-                    <td className="px-4 py-3">{item.status}</td>
+                    <td className="px-4 py-3">{etapaLabel(item.bucket)}</td>
+                    <td className="px-4 py-3">{estadoLabel(item.status)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -95,8 +96,8 @@ export default async function DashboardPage() {
           <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
             <h2 className="text-xl font-semibold text-slate-900">Lectura del estado actual</h2>
             <div className="mt-4 space-y-3 text-sm text-slate-600">
-              <p>• Buckets activos: {summary.byBucket.map((row) => `${row.bucket}: ${row.total}`).join(' · ') || 'Sin datos'}.</p>
-              <p>• Estados activos: {summary.byStatus.map((row) => `${row.status}: ${row.total}`).join(' · ') || 'Sin datos'}.</p>
+              <p>• Etapas activas: {summary.byBucket.map((row) => `${etapaLabel(row.bucket)}: ${row.total}`).join(' · ') || 'Sin datos'}.</p>
+              <p>• Estados activos: {summary.byStatus.map((row) => `${estadoLabel(row.status)}: ${row.total}`).join(' · ') || 'Sin datos'}.</p>
               <p>• La app ya dejó de ser solo demo: hoy mezcla seed inicial con casos reales importados desde el dashboard operativo.</p>
             </div>
           </div>
@@ -104,8 +105,8 @@ export default async function DashboardPage() {
           <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
             <h2 className="text-xl font-semibold text-slate-900">Qué requiere atención</h2>
             <div className="mt-4 space-y-3 text-sm text-slate-600">
-              <p>• Resolver cola `revision_oc` con mejor contexto por proveedor, entity y referencia contable.</p>
-              <p>• Incorporar y tratar `rejected_sii` como carril operativo visible.</p>
+              <p>• Resolver la etapa de revisión de OC con mejor contexto por proveedor, proveedor NetSuite y referencia contable.</p>
+              <p>• Incorporar y tratar los rechazos SII como carril operativo visible.</p>
               <p>• Seguir acercando la UX al trabajo real de Mónica, no a un dashboard meramente ejecutivo.</p>
             </div>
           </div>
