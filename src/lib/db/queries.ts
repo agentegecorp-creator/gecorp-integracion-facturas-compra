@@ -65,7 +65,23 @@ export async function listReviewCases(
     `select id, vendor_name, vendor_rut, folio, document_type, issue_date, bucket, status, amount_total, summary_text, created_at
      from review_cases
      ${whereClause}
-     order by created_at desc
+     order by
+       case bucket
+         when 'error_real' then 1
+         when 'rejected_sii' then 2
+         when 'revision_oc' then 3
+         when 'pending_review' then 4
+         else 9
+       end,
+       case status
+         when 'new' then 1
+         when 'in_review' then 2
+         when 'exception' then 3
+         when 'resolved' then 4
+         when 'rejected_for_learning' then 5
+         else 9
+       end,
+       created_at desc
      limit $${values.length}`,
     values,
   );
