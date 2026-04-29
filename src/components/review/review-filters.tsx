@@ -7,7 +7,7 @@ const BUCKET_OPTIONS = [
   { value: '', label: 'Todos los buckets' },
   { value: 'pending_review', label: 'pending_review' },
   { value: 'revision_oc', label: 'revision_oc' },
-  { value: 'real_error', label: 'real_error' },
+  { value: 'error_real', label: 'error_real' },
   { value: 'rejected_sii', label: 'rejected_sii' },
   { value: 'approved_auto', label: 'approved_auto' },
 ];

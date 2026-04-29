@@ -33,10 +33,18 @@ type RevisionOc = {
   motivo: string;
 };
 
+type RechazadaSii = {
+  folio: string;
+  rut: string;
+  razon_social: string;
+  motivo: string;
+};
+
 type DashboardData = {
   updatedAt: string;
   erroresReales: ErrorReal[];
   revisionOCReferencial: RevisionOc[];
+  rechazadasSII: RechazadaSii[];
 };
 
 const dashboardPath = path.resolve(
@@ -155,6 +163,34 @@ async function main() {
           referenciaAccount: item.referencia_account,
           categoriaOc: item.categoria_oc,
           learningCategory: item.learning_category,
+          motivo: item.motivo,
+        },
+      },
+    });
+  }
+
+  for (const item of dashboard.rechazadasSII) {
+    await upsertCase({
+      sourceRunId,
+      sourceDocumentId: `rechazada_sii_${item.rut}_${item.folio}`,
+      vendorName: item.razon_social,
+      vendorRut: item.rut,
+      folio: item.folio,
+      documentType: '33',
+      bucket: 'rejected_sii',
+      status: 'new',
+      summaryText: item.motivo,
+      payloadJson: {
+        source: 'mission-control dashboard',
+        updatedAt: dashboard.updatedAt,
+        classification: {
+          bucket: 'rejected_sii',
+          reasonCode: 'sii_rejected_missing_oc_reference',
+          summary: item.motivo,
+        },
+        context: {
+          rut: item.rut,
+          razonSocial: item.razon_social,
           motivo: item.motivo,
         },
       },

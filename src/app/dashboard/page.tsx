@@ -25,19 +25,19 @@ export default async function DashboardPage() {
       <section className="rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
         <div className="flex flex-wrap items-start justify-between gap-6">
           <div>
-            <div className="inline-flex rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700 ring-1 ring-emerald-200">
-              Pipeline estabilizado
+            <div className="inline-flex rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700 ring-1 ring-indigo-200">
+              Centro operativo SII → NetSuite
             </div>
             <h1 className="mt-4 text-3xl font-semibold text-slate-900">Mesa de Revisión Contable</h1>
             <p className="mt-2 max-w-3xl text-sm text-slate-600">
-              Dashboard operativo del flujo SII → NetSuite. Bienvenido, {session.name}. Aquí concentramos revisión, decisiones y trazabilidad.
+              Bienvenido, {session.name}. Esta portada ya no debería vender “estabilidad” genérica, sino mostrar dónde está la carga operativa real y desde dónde entrar a resolverla.
             </p>
             <div className="mt-4 flex flex-wrap gap-3 text-xs text-slate-500">
-              <span>Origen: Postgres + app web desplegada</span>
+              <span>Origen: Postgres + mission-control</span>
               <span>•</span>
               <span>Dominio: facturascompra.gecorp.cl</span>
               <span>•</span>
-              <span>Total procesables hoy: {summary.totalCases}</span>
+              <span>Casos visibles hoy: {summary.totalCases}</span>
             </div>
           </div>
           <form action="/api/auth/logout" method="post">
@@ -48,8 +48,8 @@ export default async function DashboardPage() {
         </div>
 
         <div className="mt-8 grid gap-4 md:grid-cols-4">
-          <StatCard label="Casos en cola" value={summary.totalCases} help="Total visible en la mesa de revisión" />
-          <StatCard label="Pendientes" value={pendingCount} help="Documentos nuevos listos para revisar" />
+          <StatCard label="Casos en cola" value={summary.totalCases} help="Total visible en la mesa operativa" />
+          <StatCard label="Pendientes" value={pendingCount} help="Casos nuevos esperando decisión" />
           <StatCard label="Resueltos" value={resolvedCount} help="Casos ya aprobados o corregidos" />
           <StatCard label="Excepciones" value={exceptionCount} help="Casos apartados del flujo normal" />
         </div>
@@ -97,16 +97,16 @@ export default async function DashboardPage() {
             <div className="mt-4 space-y-3 text-sm text-slate-600">
               <p>• Buckets activos: {summary.byBucket.map((row) => `${row.bucket}: ${row.total}`).join(' · ') || 'Sin datos'}.</p>
               <p>• Estados activos: {summary.byStatus.map((row) => `${row.status}: ${row.total}`).join(' · ') || 'Sin datos'}.</p>
-              <p>• El flujo ya permite revisar, decidir, auditar y corregir con apoyo guiado.</p>
+              <p>• La app ya dejó de ser solo demo: hoy mezcla seed inicial con casos reales importados desde el dashboard operativo.</p>
             </div>
           </div>
 
           <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
             <h2 className="text-xl font-semibold text-slate-900">Qué requiere atención</h2>
             <div className="mt-4 space-y-3 text-sm text-slate-600">
-              <p>• Seguir acercando la UX al dashboard MVP original.</p>
-              <p>• Reemplazar opciones estáticas por catálogos reales para correcciones guiadas.</p>
-              <p>• Mantener la cola limpia y con trazabilidad útil para Mónica y Gonzalo.</p>
+              <p>• Resolver cola `revision_oc` con mejor contexto por proveedor, entity y referencia contable.</p>
+              <p>• Incorporar y tratar `rejected_sii` como carril operativo visible.</p>
+              <p>• Seguir acercando la UX al trabajo real de Mónica, no a un dashboard meramente ejecutivo.</p>
             </div>
           </div>
 
@@ -117,7 +117,7 @@ export default async function DashboardPage() {
             </Link>
             <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
               <h3 className="font-semibold text-slate-900">Siguiente bloque</h3>
-              <p className="mt-1 text-sm text-slate-600">Seguir portando la estructura visual y catálogos vivos del MVP anterior.</p>
+              <p className="mt-1 text-sm text-slate-600">Profundizar importación real del pipeline y convertir esta portada en un verdadero tablero de priorización operativa.</p>
             </div>
           </div>
         </div>

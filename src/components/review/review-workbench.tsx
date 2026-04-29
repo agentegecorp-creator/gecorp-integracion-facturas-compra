@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ReviewDecisionForm } from '@/components/review/review-decision-form';
 
 type ReviewItem = {
@@ -17,9 +17,64 @@ type ReviewItem = {
   summary_text?: string | null;
 };
 
+type ReviewCaseDetail = ReviewItem & {
+  payload_json?: {
+    context?: {
+      entity?: number;
+      referenciaAccount?: number;
+      categoriaOc?: string;
+      learningCategory?: string;
+      motivo?: string;
+      rut?: string;
+      razonSocial?: string;
+      error?: string;
+    };
+  } | null;
+};
+
+function bucketLabel(bucket: string) {
+  const labels: Record<string, string> = {
+    pending_review: 'Pendiente revisión',
+    revision_oc: 'Revisión OC',
+    error_real: 'Error real',
+    rejected_sii: 'Rechazada SII',
+  };
+
+  return labels[bucket] || bucket;
+}
+
 export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
   const [selectedId, setSelectedId] = useState<string | null>(items[0]?.id ?? null);
+  const [selectedDetail, setSelectedDetail] = useState<ReviewCaseDetail | null>(null);
   const selected = useMemo(() => items.find((item) => item.id === selectedId) ?? items[0] ?? null, [items, selectedId]);
+
+  useEffect(() => {
+    if (!selected?.id) {
+      setSelectedDetail(null);
+      return;
+    }
+
+    let cancelled = false;
+
+    fetch(`/api/review-cases/${selected.id}`)
+      .then(async (response) => {
+        if (!response.ok) throw new Error('No se pudo cargar detalle del caso.');
+        return response.json();
+      })
+      .then((data) => {
+        if (!cancelled) setSelectedDetail(data.item as ReviewCaseDetail);
+      })
+      .catch(() => {
+        if (!cancelled) setSelectedDetail(null);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [selected?.id]);
+
+  const context = selectedDetail?.payload_json?.context;
+
   return (
     <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
       <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
@@ -55,7 +110,7 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                   </div>
                   <div className="text-right text-xs text-slate-500">
                     <div>{item.status}</div>
-                    <div>{item.bucket}</div>
+                    <div>{bucketLabel(item.bucket)}</div>
                   </div>
                 </div>
                 <p className="mt-3 text-sm text-slate-600">{item.summary_text || 'Sin resumen.'}</p>
@@ -90,13 +145,41 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
               </div>
               <div className="rounded-2xl bg-slate-50 p-4">
                 <p className="text-sm text-slate-500">Bucket</p>
-                <p className="mt-1 font-medium text-slate-900">{selected.bucket}</p>
+                <p className="mt-1 font-medium text-slate-900">{bucketLabel(selected.bucket)}</p>
               </div>
             </div>
             <div className="rounded-2xl bg-slate-50 p-4">
               <p className="text-sm text-slate-500">Resumen</p>
               <p className="mt-1 text-sm text-slate-800">{selected.summary_text || 'Sin resumen.'}</p>
             </div>
+            {context ? (
+              <div className="grid gap-3 md:grid-cols-2">
+                {typeof context.entity === 'number' ? (
+                  <div className="rounded-2xl bg-slate-50 p-4">
+                    <p className="text-sm text-slate-500">Entity</p>
+                    <p className="mt-1 font-medium text-slate-900">{context.entity}</p>
+                  </div>
+                ) : null}
+                {typeof context.referenciaAccount === 'number' ? (
+                  <div className="rounded-2xl bg-slate-50 p-4">
+                    <p className="text-sm text-slate-500">Cuenta referencial</p>
+                    <p className="mt-1 font-medium text-slate-900">{context.referenciaAccount}</p>
+                  </div>
+                ) : null}
+                {context.categoriaOc ? (
+                  <div className="rounded-2xl bg-slate-50 p-4">
+                    <p className="text-sm text-slate-500">Categoría OC</p>
+                    <p className="mt-1 font-medium text-slate-900">{context.categoriaOc}</p>
+                  </div>
+                ) : null}
+                {context.learningCategory ? (
+                  <div className="rounded-2xl bg-slate-50 p-4">
+                    <p className="text-sm text-slate-500">Learning category</p>
+                    <p className="mt-1 font-medium text-slate-900">{context.learningCategory}</p>
+                  </div>
+                ) : null}
+              </div>
+            ) : null}
             <div className="flex flex-wrap gap-3 pt-2">
               <Link href="/auditoria" className="rounded-xl border border-slate-300 px-4 py-2 text-sm hover:bg-slate-100">
                 Ver auditoría
