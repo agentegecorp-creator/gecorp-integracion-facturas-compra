@@ -43,6 +43,17 @@ function bucketLabel(bucket: string) {
   return labels[bucket] || bucket;
 }
 
+function bucketChipClass(bucket: string) {
+  const styles: Record<string, string> = {
+    pending_review: 'bg-slate-100 text-slate-700 ring-slate-200',
+    revision_oc: 'bg-amber-50 text-amber-700 ring-amber-200',
+    error_real: 'bg-rose-50 text-rose-700 ring-rose-200',
+    rejected_sii: 'bg-blue-50 text-blue-700 ring-blue-200',
+  };
+
+  return styles[bucket] || 'bg-slate-100 text-slate-700 ring-slate-200';
+}
+
 export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
   const [selectedId, setSelectedId] = useState<string | null>(items[0]?.id ?? null);
   const [selectedDetail, setSelectedDetail] = useState<ReviewCaseDetail | null>(null);
@@ -110,7 +121,9 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                   </div>
                   <div className="text-right text-xs text-slate-500">
                     <div>{item.status}</div>
-                    <div>{bucketLabel(item.bucket)}</div>
+                    <div className={`mt-1 inline-flex rounded-full px-2 py-0.5 ring-1 ${bucketChipClass(item.bucket)}`}>
+                      {bucketLabel(item.bucket)}
+                    </div>
                   </div>
                 </div>
                 <p className="mt-3 text-sm text-slate-600">{item.summary_text || 'Sin resumen.'}</p>
@@ -145,7 +158,9 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
               </div>
               <div className="rounded-2xl bg-slate-50 p-4">
                 <p className="text-sm text-slate-500">Bucket</p>
-                <p className="mt-1 font-medium text-slate-900">{bucketLabel(selected.bucket)}</p>
+                <div className={`mt-1 inline-flex rounded-full px-2.5 py-1 text-sm font-medium ring-1 ${bucketChipClass(selected.bucket)}`}>
+                  {bucketLabel(selected.bucket)}
+                </div>
               </div>
             </div>
             <div className="rounded-2xl bg-slate-50 p-4">

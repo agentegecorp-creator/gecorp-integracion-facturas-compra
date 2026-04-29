@@ -71,6 +71,42 @@ async function upsertCase(item: {
   summaryText: string;
   payloadJson: Record<string, unknown>;
 }) {
+  const exists = await db.query(
+    `select id from review_cases where source_document_id = $1 limit 1`,
+    [item.sourceDocumentId],
+  );
+
+  if (exists.rows[0]?.id) {
+    await db.query(
+      `update review_cases
+       set source_run_id = $2,
+           vendor_name = $3,
+           vendor_rut = $4,
+           folio = $5,
+           document_type = $6,
+           bucket = $7,
+           status = $8,
+           summary_text = $9,
+           payload_json = $10::jsonb,
+           updated_at = now()
+       where id = $1`,
+      [
+        exists.rows[0].id,
+        item.sourceRunId,
+        item.vendorName,
+        item.vendorRut,
+        item.folio,
+        item.documentType,
+        item.bucket,
+        item.status,
+        item.summaryText,
+        JSON.stringify(item.payloadJson),
+      ],
+    );
+
+    return;
+  }
+
   await db.query(
     `insert into review_cases (
       source_run_id,
@@ -91,8 +127,7 @@ async function upsertCase(item: {
       payload_json
     ) values (
       $1,$2,$3,$4,$5,$6,null,null,null,null,null,'CLP',$7,$8,$9,$10::jsonb
-    )
-    on conflict do nothing`,
+    )`,
     [
       item.sourceRunId,
       item.sourceDocumentId,
