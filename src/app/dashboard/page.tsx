@@ -16,10 +16,13 @@ function StatCard({ label, value, help }: { label: string; value: string | numbe
 export default async function DashboardPage() {
   const session = await requireSession();
   const summary = await getDashboardSummary();
-  const recentCases = await listReviewCases(5);
+  const recentCases = await listReviewCases(8);
   const pendingCount = summary.byStatus.find((row) => row.status === 'new')?.total ?? 0;
   const resolvedCount = summary.byStatus.find((row) => row.status === 'resolved')?.total ?? 0;
   const exceptionCount = summary.byStatus.find((row) => row.status === 'exception')?.total ?? 0;
+  const rejectedSiiCount = summary.byBucket.find((row) => row.bucket === 'rejected_sii')?.total ?? 0;
+  const revisionOcCount = summary.byBucket.find((row) => row.bucket === 'revision_oc')?.total ?? 0;
+  const errorRealCount = summary.byBucket.find((row) => row.bucket === 'error_real')?.total ?? 0;
 
   return (
     <main className="mx-auto max-w-7xl space-y-8 p-8">
@@ -49,19 +52,19 @@ export default async function DashboardPage() {
         </div>
 
         <div className="mt-8 grid gap-4 md:grid-cols-4">
-          <StatCard label="Casos en cola" value={summary.totalCases} help="Total visible en la mesa operativa" />
-          <StatCard label="Pendientes" value={pendingCount} help="Casos nuevos esperando decisión" />
-          <StatCard label="Resueltos" value={resolvedCount} help="Casos ya aprobados o corregidos" />
-          <StatCard label="Casos especiales" value={exceptionCount} help="Casos que requieren tratamiento fuera del flujo normal" />
+          <StatCard label="Documentos en cola" value={summary.totalCases} help="Total visible en la mesa operativa" />
+          <StatCard label="Nuevos por revisar" value={pendingCount} help="Documentos esperando decisión" />
+          <StatCard label="Rechazos SII" value={rejectedSiiCount} help="Documentos observados por referencia OC en SII" />
+          <StatCard label="Errores contables" value={errorRealCount} help="Documentos con problema contable detectado" />
         </div>
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
+      <section className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
         <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
           <div className="flex items-center justify-between gap-4">
             <div>
-              <h2 className="text-xl font-semibold text-slate-900">Documentos por revisar</h2>
-              <p className="mt-1 text-sm text-slate-600">Entrada principal a la cola de trabajo.</p>
+              <h2 className="text-xl font-semibold text-slate-900">Documentos nuevos de la operación</h2>
+              <p className="mt-1 text-sm text-slate-600">Lo último que entró a la mesa y requiere mirada operativa.</p>
             </div>
             <Link href="/pendiente-revision" className="rounded-xl bg-slate-900 px-4 py-2 text-sm text-white hover:bg-slate-800">
               Abrir cola
@@ -76,6 +79,7 @@ export default async function DashboardPage() {
                   <th className="px-4 py-3 text-left font-medium text-slate-600">Folio</th>
                   <th className="px-4 py-3 text-left font-medium text-slate-600">Etapa del caso</th>
                   <th className="px-4 py-3 text-left font-medium text-slate-600">Estado</th>
+                  <th className="px-4 py-3 text-left font-medium text-slate-600">Resumen</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 bg-white">
@@ -85,6 +89,7 @@ export default async function DashboardPage() {
                     <td className="px-4 py-3">{item.folio || '-'}</td>
                     <td className="px-4 py-3">{etapaLabel(item.bucket)}</td>
                     <td className="px-4 py-3">{estadoLabel(item.status)}</td>
+                    <td className="px-4 py-3 text-xs text-slate-600">{item.summary_text || '-'}</td>
                   </tr>
                 ))}
               </tbody>
@@ -94,20 +99,21 @@ export default async function DashboardPage() {
 
         <div className="space-y-6">
           <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-            <h2 className="text-xl font-semibold text-slate-900">Lectura del estado actual</h2>
+            <h2 className="text-xl font-semibold text-slate-900">Resumen de la corrida</h2>
             <div className="mt-4 space-y-3 text-sm text-slate-600">
               <p>• Etapas activas: {summary.byBucket.map((row) => `${etapaLabel(row.bucket)}: ${row.total}`).join(' · ') || 'Sin datos'}.</p>
               <p>• Estados activos: {summary.byStatus.map((row) => `${estadoLabel(row.status)}: ${row.total}`).join(' · ') || 'Sin datos'}.</p>
-              <p>• La app ya dejó de ser solo demo: hoy mezcla casos iniciales con casos reales importados desde la operación.</p>
+              <p>• Documentos con revisión de OC: {revisionOcCount}.</p>
+              <p>• Documentos resueltos acumulados: {resolvedCount}. Casos especiales: {exceptionCount}.</p>
             </div>
           </div>
 
           <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-            <h2 className="text-xl font-semibold text-slate-900">Qué requiere atención</h2>
+            <h2 className="text-xl font-semibold text-slate-900">Prioridades del día</h2>
             <div className="mt-4 space-y-3 text-sm text-slate-600">
-              <p>• Resolver la etapa de revisión de OC con mejor contexto por proveedor, proveedor NetSuite y referencia contable.</p>
-              <p>• Mantener visibles y ordenados los rechazos SII como trabajo operativo real.</p>
-              <p>• Seguir acercando la experiencia al trabajo diario de Mónica, no a un tablero meramente ejecutivo.</p>
+              <p>• Atender primero rechazos SII y errores contables.</p>
+              <p>• Luego resolver documentos en revisión de OC con mejor contexto por proveedor y cuenta sugerida.</p>
+              <p>• Usar la cola como mesa diaria real de trabajo, no solo como tablero de seguimiento.</p>
             </div>
           </div>
 
@@ -117,8 +123,8 @@ export default async function DashboardPage() {
               <p className="mt-1 text-sm text-slate-600">Ver eventos reales del flujo y decisiones tomadas.</p>
             </Link>
             <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
-              <h3 className="font-semibold text-slate-900">Siguiente paso</h3>
-              <p className="mt-1 text-sm text-slate-600">Seguir profundizando la carga real del pipeline y convertir esta portada en un tablero claro de prioridades.</p>
+              <h3 className="font-semibold text-slate-900">Flujo diario activo</h3>
+              <p className="mt-1 text-sm text-slate-600">La corrida automática de 6 AM ya alimenta esta mesa con el mes actual y deja la operación lista para revisión.</p>
             </div>
           </div>
         </div>
