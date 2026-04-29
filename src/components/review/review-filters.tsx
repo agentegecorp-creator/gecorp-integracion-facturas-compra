@@ -25,7 +25,26 @@ const STATUS_OPTIONS = [
 
 export function ReviewFilters({ currentBucket = '', currentStatus = '' }: FilterProps) {
   return (
-    <form className="mt-6 grid gap-4 rounded-2xl bg-white p-4 shadow-sm md:grid-cols-4" method="get">
+    <div className="mt-6 space-y-4">
+      <div className="grid gap-3 md:grid-cols-3 xl:grid-cols-5">
+        <a href="/pendiente-revision?bucket=rejected_sii&status=new" className="rounded-2xl border border-orange-200 bg-orange-50 px-4 py-3 text-sm text-orange-800 hover:bg-orange-100">
+          Ver rechazos SII nuevos
+        </a>
+        <a href="/pendiente-revision?bucket=error_real&status=new" className="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800 hover:bg-rose-100">
+          Ver errores contables nuevos
+        </a>
+        <a href="/pendiente-revision?bucket=revision_oc&status=new" className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800 hover:bg-amber-100">
+          Ver revisión de OC nueva
+        </a>
+        <a href="/pendiente-revision?status=in_review" className="rounded-2xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-800 hover:bg-blue-100">
+          Ver documentos en revisión
+        </a>
+        <a href="/pendiente-revision" className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700 hover:bg-slate-100">
+          Ver toda la cola
+        </a>
+      </div>
+
+      <form className="grid gap-4 rounded-2xl bg-white p-4 shadow-sm md:grid-cols-4" method="get">
       <div>
         <label className="mb-1 block text-sm font-medium text-slate-700">Etapa del caso</label>
         <select
@@ -67,6 +86,7 @@ export function ReviewFilters({ currentBucket = '', currentStatus = '' }: Filter
           Limpiar
         </a>
       </div>
-    </form>
+      </form>
+    </div>
   );
 }
