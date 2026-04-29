@@ -29,6 +29,12 @@ type ReviewCaseDetail = ReviewItem & {
       rut?: string;
       razonSocial?: string;
       error?: string;
+      terminosNs?: string;
+      accountCorrecta?: string;
+      comentariosGonzalo?: string;
+      matchConfianza?: string;
+      ocPolicyCorrecta?: string;
+      requiereRevisionManual?: string;
     };
   } | null;
 };
@@ -214,16 +220,46 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                     <p className="mt-1 font-medium text-slate-900">{context.referenciaAccount}</p>
                   </div>
                 ) : null}
-                {context.categoriaOc ? (
+                {context.terminosNs ? (
                   <div className="rounded-2xl bg-slate-50 p-4">
-                    <p className="text-sm text-slate-500">Categoría OC</p>
-                    <p className="mt-1 font-medium text-slate-900">{context.categoriaOc}</p>
+                    <p className="text-sm text-slate-500">Términos de pago</p>
+                    <p className="mt-1 font-medium text-slate-900">{context.terminosNs}</p>
+                  </div>
+                ) : null}
+                {context.accountCorrecta ? (
+                  <div className="rounded-2xl bg-slate-50 p-4">
+                    <p className="text-sm text-slate-500">Cuenta correcta sugerida</p>
+                    <p className="mt-1 font-medium text-slate-900">{context.accountCorrecta}</p>
+                  </div>
+                ) : null}
+                {context.ocPolicyCorrecta || context.categoriaOc ? (
+                  <div className="rounded-2xl bg-slate-50 p-4">
+                    <p className="text-sm text-slate-500">Política OC</p>
+                    <p className="mt-1 font-medium text-slate-900">{context.ocPolicyCorrecta || context.categoriaOc}</p>
+                  </div>
+                ) : null}
+                {context.matchConfianza ? (
+                  <div className="rounded-2xl bg-slate-50 p-4">
+                    <p className="text-sm text-slate-500">Confianza del match</p>
+                    <p className="mt-1 font-medium text-slate-900">{context.matchConfianza}</p>
                   </div>
                 ) : null}
                 {context.learningCategory ? (
                   <div className="rounded-2xl bg-slate-50 p-4">
                     <p className="text-sm text-slate-500">Learning category</p>
                     <p className="mt-1 font-medium text-slate-900">{context.learningCategory}</p>
+                  </div>
+                ) : null}
+                {context.requiereRevisionManual ? (
+                  <div className="rounded-2xl bg-slate-50 p-4">
+                    <p className="text-sm text-slate-500">Requiere revisión manual</p>
+                    <p className="mt-1 font-medium text-slate-900">{context.requiereRevisionManual}</p>
+                  </div>
+                ) : null}
+                {context.comentariosGonzalo ? (
+                  <div className="rounded-2xl bg-slate-50 p-4 md:col-span-2">
+                    <p className="text-sm text-slate-500">Comentarios Gonzalo</p>
+                    <p className="mt-1 text-sm text-slate-900">{context.comentariosGonzalo}</p>
                   </div>
                 ) : null}
               </div>
