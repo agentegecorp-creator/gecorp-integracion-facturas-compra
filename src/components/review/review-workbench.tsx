@@ -152,16 +152,16 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
       <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
         <div className="flex items-center justify-between gap-4">
           <div>
-            <h2 className="text-xl font-semibold text-slate-900">Cola de revisión MVP</h2>
-            <p className="mt-1 text-sm text-slate-600">Vista operativa tipo mesa, con selección rápida de casos.</p>
+            <h2 className="text-xl font-semibold text-slate-900">Cola de revisión</h2>
+            <p className="mt-1 text-sm text-slate-600">Vista de trabajo con selección rápida de documentos.</p>
           </div>
-          <div className="text-sm text-slate-500">{items.length} caso(s)</div>
+          <div className="text-sm text-slate-500">{items.length} documento(s)</div>
         </div>
 
         <div className="mt-6 space-y-3">
           {items.length === 0 ? (
             <div className="rounded-2xl border border-dashed border-slate-300 p-6 text-sm text-slate-500">
-              No hay casos para los filtros seleccionados.
+              No hay documentos para los filtros seleccionados.
             </div>
           ) : (
             items.map((item) => (
@@ -204,7 +204,7 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
       <aside className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
         <h2 className="text-xl font-semibold text-slate-900">Detalle del documento</h2>
         {!selected ? (
-          <p className="mt-4 text-sm text-slate-500">Selecciona un caso de la lista para revisar su detalle.</p>
+          <p className="mt-4 text-sm text-slate-500">Selecciona un documento de la lista para revisar su detalle.</p>
         ) : (
           <div className="mt-4 space-y-4">
             <div>

@@ -52,7 +52,7 @@ export default async function DashboardPage() {
           <StatCard label="Casos en cola" value={summary.totalCases} help="Total visible en la mesa operativa" />
           <StatCard label="Pendientes" value={pendingCount} help="Casos nuevos esperando decisión" />
           <StatCard label="Resueltos" value={resolvedCount} help="Casos ya aprobados o corregidos" />
-          <StatCard label="Excepciones" value={exceptionCount} help="Casos apartados del flujo normal" />
+          <StatCard label="Casos especiales" value={exceptionCount} help="Casos que requieren tratamiento fuera del flujo normal" />
         </div>
       </section>
 
@@ -60,8 +60,8 @@ export default async function DashboardPage() {
         <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
           <div className="flex items-center justify-between gap-4">
             <div>
-              <h2 className="text-xl font-semibold text-slate-900">Pendiente revisión</h2>
-              <p className="mt-1 text-sm text-slate-600">Vista principal para entrar a la cola operativa.</p>
+              <h2 className="text-xl font-semibold text-slate-900">Documentos por revisar</h2>
+              <p className="mt-1 text-sm text-slate-600">Entrada principal a la cola de trabajo.</p>
             </div>
             <Link href="/pendiente-revision" className="rounded-xl bg-slate-900 px-4 py-2 text-sm text-white hover:bg-slate-800">
               Abrir cola
@@ -117,7 +117,7 @@ export default async function DashboardPage() {
               <p className="mt-1 text-sm text-slate-600">Ver eventos reales del flujo y decisiones tomadas.</p>
             </Link>
             <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
-              <h3 className="font-semibold text-slate-900">Siguiente bloque</h3>
+              <h3 className="font-semibold text-slate-900">Siguiente paso</h3>
               <p className="mt-1 text-sm text-slate-600">Seguir profundizando la carga real del pipeline y convertir esta portada en un tablero claro de prioridades.</p>
             </div>
           </div>
