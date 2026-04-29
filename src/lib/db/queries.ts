@@ -42,7 +42,7 @@ export async function getDashboardSummary() {
 
 export async function listReviewCases(
   limit = 20,
-  filters?: { bucket?: string; status?: string },
+  filters?: { bucket?: string; status?: string; sandboxPublishStatus?: string },
 ) {
   const conditions: string[] = [];
   const values: Array<string | number> = [];
@@ -57,12 +57,18 @@ export async function listReviewCases(
     conditions.push(`status = $${values.length}`);
   }
 
+  if (filters?.sandboxPublishStatus) {
+    values.push(filters.sandboxPublishStatus);
+    conditions.push(`coalesce(sandbox_publish_status, 'not_ready') = $${values.length}`);
+  }
+
   values.push(limit);
 
   const whereClause = conditions.length > 0 ? `where ${conditions.join(' and ')}` : '';
 
   const result = await db.query(
-    `select id, vendor_name, vendor_rut, folio, document_type, issue_date, bucket, status, amount_total, summary_text, created_at
+    `select id, vendor_name, vendor_rut, folio, document_type, issue_date, bucket, status, amount_total, summary_text, created_at,
+            coalesce(sandbox_publish_status, 'not_ready') as sandbox_publish_status
      from review_cases
      ${whereClause}
      order by
@@ -179,6 +185,34 @@ export async function getReviewDecisionsByCaseId(caseId: string) {
   return result.rows;
 }
 
+function inferSandboxPublishStatus(caseRow: {
+  bucket: string;
+  payload_json?: { context?: Record<string, unknown> } | null;
+}, decisionType: 'approve' | 'correct_and_approve' | 'exception' | 'reject_for_learning') {
+  if (decisionType !== 'approve' && decisionType !== 'correct_and_approve') {
+    return 'not_ready';
+  }
+
+  if (caseRow.bucket === 'rejected_sii' || caseRow.bucket === 'revision_oc' || caseRow.bucket === 'error_real') {
+    return 'not_ready';
+  }
+
+  const context = caseRow.payload_json?.context ?? {};
+  const requiereRevisionManual = String(context.requiereRevisionManual ?? '').toLowerCase();
+  const error = String(context.error ?? '').trim();
+  const motivo = String(context.motivo ?? '').trim();
+  const entity = context.entity;
+  const referenciaAccount = context.referenciaAccount;
+
+  if (requiereRevisionManual === 'si' || requiereRevisionManual === 'true') return 'not_ready';
+  if (error) return 'not_ready';
+  if (motivo.toLowerCase().includes('rechazo')) return 'not_ready';
+  if (typeof entity !== 'number') return 'not_ready';
+  if (typeof referenciaAccount !== 'number') return 'not_ready';
+
+  return 'ready';
+}
+
 export async function createReviewDecision(params: {
   caseId: string;
   userId: string;
@@ -198,7 +232,7 @@ export async function createReviewDecision(params: {
   try {
     await client.query('begin');
 
-    const caseResult = await client.query(`select id from review_cases where id = $1 limit 1`, [params.caseId]);
+    const caseResult = await client.query(`select id, bucket, payload_json from review_cases where id = $1 limit 1`, [params.caseId]);
 
     if (!caseResult.rows[0]) {
       throw new Error('Caso no encontrado');
@@ -217,12 +251,14 @@ export async function createReviewDecision(params: {
     );
 
     const nextStatus = nextStatusMap[params.decisionType];
+    const sandboxPublishStatus = inferSandboxPublishStatus(caseResult.rows[0], params.decisionType);
 
     await client.query(
       `update review_cases
-       set status = $2
+       set status = $2,
+           sandbox_publish_status = $3
        where id = $1`,
-      [params.caseId, nextStatus],
+      [params.caseId, nextStatus, sandboxPublishStatus],
     );
 
     await client.query(
@@ -236,6 +272,7 @@ export async function createReviewDecision(params: {
         JSON.stringify({
           decisionType: params.decisionType,
           nextStatus,
+          sandboxPublishStatus,
           notes: params.notes ?? null,
           correctionJson: params.correctionJson ?? {},
         }),

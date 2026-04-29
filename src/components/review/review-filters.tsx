@@ -3,6 +3,7 @@ import { estadoLabel, etapaLabel } from '@/lib/review/labels';
 type FilterProps = {
   currentBucket?: string;
   currentStatus?: string;
+  currentSandboxPublishStatus?: string;
 };
 
 const BUCKET_OPTIONS = [
@@ -23,7 +24,15 @@ const STATUS_OPTIONS = [
   { value: 'rejected_for_learning', label: estadoLabel('rejected_for_learning') },
 ];
 
-export function ReviewFilters({ currentBucket = '', currentStatus = '' }: FilterProps) {
+const SANDBOX_PUBLISH_OPTIONS = [
+  { value: '', label: 'Publicación Sandbox: todos' },
+  { value: 'ready', label: 'Listos para Sandbox' },
+  { value: 'not_ready', label: 'No listos para Sandbox' },
+  { value: 'published', label: 'Ya publicados en Sandbox' },
+  { value: 'failed', label: 'Con fallo de publicación' },
+];
+
+export function ReviewFilters({ currentBucket = '', currentStatus = '', currentSandboxPublishStatus = '' }: FilterProps) {
   return (
     <div className="mt-6 space-y-4">
       <div className="grid gap-3 md:grid-cols-3 xl:grid-cols-5">
@@ -44,7 +53,7 @@ export function ReviewFilters({ currentBucket = '', currentStatus = '' }: Filter
         </a>
       </div>
 
-      <form className="grid gap-4 rounded-2xl bg-white p-4 shadow-sm md:grid-cols-4" method="get">
+      <form className="grid gap-4 rounded-2xl bg-white p-4 shadow-sm md:grid-cols-5" method="get">
       <div>
         <label className="mb-1 block text-sm font-medium text-slate-700">Etapa del caso</label>
         <select
@@ -69,6 +78,21 @@ export function ReviewFilters({ currentBucket = '', currentStatus = '' }: Filter
         >
           {STATUS_OPTIONS.map((option) => (
             <option key={option.value || 'all-status'} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <label className="mb-1 block text-sm font-medium text-slate-700">Publicación Sandbox</label>
+        <select
+          name="sandboxPublishStatus"
+          defaultValue={currentSandboxPublishStatus}
+          className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
+        >
+          {SANDBOX_PUBLISH_OPTIONS.map((option) => (
+            <option key={option.value || 'all-sandbox-publish'} value={option.value}>
               {option.label}
             </option>
           ))}

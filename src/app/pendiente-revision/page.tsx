@@ -7,15 +7,17 @@ import { ReviewWorkbench } from '@/components/review/review-workbench';
 export default async function PendingReviewPage({
   searchParams,
 }: {
-  searchParams?: Promise<{ bucket?: string; status?: string }>;
+  searchParams?: Promise<{ bucket?: string; status?: string; sandboxPublishStatus?: string }>;
 }) {
   await requireSession();
   const resolvedSearchParams = (await searchParams) ?? {};
   const bucket = resolvedSearchParams.bucket || '';
   const status = resolvedSearchParams.status || '';
+  const sandboxPublishStatus = resolvedSearchParams.sandboxPublishStatus || '';
   const items = await listReviewCases(20, {
     bucket: bucket || undefined,
     status: status || undefined,
+    sandboxPublishStatus: sandboxPublishStatus || undefined,
   });
 
   return (
@@ -31,7 +33,7 @@ export default async function PendingReviewPage({
           </Link>
         </div>
 
-        <ReviewFilters currentBucket={bucket} currentStatus={status} />
+        <ReviewFilters currentBucket={bucket} currentStatus={status} currentSandboxPublishStatus={sandboxPublishStatus} />
       </section>
 
       <ReviewWorkbench items={items} />

@@ -16,6 +16,7 @@ type ReviewItem = {
   document_type?: string | null;
   issue_date?: string | null;
   summary_text?: string | null;
+  sandbox_publish_status?: string | null;
 };
 
 type ReviewCaseDetail = ReviewItem & {
@@ -108,6 +109,20 @@ function priorityChipClass(bucket: string) {
   return 'bg-slate-100 text-slate-700 ring-slate-200';
 }
 
+function sandboxPublishLabel(status: string | null | undefined) {
+  if (status === 'ready') return 'Listo para Sandbox';
+  if (status === 'published') return 'Publicado en Sandbox';
+  if (status === 'failed') return 'Falló publicación Sandbox';
+  return 'No listo para Sandbox';
+}
+
+function sandboxPublishChipClass(status: string | null | undefined) {
+  if (status === 'ready') return 'bg-emerald-50 text-emerald-700 ring-emerald-200';
+  if (status === 'published') return 'bg-sky-50 text-sky-700 ring-sky-200';
+  if (status === 'failed') return 'bg-rose-50 text-rose-700 ring-rose-200';
+  return 'bg-slate-100 text-slate-700 ring-slate-200';
+}
+
 function nextActionLabel(bucket: string) {
   if (bucket === 'error_real') return 'Definir corrección contable';
   if (bucket === 'rejected_sii') return 'Gestionar rechazo con proveedor';
@@ -191,6 +206,9 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                     <div className={`mt-1 inline-flex rounded-full px-2 py-0.5 ring-1 ${priorityChipClass(item.bucket)}`}>
                       Prioridad {priorityLabel(item.bucket)}
                     </div>
+                    <div className={`mt-1 inline-flex rounded-full px-2 py-0.5 ring-1 ${sandboxPublishChipClass(item.sandbox_publish_status)}`}>
+                      {sandboxPublishLabel(item.sandbox_publish_status)}
+                    </div>
                   </div>
                 </div>
                 <p className="mt-3 text-sm text-slate-600">{item.summary_text || 'Sin resumen.'}</p>
@@ -222,6 +240,9 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                   </span>
                   <span className={`inline-flex rounded-full px-2.5 py-1 text-sm font-medium ring-1 ${priorityChipClass(selected.bucket)}`}>
                     Prioridad {priorityLabel(selected.bucket)}
+                  </span>
+                  <span className={`inline-flex rounded-full px-2.5 py-1 text-sm font-medium ring-1 ${sandboxPublishChipClass(selected.sandbox_publish_status)}`}>
+                    {sandboxPublishLabel(selected.sandbox_publish_status)}
                   </span>
                 </div>
               </div>
