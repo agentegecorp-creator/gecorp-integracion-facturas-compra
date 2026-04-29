@@ -175,8 +175,38 @@ function buildEntityVendorMap() {
   return map;
 }
 
+function buildStageSummary(item: CaseInput) {
+  const context = (item.payloadJson?.context as Record<string, unknown> | undefined) || {};
+  const amountText = typeof item.amountTotal === 'number' && Number.isFinite(item.amountTotal)
+    ? new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 0 }).format(item.amountTotal)
+    : null;
+
+  if (item.bucket === 'error_real') {
+    const error = typeof context.error === 'string' ? context.error : item.summaryText;
+    return [item.vendorName, amountText, error].filter(Boolean).join(' · ');
+  }
+
+  if (item.bucket === 'revision_oc') {
+    const motivo = typeof context.motivo === 'string' ? context.motivo : item.summaryText;
+    const politicaOc = typeof context.categoriaOc === 'string' ? context.categoriaOc : null;
+    return [item.vendorName, amountText, politicaOc, motivo].filter(Boolean).join(' · ');
+  }
+
+  if (item.bucket === 'rejected_sii') {
+    const motivo = typeof context.motivo === 'string' ? context.motivo : item.summaryText;
+    return [item.vendorName, amountText, 'Rechazo SII', motivo].filter(Boolean).join(' · ');
+  }
+
+  return item.summaryText;
+}
+
 function buildHydratedCase(base: CaseInput, row?: PipelineRow) {
-  if (!row) return base;
+  if (!row) {
+    return {
+      ...base,
+      summaryText: buildStageSummary(base),
+    };
+  }
 
   const proveedorCorrelacion = String(row.proveedor_correlacion || '').trim();
   const razonSocial = String(row.razon_social || '').trim();
@@ -184,7 +214,7 @@ function buildHydratedCase(base: CaseInput, row?: PipelineRow) {
     ? proveedorCorrelacion
     : (razonSocial || base.vendorName);
 
-  return {
+  const hydrated: CaseInput = {
     ...base,
     vendorName: resolvedVendorName,
     vendorRut: String(row.rut_proveedor || base.vendorRut || '').trim() || base.vendorRut,
@@ -220,6 +250,11 @@ function buildHydratedCase(base: CaseInput, row?: PipelineRow) {
         requiereRevisionManual: row.requiere_revision_manual || null,
       },
     },
+  };
+
+  return {
+    ...hydrated,
+    summaryText: buildStageSummary(hydrated),
   };
 }
 
