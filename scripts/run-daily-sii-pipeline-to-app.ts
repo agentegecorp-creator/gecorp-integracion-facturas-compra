@@ -39,14 +39,20 @@ function latestRunDir() {
   return dirs[dirs.length - 1];
 }
 
-function main() {
-  const month = process.argv[2];
-  const year = process.argv[3];
+function currentMonthYear() {
+  const now = new Date();
+  return {
+    month: String(now.getMonth() + 1),
+    year: String(now.getFullYear()),
+  };
+}
 
-  if (!month || !year) {
-    console.error('Uso: npx tsx scripts/run-daily-sii-pipeline-to-app.ts <month> <year>');
-    process.exit(1);
-  }
+function main() {
+  const monthArg = process.argv[2];
+  const yearArg = process.argv[3];
+  const current = currentMonthYear();
+  const month = monthArg || current.month;
+  const year = yearArg || current.year;
 
   run('python3', ['run_sii_to_pipeline.py', '--month', month, '--year', year, '--dry-run'], siiProjectDir);
 
