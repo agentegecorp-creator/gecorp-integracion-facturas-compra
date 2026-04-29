@@ -33,6 +33,17 @@ export function decisionLabel(decisionType: string) {
   return labels[decisionType] || decisionType;
 }
 
+export function correctionFieldLabel(field: string) {
+  const labels: Record<string, string> = {
+    account_id: 'Cuenta contable',
+    vendor_name: 'Proveedor',
+    accounting_date: 'Fecha contable',
+    document_type: 'Tipo de documento',
+  };
+
+  return labels[field] || field;
+}
+
 export function fieldLabel(field: string) {
   const labels: Record<string, string> = {
     entity: 'Proveedor NetSuite',

@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { accountOptions, documentTypeOptions, vendorOptions } from '@/lib/review/catalogs';
+import { correctionFieldLabel, decisionLabel } from '@/lib/review/labels';
 
 type DecisionType = 'approve' | 'correct_and_approve' | 'exception' | 'reject_for_learning';
 type CorrectionField = 'account_id' | 'vendor_name' | 'accounting_date' | 'document_type';
@@ -163,10 +164,10 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
           onChange={(e) => setDecisionType(e.target.value as DecisionType)}
           className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
         >
-          <option value="approve">Aprobar</option>
-          <option value="correct_and_approve">Corregir y aprobar</option>
-          <option value="exception">Marcar excepción</option>
-          <option value="reject_for_learning">Rechazar para aprendizaje</option>
+          <option value="approve">{decisionLabel('approve')}</option>
+          <option value="correct_and_approve">{decisionLabel('correct_and_approve')}</option>
+          <option value="exception">{decisionLabel('exception')}</option>
+          <option value="reject_for_learning">{decisionLabel('reject_for_learning')}</option>
         </select>
       </div>
 
@@ -182,10 +183,10 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
               }}
               className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
             >
-              <option value="account_id">Cuenta contable</option>
-              <option value="vendor_name">Proveedor</option>
-              <option value="accounting_date">Fecha contable</option>
-              <option value="document_type">Tipo documental</option>
+              <option value="account_id">{correctionFieldLabel('account_id')}</option>
+              <option value="vendor_name">{correctionFieldLabel('vendor_name')}</option>
+              <option value="accounting_date">{correctionFieldLabel('accounting_date')}</option>
+              <option value="document_type">{correctionFieldLabel('document_type')}</option>
             </select>
           </div>
 
@@ -211,7 +212,7 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
           className="min-h-28 w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
-          placeholder="Observaciones de revisión, correcciones o motivo de excepción"
+          placeholder="Observaciones de revisión, correcciones o motivo de la excepción"
         />
       </div>
 

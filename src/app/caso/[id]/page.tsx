@@ -103,7 +103,7 @@ export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
             </div>
 
             <div className="rounded-3xl bg-slate-900 p-5 text-sm text-slate-100 shadow-sm">
-              <p className="mb-3 text-xs uppercase tracking-wide text-slate-400">Payload técnico</p>
+              <p className="mb-3 text-xs uppercase tracking-wide text-slate-400">Detalle técnico</p>
               <pre className="overflow-auto">{JSON.stringify(item.payload_json, null, 2)}</pre>
             </div>
           </div>

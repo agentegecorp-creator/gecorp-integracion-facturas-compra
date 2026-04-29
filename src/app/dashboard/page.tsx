@@ -98,7 +98,7 @@ export default async function DashboardPage() {
             <div className="mt-4 space-y-3 text-sm text-slate-600">
               <p>• Etapas activas: {summary.byBucket.map((row) => `${etapaLabel(row.bucket)}: ${row.total}`).join(' · ') || 'Sin datos'}.</p>
               <p>• Estados activos: {summary.byStatus.map((row) => `${estadoLabel(row.status)}: ${row.total}`).join(' · ') || 'Sin datos'}.</p>
-              <p>• La app ya dejó de ser solo demo: hoy mezcla seed inicial con casos reales importados desde el dashboard operativo.</p>
+              <p>• La app ya dejó de ser solo demo: hoy mezcla casos iniciales con casos reales importados desde la operación.</p>
             </div>
           </div>
 
@@ -107,7 +107,7 @@ export default async function DashboardPage() {
             <div className="mt-4 space-y-3 text-sm text-slate-600">
               <p>• Resolver la etapa de revisión de OC con mejor contexto por proveedor, proveedor NetSuite y referencia contable.</p>
               <p>• Incorporar y tratar los rechazos SII como carril operativo visible.</p>
-              <p>• Seguir acercando la UX al trabajo real de Mónica, no a un dashboard meramente ejecutivo.</p>
+              <p>• Seguir acercando la experiencia al trabajo real de Mónica, no a un tablero meramente ejecutivo.</p>
             </div>
           </div>
 
