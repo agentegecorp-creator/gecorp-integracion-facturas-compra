@@ -18,6 +18,7 @@ type ReviewItem = {
 };
 
 type ReviewCaseDetail = ReviewItem & {
+  reception_date?: string | null;
   payload_json?: {
     context?: {
       entity?: number;
@@ -52,6 +53,29 @@ function bucketChipClass(bucket: string) {
   };
 
   return styles[bucket] || 'bg-slate-100 text-slate-700 ring-slate-200';
+}
+
+function formatCurrency(value: string | null) {
+  if (!value) return '-';
+  const amount = Number(value);
+  if (!Number.isFinite(amount)) return value;
+
+  return new Intl.NumberFormat('es-CL', {
+    style: 'currency',
+    currency: 'CLP',
+    maximumFractionDigits: 0,
+  }).format(amount);
+}
+
+function formatDate(value: string | null | undefined) {
+  if (!value) return '-';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+  return new Intl.DateTimeFormat('es-CL', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(date);
 }
 
 export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
@@ -118,6 +142,7 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                   <div>
                     <div className="font-semibold text-slate-900">{item.vendor_name || '-'}</div>
                     <div className="text-xs text-slate-500">{item.vendor_rut || 'RUT no informado'} · Folio {item.folio || '-'}</div>
+                    <div className="mt-1 text-xs text-slate-500">{formatCurrency(item.amount_total)}</div>
                   </div>
                   <div className="text-right text-xs text-slate-500">
                     <div>{item.status}</div>
@@ -150,13 +175,21 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
               </div>
               <div className="rounded-2xl bg-slate-50 p-4">
                 <p className="text-sm text-slate-500">Monto total</p>
-                <p className="mt-1 font-medium text-slate-900">{selected.amount_total || '-'}</p>
+                <p className="mt-1 font-medium text-slate-900">{formatCurrency(selected.amount_total)}</p>
+              </div>
+              <div className="rounded-2xl bg-slate-50 p-4">
+                <p className="text-sm text-slate-500">Fecha documento</p>
+                <p className="mt-1 font-medium text-slate-900">{formatDate(selected.issue_date)}</p>
+              </div>
+              <div className="rounded-2xl bg-slate-50 p-4">
+                <p className="text-sm text-slate-500">Fecha recepción</p>
+                <p className="mt-1 font-medium text-slate-900">{formatDate(selectedDetail?.reception_date)}</p>
               </div>
               <div className="rounded-2xl bg-slate-50 p-4">
                 <p className="text-sm text-slate-500">Estado</p>
                 <p className="mt-1 font-medium text-slate-900">{selected.status}</p>
               </div>
-              <div className="rounded-2xl bg-slate-50 p-4">
+              <div className="rounded-2xl bg-slate-50 p-4 md:col-span-2">
                 <p className="text-sm text-slate-500">Bucket</p>
                 <div className={`mt-1 inline-flex rounded-full px-2.5 py-1 text-sm font-medium ring-1 ${bucketChipClass(selected.bucket)}`}>
                   {bucketLabel(selected.bucket)}
