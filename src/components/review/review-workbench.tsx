@@ -84,6 +84,51 @@ function formatDate(value: string | null | undefined) {
   }).format(date);
 }
 
+function statusLabel(status: string) {
+  const labels: Record<string, string> = {
+    new: 'Nuevo',
+    resolved: 'Resuelto',
+    exception: 'Excepción',
+    rejected_for_learning: 'Rechazado para aprendizaje',
+    in_review: 'En revisión',
+  };
+
+  return labels[status] || status;
+}
+
+function statusChipClass(status: string) {
+  const styles: Record<string, string> = {
+    new: 'bg-amber-50 text-amber-700 ring-amber-200',
+    resolved: 'bg-emerald-50 text-emerald-700 ring-emerald-200',
+    exception: 'bg-rose-50 text-rose-700 ring-rose-200',
+    rejected_for_learning: 'bg-slate-100 text-slate-700 ring-slate-200',
+    in_review: 'bg-blue-50 text-blue-700 ring-blue-200',
+  };
+
+  return styles[status] || 'bg-slate-100 text-slate-700 ring-slate-200';
+}
+
+function priorityLabel(bucket: string) {
+  if (bucket === 'error_real') return 'Crítico';
+  if (bucket === 'rejected_sii') return 'Alto';
+  if (bucket === 'revision_oc') return 'Medio';
+  return 'Normal';
+}
+
+function priorityChipClass(bucket: string) {
+  if (bucket === 'error_real') return 'bg-rose-50 text-rose-700 ring-rose-200';
+  if (bucket === 'rejected_sii') return 'bg-orange-50 text-orange-700 ring-orange-200';
+  if (bucket === 'revision_oc') return 'bg-amber-50 text-amber-700 ring-amber-200';
+  return 'bg-slate-100 text-slate-700 ring-slate-200';
+}
+
+function nextActionLabel(bucket: string) {
+  if (bucket === 'error_real') return 'Definir corrección contable';
+  if (bucket === 'rejected_sii') return 'Gestionar rechazo con proveedor';
+  if (bucket === 'revision_oc') return 'Validar contra OC real';
+  return 'Revisar y decidir';
+}
+
 export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
   const [selectedId, setSelectedId] = useState<string | null>(items[0]?.id ?? null);
   const [selectedDetail, setSelectedDetail] = useState<ReviewCaseDetail | null>(null);
@@ -151,13 +196,19 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                     <div className="mt-1 text-xs text-slate-500">{formatCurrency(item.amount_total)}</div>
                   </div>
                   <div className="text-right text-xs text-slate-500">
-                    <div>{item.status}</div>
+                    <div className={`inline-flex rounded-full px-2 py-0.5 ring-1 ${statusChipClass(item.status)}`}>
+                      {statusLabel(item.status)}
+                    </div>
                     <div className={`mt-1 inline-flex rounded-full px-2 py-0.5 ring-1 ${bucketChipClass(item.bucket)}`}>
                       {bucketLabel(item.bucket)}
+                    </div>
+                    <div className={`mt-1 inline-flex rounded-full px-2 py-0.5 ring-1 ${priorityChipClass(item.bucket)}`}>
+                      Prioridad {priorityLabel(item.bucket)}
                     </div>
                   </div>
                 </div>
                 <p className="mt-3 text-sm text-slate-600">{item.summary_text || 'Sin resumen.'}</p>
+                <p className="mt-2 text-xs font-medium text-slate-500">Siguiente acción sugerida: {nextActionLabel(item.bucket)}</p>
               </button>
             ))
           )}
@@ -171,8 +222,27 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
         ) : (
           <div className="mt-4 space-y-4">
             <div>
-              <div className="text-lg font-semibold text-slate-900">{selected.vendor_name || '-'}</div>
-              <div className="text-sm text-slate-500">{selected.vendor_rut || 'RUT no informado'}</div>
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div>
+                  <div className="text-lg font-semibold text-slate-900">{selected.vendor_name || '-'}</div>
+                  <div className="text-sm text-slate-500">{selected.vendor_rut || 'RUT no informado'}</div>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <span className={`inline-flex rounded-full px-2.5 py-1 text-sm font-medium ring-1 ${statusChipClass(selected.status)}`}>
+                    {statusLabel(selected.status)}
+                  </span>
+                  <span className={`inline-flex rounded-full px-2.5 py-1 text-sm font-medium ring-1 ${bucketChipClass(selected.bucket)}`}>
+                    {bucketLabel(selected.bucket)}
+                  </span>
+                  <span className={`inline-flex rounded-full px-2.5 py-1 text-sm font-medium ring-1 ${priorityChipClass(selected.bucket)}`}>
+                    Prioridad {priorityLabel(selected.bucket)}
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div className="rounded-2xl border border-indigo-100 bg-indigo-50 p-4">
+              <p className="text-xs font-semibold uppercase tracking-wide text-indigo-700">Siguiente acción sugerida</p>
+              <p className="mt-1 text-sm font-medium text-slate-900">{nextActionLabel(selected.bucket)}</p>
             </div>
             <div className="grid gap-3 md:grid-cols-2">
               <div className="rounded-2xl bg-slate-50 p-4">
