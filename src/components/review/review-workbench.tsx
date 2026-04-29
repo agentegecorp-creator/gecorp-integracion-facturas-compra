@@ -259,11 +259,28 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
               </div>
             </div>
             <div className="rounded-2xl bg-slate-50 p-4">
-              <p className="text-sm text-slate-500">Resumen</p>
-              <p className="mt-1 text-sm text-slate-800">{selected.summary_text || 'Sin resumen.'}</p>
+              <p className="text-sm text-slate-500">Resumen del documento</p>
+              <p className="mt-1 text-sm text-slate-800">{selected.summary_text || 'Sin resumen disponible.'}</p>
             </div>
             {context ? (
-              <div className="grid gap-3 md:grid-cols-2">
+              <div className="space-y-3">
+                {context.motivo || context.error || context.comentariosGonzalo ? (
+                  <div className="grid gap-3 md:grid-cols-2">
+                    {context.motivo || context.error ? (
+                      <div className="rounded-2xl border border-amber-200 bg-amber-50 p-4 md:col-span-2">
+                        <p className="text-sm text-amber-700">Motivo principal</p>
+                        <p className="mt-1 text-sm text-slate-900">{context.motivo || context.error}</p>
+                      </div>
+                    ) : null}
+                    {context.comentariosGonzalo ? (
+                      <div className="rounded-2xl border border-indigo-200 bg-indigo-50 p-4 md:col-span-2">
+                        <p className="text-sm text-indigo-700">Comentario de Gonzalo</p>
+                        <p className="mt-1 text-sm text-slate-900">{context.comentariosGonzalo}</p>
+                      </div>
+                    ) : null}
+                  </div>
+                ) : null}
+                <div className="grid gap-3 md:grid-cols-2">
                 {typeof context.entity === 'number' ? (
                   <div className="rounded-2xl bg-slate-50 p-4">
                     <p className="text-sm text-slate-500">{fieldLabel('entity')}</p>
@@ -312,12 +329,7 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                     <p className="mt-1 font-medium text-slate-900">{context.requiereRevisionManual}</p>
                   </div>
                 ) : null}
-                {context.comentariosGonzalo ? (
-                  <div className="rounded-2xl bg-slate-50 p-4 md:col-span-2">
-                    <p className="text-sm text-slate-500">{fieldLabel('comentariosGonzalo')}</p>
-                    <p className="mt-1 text-sm text-slate-900">{context.comentariosGonzalo}</p>
-                  </div>
-                ) : null}
+                </div>
               </div>
             ) : null}
             <div className="flex flex-wrap gap-3 pt-2">
