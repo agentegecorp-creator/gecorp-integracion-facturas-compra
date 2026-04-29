@@ -15,7 +15,7 @@ export function estadoLabel(status: string) {
     new: 'Nuevo',
     in_review: 'En revisión',
     resolved: 'Resuelto',
-    exception: 'Excepción',
+    exception: 'Caso especial',
     rejected_for_learning: 'Descartado',
   };
 
@@ -26,7 +26,7 @@ export function decisionLabel(decisionType: string) {
   const labels: Record<string, string> = {
     approve: 'Aprobar',
     correct_and_approve: 'Corregir y aprobar',
-    exception: 'Marcar excepción',
+    exception: 'Marcar como caso especial',
     reject_for_learning: 'Descartar',
   };
 

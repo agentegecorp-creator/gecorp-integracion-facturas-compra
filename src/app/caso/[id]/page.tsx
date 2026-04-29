@@ -28,7 +28,7 @@ export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
       <div className="flex items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold">Caso {id}</h1>
-          <p className="mt-2 text-slate-600">Detalle operativo del caso en revisión.</p>
+          <p className="mt-2 text-slate-600">Detalle operativo del documento en revisión.</p>
         </div>
         <Link href="/pendiente-revision" className="rounded-xl border border-slate-300 px-4 py-2 text-sm hover:bg-slate-100">
           Volver a la cola
@@ -79,10 +79,10 @@ export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
 
             <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
               <h2 className="text-lg font-semibold text-slate-900">Historial de decisiones</h2>
-              <p className="mt-1 text-sm text-slate-600">Trazabilidad operativa del caso.</p>
+              <p className="mt-1 text-sm text-slate-600">Historial de decisiones tomadas sobre este documento.</p>
 
               {decisions.length === 0 ? (
-                <p className="mt-4 text-sm text-slate-500">Todavía no hay decisiones registradas para este caso.</p>
+                <p className="mt-4 text-sm text-slate-500">Todavía no hay decisiones registradas para este documento.</p>
               ) : (
                 <div className="mt-4 space-y-4">
                   {decisions.map((decision) => (

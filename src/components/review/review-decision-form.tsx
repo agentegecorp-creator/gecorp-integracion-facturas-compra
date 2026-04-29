@@ -212,7 +212,7 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
           className="min-h-28 w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
-          placeholder="Observaciones de revisión, correcciones o motivo de la excepción"
+          placeholder="Observaciones de revisión, correcciones o motivo del caso especial"
         />
       </div>
 

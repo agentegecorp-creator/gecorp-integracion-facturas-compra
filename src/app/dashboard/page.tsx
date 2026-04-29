@@ -31,7 +31,7 @@ export default async function DashboardPage() {
             </div>
             <h1 className="mt-4 text-3xl font-semibold text-slate-900">Mesa de Revisión Contable</h1>
             <p className="mt-2 max-w-3xl text-sm text-slate-600">
-              Bienvenido, {session.name}. Esta portada ya no debería vender “estabilidad” genérica, sino mostrar dónde está la carga operativa real y desde dónde entrar a resolverla.
+              Bienvenido, {session.name}. Esta portada debe mostrar dónde está la carga operativa real y desde dónde entrar a resolverla.
             </p>
             <div className="mt-4 flex flex-wrap gap-3 text-xs text-slate-500">
               <span>Origen: Postgres + mission-control</span>
@@ -106,8 +106,8 @@ export default async function DashboardPage() {
             <h2 className="text-xl font-semibold text-slate-900">Qué requiere atención</h2>
             <div className="mt-4 space-y-3 text-sm text-slate-600">
               <p>• Resolver la etapa de revisión de OC con mejor contexto por proveedor, proveedor NetSuite y referencia contable.</p>
-              <p>• Incorporar y tratar los rechazos SII como carril operativo visible.</p>
-              <p>• Seguir acercando la experiencia al trabajo real de Mónica, no a un tablero meramente ejecutivo.</p>
+              <p>• Mantener visibles y ordenados los rechazos SII como trabajo operativo real.</p>
+              <p>• Seguir acercando la experiencia al trabajo diario de Mónica, no a un tablero meramente ejecutivo.</p>
             </div>
           </div>
 
@@ -118,7 +118,7 @@ export default async function DashboardPage() {
             </Link>
             <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
               <h3 className="font-semibold text-slate-900">Siguiente bloque</h3>
-              <p className="mt-1 text-sm text-slate-600">Profundizar importación real del pipeline y convertir esta portada en un verdadero tablero de priorización operativa.</p>
+              <p className="mt-1 text-sm text-slate-600">Seguir profundizando la carga real del pipeline y convertir esta portada en un tablero claro de prioridades.</p>
             </div>
           </div>
         </div>
