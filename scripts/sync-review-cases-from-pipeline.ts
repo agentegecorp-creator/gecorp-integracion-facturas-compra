@@ -140,8 +140,10 @@ function buildEnrichedRowMap() {
   const map = new Map<string, PipelineRow>();
 
   for (const row of rows) {
-    const key = `${String(row.rut_proveedor || '').trim()}::${String(row.folio || '').trim()}::${String(row.tipo_doc || '').trim()}`;
-    if (!map.has(key)) map.set(key, row);
+    const rutKey = `${String(row.rut_proveedor || '').trim()}::${String(row.folio || '').trim()}::${String(row.tipo_doc || '').trim()}`;
+    const entityKey = `${String(row.entity || row.entity_id || '').trim()}::${String(row.folio || '').trim()}::${String(row.tipo_doc || '').trim()}`;
+    if (!map.has(rutKey)) map.set(rutKey, row);
+    if (!map.has(entityKey)) map.set(entityKey, row);
   }
 
   return map;
@@ -452,8 +454,10 @@ async function main() {
   }
 
   for (const baseCase of cases) {
-    const hydrateKey = `${baseCase.vendorRut || ''}::${baseCase.folio}::${baseCase.documentType}`;
-    const hydrated = buildHydratedCase(baseCase, rowMap.get(hydrateKey));
+    const context = (baseCase.payloadJson?.context as Record<string, unknown> | undefined) || {};
+    const hydrateKeyByRut = `${baseCase.vendorRut || ''}::${baseCase.folio}::${baseCase.documentType}`;
+    const hydrateKeyByEntity = `${String(context.entity || '')}::${baseCase.folio}::${baseCase.documentType}`;
+    const hydrated = buildHydratedCase(baseCase, rowMap.get(hydrateKeyByRut) || rowMap.get(hydrateKeyByEntity));
     const result = await upsertCase(hydrated);
     if (result === 'inserted') inserted += 1;
     if (result === 'updated') updated += 1;
