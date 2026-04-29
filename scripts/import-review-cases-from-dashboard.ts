@@ -1,3 +1,7 @@
+// LEGACY / TRANSICIÓN
+// Este script fue el primer importador parcial desde mission-control.
+// La ruta oficial actual es: scripts/sync-review-cases-from-pipeline.ts
+
 import fs from 'node:fs';
 import path from 'node:path';
 

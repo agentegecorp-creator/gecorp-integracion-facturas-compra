@@ -1,3 +1,7 @@
+// LEGACY / TRANSICIÓN
+// Este script fue absorbido por el flujo unificado oficial.
+// La ruta oficial actual es: scripts/sync-review-cases-from-pipeline.ts
+
 import fs from 'node:fs';
 import { db } from '../src/lib/db/client';
 

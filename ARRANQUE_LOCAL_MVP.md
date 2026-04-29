@@ -109,15 +109,33 @@ URL local esperada:
 
 ---
 
-## 8. Próxima carga útil
+## 8. Carga útil oficial de `review_cases`
 
-Para una prueba más real, falta poblar `review_cases` con:
-- casos de marzo validados
-- o lote corto de prueba desde pipeline
+La ruta oficial para poblar y actualizar `review_cases` es:
+
+```bash
+npx tsx scripts/sync-review-cases-from-pipeline.ts
+```
+
+Ese script debe reemplazar el uso manual separado de importadores parciales.
+
+### Importante
+Estos scripts quedan como legado/transición y ya no son la ruta recomendada:
+- `scripts/import-review-cases-from-dashboard.ts`
+- `scripts/reconcile-imported-review-cases.ts`
+- `scripts/enrich-review-cases-from-pipeline-artifacts.ts`
+- `scripts/hydrate-review-cases-from-enriched-csv.ts`
+
+## 9. Próxima prueba real
+
+Después del sync oficial, validar:
+- que aparezcan casos reales en `/pendiente-revision`
+- que ya no dominen los casos seed abiertos
+- que se vean proveedor, monto, fechas y contexto mejorado
 
 ---
 
-## 9. Problemas esperables en primera corrida
+## 10. Problemas esperables en primera corrida
 
 ### Si falla login
 Revisar:
@@ -140,7 +158,7 @@ Revisar:
 
 ---
 
-## 10. Recomendación práctica
+## 11. Recomendación práctica
 
 La primera meta no es belleza visual.
 La primera meta es lograr este ciclo completo:
