@@ -47,16 +47,89 @@ export async function listAuditLog(limit = 50) {
 }
 
 export async function getDashboardSummary() {
-  const [totalCases, byBucket, byStatus] = await Promise.all([
+  const [totalCases, byBucket, byStatus, rows] = await Promise.all([
     db.query(`select count(*)::int as total from review_cases`),
     db.query(`select bucket, count(*)::int as total from review_cases group by bucket order by bucket`),
     db.query(`select status, count(*)::int as total from review_cases group by status order by status`),
+    db.query(`select bucket, status, document_type, amount_total, vendor_name, payload_json from review_cases`),
   ]);
+
+  const operationalSummary = {
+    contabilizados: 0,
+    porContabilizar: 0,
+    excluidos: 0,
+    nuevosProveedores: 0,
+  };
+
+  const documentTypeSummaryMap = new Map<string, {
+    documentType: string;
+    totalDocuments: number;
+    montoExento: number;
+    montoNeto: number;
+    ivaRecuperable: number;
+    ivaUsoComun: number;
+    ivaNoRecuperable: number;
+    montoTotal: number;
+  }>();
+
+  for (const row of rows.rows) {
+    const payload = row.payload_json ?? {};
+    const context = payload.context ?? {};
+    const document = payload.document ?? {};
+    const vendorName = String(row.vendor_name || '').toUpperCase();
+    const amountTotal = Number(document.amountTotal ?? row.amount_total ?? 0) || 0;
+    const amountNet = Number(document.amountNet ?? (String(row.document_type || '') === '34' ? 0 : amountTotal)) || 0;
+    const amountExempt = Number(document.amountExempt ?? (String(row.document_type || '') === '34' ? amountTotal : 0)) || 0;
+    const ivaRecuperable = Math.max(amountTotal - amountNet - amountExempt, 0);
+    const ivaUsoComun = Number(document.ivaUsoComun ?? 0) || 0;
+    const ivaNoRecuperable = Number(document.ivaNoRecuperable ?? 0) || 0;
+    const docType = String(document.documentType || row.document_type || 'Sin tipo');
+
+    if (row.status === 'resolved') {
+      operationalSummary.contabilizados += 1;
+    } else {
+      operationalSummary.porContabilizar += 1;
+    }
+
+    if (vendorName.includes('DIN') || vendorName.includes('SCOTIABANK SIN VALOR') || docType === '914') {
+      operationalSummary.excluidos += 1;
+    }
+
+    if (String(context.motivo || '').toLowerCase().includes('proveedor nuevo') || String(context.requiereRevisionManual || '').toLowerCase() === 'nuevo_proveedor') {
+      operationalSummary.nuevosProveedores += 1;
+    }
+
+    if (!documentTypeSummaryMap.has(docType)) {
+      documentTypeSummaryMap.set(docType, {
+        documentType: docType,
+        totalDocuments: 0,
+        montoExento: 0,
+        montoNeto: 0,
+        ivaRecuperable: 0,
+        ivaUsoComun: 0,
+        ivaNoRecuperable: 0,
+        montoTotal: 0,
+      });
+    }
+
+    const target = documentTypeSummaryMap.get(docType)!;
+    target.totalDocuments += 1;
+    target.montoExento += amountExempt;
+    target.montoNeto += amountNet;
+    target.ivaRecuperable += ivaRecuperable;
+    target.ivaUsoComun += ivaUsoComun;
+    target.ivaNoRecuperable += ivaNoRecuperable;
+    target.montoTotal += amountTotal;
+  }
+
+  const documentTypeSummary = Array.from(documentTypeSummaryMap.values()).sort((a, b) => a.documentType.localeCompare(b.documentType, 'es'));
 
   return {
     totalCases: totalCases.rows[0]?.total ?? 0,
     byBucket: byBucket.rows,
     byStatus: byStatus.rows,
+    operationalSummary,
+    documentTypeSummary,
   };
 }
 

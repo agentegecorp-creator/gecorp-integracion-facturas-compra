@@ -13,6 +13,30 @@ function StatCard({ label, value, help }: { label: string; value: string | numbe
   );
 }
 
+function formatCurrency(value: number) {
+  return new Intl.NumberFormat('es-CL', {
+    style: 'currency',
+    currency: 'CLP',
+    maximumFractionDigits: 0,
+  }).format(value || 0);
+}
+
+function documentTypeLabel(code: string) {
+  if (code === '33') return 'Factura Electrónica (33)';
+  if (code === '34') return 'Factura no Afecta o Exenta Electrónica (34)';
+  if (code === '61') return 'Nota de Crédito Electrónica (61)';
+  if (code === '914') return 'Declaración de Ingreso (DIN) (914)';
+  return code;
+}
+
+function SiiAmountCell({ value }: { value: number }) {
+  return <td className="px-4 py-3 text-right text-sm text-slate-700">{formatCurrency(value)}</td>;
+}
+
+function SiiCountCell({ value }: { value: number }) {
+  return <td className="px-4 py-3 text-right text-sm text-slate-700">{value}</td>;
+}
+
 export default async function DashboardPage() {
   const session = await requireSession();
   const summary = await getDashboardSummary();
@@ -23,6 +47,8 @@ export default async function DashboardPage() {
   const rejectedSiiCount = summary.byBucket.find((row) => row.bucket === 'rejected_sii')?.total ?? 0;
   const revisionOcCount = summary.byBucket.find((row) => row.bucket === 'revision_oc')?.total ?? 0;
   const errorRealCount = summary.byBucket.find((row) => row.bucket === 'error_real')?.total ?? 0;
+  const operationalSummary = summary.operationalSummary;
+  const documentTypeSummary = summary.documentTypeSummary;
 
   return (
     <main className="mx-auto max-w-7xl space-y-8 p-8">
@@ -52,10 +78,10 @@ export default async function DashboardPage() {
         </div>
 
         <div className="mt-8 grid gap-4 md:grid-cols-4">
-          <StatCard label="Documentos en cola" value={summary.totalCases} help="Total visible en la mesa operativa" />
-          <StatCard label="Nuevos por revisar" value={pendingCount} help="Documentos esperando decisión" />
-          <StatCard label="Rechazos SII" value={rejectedSiiCount} help="Documentos observados por referencia OC en SII" />
-          <StatCard label="Errores contables" value={errorRealCount} help="Documentos con problema contable detectado" />
+          <StatCard label="Contabilizados" value={operationalSummary.contabilizados} help="Documentos ya resueltos y contabilizados en la operación" />
+          <StatCard label="Por contabilizar" value={operationalSummary.porContabilizar} help="Documentos todavía pendientes de cierre operativo" />
+          <StatCard label="Excluidos" value={operationalSummary.excluidos} help="Documentos fuera del flujo normal, incluyendo DIN y sin valor" />
+          <StatCard label="Facturas nuevos proveedores" value={operationalSummary.nuevosProveedores} help="Casos que requieren tratamiento por proveedor nuevo" />
         </div>
       </section>
 
@@ -99,21 +125,21 @@ export default async function DashboardPage() {
 
         <div className="space-y-6">
           <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-            <h2 className="text-xl font-semibold text-slate-900">Resumen de la corrida</h2>
+            <h2 className="text-xl font-semibold text-slate-900">Resumen operativo del mes</h2>
             <div className="mt-4 space-y-3 text-sm text-slate-600">
               <p>• Etapas activas: {summary.byBucket.map((row) => `${etapaLabel(row.bucket)}: ${row.total}`).join(' · ') || 'Sin datos'}.</p>
               <p>• Estados activos: {summary.byStatus.map((row) => `${estadoLabel(row.status)}: ${row.total}`).join(' · ') || 'Sin datos'}.</p>
               <p>• Documentos con revisión de OC: {revisionOcCount}.</p>
-              <p>• Documentos resueltos acumulados: {resolvedCount}. Casos especiales: {exceptionCount}.</p>
+              <p>• Rechazos SII: {rejectedSiiCount}. Errores contables: {errorRealCount}. Casos especiales: {exceptionCount}.</p>
             </div>
           </div>
 
           <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-            <h2 className="text-xl font-semibold text-slate-900">Prioridades del día</h2>
+            <h2 className="text-xl font-semibold text-slate-900">Flujo diario activo</h2>
             <div className="mt-4 space-y-3 text-sm text-slate-600">
-              <p>• Atender primero rechazos SII y errores contables.</p>
-              <p>• Luego resolver documentos en revisión de OC con mejor contexto por proveedor y cuenta sugerida.</p>
-              <p>• Usar la cola como mesa diaria real de trabajo, no solo como tablero de seguimiento.</p>
+              <p>• Corrida principal 6:00 AM hábil.</p>
+              <p>• Corrida adicional 11:45 PM hábil.</p>
+              <p>• La cola sigue priorizando rechazos SII, errores contables y revisión de OC.</p>
             </div>
           </div>
 
@@ -123,8 +149,37 @@ export default async function DashboardPage() {
               <p className="mt-1 text-sm text-slate-600">Ver eventos reales del flujo y decisiones tomadas.</p>
             </Link>
             <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
-              <h3 className="font-semibold text-slate-900">Flujo diario activo</h3>
-              <p className="mt-1 text-sm text-slate-600">La corrida automática de 6 AM ya alimenta esta mesa con el mes actual y deja la operación lista para revisión.</p>
+              <h3 className="font-semibold text-slate-900">Totales RCV por tipo de documento</h3>
+              <div className="mt-3 overflow-x-auto rounded-2xl border border-slate-200">
+                <table className="min-w-full divide-y divide-slate-200 text-sm">
+                  <thead className="bg-slate-50">
+                    <tr>
+                      <th className="px-4 py-3 text-left font-medium text-slate-600">Tipo documento</th>
+                      <th className="px-4 py-3 text-right font-medium text-slate-600">Total docs</th>
+                      <th className="px-4 py-3 text-right font-medium text-slate-600">Monto exento</th>
+                      <th className="px-4 py-3 text-right font-medium text-slate-600">Monto neto</th>
+                      <th className="px-4 py-3 text-right font-medium text-slate-600">IVA recuperable</th>
+                      <th className="px-4 py-3 text-right font-medium text-slate-600">IVA uso común</th>
+                      <th className="px-4 py-3 text-right font-medium text-slate-600">IVA no recuperable</th>
+                      <th className="px-4 py-3 text-right font-medium text-slate-600">Monto total</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 bg-white">
+                    {documentTypeSummary.map((row) => (
+                      <tr key={row.documentType} className="hover:bg-slate-50">
+                        <td className="px-4 py-3 text-sm text-slate-800">{documentTypeLabel(row.documentType)}</td>
+                        <SiiCountCell value={row.totalDocuments} />
+                        <SiiAmountCell value={row.montoExento} />
+                        <SiiAmountCell value={row.montoNeto} />
+                        <SiiAmountCell value={row.ivaRecuperable} />
+                        <SiiAmountCell value={row.ivaUsoComun} />
+                        <SiiAmountCell value={row.ivaNoRecuperable} />
+                        <SiiAmountCell value={row.montoTotal} />
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
