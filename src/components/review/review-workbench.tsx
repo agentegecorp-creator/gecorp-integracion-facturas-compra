@@ -22,6 +22,17 @@ type ReviewItem = {
 type ReviewCaseDetail = ReviewItem & {
   reception_date?: string | null;
   payload_json?: {
+    document?: {
+      documentType?: string;
+      dueDate?: string;
+      purchaseOrderReference?: string;
+      amountNet?: number | string;
+      amountExempt?: number | string;
+      amountTotal?: number | string;
+      summary?: string;
+      memo?: string;
+      description?: string;
+    };
     context?: {
       entity?: number;
       referenciaAccount?: number;
@@ -37,6 +48,7 @@ type ReviewCaseDetail = ReviewItem & {
       matchConfianza?: string;
       ocPolicyCorrecta?: string;
       requiereRevisionManual?: string;
+      referenciaOcCorrelacion?: string;
     };
   } | null;
 };
@@ -56,7 +68,7 @@ function bucketChipClass(bucket: string) {
   return styles[bucket] || 'bg-slate-100 text-slate-700 ring-slate-200';
 }
 
-function formatCurrency(value: string | null) {
+function formatCurrency(value: string | number | null | undefined) {
   if (!value) return '-';
   const amount = Number(value);
   if (!Number.isFinite(amount)) return value;
@@ -161,6 +173,14 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
   }, [selected?.id]);
 
   const context = selectedDetail?.payload_json?.context;
+  const document = selectedDetail?.payload_json?.document;
+  const dueDate = document?.dueDate;
+  const purchaseOrderReference = document?.purchaseOrderReference || context?.referenciaOcCorrelacion;
+  const amountNet = document?.amountNet;
+  const amountExempt = document?.amountExempt;
+  const amountTotal = document?.amountTotal || selected.amount_total;
+  const siiDocumentType = document?.documentType || selected.document_type;
+  const documentMemo = document?.memo || document?.description || document?.summary;
 
   return (
     <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
@@ -257,8 +277,8 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                 <p className="mt-1 font-medium text-slate-900">{selected.folio || '-'}</p>
               </div>
               <div className="rounded-2xl bg-slate-50 p-4">
-                <p className="text-sm text-slate-500">Monto total</p>
-                <p className="mt-1 font-medium text-slate-900">{formatCurrency(selected.amount_total)}</p>
+                <p className="text-sm text-slate-500">Tipo de documento SII</p>
+                <p className="mt-1 font-medium text-slate-900">{siiDocumentType || '-'}</p>
               </div>
               <div className="rounded-2xl bg-slate-50 p-4">
                 <p className="text-sm text-slate-500">Fecha documento</p>
@@ -267,6 +287,26 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
               <div className="rounded-2xl bg-slate-50 p-4">
                 <p className="text-sm text-slate-500">Fecha recepción</p>
                 <p className="mt-1 font-medium text-slate-900">{formatDate(selectedDetail?.reception_date)}</p>
+              </div>
+              <div className="rounded-2xl bg-slate-50 p-4">
+                <p className="text-sm text-slate-500">Fecha vencimiento factura</p>
+                <p className="mt-1 font-medium text-slate-900">{formatDate(dueDate)}</p>
+              </div>
+              <div className="rounded-2xl bg-slate-50 p-4">
+                <p className="text-sm text-slate-500">Número de OC en factura</p>
+                <p className="mt-1 font-medium text-slate-900">{purchaseOrderReference || '-'}</p>
+              </div>
+              <div className="rounded-2xl bg-slate-50 p-4">
+                <p className="text-sm text-slate-500">Monto afecto</p>
+                <p className="mt-1 font-medium text-slate-900">{formatCurrency(amountNet)}</p>
+              </div>
+              <div className="rounded-2xl bg-slate-50 p-4">
+                <p className="text-sm text-slate-500">Monto exento</p>
+                <p className="mt-1 font-medium text-slate-900">{formatCurrency(amountExempt)}</p>
+              </div>
+              <div className="rounded-2xl bg-slate-50 p-4">
+                <p className="text-sm text-slate-500">Monto bruto (total)</p>
+                <p className="mt-1 font-medium text-slate-900">{formatCurrency(amountTotal)}</p>
               </div>
               <div className="rounded-2xl bg-slate-50 p-4">
                 <p className="text-sm text-slate-500">Estado</p>
@@ -278,10 +318,10 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                   {bucketLabel(selected.bucket)}
                 </div>
               </div>
-            </div>
-            <div className="rounded-2xl bg-slate-50 p-4">
-              <p className="text-sm text-slate-500">Resumen del documento</p>
-              <p className="mt-1 text-sm text-slate-800">{selected.summary_text || 'Sin resumen disponible.'}</p>
+              <div className="rounded-2xl bg-slate-50 p-4 md:col-span-2">
+                <p className="text-sm text-slate-500">Glosa con detalle del documento</p>
+                <p className="mt-1 text-sm text-slate-800">{documentMemo || '-'}</p>
+              </div>
             </div>
             {context ? (
               <div className="space-y-3">
