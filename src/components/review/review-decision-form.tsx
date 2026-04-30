@@ -6,7 +6,7 @@ import { accountOptions, documentTypeOptions, vendorOptions } from '@/lib/review
 import { correctionFieldLabel, decisionLabel } from '@/lib/review/labels';
 
 type DecisionType = 'approve' | 'correct_and_approve' | 'exception' | 'reject_for_learning';
-type CorrectionField = 'account_id' | 'vendor_name' | 'accounting_date' | 'document_type';
+type CorrectionField = 'account_id' | 'vendor_name' | 'issue_date' | 'document_type';
 
 type ReviewDecisionFormProps = {
   caseId: string;
@@ -111,7 +111,7 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
       );
     }
 
-    if (correctionField === 'accounting_date') {
+    if (correctionField === 'issue_date') {
       return (
         <input
           type="date"
@@ -185,7 +185,7 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
             >
               <option value="account_id">{correctionFieldLabel('account_id')}</option>
               <option value="vendor_name">{correctionFieldLabel('vendor_name')}</option>
-              <option value="accounting_date">{correctionFieldLabel('accounting_date')}</option>
+              <option value="issue_date">Fecha del documento</option>
               <option value="document_type">{correctionFieldLabel('document_type')}</option>
             </select>
           </div>
@@ -198,7 +198,7 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
                 ? currentValues.vendorName || '-'
                 : correctionField === 'document_type'
                   ? currentValues.documentType || '-'
-                  : correctionField === 'accounting_date'
+                  : correctionField === 'issue_date'
                     ? currentValues.issueDate || '-'
                     : 'según cuenta propuesta'}
             </p>
