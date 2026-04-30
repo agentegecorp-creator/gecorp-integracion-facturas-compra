@@ -1,5 +1,25 @@
 import { db } from '@/lib/db/client';
 
+let cachedHasSandboxPublishStatus: boolean | null = null;
+
+async function hasSandboxPublishStatusColumn() {
+  if (cachedHasSandboxPublishStatus !== null) {
+    return cachedHasSandboxPublishStatus;
+  }
+
+  const result = await db.query(
+    `select exists (
+      select 1
+      from information_schema.columns
+      where table_name = 'review_cases'
+        and column_name = 'sandbox_publish_status'
+    ) as exists`,
+  );
+
+  cachedHasSandboxPublishStatus = Boolean(result.rows[0]?.exists);
+  return cachedHasSandboxPublishStatus;
+}
+
 export async function healthcheckDb() {
   const result = await db.query('select now() as now');
   return result.rows[0];
@@ -44,6 +64,7 @@ export async function listReviewCases(
   limit = 20,
   filters?: { bucket?: string; status?: string; sandboxPublishStatus?: string },
 ) {
+  const hasSandboxPublishStatus = await hasSandboxPublishStatusColumn();
   const conditions: string[] = [];
   const values: Array<string | number> = [];
 
@@ -57,7 +78,7 @@ export async function listReviewCases(
     conditions.push(`status = $${values.length}`);
   }
 
-  if (filters?.sandboxPublishStatus) {
+  if (filters?.sandboxPublishStatus && hasSandboxPublishStatus) {
     values.push(filters.sandboxPublishStatus);
     conditions.push(`coalesce(sandbox_publish_status, 'not_ready') = $${values.length}`);
   }
@@ -65,10 +86,13 @@ export async function listReviewCases(
   values.push(limit);
 
   const whereClause = conditions.length > 0 ? `where ${conditions.join(' and ')}` : '';
+  const sandboxPublishSelect = hasSandboxPublishStatus
+    ? `coalesce(sandbox_publish_status, 'not_ready')`
+    : `'not_ready'`;
 
   const result = await db.query(
     `select id, vendor_name, vendor_rut, folio, document_type, issue_date, bucket, status, amount_total, summary_text, created_at,
-            coalesce(sandbox_publish_status, 'not_ready') as sandbox_publish_status
+            ${sandboxPublishSelect} as sandbox_publish_status
      from review_cases
      ${whereClause}
      order by
@@ -96,6 +120,12 @@ export async function listReviewCases(
 }
 
 export async function listReadyForSandbox(limit = 100) {
+  const hasSandboxPublishStatus = await hasSandboxPublishStatusColumn();
+
+  if (!hasSandboxPublishStatus) {
+    return [];
+  }
+
   const result = await db.query(
     `select id,
             source_document_id,
@@ -260,6 +290,7 @@ export async function createReviewDecision(params: {
   try {
     await client.query('begin');
 
+    const hasSandboxPublishStatus = await hasSandboxPublishStatusColumn();
     const caseResult = await client.query(`select id, bucket, payload_json from review_cases where id = $1 limit 1`, [params.caseId]);
 
     if (!caseResult.rows[0]) {
@@ -281,13 +312,22 @@ export async function createReviewDecision(params: {
     const nextStatus = nextStatusMap[params.decisionType];
     const sandboxPublishStatus = inferSandboxPublishStatus(caseResult.rows[0], params.decisionType);
 
-    await client.query(
-      `update review_cases
-       set status = $2,
-           sandbox_publish_status = $3
-       where id = $1`,
-      [params.caseId, nextStatus, sandboxPublishStatus],
-    );
+    if (hasSandboxPublishStatus) {
+      await client.query(
+        `update review_cases
+         set status = $2,
+             sandbox_publish_status = $3
+         where id = $1`,
+        [params.caseId, nextStatus, sandboxPublishStatus],
+      );
+    } else {
+      await client.query(
+        `update review_cases
+         set status = $2
+         where id = $1`,
+        [params.caseId, nextStatus],
+      );
+    }
 
     await client.query(
       `insert into audit_log (user_id, action, entity_type, entity_id, details_json)
