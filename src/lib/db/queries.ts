@@ -95,6 +95,34 @@ export async function listReviewCases(
   return result.rows;
 }
 
+export async function listReadyForSandbox(limit = 100) {
+  const result = await db.query(
+    `select id,
+            source_document_id,
+            vendor_name,
+            vendor_rut,
+            folio,
+            document_type,
+            issue_date,
+            reception_date,
+            amount_total,
+            bucket,
+            status,
+            coalesce(sandbox_publish_status, 'not_ready') as sandbox_publish_status,
+            payload_json,
+            summary_text,
+            created_at,
+            updated_at
+     from review_cases
+     where coalesce(sandbox_publish_status, 'not_ready') = 'ready'
+     order by updated_at desc nulls last, created_at desc
+     limit $1`,
+    [limit],
+  );
+
+  return result.rows;
+}
+
 export async function getReviewCaseById(id: string) {
   const result = await db.query(
     `select * from review_cases where id = $1 limit 1`,
