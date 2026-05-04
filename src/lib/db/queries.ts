@@ -349,6 +349,59 @@ function inferSandboxPublishStatus(caseRow: {
   return 'ready';
 }
 
+function normalizeIsoDate(value: unknown) {
+  const raw = String(value ?? '').trim();
+  if (!raw) return null;
+  const direct = new Date(raw);
+  if (!Number.isNaN(direct.getTime())) {
+    return direct.toISOString();
+  }
+  const match = raw.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+  if (!match) return null;
+  const [, day, month, year] = match;
+  return new Date(`${year}-${month}-${day}T00:00:00.000Z`).toISOString();
+}
+
+function applyCorrectionsToCase(caseRow: { payload_json?: Record<string, any> | null; vendor_name?: string | null; document_type?: string | null; issue_date?: string | null; }, correctionJson?: Record<string, unknown>) {
+  const corrections = correctionJson ?? {};
+  const payload = { ...(caseRow.payload_json ?? {}) };
+  const document = { ...((payload.document as Record<string, unknown> | undefined) ?? {}) };
+  const context = { ...((payload.context as Record<string, unknown> | undefined) ?? {}) };
+
+  const patch: Record<string, unknown> = {
+    payload_json: payload,
+  };
+
+  if (typeof corrections.account_id === 'string' && corrections.account_id.trim()) {
+    context.accountCorrecta = corrections.account_id.trim();
+    context.accountIdProposed = corrections.account_id.trim();
+  }
+
+  if (typeof corrections.vendor_name === 'string' && corrections.vendor_name.trim()) {
+    patch.vendor_name = corrections.vendor_name.trim();
+    document.vendorName = corrections.vendor_name.trim();
+    context.razonSocial = corrections.vendor_name.trim();
+  }
+
+  if (typeof corrections.document_type === 'string' && corrections.document_type.trim()) {
+    patch.document_type = corrections.document_type.trim();
+    document.documentType = corrections.document_type.trim();
+  }
+
+  if (corrections.issue_date) {
+    const iso = normalizeIsoDate(corrections.issue_date);
+    if (iso) {
+      patch.issue_date = iso;
+      document.issueDate = iso;
+    }
+  }
+
+  payload.document = document;
+  payload.context = context;
+
+  return patch;
+}
+
 export async function createReviewDecision(params: {
   caseId: string;
   userId: string;
@@ -369,7 +422,7 @@ export async function createReviewDecision(params: {
     await client.query('begin');
 
     const hasSandboxPublishStatus = await hasSandboxPublishStatusColumn();
-    const caseResult = await client.query(`select id, bucket, payload_json from review_cases where id = $1 limit 1`, [params.caseId]);
+    const caseResult = await client.query(`select id, bucket, vendor_name, document_type, issue_date, payload_json from review_cases where id = $1 limit 1`, [params.caseId]);
 
     if (!caseResult.rows[0]) {
       throw new Error('Caso no encontrado');
@@ -388,22 +441,53 @@ export async function createReviewDecision(params: {
     );
 
     const nextStatus = nextStatusMap[params.decisionType];
-    const sandboxPublishStatus = inferSandboxPublishStatus(caseResult.rows[0], params.decisionType);
+    const caseRow = caseResult.rows[0];
+    const correctedPatch = applyCorrectionsToCase(caseRow, params.correctionJson);
+    const previewCaseRow = {
+      ...caseRow,
+      payload_json: correctedPatch.payload_json ?? caseRow.payload_json,
+    };
+    const sandboxPublishStatus = inferSandboxPublishStatus(previewCaseRow, params.decisionType);
 
     if (hasSandboxPublishStatus) {
       await client.query(
         `update review_cases
          set status = $2,
-             sandbox_publish_status = $3
+             sandbox_publish_status = $3,
+             vendor_name = coalesce($4, vendor_name),
+             document_type = coalesce($5, document_type),
+             issue_date = coalesce($6::timestamptz, issue_date),
+             payload_json = $7::jsonb,
+             updated_at = now()
          where id = $1`,
-        [params.caseId, nextStatus, sandboxPublishStatus],
+        [
+          params.caseId,
+          nextStatus,
+          sandboxPublishStatus,
+          correctedPatch.vendor_name ?? null,
+          correctedPatch.document_type ?? null,
+          correctedPatch.issue_date ?? null,
+          JSON.stringify(correctedPatch.payload_json ?? caseRow.payload_json ?? {}),
+        ],
       );
     } else {
       await client.query(
         `update review_cases
-         set status = $2
+         set status = $2,
+             vendor_name = coalesce($3, vendor_name),
+             document_type = coalesce($4, document_type),
+             issue_date = coalesce($5::timestamptz, issue_date),
+             payload_json = $6::jsonb,
+             updated_at = now()
          where id = $1`,
-        [params.caseId, nextStatus],
+        [
+          params.caseId,
+          nextStatus,
+          correctedPatch.vendor_name ?? null,
+          correctedPatch.document_type ?? null,
+          correctedPatch.issue_date ?? null,
+          JSON.stringify(correctedPatch.payload_json ?? caseRow.payload_json ?? {}),
+        ],
       );
     }
 
