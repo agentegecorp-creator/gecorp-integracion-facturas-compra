@@ -336,6 +336,29 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
             </div>
             {context ? (
               <div className="space-y-3">
+                {context.vendorIdProposed === null || context.accountIdProposed === null ? (
+                  <div className="rounded-2xl border border-violet-200 bg-violet-50 p-4">
+                    <p className="text-sm font-semibold text-violet-800">Proveedor nuevo o incompleto</p>
+                    <div className="mt-3 grid gap-3 md:grid-cols-2">
+                      <div>
+                        <p className="text-xs uppercase tracking-wide text-violet-700">Grupo de aprobación</p>
+                        <p className="mt-1 text-sm font-medium text-slate-900">Pendiente de definir</p>
+                      </div>
+                      <div>
+                        <p className="text-xs uppercase tracking-wide text-violet-700">Cuenta contable</p>
+                        <p className="mt-1 text-sm font-medium text-slate-900">{context.accountCorrecta || 'Pendiente de definir'}</p>
+                      </div>
+                      <div>
+                        <p className="text-xs uppercase tracking-wide text-violet-700">Categoría OC</p>
+                        <p className="mt-1 text-sm font-medium text-slate-900">{context.ocCategory || context.categoriaOc || 'Pendiente de definir'}</p>
+                      </div>
+                      <div>
+                        <p className="text-xs uppercase tracking-wide text-violet-700">Proveedor NS propuesto</p>
+                        <p className="mt-1 text-sm font-medium text-slate-900">{context.vendorIdProposed || 'Pendiente de definir'}</p>
+                      </div>
+                    </div>
+                  </div>
+                ) : null}
                 {context.accountIdProposed || context.vendorIdProposed || context.ocCategory || context.assignedTo || context.reviewStatus || context.engineNote ? (
                   <div className="rounded-2xl border border-sky-200 bg-sky-50 p-4">
                     <p className="text-sm font-semibold text-sky-800">Señales operativas actuales</p>
