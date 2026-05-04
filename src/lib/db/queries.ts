@@ -135,11 +135,16 @@ export async function getDashboardSummary() {
 
 export async function listReviewCases(
   limit = 20,
-  filters?: { bucket?: string; status?: string; sandboxPublishStatus?: string },
+  filters?: { bucket?: string; status?: string; sandboxPublishStatus?: string; monthScope?: 'active' | 'all' },
 ) {
   const hasSandboxPublishStatus = await hasSandboxPublishStatusColumn();
   const conditions: string[] = [];
   const values: Array<string | number> = [];
+  const monthScope = filters?.monthScope ?? 'active';
+
+  if (monthScope === 'active') {
+    conditions.push(`issue_date >= DATE '2026-04-01' and issue_date < DATE '2026-06-01'`);
+  }
 
   if (filters?.bucket) {
     values.push(filters.bucket);
