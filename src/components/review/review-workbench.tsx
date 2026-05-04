@@ -49,6 +49,12 @@ type ReviewCaseDetail = ReviewItem & {
       ocPolicyCorrecta?: string;
       requiereRevisionManual?: string;
       referenciaOcCorrelacion?: string;
+      assignedTo?: string;
+      engineNote?: string;
+      ocCategory?: string;
+      reviewStatus?: string;
+      vendorIdProposed?: number;
+      accountIdProposed?: number;
     };
   } | null;
 };
@@ -325,6 +331,49 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
             </div>
             {context ? (
               <div className="space-y-3">
+                {context.accountIdProposed || context.vendorIdProposed || context.ocCategory || context.assignedTo || context.reviewStatus || context.engineNote ? (
+                  <div className="rounded-2xl border border-sky-200 bg-sky-50 p-4">
+                    <p className="text-sm font-semibold text-sky-800">Señales operativas actuales</p>
+                    <div className="mt-3 grid gap-3 md:grid-cols-2">
+                      {context.accountIdProposed ? (
+                        <div>
+                          <p className="text-xs uppercase tracking-wide text-sky-700">Cuenta propuesta</p>
+                          <p className="mt-1 text-sm font-medium text-slate-900">{context.accountIdProposed}</p>
+                        </div>
+                      ) : null}
+                      {context.vendorIdProposed ? (
+                        <div>
+                          <p className="text-xs uppercase tracking-wide text-sky-700">Proveedor propuesto NS</p>
+                          <p className="mt-1 text-sm font-medium text-slate-900">{context.vendorIdProposed}</p>
+                        </div>
+                      ) : null}
+                      {context.ocCategory ? (
+                        <div>
+                          <p className="text-xs uppercase tracking-wide text-sky-700">Categoría OC</p>
+                          <p className="mt-1 text-sm font-medium text-slate-900">{context.ocCategory}</p>
+                        </div>
+                      ) : null}
+                      {context.assignedTo ? (
+                        <div>
+                          <p className="text-xs uppercase tracking-wide text-sky-700">Asignado a</p>
+                          <p className="mt-1 text-sm font-medium text-slate-900">{context.assignedTo}</p>
+                        </div>
+                      ) : null}
+                      {context.reviewStatus ? (
+                        <div>
+                          <p className="text-xs uppercase tracking-wide text-sky-700">Estado de revisión</p>
+                          <p className="mt-1 text-sm font-medium text-slate-900">{context.reviewStatus}</p>
+                        </div>
+                      ) : null}
+                      {context.engineNote ? (
+                        <div className="md:col-span-2">
+                          <p className="text-xs uppercase tracking-wide text-sky-700">Nota del motor</p>
+                          <p className="mt-1 text-sm text-slate-900">{context.engineNote}</p>
+                        </div>
+                      ) : null}
+                    </div>
+                  </div>
+                ) : null}
                 {context.motivo || context.error || context.comentariosGonzalo ? (
                   <div className="grid gap-3 md:grid-cols-2">
                     {context.motivo || context.error ? (
