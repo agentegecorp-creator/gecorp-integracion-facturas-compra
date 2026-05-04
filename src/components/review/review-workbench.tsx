@@ -178,8 +178,8 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
   const purchaseOrderReference = document?.purchaseOrderReference || context?.referenciaOcCorrelacion;
   const amountNet = document?.amountNet;
   const amountExempt = document?.amountExempt;
-  const amountTotal = document?.amountTotal || selected.amount_total;
-  const siiDocumentType = document?.documentType || selected.document_type;
+  const amountTotal = document?.amountTotal || selected?.amount_total;
+  const siiDocumentType = document?.documentType || selected?.document_type;
   const documentMemo = document?.memo || document?.description || document?.summary;
 
   return (
