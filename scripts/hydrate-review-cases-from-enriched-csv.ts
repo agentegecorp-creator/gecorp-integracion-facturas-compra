@@ -127,13 +127,10 @@ async function main() {
 
     await db.query(
       `update review_cases
-       set issue_date = coalesce($2, issue_date),
-           reception_date = coalesce($3, reception_date),
-           amount_total = coalesce($4, amount_total),
-           payload_json = $5::jsonb,
+       set payload_json = $2::jsonb,
            updated_at = now()
        where id = $1`,
-      [item.id, issueDate, receptionDate, amountTotal, JSON.stringify(nextPayload)],
+      [item.id, JSON.stringify(nextPayload)],
     );
 
     updated += 1;

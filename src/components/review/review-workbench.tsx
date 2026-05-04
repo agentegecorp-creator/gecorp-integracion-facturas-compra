@@ -44,6 +44,11 @@ type ReviewCaseDetail = ReviewItem & {
       error?: string;
       terminosNs?: string;
       accountCorrecta?: string;
+      classCorrecta?: string;
+      departmentCorrecta?: string;
+      locationCorrecta?: string;
+      pagoPorTef?: string;
+      trabajaConOc?: string;
       comentariosGonzalo?: string;
       matchConfianza?: string;
       ocPolicyCorrecta?: string;
@@ -391,6 +396,55 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                   </div>
                 ) : null}
                 <div className="grid gap-3 md:grid-cols-2">
+                {context.accountCorrecta || context.classCorrecta || context.departmentCorrecta || context.locationCorrecta || context.terminosNs || context.pagoPorTef || context.trabajaConOc ? (
+                  <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 md:col-span-2">
+                    <p className="text-sm font-semibold text-emerald-800">Datos enriquecidos desde conocimiento previo</p>
+                    <div className="mt-3 grid gap-3 md:grid-cols-2">
+                      {context.accountCorrecta ? (
+                        <div>
+                          <p className="text-xs uppercase tracking-wide text-emerald-700">Cuenta correcta sugerida</p>
+                          <p className="mt-1 text-sm font-medium text-slate-900">{context.accountCorrecta}</p>
+                        </div>
+                      ) : null}
+                      {context.classCorrecta ? (
+                        <div>
+                          <p className="text-xs uppercase tracking-wide text-emerald-700">Clase sugerida</p>
+                          <p className="mt-1 text-sm font-medium text-slate-900">{context.classCorrecta}</p>
+                        </div>
+                      ) : null}
+                      {context.departmentCorrecta ? (
+                        <div>
+                          <p className="text-xs uppercase tracking-wide text-emerald-700">Departamento sugerido</p>
+                          <p className="mt-1 text-sm font-medium text-slate-900">{context.departmentCorrecta}</p>
+                        </div>
+                      ) : null}
+                      {context.locationCorrecta ? (
+                        <div>
+                          <p className="text-xs uppercase tracking-wide text-emerald-700">Ubicación sugerida</p>
+                          <p className="mt-1 text-sm font-medium text-slate-900">{context.locationCorrecta}</p>
+                        </div>
+                      ) : null}
+                      {context.terminosNs ? (
+                        <div>
+                          <p className="text-xs uppercase tracking-wide text-emerald-700">Términos NS</p>
+                          <p className="mt-1 text-sm font-medium text-slate-900">{context.terminosNs}</p>
+                        </div>
+                      ) : null}
+                      {context.pagoPorTef ? (
+                        <div>
+                          <p className="text-xs uppercase tracking-wide text-emerald-700">Pago por TEF</p>
+                          <p className="mt-1 text-sm font-medium text-slate-900">{context.pagoPorTef}</p>
+                        </div>
+                      ) : null}
+                      {context.trabajaConOc ? (
+                        <div className="md:col-span-2">
+                          <p className="text-xs uppercase tracking-wide text-emerald-700">Trabajo con OC</p>
+                          <p className="mt-1 text-sm text-slate-900">{context.trabajaConOc}</p>
+                        </div>
+                      ) : null}
+                    </div>
+                  </div>
+                ) : null}
                 {typeof context.entity === 'number' ? (
                   <div className="rounded-2xl bg-slate-50 p-4">
                     <p className="text-sm text-slate-500">{fieldLabel('entity')}</p>
