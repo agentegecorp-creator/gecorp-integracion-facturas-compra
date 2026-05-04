@@ -60,6 +60,12 @@ type ReviewCaseDetail = ReviewItem & {
       reviewStatus?: string;
       vendorIdProposed?: number;
       accountIdProposed?: number;
+      accountSuggestedB2?: string | number;
+      classSuggestedB2?: string;
+      departmentSuggestedB2?: string;
+      locationSuggestedB2?: string;
+      ocPolicySuggestedB2?: string;
+      sourceSuggestedB2?: string;
     };
   } | null;
 };
@@ -419,6 +425,49 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                   </div>
                 ) : null}
                 <div className="grid gap-3 md:grid-cols-2">
+                {context.accountSuggestedB2 || context.classSuggestedB2 || context.departmentSuggestedB2 || context.locationSuggestedB2 || context.ocPolicySuggestedB2 || context.sourceSuggestedB2 ? (
+                  <div className="rounded-2xl border border-teal-200 bg-teal-50 p-4 md:col-span-2">
+                    <p className="text-sm font-semibold text-teal-800">Sugerencia contable B2 (abril-mayo)</p>
+                    <div className="mt-3 grid gap-3 md:grid-cols-2">
+                      {context.accountSuggestedB2 ? (
+                        <div>
+                          <p className="text-xs uppercase tracking-wide text-teal-700">Cuenta sugerida</p>
+                          <p className="mt-1 text-sm font-medium text-slate-900">{context.accountSuggestedB2}</p>
+                        </div>
+                      ) : null}
+                      {context.classSuggestedB2 ? (
+                        <div>
+                          <p className="text-xs uppercase tracking-wide text-teal-700">Clase sugerida</p>
+                          <p className="mt-1 text-sm font-medium text-slate-900">{context.classSuggestedB2}</p>
+                        </div>
+                      ) : null}
+                      {context.departmentSuggestedB2 ? (
+                        <div>
+                          <p className="text-xs uppercase tracking-wide text-teal-700">Departamento sugerido</p>
+                          <p className="mt-1 text-sm font-medium text-slate-900">{context.departmentSuggestedB2}</p>
+                        </div>
+                      ) : null}
+                      {context.locationSuggestedB2 ? (
+                        <div>
+                          <p className="text-xs uppercase tracking-wide text-teal-700">Ubicación sugerida</p>
+                          <p className="mt-1 text-sm font-medium text-slate-900">{context.locationSuggestedB2}</p>
+                        </div>
+                      ) : null}
+                      {context.ocPolicySuggestedB2 ? (
+                        <div>
+                          <p className="text-xs uppercase tracking-wide text-teal-700">Política OC sugerida</p>
+                          <p className="mt-1 text-sm font-medium text-slate-900">{context.ocPolicySuggestedB2}</p>
+                        </div>
+                      ) : null}
+                      {context.sourceSuggestedB2 ? (
+                        <div>
+                          <p className="text-xs uppercase tracking-wide text-teal-700">Fuente sugerencia</p>
+                          <p className="mt-1 text-sm font-medium text-slate-900">{context.sourceSuggestedB2}</p>
+                        </div>
+                      ) : null}
+                    </div>
+                  </div>
+                ) : null}
                 {context.accountCorrecta || context.classCorrecta || context.departmentCorrecta || context.locationCorrecta || context.terminosNs || context.pagoPorTef || context.trabajaConOc ? (
                   <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 md:col-span-2">
                     <p className="text-sm font-semibold text-emerald-800">Datos enriquecidos desde conocimiento previo</p>
