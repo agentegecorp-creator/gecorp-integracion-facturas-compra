@@ -160,6 +160,48 @@ function nextActionLabel(bucket: string) {
   return 'Revisar y decidir';
 }
 
+function buildDecisionGuide(detail: ReviewCaseDetail | null) {
+  const context = detail?.payload_json?.context;
+  const bucket = detail?.bucket;
+  const reasons: string[] = [];
+  let recommendation = 'Revisar y decidir';
+  let tone = 'slate';
+
+  if (context?.approvalGroup || context?.entity || context?.accountCorrecta || context?.accountSuggestedB2) {
+    reasons.push('Hay datos contables o de alta ya definidos para avanzar.');
+  }
+
+  if (context?.motivo) {
+    reasons.push(`Motivo detectado: ${context.motivo}`);
+  }
+
+  if (context?.error) {
+    reasons.push(`Error reportado: ${context.error}`);
+  }
+
+  if (bucket === 'error_real') {
+    recommendation = context?.accountCorrecta || context?.accountSuggestedB2
+      ? 'Corregir y aprobar'
+      : 'Escalar como caso especial';
+    tone = context?.accountCorrecta || context?.accountSuggestedB2 ? 'emerald' : 'rose';
+  } else if (bucket === 'rejected_sii') {
+    recommendation = context?.entity || context?.vendorIdProposed
+      ? 'Completar corrección y aprobar'
+      : 'Gestionar rechazo o alta de proveedor';
+    tone = context?.entity || context?.vendorIdProposed ? 'sky' : 'amber';
+  } else if (bucket === 'revision_oc') {
+    recommendation = context?.ocPolicyCorrecta || context?.ocPolicySuggestedB2
+      ? 'Validar política OC y decidir'
+      : 'Revisar OC antes de aprobar';
+    tone = 'amber';
+  } else if (context?.approvalGroup && context?.accountCorrecta && (context?.ocCategory || context?.categoriaOc)) {
+    recommendation = 'Completar alta y aprobar';
+    tone = 'violet';
+  }
+
+  return { recommendation, reasons, tone };
+}
+
 export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
   const [selectedId, setSelectedId] = useState<string | null>(items[0]?.id ?? null);
   const [selectedDetail, setSelectedDetail] = useState<ReviewCaseDetail | null>(null);
@@ -199,6 +241,15 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
   const amountTotal = document?.amountTotal || selected?.amount_total;
   const siiDocumentType = document?.documentType || selected?.document_type;
   const documentMemo = document?.memo || document?.description || document?.summary;
+  const decisionGuide = buildDecisionGuide(selectedDetail);
+  const decisionGuideClass = {
+    slate: 'border-slate-200 bg-slate-50 text-slate-800',
+    emerald: 'border-emerald-200 bg-emerald-50 text-emerald-800',
+    rose: 'border-rose-200 bg-rose-50 text-rose-800',
+    sky: 'border-sky-200 bg-sky-50 text-sky-800',
+    amber: 'border-amber-200 bg-amber-50 text-amber-800',
+    violet: 'border-violet-200 bg-violet-50 text-violet-800',
+  }[decisionGuide.tone];
 
   return (
     <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
@@ -288,6 +339,19 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
             <div className="rounded-2xl border border-indigo-100 bg-indigo-50 p-4">
               <p className="text-xs font-semibold uppercase tracking-wide text-indigo-700">Siguiente acción sugerida</p>
               <p className="mt-1 text-sm font-medium text-slate-900">{nextActionLabel(selected.bucket)}</p>
+            </div>
+            <div className={`rounded-2xl border p-4 ${decisionGuideClass}`}>
+              <p className="text-xs font-semibold uppercase tracking-wide">Recomendación B3</p>
+              <p className="mt-1 text-sm font-semibold">{decisionGuide.recommendation}</p>
+              {decisionGuide.reasons.length ? (
+                <ul className="mt-2 list-disc space-y-1 pl-5 text-sm">
+                  {decisionGuide.reasons.map((reason) => (
+                    <li key={reason}>{reason}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="mt-2 text-sm">Todavía faltan señales suficientes para recomendar una decisión más fuerte.</p>
+              )}
             </div>
             <div className="grid gap-3 md:grid-cols-2">
               <div className="rounded-2xl bg-slate-50 p-4">
