@@ -66,6 +66,7 @@ type ReviewCaseDetail = ReviewItem & {
       locationSuggestedB2?: string;
       ocPolicySuggestedB2?: string;
       sourceSuggestedB2?: string;
+      approvalGroup?: string;
     };
   } | null;
 };
@@ -348,15 +349,19 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                     <div className="mt-3 grid gap-3 md:grid-cols-2">
                       <div>
                         <p className="text-xs uppercase tracking-wide text-violet-700">Grupo de aprobación</p>
-                        <p className="mt-1 text-sm font-medium text-slate-900">Pendiente de definir</p>
+                        <p className="mt-1 text-sm font-medium text-slate-900">{context.approvalGroup || 'Pendiente de definir'}</p>
                       </div>
                       <div>
                         <p className="text-xs uppercase tracking-wide text-violet-700">Cuenta contable</p>
-                        <p className="mt-1 text-sm font-medium text-slate-900">{context.accountCorrecta || 'Pendiente de definir'}</p>
+                        <p className="mt-1 text-sm font-medium text-slate-900">{context.accountCorrecta || context.accountSuggestedB2 || 'Pendiente de definir'}</p>
                       </div>
                       <div>
                         <p className="text-xs uppercase tracking-wide text-violet-700">Categoría OC</p>
                         <p className="mt-1 text-sm font-medium text-slate-900">{context.ocCategory || context.categoriaOc || 'Pendiente de definir'}</p>
+                      </div>
+                      <div>
+                        <p className="text-xs uppercase tracking-wide text-violet-700">Política OC</p>
+                        <p className="mt-1 text-sm font-medium text-slate-900">{context.ocPolicyCorrecta || context.ocPolicySuggestedB2 || 'Pendiente de definir'}</p>
                       </div>
                       <div>
                         <p className="text-xs uppercase tracking-wide text-violet-700">Proveedor NS propuesto</p>

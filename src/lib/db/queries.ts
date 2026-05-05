@@ -377,6 +377,25 @@ function applyCorrectionsToCase(caseRow: { payload_json?: Record<string, any> | 
     context.accountIdProposed = corrections.account_id.trim();
   }
 
+  if (typeof corrections.approval_group === 'string' && corrections.approval_group.trim()) {
+    context.approvalGroup = corrections.approval_group.trim();
+  }
+
+  if (typeof corrections.oc_category === 'string' && corrections.oc_category.trim()) {
+    context.ocCategory = corrections.oc_category.trim();
+    context.categoriaOc = corrections.oc_category.trim();
+  }
+
+  if (typeof corrections.oc_policy === 'string' && corrections.oc_policy.trim()) {
+    context.ocPolicyCorrecta = corrections.oc_policy.trim();
+  }
+
+  if (typeof corrections.new_vendor_entity === 'string' && corrections.new_vendor_entity.trim()) {
+    const numericEntity = Number(corrections.new_vendor_entity.trim());
+    context.entity = Number.isFinite(numericEntity) ? numericEntity : corrections.new_vendor_entity.trim();
+    context.vendorIdProposed = Number.isFinite(numericEntity) ? numericEntity : corrections.new_vendor_entity.trim();
+  }
+
   if (typeof corrections.vendor_name === 'string' && corrections.vendor_name.trim()) {
     patch.vendor_name = corrections.vendor_name.trim();
     document.vendorName = corrections.vendor_name.trim();

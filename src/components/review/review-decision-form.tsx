@@ -6,7 +6,7 @@ import { accountOptions, documentTypeOptions, vendorOptions } from '@/lib/review
 import { correctionFieldLabel, decisionLabel } from '@/lib/review/labels';
 
 type DecisionType = 'approve' | 'correct_and_approve' | 'exception' | 'reject_for_learning';
-type CorrectionField = 'account_id' | 'vendor_name' | 'issue_date' | 'document_type';
+type CorrectionField = 'account_id' | 'vendor_name' | 'issue_date' | 'document_type' | 'approval_group' | 'oc_category' | 'oc_policy' | 'new_vendor_entity';
 
 type ReviewDecisionFormProps = {
   caseId: string;
@@ -23,19 +23,42 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
   const [notes, setNotes] = useState('');
   const [correctionField, setCorrectionField] = useState<CorrectionField>('account_id');
   const [correctionValue, setCorrectionValue] = useState('');
+  const [newVendorForm, setNewVendorForm] = useState({
+    approvalGroup: '',
+    accountId: '',
+    ocCategory: '',
+    ocPolicy: '',
+    entity: '',
+  });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const correctionPayload = useMemo(() => {
-    if (decisionType !== 'correct_and_approve' || !correctionField || !correctionValue) {
+    if (decisionType !== 'correct_and_approve') {
+      return {};
+    }
+
+    if (correctionField === 'new_vendor_entity') {
+      return Object.fromEntries(
+        Object.entries({
+          approval_group: newVendorForm.approvalGroup,
+          account_id: newVendorForm.accountId,
+          oc_category: newVendorForm.ocCategory,
+          oc_policy: newVendorForm.ocPolicy,
+          new_vendor_entity: newVendorForm.entity,
+        }).filter(([, value]) => value),
+      );
+    }
+
+    if (!correctionField || !correctionValue) {
       return {};
     }
 
     return {
       [correctionField]: correctionValue,
     };
-  }, [decisionType, correctionField, correctionValue]);
+  }, [decisionType, correctionField, correctionValue, newVendorForm]);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -43,10 +66,13 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
     setError(null);
     setMessage(null);
 
-    if (decisionType === 'correct_and_approve' && !correctionValue) {
-      setError('Debes seleccionar un nuevo valor para la corrección.');
-      setLoading(false);
-      return;
+    if (decisionType === 'correct_and_approve') {
+      const hasNewVendorPayload = correctionField === 'new_vendor_entity' && Object.keys(correctionPayload).length > 0;
+      if (!correctionValue && !hasNewVendorPayload) {
+        setError('Debes seleccionar un nuevo valor para la corrección.');
+        setLoading(false);
+        return;
+      }
     }
 
     try {
@@ -66,6 +92,7 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
       setMessage('Decisión guardada correctamente.');
       setNotes('');
       setCorrectionValue('');
+      setNewVendorForm({ approvalGroup: '', accountId: '', ocCategory: '', ocPolicy: '', entity: '' });
       router.refresh();
     } catch (err) {
       setError('Ocurrió un error de red al guardar la decisión.');
@@ -119,6 +146,93 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
           onChange={(e) => setCorrectionValue(e.target.value)}
           className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
         />
+      );
+    }
+
+    if (correctionField === 'approval_group') {
+      return (
+        <input
+          type="text"
+          value={correctionValue}
+          onChange={(e) => setCorrectionValue(e.target.value)}
+          className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
+          placeholder="Ej: Finanzas, Compras, Gonzalo"
+        />
+      );
+    }
+
+    if (correctionField === 'oc_category') {
+      return (
+        <input
+          type="text"
+          value={correctionValue}
+          onChange={(e) => setCorrectionValue(e.target.value)}
+          className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
+          placeholder="Ej: FLETE NACIONAL, RECHAZO_SII, INSUMOS"
+        />
+      );
+    }
+
+    if (correctionField === 'oc_policy') {
+      return (
+        <select
+          value={correctionValue}
+          onChange={(e) => setCorrectionValue(e.target.value)}
+          className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
+        >
+          <option value="">Selecciona política OC</option>
+          <option value="SIN OC">SIN OC</option>
+          <option value="OC OBLIGATORIA">OC OBLIGATORIA</option>
+        </select>
+      );
+    }
+
+    if (correctionField === 'new_vendor_entity') {
+      return (
+        <div className="grid gap-3">
+          <input
+            type="text"
+            value={newVendorForm.approvalGroup}
+            onChange={(e) => setNewVendorForm((current) => ({ ...current, approvalGroup: e.target.value }))}
+            className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
+            placeholder="Grupo de aprobación"
+          />
+          <select
+            value={newVendorForm.accountId}
+            onChange={(e) => setNewVendorForm((current) => ({ ...current, accountId: e.target.value }))}
+            className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
+          >
+            <option value="">Selecciona cuenta contable</option>
+            {accountOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+          <input
+            type="text"
+            value={newVendorForm.ocCategory}
+            onChange={(e) => setNewVendorForm((current) => ({ ...current, ocCategory: e.target.value }))}
+            className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
+            placeholder="Categoría OC"
+          />
+          <select
+            value={newVendorForm.ocPolicy}
+            onChange={(e) => setNewVendorForm((current) => ({ ...current, ocPolicy: e.target.value }))}
+            className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
+          >
+            <option value="">Selecciona política OC</option>
+            <option value="SIN OC">SIN OC</option>
+            <option value="OC OBLIGATORIA">OC OBLIGATORIA</option>
+          </select>
+          <input
+            type="text"
+            value={newVendorForm.entity}
+            onChange={(e) => setNewVendorForm((current) => ({ ...current, entity: e.target.value }))}
+            className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
+            placeholder="Entity NetSuite"
+          />
+        </div>
       );
     }
 
@@ -187,6 +301,10 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
               <option value="vendor_name">{correctionFieldLabel('vendor_name')}</option>
               <option value="issue_date">Fecha del documento</option>
               <option value="document_type">{correctionFieldLabel('document_type')}</option>
+              <option value="approval_group">Grupo de aprobación</option>
+              <option value="oc_category">Categoría OC</option>
+              <option value="oc_policy">Política OC</option>
+              <option value="new_vendor_entity">Alta de proveedor nuevo</option>
             </select>
           </div>
 
@@ -200,7 +318,15 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
                   ? currentValues.documentType || '-'
                   : correctionField === 'issue_date'
                     ? currentValues.issueDate || '-'
-                    : 'según cuenta propuesta'}
+                    : correctionField === 'approval_group'
+                      ? 'según circuito de aprobación'
+                      : correctionField === 'oc_category'
+                        ? 'según clasificación operativa'
+                        : correctionField === 'oc_policy'
+                          ? 'según política vigente'
+                          : correctionField === 'new_vendor_entity'
+                            ? 'Completa grupo, cuenta, categoría OC, política y entity'
+                            : 'según cuenta propuesta'}
             </p>
           </div>
         </>
