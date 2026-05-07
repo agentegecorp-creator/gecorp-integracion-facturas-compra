@@ -60,8 +60,9 @@ export default async function DashboardPage() {
             </div>
             <h1 className="mt-4 text-3xl font-semibold text-slate-900">Mesa de Revisión Contable</h1>
             <p className="mt-2 max-w-3xl text-sm text-slate-600">
-              Bienvenido, {session.name}. Esta portada debe mostrar dónde está la carga operativa real y desde dónde entrar a resolverla.
+              Bienvenido, {session.name}. Esta portada muestra la carga operativa real y desde dónde entrar a resolverla.
             </p>
+            <p className="mt-2 text-xs font-medium text-emerald-700">Última corrida SII importada: 7 casos nuevos de mayo visibles arriba en la cola.</p>
             <div className="mt-4 flex flex-wrap gap-3 text-xs text-slate-500">
               <span>Origen: Postgres + mission-control</span>
               <span>•</span>

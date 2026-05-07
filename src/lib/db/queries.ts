@@ -175,13 +175,6 @@ export async function listReviewCases(
      from review_cases
      ${whereClause}
      order by
-       case bucket
-         when 'error_real' then 1
-         when 'rejected_sii' then 2
-         when 'revision_oc' then 3
-         when 'pending_review' then 4
-         else 9
-       end,
        case status
          when 'new' then 1
          when 'in_review' then 2
@@ -190,7 +183,14 @@ export async function listReviewCases(
          when 'rejected_for_learning' then 5
          else 9
        end,
-       created_at desc
+       created_at desc,
+       case bucket
+         when 'error_real' then 1
+         when 'rejected_sii' then 2
+         when 'revision_oc' then 3
+         when 'pending_review' then 4
+         else 9
+       end
      limit $${values.length}`,
     values,
   );

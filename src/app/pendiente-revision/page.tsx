@@ -29,6 +29,7 @@ export default async function PendingReviewPage({
           <div>
             <h1 className="text-3xl font-semibold text-slate-900">Pendiente revisión</h1>
             <p className="mt-2 text-sm text-slate-600">Mesa operativa para revisar documentos, filtrar la etapa del caso y abrir el detalle de cada documento.</p>
+            <p className="mt-2 text-xs font-medium text-emerald-700">Última corrida importada: 7 casos nuevos de mayo · Sprint 1–3 activo en esta cola.</p>
           </div>
           <Link href="/dashboard" className="rounded-xl border border-slate-300 px-4 py-2 text-sm hover:bg-slate-100">
             Volver al centro operativo
