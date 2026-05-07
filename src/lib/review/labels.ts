@@ -46,12 +46,12 @@ export function correctionFieldLabel(field: string) {
 
 export function fieldLabel(field: string) {
   const labels: Record<string, string> = {
-    entity: 'Código proveedor NetSuite',
-    referenciaAccount: 'Cuenta sugerida base',
+    entity: 'Proveedor NetSuite',
+    referenciaAccount: 'Referencia contable',
     terminosNs: 'Términos de pago',
     accountCorrecta: 'Cuenta correcta sugerida',
     ocPolicyCorrecta: 'Política de OC',
-    categoriaOc: 'Política de OC',
+    categoriaOc: 'Categoría Gasto',
     learningCategory: 'Clasificación interna',
     matchConfianza: 'Confianza del match',
     requiereRevisionManual: 'Requiere revisión manual',

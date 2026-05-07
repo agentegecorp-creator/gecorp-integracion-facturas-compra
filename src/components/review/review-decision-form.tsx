@@ -214,7 +214,7 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
             value={newVendorForm.ocCategory}
             onChange={(e) => setNewVendorForm((current) => ({ ...current, ocCategory: e.target.value }))}
             className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
-            placeholder="Categoría OC"
+            placeholder="Categoría Gasto"
           />
           <select
             value={newVendorForm.ocPolicy}
@@ -302,7 +302,7 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
               <option value="issue_date">Fecha del documento</option>
               <option value="document_type">{correctionFieldLabel('document_type')}</option>
               <option value="approval_group">Grupo de aprobación</option>
-              <option value="oc_category">Categoría OC</option>
+              <option value="oc_category">Categoría Gasto</option>
               <option value="oc_policy">Política OC</option>
               <option value="new_vendor_entity">Alta de proveedor nuevo</option>
             </select>

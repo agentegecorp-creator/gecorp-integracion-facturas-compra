@@ -80,9 +80,10 @@ export async function getDashboardSummary() {
     const amountTotal = Number(document.amountTotal ?? row.amount_total ?? 0) || 0;
     const amountNet = Number(document.amountNet ?? (String(row.document_type || '') === '34' ? 0 : amountTotal)) || 0;
     const amountExempt = Number(document.amountExempt ?? (String(row.document_type || '') === '34' ? amountTotal : 0)) || 0;
-    const ivaRecuperable = Math.max(amountTotal - amountNet - amountExempt, 0);
-    const ivaUsoComun = Number(document.ivaUsoComun ?? 0) || 0;
-    const ivaNoRecuperable = Number(document.ivaNoRecuperable ?? 0) || 0;
+    const amountOtherTax = Number(document.amountOtherTax ?? document.amountNoCreditTax ?? 0) || 0;
+    const ivaRecuperable = Number(document.amountVat ?? Math.max(amountTotal - amountNet - amountExempt - amountOtherTax, 0)) || 0;
+    const ivaUsoComun = Number(document.amountCommonUseVat ?? document.ivaUsoComun ?? 0) || 0;
+    const ivaNoRecuperable = Number(document.amountVatNonRecoverable ?? document.ivaNoRecuperable ?? 0) || 0;
     const docType = String(document.documentType || row.document_type || 'Sin tipo');
 
     if (row.status === 'resolved') {

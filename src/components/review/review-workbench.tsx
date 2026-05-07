@@ -24,11 +24,23 @@ type ReviewCaseDetail = ReviewItem & {
   payload_json?: {
     document?: {
       documentType?: string;
+      documentTypeLabel?: string;
       dueDate?: string;
+      dueDateRule?: string;
+      paymentDate?: string;
+      paymentTermsLabel?: string;
+      accountingDateProposed?: string;
       purchaseOrderReference?: string;
       amountNet?: number | string;
+      amountVat?: number | string;
+      amountVatNonRecoverable?: number | string;
       amountExempt?: number | string;
+      amountOtherTax?: number | string;
       amountTotal?: number | string;
+      amountTotalCalculated?: number | string;
+      amountTotalDelta?: number | string;
+      amountReconciliationStatus?: string;
+      serviceDescription?: string;
       summary?: string;
       memo?: string;
       description?: string;
@@ -67,6 +79,14 @@ type ReviewCaseDetail = ReviewItem & {
       ocPolicySuggestedB2?: string;
       sourceSuggestedB2?: string;
       approvalGroup?: string;
+      approverSource?: string;
+      expenseCategory?: string;
+      postingStatus?: string;
+      confidenceLevel?: string;
+      paymentTermsLabel?: string;
+      accountingDateProposed?: string;
+      dueDate?: string;
+      paymentDate?: string;
     };
   } | null;
 };
@@ -234,13 +254,23 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
 
   const context = selectedDetail?.payload_json?.context;
   const document = selectedDetail?.payload_json?.document;
-  const dueDate = document?.dueDate;
+  const dueDate = document?.dueDate || context?.dueDate;
+  const paymentDate = document?.paymentDate || context?.paymentDate;
+  const accountingDate = document?.accountingDateProposed || context?.accountingDateProposed;
+  const paymentTermsLabel = document?.paymentTermsLabel || context?.paymentTermsLabel;
   const purchaseOrderReference = document?.purchaseOrderReference || context?.referenciaOcCorrelacion;
   const amountNet = document?.amountNet;
+  const amountVat = document?.amountVat;
+  const amountVatNonRecoverable = document?.amountVatNonRecoverable;
   const amountExempt = document?.amountExempt;
+  const amountOtherTax = document?.amountOtherTax;
   const amountTotal = document?.amountTotal || selected?.amount_total;
+  const amountTotalCalculated = document?.amountTotalCalculated;
+  const amountTotalDelta = document?.amountTotalDelta;
+  const amountReconciliationStatus = document?.amountReconciliationStatus;
   const siiDocumentType = document?.documentType || selected?.document_type;
-  const documentMemo = document?.memo || document?.description || document?.summary;
+  const siiDocumentTypeLabel = document?.documentTypeLabel;
+  const documentMemo = document?.serviceDescription || document?.memo || document?.description || document?.summary;
   const decisionGuide = buildDecisionGuide(selectedDetail);
   const decisionGuideClass = {
     slate: 'border-slate-200 bg-slate-50 text-slate-800',
@@ -360,7 +390,7 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
               </div>
               <div className="rounded-2xl bg-slate-50 p-4">
                 <p className="text-sm text-slate-500">Tipo de documento SII</p>
-                <p className="mt-1 font-medium text-slate-900">{siiDocumentType || '-'}</p>
+                <p className="mt-1 font-medium text-slate-900">{siiDocumentTypeLabel || siiDocumentType || '-'}</p>
               </div>
               <div className="rounded-2xl bg-slate-50 p-4">
                 <p className="text-sm text-slate-500">Fecha documento</p>
@@ -371,24 +401,56 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                 <p className="mt-1 font-medium text-slate-900">{formatDate(selectedDetail?.reception_date)}</p>
               </div>
               <div className="rounded-2xl bg-slate-50 p-4">
+                <p className="text-sm text-slate-500">Fecha contable propuesta</p>
+                <p className="mt-1 font-medium text-slate-900">{formatDate(accountingDate)}</p>
+              </div>
+              <div className="rounded-2xl bg-slate-50 p-4">
                 <p className="text-sm text-slate-500">Fecha vencimiento factura</p>
                 <p className="mt-1 font-medium text-slate-900">{formatDate(dueDate)}</p>
+                {document?.dueDateRule ? <p className="mt-1 text-xs text-slate-500">{document.dueDateRule}</p> : null}
+              </div>
+              <div className="rounded-2xl bg-slate-50 p-4">
+                <p className="text-sm text-slate-500">Fecha pago propuesta</p>
+                <p className="mt-1 font-medium text-slate-900">{formatDate(paymentDate)}</p>
+              </div>
+              <div className="rounded-2xl bg-slate-50 p-4">
+                <p className="text-sm text-slate-500">Término de pago</p>
+                <p className="mt-1 font-medium text-slate-900">{paymentTermsLabel || '-'}</p>
               </div>
               <div className="rounded-2xl bg-slate-50 p-4">
                 <p className="text-sm text-slate-500">Número de OC en factura</p>
-                <p className="mt-1 font-medium text-slate-900">{purchaseOrderReference || '-'}</p>
+                <p className="mt-1 font-medium text-slate-900">{String(siiDocumentType) === '61' ? 'No aplica para Nota de Crédito' : (purchaseOrderReference || '-')}</p>
               </div>
               <div className="rounded-2xl bg-slate-50 p-4">
                 <p className="text-sm text-slate-500">Monto afecto</p>
                 <p className="mt-1 font-medium text-slate-900">{formatCurrency(amountNet)}</p>
               </div>
               <div className="rounded-2xl bg-slate-50 p-4">
+                <p className="text-sm text-slate-500">IVA recuperable</p>
+                <p className="mt-1 font-medium text-slate-900">{formatCurrency(amountVat)}</p>
+              </div>
+              <div className="rounded-2xl bg-slate-50 p-4">
+                <p className="text-sm text-slate-500">IVA no recuperable</p>
+                <p className="mt-1 font-medium text-slate-900">{formatCurrency(amountVatNonRecoverable)}</p>
+              </div>
+              <div className="rounded-2xl bg-slate-50 p-4">
                 <p className="text-sm text-slate-500">Monto exento</p>
                 <p className="mt-1 font-medium text-slate-900">{formatCurrency(amountExempt)}</p>
               </div>
               <div className="rounded-2xl bg-slate-50 p-4">
+                <p className="text-sm text-slate-500">Otros impuestos</p>
+                <p className="mt-1 font-medium text-slate-900">{formatCurrency(amountOtherTax)}</p>
+              </div>
+              <div className="rounded-2xl bg-slate-50 p-4">
                 <p className="text-sm text-slate-500">Monto bruto (total)</p>
                 <p className="mt-1 font-medium text-slate-900">{formatCurrency(amountTotal)}</p>
+              </div>
+              <div className="rounded-2xl bg-slate-50 p-4">
+                <p className="text-sm text-slate-500">Cuadratura RCV</p>
+                <p className="mt-1 font-medium text-slate-900">{amountReconciliationStatus || '-'}</p>
+                {amountTotalCalculated !== undefined || amountTotalDelta !== undefined ? (
+                  <p className="mt-1 text-xs text-slate-500">Calculado {formatCurrency(amountTotalCalculated)} · Diferencia {formatCurrency(amountTotalDelta)}</p>
+                ) : null}
               </div>
               <div className="rounded-2xl bg-slate-50 p-4">
                 <p className="text-sm text-slate-500">Estado</p>
@@ -420,16 +482,16 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                         <p className="mt-1 text-sm font-medium text-slate-900">{context.accountCorrecta || context.accountSuggestedB2 || 'Pendiente de definir'}</p>
                       </div>
                       <div>
-                        <p className="text-xs uppercase tracking-wide text-violet-700">Categoría OC</p>
-                        <p className="mt-1 text-sm font-medium text-slate-900">{context.ocCategory || context.categoriaOc || 'Pendiente de definir'}</p>
+                        <p className="text-xs uppercase tracking-wide text-violet-700">Categoría Gasto</p>
+                        <p className="mt-1 text-sm font-medium text-slate-900">{context.expenseCategory || context.ocCategory || context.categoriaOc || 'Pendiente de definir'}</p>
                       </div>
                       <div>
                         <p className="text-xs uppercase tracking-wide text-violet-700">Política OC</p>
                         <p className="mt-1 text-sm font-medium text-slate-900">{context.ocPolicyCorrecta || context.ocPolicySuggestedB2 || 'Pendiente de definir'}</p>
                       </div>
                       <div>
-                        <p className="text-xs uppercase tracking-wide text-violet-700">Proveedor NS propuesto</p>
-                        <p className="mt-1 text-sm font-medium text-slate-900">{context.vendorIdProposed || 'Pendiente de definir'}</p>
+                        <p className="text-xs uppercase tracking-wide text-violet-700">Estado proveedor</p>
+                        <p className="mt-1 text-sm font-medium text-slate-900">{context.vendorIdProposed ? 'Encontrado en NetSuite' : 'Pendiente de alta/validación'}</p>
                       </div>
                     </div>
                   </div>
@@ -441,19 +503,19 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                       {context.accountIdProposed ? (
                         <div>
                           <p className="text-xs uppercase tracking-wide text-sky-700">Cuenta propuesta</p>
-                          <p className="mt-1 text-sm font-medium text-slate-900">{context.accountIdProposed}</p>
+                          <p className="mt-1 text-sm font-medium text-slate-900">Referencia contable disponible</p>
                         </div>
                       ) : null}
                       {context.vendorIdProposed ? (
                         <div>
-                          <p className="text-xs uppercase tracking-wide text-sky-700">Proveedor propuesto NS</p>
-                          <p className="mt-1 text-sm font-medium text-slate-900">{context.vendorIdProposed}</p>
+                          <p className="text-xs uppercase tracking-wide text-sky-700">Proveedor NetSuite</p>
+                          <p className="mt-1 text-sm font-medium text-slate-900">Encontrado</p>
                         </div>
                       ) : null}
-                      {context.ocCategory ? (
+                      {context.expenseCategory || context.ocCategory ? (
                         <div>
-                          <p className="text-xs uppercase tracking-wide text-sky-700">Categoría OC</p>
-                          <p className="mt-1 text-sm font-medium text-slate-900">{context.ocCategory}</p>
+                          <p className="text-xs uppercase tracking-wide text-sky-700">Categoría Gasto</p>
+                          <p className="mt-1 text-sm font-medium text-slate-900">{context.expenseCategory || context.ocCategory}</p>
                         </div>
                       ) : null}
                       {context.assignedTo ? (
@@ -584,18 +646,6 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                         </div>
                       ) : null}
                     </div>
-                  </div>
-                ) : null}
-                {typeof context.entity === 'number' ? (
-                  <div className="rounded-2xl bg-slate-50 p-4">
-                    <p className="text-sm text-slate-500">{fieldLabel('entity')}</p>
-                    <p className="mt-1 font-medium text-slate-900">{context.entity}</p>
-                  </div>
-                ) : null}
-                {typeof context.referenciaAccount === 'number' ? (
-                  <div className="rounded-2xl bg-slate-50 p-4">
-                    <p className="text-sm text-slate-500">{fieldLabel('referenciaAccount')}</p>
-                    <p className="mt-1 font-medium text-slate-900">{context.referenciaAccount}</p>
                   </div>
                 ) : null}
                 {context.terminosNs ? (
