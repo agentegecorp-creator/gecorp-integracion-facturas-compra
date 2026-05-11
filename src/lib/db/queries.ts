@@ -1,5 +1,15 @@
 import { db } from '@/lib/db/client';
-import { accountOptions, classOptions, departmentOptions, locationOptions } from '@/lib/review/catalogs';
+import {
+  accountOptions,
+  approvalGroupIds,
+  classOptions,
+  departmentOptions,
+  locationOptions,
+  optionLabel,
+  optionName,
+  paymentTermDays,
+  paymentTermsOptions,
+} from '@/lib/review/catalogs';
 
 let cachedHasSandboxPublishStatus: boolean | null = null;
 
@@ -387,13 +397,33 @@ function normalizeIsoDate(value: unknown) {
   return new Date(`${year}-${month}-${day}T00:00:00.000Z`).toISOString();
 }
 
-function optionLabel(options: Array<{ value: string; label: string }>, value: string) {
-  return options.find((option) => option.value === value)?.label ?? value;
-}
-
 function parseCatalogId(value: string) {
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : value;
+}
+
+function addDaysIso(value: unknown, days: number) {
+  const raw = normalizeIsoDate(value);
+  if (!raw) return null;
+  const date = new Date(raw);
+  date.setUTCDate(date.getUTCDate() + days);
+  return date.toISOString();
+}
+
+function nextFridayIso(value: unknown) {
+  const raw = normalizeIsoDate(value);
+  if (!raw) return null;
+  const date = new Date(raw);
+  const day = date.getUTCDay();
+  const daysUntilFriday = (5 - day + 7) % 7 || 7;
+  date.setUTCDate(date.getUTCDate() + daysUntilFriday);
+  return date.toISOString();
+}
+
+function usesTef(document: Record<string, unknown>, context: Record<string, unknown>) {
+  const tefValue = String(context.pagoPorTef ?? context.tef ?? document.tef ?? '').trim().toLowerCase();
+  const paymentRule = String(document.paymentDateRule ?? context.paymentDateRule ?? '').toLowerCase();
+  return ['true', 't', '1', 'si', 'sí', 'yes'].includes(tefValue) || paymentRule.includes('tef');
 }
 
 function applyCorrectionsToCase(caseRow: { payload_json?: Record<string, any> | null; vendor_name?: string | null; document_type?: string | null; issue_date?: string | null; }, correctionJson?: Record<string, unknown>) {
@@ -415,7 +445,13 @@ function applyCorrectionsToCase(caseRow: { payload_json?: Record<string, any> | 
   }
 
   if (typeof corrections.approval_group === 'string' && corrections.approval_group.trim()) {
-    context.approvalGroup = corrections.approval_group.trim();
+    const value = corrections.approval_group.trim();
+    context.approvalGroup = value;
+    const ids = approvalGroupIds(value);
+    if (ids) {
+      context.approverIdsProposed = ids;
+      context.approverSource = 'NetSuite vendor master';
+    }
   }
 
   if (typeof corrections.oc_category === 'string' && corrections.oc_category.trim()) {
@@ -479,6 +515,38 @@ function applyCorrectionsToCase(caseRow: { payload_json?: Record<string, any> | 
     }
   }
 
+  if (typeof corrections.payment_terms_id === 'string' && corrections.payment_terms_id.trim()) {
+    const value = corrections.payment_terms_id.trim();
+    const label = optionName(paymentTermsOptions, value);
+    const days = paymentTermDays(value);
+    document.paymentTermsId = parseCatalogId(value);
+    document.paymentTermsLabel = label;
+    context.paymentTermsId = parseCatalogId(value);
+    context.paymentTermsLabel = label;
+    context.terminosNs = label;
+    context.diasCreditoNs = days;
+
+    if (!corrections.due_date) {
+      const accountingDate = document.accountingDateProposed ?? context.accountingDateProposed ?? document.issueDate ?? caseRow.issue_date;
+      const dueDate = addDaysIso(accountingDate, days);
+      if (dueDate) {
+        document.dueDate = dueDate;
+        document.dueDateRule = `Término NetSuite: ${label} (${days} días desde fecha contable)`;
+        context.dueDate = dueDate;
+      }
+    }
+
+    if (!corrections.payment_date && usesTef(document, context)) {
+      const paymentDate = nextFridayIso(document.dueDate ?? context.dueDate);
+      if (paymentDate) {
+        document.paymentDate = paymentDate;
+        document.paymentDateRule = 'Regla TEF GECORP: próximo viernes desde fecha de vencimiento';
+        context.paymentDate = paymentDate;
+        context.paymentDateRule = document.paymentDateRule;
+      }
+    }
+  }
+
   if (typeof corrections.class_id === 'string' && corrections.class_id.trim()) {
     const value = corrections.class_id.trim();
     context.classIdProposed = parseCatalogId(value);
@@ -524,6 +592,7 @@ function currentCorrectionValues(caseRow: { payload_json?: Record<string, any> |
     accounting_date: formatCorrectionValue(document.accountingDateProposed ?? context.accountingDateProposed),
     due_date: formatCorrectionValue(document.dueDate ?? context.dueDate),
     payment_date: formatCorrectionValue(document.paymentDate ?? context.paymentDate),
+    payment_terms_id: formatCorrectionValue(document.paymentTermsId ?? context.paymentTermsId),
     document_type: formatCorrectionValue(caseRow.document_type ?? document.documentType),
     approval_group: formatCorrectionValue(context.approvalGroup),
     oc_category: formatCorrectionValue(context.ocCategory ?? context.categoriaOc),

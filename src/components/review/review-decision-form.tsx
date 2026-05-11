@@ -4,10 +4,12 @@ import { useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   accountOptions,
+  approvalGroupOptions,
   classOptions,
   departmentOptions,
   documentTypeOptions,
   locationOptions,
+  paymentTermsOptions,
   vendorOptions,
 } from '@/lib/review/catalogs';
 import { correctionFieldLabel, decisionLabel } from '@/lib/review/labels';
@@ -20,6 +22,7 @@ type CorrectionField =
   | 'accounting_date'
   | 'due_date'
   | 'payment_date'
+  | 'payment_terms_id'
   | 'document_type'
   | 'approval_group'
   | 'oc_category'
@@ -44,6 +47,7 @@ type ReviewDecisionFormProps = {
     accountingDate?: string | Date | null;
     dueDate?: string | Date | null;
     paymentDate?: string | Date | null;
+    paymentTermsId?: string | number | null;
     classId?: string | number | null;
     departmentId?: string | number | null;
     locationId?: string | number | null;
@@ -68,11 +72,12 @@ const editableFields: Array<{
   { field: 'accounting_date', placeholder: '', kind: 'date' },
   { field: 'due_date', placeholder: '', kind: 'date' },
   { field: 'payment_date', placeholder: '', kind: 'date' },
+  { field: 'payment_terms_id', placeholder: 'Selecciona término de pago', kind: 'select', options: paymentTermsOptions },
   { field: 'document_type', placeholder: 'Selecciona tipo documental', kind: 'select', options: documentTypeOptions },
   { field: 'class_id', placeholder: 'Selecciona clase', kind: 'select', options: classOptions },
   { field: 'department_id', placeholder: 'Selecciona departamento', kind: 'select', options: departmentOptions },
   { field: 'location_id', placeholder: 'Selecciona ubicación', kind: 'select', options: locationOptions },
-  { field: 'approval_group', placeholder: 'Ej: Finanzas, Compras, Gonzalo', kind: 'text' },
+  { field: 'approval_group', placeholder: 'Selecciona grupo de aprobación', kind: 'select', options: approvalGroupOptions },
   { field: 'oc_category', placeholder: 'Ej: FLETE NACIONAL, RECHAZO_SII, INSUMOS', kind: 'text' },
   {
     field: 'oc_policy',
@@ -162,6 +167,7 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
       accounting_date: currentValues.accountingDate,
       due_date: currentValues.dueDate,
       payment_date: currentValues.paymentDate,
+      payment_terms_id: currentValues.paymentTermsId,
       document_type: currentValues.documentType,
       class_id: currentValues.classId,
       department_id: currentValues.departmentId,

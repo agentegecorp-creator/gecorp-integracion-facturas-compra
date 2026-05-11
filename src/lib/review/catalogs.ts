@@ -1,3 +1,14 @@
+import generatedCatalogs from './generated-catalogs.json';
+
+type CatalogOption = {
+  value: string;
+  label: string;
+  name?: string;
+  daysUntilDue?: number;
+  ids?: number[];
+  vendorCount?: number;
+};
+
 export const accountOptions = [
   { value: '742', label: '742 · 121004 - ANTICIPO PROVEEDORES' },
   { value: '1275', label: '1275 · 122006 - CREDITO SENCE' },
@@ -87,12 +98,12 @@ export const documentTypeOptions = [
   { value: '61', label: '61 · Nota de crédito' },
 ];
 
-export const classOptions = [
+const fallbackClassOptions = [
   { value: '1', label: '1 · Mercado Nacional' },
   { value: '2', label: '2 · Exportaciones' },
 ];
 
-export const departmentOptions = [
+const fallbackDepartmentOptions = [
   { value: '1', label: '1 · 10 Casa Matriz' },
   { value: '2', label: '2 · 20 Santiago C. Guzman' },
   { value: '3', label: '3 · 30 Valdivia G. Lagos' },
@@ -100,7 +111,7 @@ export const departmentOptions = [
   { value: '5', label: '5 · 50 Valparaiso' },
 ];
 
-export const locationOptions = [
+const fallbackLocationOptions = [
   { value: '3', label: '3 · Valdivia_Bodega' },
   { value: '5', label: '5 · Santiago_Bodega' },
   { value: '6', label: '6 · Concepción_Bodega' },
@@ -114,3 +125,31 @@ export const vendorOptions = [
   { value: 'MACAF / SOCIEDAD DE TRANSPORTES', label: 'MACAF / SOCIEDAD DE TRANSPORTES' },
   { value: 'MANANTIAL', label: 'MANANTIAL' },
 ];
+
+function generatedOptions(name: keyof typeof generatedCatalogs, fallback: CatalogOption[] = []) {
+  const options = generatedCatalogs[name] as CatalogOption[] | undefined;
+  return options && options.length > 0 ? options : fallback;
+}
+
+export const paymentTermsOptions = generatedOptions('paymentTermsOptions');
+export const classOptions = generatedOptions('classOptions', fallbackClassOptions);
+export const departmentOptions = generatedOptions('departmentOptions', fallbackDepartmentOptions);
+export const locationOptions = generatedOptions('locationOptions', fallbackLocationOptions);
+export const approvalGroupOptions = generatedOptions('approvalGroupOptions');
+
+export function optionLabel(options: CatalogOption[], value: string) {
+  return options.find((option) => option.value === value)?.label ?? value;
+}
+
+export function optionName(options: CatalogOption[], value: string) {
+  const option = options.find((item) => item.value === value);
+  return option?.name ?? option?.label ?? value;
+}
+
+export function paymentTermDays(value: string) {
+  return paymentTermsOptions.find((option) => option.value === value)?.daysUntilDue ?? 0;
+}
+
+export function approvalGroupIds(value: string) {
+  return approvalGroupOptions.find((option) => option.value === value)?.ids ?? null;
+}

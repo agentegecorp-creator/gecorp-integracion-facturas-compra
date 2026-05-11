@@ -1,0 +1,61 @@
+{
+  "generatedAt": "2026-05-11T18:33:34.642238+00:00",
+  "source": "NetSuite Sandbox SuiteQL",
+  "paymentTermsOptions": [
+    { "value": "1", "label": "1 · Credito 15", "name": "Credito 15", "daysUntilDue": 15 },
+    { "value": "2", "label": "2 · Credito 30", "name": "Credito 30", "daysUntilDue": 30 },
+    { "value": "3", "label": "3 · Credito 60", "name": "Credito 60", "daysUntilDue": 60 },
+    { "value": "4", "label": "4 · Contado", "name": "Contado", "daysUntilDue": 0 },
+    { "value": "5", "label": "5 · Anticipado", "name": "Anticipado", "daysUntilDue": 0 },
+    { "value": "6", "label": "6 · Credito 90", "name": "Credito 90", "daysUntilDue": 90 },
+    { "value": "9", "label": "9 · Credito 30 B/L", "name": "Credito 30 B/L", "daysUntilDue": 0 },
+    { "value": "10", "label": "10 · Credito 60 B/L", "name": "Credito 60 B/L", "daysUntilDue": 0 },
+    { "value": "12", "label": "12 · Contado +1", "name": "Contado +1", "daysUntilDue": 0 },
+    { "value": "13", "label": "13 · Credito 45", "name": "Credito 45", "daysUntilDue": 45 },
+    { "value": "14", "label": "14 · Credito 3 Cuotas 0-30-60", "name": "Credito 3 Cuotas 0-30-60", "daysUntilDue": 0 },
+    { "value": "15", "label": "15 · Credito 3 Cuotas 30-60-90", "name": "Credito 3 Cuotas 30-60-90", "daysUntilDue": 30 },
+    { "value": "16", "label": "16 · Plan de Pago", "name": "Plan de Pago", "daysUntilDue": 0 },
+    { "value": "18", "label": "18 · Crédito 4 cuotas 30-60-90-120", "name": "Crédito 4 cuotas 30-60-90-120", "daysUntilDue": 30 },
+    { "value": "19", "label": "19 · 30% Adelantado - 70% Contra BL", "name": "30% Adelantado - 70% Contra BL", "daysUntilDue": 0 },
+    { "value": "20", "label": "20 · 50% Adelantado - 50% Contra BL", "name": "50% Adelantado - 50% Contra BL", "daysUntilDue": 0 }
+  ],
+  "classOptions": [
+    { "value": "1", "label": "1 · Mercado Nacional", "name": "Mercado Nacional" },
+    { "value": "2", "label": "2 · Exportaciones", "name": "Exportaciones" }
+  ],
+  "departmentOptions": [
+    { "value": "1", "label": "1 · 10 Casa Matriz", "name": "10 Casa Matriz" },
+    { "value": "2", "label": "2 · 20 Santiago C. Guzman", "name": "20 Santiago C. Guzman" },
+    { "value": "3", "label": "3 · 30 Valdivia G. Lagos", "name": "30 Valdivia G. Lagos" },
+    { "value": "4", "label": "4 · 40 Concepcion J. Repullo", "name": "40 Concepcion J. Repullo" },
+    { "value": "5", "label": "5 · 50 Valparaiso", "name": "50 Valparaiso" }
+  ],
+  "locationOptions": [
+    { "value": "1", "label": "1 · Santiago_Bodega_Arriendo_Terceros", "name": "Santiago_Bodega_Arriendo_Terceros" },
+    { "value": "3", "label": "3 · Valdivia_Bodega", "name": "Valdivia_Bodega" },
+    { "value": "5", "label": "5 · Santiago_Bodega", "name": "Santiago_Bodega" },
+    { "value": "6", "label": "6 · Concepción_Bodega", "name": "Concepción_Bodega" },
+    { "value": "8", "label": "8 · Bodega_Transito", "name": "Bodega_Transito" },
+    { "value": "9", "label": "9 · Casa_Matriz", "name": "Casa_Matriz" }
+  ],
+  "approvalGroupOptions": [
+    {
+      "value": "Gonzalo Cuevas, Patricio Echenique",
+      "label": "Gonzalo Cuevas, Patricio Echenique · IDs -5, 916",
+      "ids": [-5, 916],
+      "vendorCount": 259
+    },
+    {
+      "value": "Patricio Echenique, Paula Melej",
+      "label": "Patricio Echenique, Paula Melej · IDs -5, 732",
+      "ids": [-5, 732],
+      "vendorCount": 211
+    },
+    {
+      "value": "Fernando Castro, Patricio Echenique",
+      "label": "Fernando Castro, Patricio Echenique · IDs -5, 721",
+      "ids": [-5, 721],
+      "vendorCount": 1
+    }
+  ]
+}

@@ -132,6 +132,7 @@ export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
                 accountingDate: optionalString(document.accountingDateProposed || context.accountingDateProposed),
                 dueDate: optionalString(document.dueDate || context.dueDate),
                 paymentDate: optionalString(document.paymentDate || context.paymentDate),
+                paymentTermsId: document.paymentTermsId || context.paymentTermsId,
                 classId: document.classId || context.classIdProposed || context.classCorrecta || context.classSuggestedB2,
                 departmentId: document.departmentId || context.departmentIdProposed || context.departmentCorrecta || context.departmentSuggestedB2,
                 locationId: document.locationId || context.locationIdProposed || context.locationCorrecta || context.locationSuggestedB2,

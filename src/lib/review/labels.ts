@@ -41,6 +41,7 @@ export function correctionFieldLabel(field: string) {
     accounting_date: 'Fecha contable',
     due_date: 'Fecha vencimiento',
     payment_date: 'Fecha pago propuesta',
+    payment_terms_id: 'Término de pago',
     document_type: 'Tipo de documento',
     approval_group: 'Grupo de aprobación',
     oc_category: 'Categoría Gasto',

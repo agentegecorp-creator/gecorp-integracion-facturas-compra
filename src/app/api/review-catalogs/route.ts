@@ -1,6 +1,15 @@
 import { NextResponse } from 'next/server';
 import { getSessionFromCookie } from '@/lib/auth/session';
-import { accountOptions, documentTypeOptions, vendorOptions } from '@/lib/review/catalogs';
+import {
+  accountOptions,
+  approvalGroupOptions,
+  classOptions,
+  departmentOptions,
+  documentTypeOptions,
+  locationOptions,
+  paymentTermsOptions,
+  vendorOptions,
+} from '@/lib/review/catalogs';
 
 export async function GET() {
   try {
@@ -13,7 +22,12 @@ export async function GET() {
     return NextResponse.json({
       ok: true,
       accountOptions,
+      approvalGroupOptions,
+      classOptions,
+      departmentOptions,
       documentTypeOptions,
+      locationOptions,
+      paymentTermsOptions,
       vendorOptions,
     });
   } catch (error) {
