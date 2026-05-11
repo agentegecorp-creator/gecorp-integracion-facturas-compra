@@ -10,6 +10,7 @@ import {
   paymentTermDays,
   paymentTermsOptions,
 } from '@/lib/review/catalogs';
+import rcvSiiSummaries from '@/lib/review/rcv-sii-summaries.json';
 
 let cachedHasSandboxPublishStatus: boolean | null = null;
 
@@ -62,6 +63,29 @@ type DashboardPeriod = {
   endDate: string;
 };
 
+type DocumentTypeSummaryRow = {
+  documentType: string;
+  totalDocuments: number;
+  montoExento: number;
+  montoNeto: number;
+  ivaRecuperable: number;
+  ivaUsoComun: number;
+  ivaNoRecuperable: number;
+  montoOtrosImpuestos: number;
+  montoTotal: number;
+};
+
+type RcvSiiSummary = {
+  sourceFile: string;
+  generatedAt: string;
+  rows: DocumentTypeSummaryRow[];
+};
+
+function periodMonthKey(period?: DashboardPeriod) {
+  if (!period?.startDate) return null;
+  return period.startDate.slice(0, 7);
+}
+
 export async function getDashboardSummary(period?: DashboardPeriod) {
   const documentTypeValues: string[] = [];
   const documentTypeConditions: string[] = [];
@@ -73,10 +97,14 @@ export async function getDashboardSummary(period?: DashboardPeriod) {
 
   const documentTypeWhereClause = documentTypeConditions.length > 0 ? `where ${documentTypeConditions.join(' and ')}` : '';
 
-  const [totalCases, byBucket, byStatus, rows] = await Promise.all([
+  const [totalCases, byBucket, byStatus, operationalRows, fallbackRows] = await Promise.all([
     db.query(`select count(*)::int as total from review_cases`),
     db.query(`select bucket, count(*)::int as total from review_cases group by bucket order by bucket`),
     db.query(`select status, count(*)::int as total from review_cases group by status order by status`),
+    db.query(
+      `select bucket, status, document_type, amount_total, vendor_name, payload_json
+       from review_cases`,
+    ),
     db.query(
       `select bucket, status, document_type, amount_total, vendor_name, payload_json
        from review_cases
@@ -92,30 +120,13 @@ export async function getDashboardSummary(period?: DashboardPeriod) {
     nuevosProveedores: 0,
   };
 
-  const documentTypeSummaryMap = new Map<string, {
-    documentType: string;
-    totalDocuments: number;
-    montoExento: number;
-    montoNeto: number;
-    ivaRecuperable: number;
-    ivaUsoComun: number;
-    ivaNoRecuperable: number;
-    montoOtrosImpuestos: number;
-    montoTotal: number;
-  }>();
+  const documentTypeSummaryMap = new Map<string, DocumentTypeSummaryRow>();
 
-  for (const row of rows.rows) {
+  for (const row of operationalRows.rows) {
     const payload = row.payload_json ?? {};
     const context = payload.context ?? {};
     const document = payload.document ?? {};
     const vendorName = String(row.vendor_name || '').toUpperCase();
-    const amountTotal = Number(document.amountTotal ?? row.amount_total ?? 0) || 0;
-    const amountNet = Number(document.amountNet ?? (String(row.document_type || '') === '34' ? 0 : amountTotal)) || 0;
-    const amountExempt = Number(document.amountExempt ?? (String(row.document_type || '') === '34' ? amountTotal : 0)) || 0;
-    const amountOtherTax = (Number(document.amountOtherTax ?? 0) || 0) + (Number(document.amountNoCreditTax ?? 0) || 0);
-    const ivaRecuperable = Number(document.amountVat ?? Math.max(amountTotal - amountNet - amountExempt - amountOtherTax, 0)) || 0;
-    const ivaUsoComun = Number(document.amountCommonUseVat ?? document.ivaUsoComun ?? 0) || 0;
-    const ivaNoRecuperable = Number(document.amountVatNonRecoverable ?? document.ivaNoRecuperable ?? 0) || 0;
     const docType = String(document.documentType || row.document_type || 'Sin tipo');
 
     if (row.status === 'resolved') {
@@ -131,6 +142,36 @@ export async function getDashboardSummary(period?: DashboardPeriod) {
     if (String(context.motivo || '').toLowerCase().includes('proveedor nuevo') || String(context.requiereRevisionManual || '').toLowerCase() === 'nuevo_proveedor') {
       operationalSummary.nuevosProveedores += 1;
     }
+  }
+
+  const siiSummary = (rcvSiiSummaries as Record<string, RcvSiiSummary>)[periodMonthKey(period) ?? ''];
+
+  if (siiSummary) {
+    return {
+      totalCases: totalCases.rows[0]?.total ?? 0,
+      byBucket: byBucket.rows,
+      byStatus: byStatus.rows,
+      operationalSummary,
+      documentTypeSummary: siiSummary.rows,
+      documentTypeSummarySource: {
+        type: 'sii_csv' as const,
+        sourceFile: siiSummary.sourceFile,
+        generatedAt: siiSummary.generatedAt,
+      },
+    };
+  }
+
+  for (const row of fallbackRows.rows) {
+    const payload = row.payload_json ?? {};
+    const document = payload.document ?? {};
+    const amountTotal = Number(document.amountTotal ?? row.amount_total ?? 0) || 0;
+    const amountNet = Number(document.amountNet ?? (String(row.document_type || '') === '34' ? 0 : amountTotal)) || 0;
+    const amountExempt = Number(document.amountExempt ?? (String(row.document_type || '') === '34' ? amountTotal : 0)) || 0;
+    const amountOtherTax = (Number(document.amountOtherTax ?? 0) || 0) + (Number(document.amountNoCreditTax ?? 0) || 0);
+    const ivaRecuperable = Number(document.amountVat ?? Math.max(amountTotal - amountNet - amountExempt - amountOtherTax, 0)) || 0;
+    const ivaUsoComun = Number(document.amountCommonUseVat ?? document.ivaUsoComun ?? 0) || 0;
+    const ivaNoRecuperable = Number(document.amountVatNonRecoverable ?? document.ivaNoRecuperable ?? 0) || 0;
+    const docType = String(document.documentType || row.document_type || 'Sin tipo');
 
     if (!documentTypeSummaryMap.has(docType)) {
       documentTypeSummaryMap.set(docType, {
@@ -165,6 +206,9 @@ export async function getDashboardSummary(period?: DashboardPeriod) {
     byStatus: byStatus.rows,
     operationalSummary,
     documentTypeSummary,
+    documentTypeSummarySource: {
+      type: 'review_cases' as const,
+    },
   };
 }
 

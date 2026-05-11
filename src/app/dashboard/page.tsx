@@ -98,6 +98,7 @@ export default async function DashboardPage({
   const errorRealCount = summary.byBucket.find((row) => row.bucket === 'error_real')?.total ?? 0;
   const operationalSummary = summary.operationalSummary;
   const documentTypeSummary = summary.documentTypeSummary;
+  const rcvSource = summary.documentTypeSummarySource;
 
   return (
     <main className="mx-auto max-w-7xl space-y-8 p-8">
@@ -223,8 +224,13 @@ export default async function DashboardPage({
                 <div>
                   <h3 className="font-semibold text-slate-900">Totales RCV por tipo de documento</h3>
                   <p className="mt-1 text-xs text-slate-500">
-                    Período por fecha de documento: {rcvPeriods.selected.detail}. Base actual: casos importados a la mesa.
+                    Período SII: {rcvPeriods.selected.detail}. Base: registro RCV oficial descargado desde SII.
                   </p>
+                  {rcvSource.type === 'sii_csv' ? (
+                    <p className="mt-1 text-[11px] text-slate-400">Fuente: {rcvSource.sourceFile}</p>
+                  ) : (
+                    <p className="mt-1 text-[11px] text-amber-700">Sin CSV SII para este período; usando casos importados a la mesa.</p>
+                  )}
                 </div>
                 <div className="inline-flex rounded-xl bg-slate-100 p-1 text-xs font-medium text-slate-600">
                   {rcvPeriods.periods.map((period) => (
