@@ -39,15 +39,23 @@ type ReviewDecisionFormProps = {
   currentValues: {
     vendorName?: string | null;
     documentType?: string | null;
-    issueDate?: string | null;
-    accountingDate?: string | null;
-    dueDate?: string | null;
-    paymentDate?: string | null;
+    issueDate?: string | Date | null;
+    accountingDate?: string | Date | null;
+    dueDate?: string | Date | null;
+    paymentDate?: string | Date | null;
     classId?: string | number | null;
     departmentId?: string | number | null;
     locationId?: string | number | null;
   };
 };
+
+function formatReferenceValue(value: string | number | Date | null | undefined) {
+  if (value === null || value === undefined || value === '') return '-';
+  if (value instanceof Date) {
+    return value.toISOString().slice(0, 10);
+  }
+  return String(value);
+}
 
 export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionFormProps) {
   const router = useRouter();
@@ -409,23 +417,23 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
             {renderCorrectionInput()}
             <p className="mt-1 text-xs text-slate-500">
               Valor actual referencial: {correctionField === 'vendor_name'
-                ? currentValues.vendorName || '-'
+                ? formatReferenceValue(currentValues.vendorName)
                 : correctionField === 'document_type'
-                  ? currentValues.documentType || '-'
+                  ? formatReferenceValue(currentValues.documentType)
                   : correctionField === 'issue_date'
-                    ? currentValues.issueDate || '-'
+                    ? formatReferenceValue(currentValues.issueDate)
                     : correctionField === 'accounting_date'
-                      ? currentValues.accountingDate || '-'
+                      ? formatReferenceValue(currentValues.accountingDate)
                       : correctionField === 'due_date'
-                        ? currentValues.dueDate || '-'
+                        ? formatReferenceValue(currentValues.dueDate)
                         : correctionField === 'payment_date'
-                          ? currentValues.paymentDate || '-'
+                          ? formatReferenceValue(currentValues.paymentDate)
                           : correctionField === 'class_id'
-                            ? currentValues.classId || '-'
+                            ? formatReferenceValue(currentValues.classId)
                             : correctionField === 'department_id'
-                              ? currentValues.departmentId || '-'
+                              ? formatReferenceValue(currentValues.departmentId)
                               : correctionField === 'location_id'
-                                ? currentValues.locationId || '-'
+                                ? formatReferenceValue(currentValues.locationId)
                                 : correctionField === 'approval_group'
                                   ? 'según circuito de aprobación'
                                   : correctionField === 'oc_category'
