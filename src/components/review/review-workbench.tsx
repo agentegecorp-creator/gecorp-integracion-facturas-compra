@@ -32,6 +32,9 @@ type ReviewCaseDetail = ReviewItem & {
       paymentTermsId?: string | number;
       paymentTermsLabel?: string;
       accountingDateProposed?: string;
+      classId?: string | number;
+      departmentId?: string | number;
+      locationId?: string | number;
       purchaseOrderReference?: string;
       amountNet?: number | string;
       amountVat?: number | string;
@@ -85,6 +88,9 @@ type ReviewCaseDetail = ReviewItem & {
       expenseCategory?: string;
       postingStatus?: string;
       confidenceLevel?: string;
+      classIdProposed?: string | number;
+      departmentIdProposed?: string | number;
+      locationIdProposed?: string | number;
       paymentTermsLabel?: string;
       paymentTermsId?: string | number;
       accountingDateProposed?: string;
@@ -590,6 +596,12 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                   vendorName: selected.vendor_name,
                   documentType: selected.document_type,
                   issueDate: selected.issue_date,
+                  accountingDate,
+                  dueDate,
+                  paymentDate,
+                  classId: document?.classId || context?.classIdProposed || context?.classCorrecta || context?.classSuggestedB2,
+                  departmentId: document?.departmentId || context?.departmentIdProposed || context?.departmentCorrecta || context?.departmentSuggestedB2,
+                  locationId: document?.locationId || context?.locationIdProposed || context?.locationCorrecta || context?.locationSuggestedB2,
                 }}
               />
             </div>

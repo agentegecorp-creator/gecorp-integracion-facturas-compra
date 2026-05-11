@@ -87,6 +87,26 @@ export const documentTypeOptions = [
   { value: '61', label: '61 · Nota de crédito' },
 ];
 
+export const classOptions = [
+  { value: '1', label: '1 · Mercado Nacional' },
+  { value: '2', label: '2 · Exportaciones' },
+];
+
+export const departmentOptions = [
+  { value: '1', label: '1 · 10 Casa Matriz' },
+  { value: '2', label: '2 · 20 Santiago C. Guzman' },
+  { value: '3', label: '3 · 30 Valdivia G. Lagos' },
+  { value: '4', label: '4 · 40 Concepcion J. Repullo' },
+  { value: '5', label: '5 · 50 Valparaiso' },
+];
+
+export const locationOptions = [
+  { value: '3', label: '3 · Valdivia_Bodega' },
+  { value: '5', label: '5 · Santiago_Bodega' },
+  { value: '6', label: '6 · Concepción_Bodega' },
+  { value: '8', label: '8 · Bodega_Transito' },
+];
+
 export const vendorOptions = [
   { value: 'COMUNICACIONES BERMANN SPA', label: 'COMUNICACIONES BERMANN SPA' },
   { value: 'CLARO COMUNICACIONES SA', label: 'CLARO COMUNICACIONES SA' },

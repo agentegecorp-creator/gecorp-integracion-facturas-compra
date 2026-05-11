@@ -37,8 +37,18 @@ export function correctionFieldLabel(field: string) {
   const labels: Record<string, string> = {
     account_id: 'Cuenta contable',
     vendor_name: 'Proveedor',
+    issue_date: 'Fecha del documento',
     accounting_date: 'Fecha contable',
+    due_date: 'Fecha vencimiento',
+    payment_date: 'Fecha pago propuesta',
     document_type: 'Tipo de documento',
+    approval_group: 'Grupo de aprobación',
+    oc_category: 'Categoría Gasto',
+    oc_policy: 'Política OC',
+    class_id: 'Clase',
+    department_id: 'Departamento',
+    location_id: 'Ubicación',
+    new_vendor_entity: 'Alta de proveedor nuevo',
   };
 
   return labels[field] || field;

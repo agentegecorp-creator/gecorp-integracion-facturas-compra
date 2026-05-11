@@ -11,6 +11,11 @@ function formatDateTime(value: string | null | undefined) {
   return date.toLocaleString('es-CL');
 }
 
+function optionalString(value: unknown) {
+  if (value == null) return undefined;
+  return String(value);
+}
+
 type CaseDetailPageProps = {
   params: Promise<{
     id: string;
@@ -22,6 +27,14 @@ export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
   const { id } = await params;
   const item = await getReviewCaseById(id);
   const decisions = await getReviewDecisionsByCaseId(id);
+  const payload = item?.payload_json as
+    | {
+        document?: Record<string, string | number | null | undefined>;
+        context?: Record<string, string | number | null | undefined>;
+      }
+    | undefined;
+  const document = payload?.document ?? {};
+  const context = payload?.context ?? {};
 
   return (
     <main className="p-8">
@@ -115,6 +128,12 @@ export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
                 vendorName: item.vendor_name,
                 documentType: item.document_type,
                 issueDate: item.issue_date,
+                accountingDate: optionalString(document.accountingDateProposed || context.accountingDateProposed),
+                dueDate: optionalString(document.dueDate || context.dueDate),
+                paymentDate: optionalString(document.paymentDate || context.paymentDate),
+                classId: document.classId || context.classIdProposed || context.classCorrecta || context.classSuggestedB2,
+                departmentId: document.departmentId || context.departmentIdProposed || context.departmentCorrecta || context.departmentSuggestedB2,
+                locationId: document.locationId || context.locationIdProposed || context.locationCorrecta || context.locationSuggestedB2,
               }}
             />
           </div>

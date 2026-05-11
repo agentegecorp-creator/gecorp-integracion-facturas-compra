@@ -2,11 +2,37 @@
 
 import { useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { accountOptions, documentTypeOptions, vendorOptions } from '@/lib/review/catalogs';
+import {
+  accountOptions,
+  classOptions,
+  departmentOptions,
+  documentTypeOptions,
+  locationOptions,
+  vendorOptions,
+} from '@/lib/review/catalogs';
 import { correctionFieldLabel, decisionLabel } from '@/lib/review/labels';
 
 type DecisionType = 'approve' | 'correct_and_approve' | 'exception' | 'reject_for_learning';
-type CorrectionField = 'account_id' | 'vendor_name' | 'issue_date' | 'document_type' | 'approval_group' | 'oc_category' | 'oc_policy' | 'new_vendor_entity';
+type CorrectionField =
+  | 'account_id'
+  | 'vendor_name'
+  | 'issue_date'
+  | 'accounting_date'
+  | 'due_date'
+  | 'payment_date'
+  | 'document_type'
+  | 'approval_group'
+  | 'oc_category'
+  | 'oc_policy'
+  | 'class_id'
+  | 'department_id'
+  | 'location_id'
+  | 'new_vendor_entity';
+
+type SelectOption = {
+  value: string;
+  label: string;
+};
 
 type ReviewDecisionFormProps = {
   caseId: string;
@@ -14,6 +40,12 @@ type ReviewDecisionFormProps = {
     vendorName?: string | null;
     documentType?: string | null;
     issueDate?: string | null;
+    accountingDate?: string | null;
+    dueDate?: string | null;
+    paymentDate?: string | null;
+    classId?: string | number | null;
+    departmentId?: string | number | null;
+    locationId?: string | number | null;
   };
 };
 
@@ -26,6 +58,9 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
   const [newVendorForm, setNewVendorForm] = useState({
     approvalGroup: '',
     accountId: '',
+    classId: '',
+    departmentId: '',
+    locationId: '',
     ocCategory: '',
     ocPolicy: '',
     entity: '',
@@ -44,6 +79,9 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
         Object.entries({
           approval_group: newVendorForm.approvalGroup,
           account_id: newVendorForm.accountId,
+          class_id: newVendorForm.classId,
+          department_id: newVendorForm.departmentId,
+          location_id: newVendorForm.locationId,
           oc_category: newVendorForm.ocCategory,
           oc_policy: newVendorForm.ocPolicy,
           new_vendor_entity: newVendorForm.entity,
@@ -92,7 +130,16 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
       setMessage('Decisión guardada correctamente.');
       setNotes('');
       setCorrectionValue('');
-      setNewVendorForm({ approvalGroup: '', accountId: '', ocCategory: '', ocPolicy: '', entity: '' });
+      setNewVendorForm({
+        approvalGroup: '',
+        accountId: '',
+        classId: '',
+        departmentId: '',
+        locationId: '',
+        ocCategory: '',
+        ocPolicy: '',
+        entity: '',
+      });
       router.refresh();
     } catch (err) {
       setError('Ocurrió un error de red al guardar la decisión.');
@@ -101,52 +148,59 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
     }
   }
 
+  function renderSelect(placeholder: string, options: SelectOption[]) {
+    return (
+      <select
+        value={correctionValue}
+        onChange={(e) => setCorrectionValue(e.target.value)}
+        className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
+      >
+        <option value="">{placeholder}</option>
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    );
+  }
+
+  function renderDateInput() {
+    return (
+      <input
+        type="date"
+        value={correctionValue}
+        onChange={(e) => setCorrectionValue(e.target.value)}
+        className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
+      />
+    );
+  }
+
   function renderCorrectionInput() {
     if (decisionType !== 'correct_and_approve') return null;
 
     if (correctionField === 'account_id') {
-      return (
-        <select
-          value={correctionValue}
-          onChange={(e) => setCorrectionValue(e.target.value)}
-          className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
-        >
-          <option value="">Selecciona cuenta contable</option>
-          {accountOptions.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-      );
+      return renderSelect('Selecciona cuenta contable', accountOptions);
     }
 
     if (correctionField === 'document_type') {
-      return (
-        <select
-          value={correctionValue}
-          onChange={(e) => setCorrectionValue(e.target.value)}
-          className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
-        >
-          <option value="">Selecciona tipo documental</option>
-          {documentTypeOptions.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-      );
+      return renderSelect('Selecciona tipo documental', documentTypeOptions);
     }
 
-    if (correctionField === 'issue_date') {
-      return (
-        <input
-          type="date"
-          value={correctionValue}
-          onChange={(e) => setCorrectionValue(e.target.value)}
-          className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
-        />
-      );
+    if (correctionField === 'issue_date' || correctionField === 'accounting_date' || correctionField === 'due_date' || correctionField === 'payment_date') {
+      return renderDateInput();
+    }
+
+    if (correctionField === 'class_id') {
+      return renderSelect('Selecciona clase', classOptions);
+    }
+
+    if (correctionField === 'department_id') {
+      return renderSelect('Selecciona departamento', departmentOptions);
+    }
+
+    if (correctionField === 'location_id') {
+      return renderSelect('Selecciona ubicación', locationOptions);
     }
 
     if (correctionField === 'approval_group') {
@@ -204,6 +258,42 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
           >
             <option value="">Selecciona cuenta contable</option>
             {accountOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+          <select
+            value={newVendorForm.classId}
+            onChange={(e) => setNewVendorForm((current) => ({ ...current, classId: e.target.value }))}
+            className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
+          >
+            <option value="">Selecciona clase</option>
+            {classOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+          <select
+            value={newVendorForm.departmentId}
+            onChange={(e) => setNewVendorForm((current) => ({ ...current, departmentId: e.target.value }))}
+            className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
+          >
+            <option value="">Selecciona departamento</option>
+            {departmentOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+          <select
+            value={newVendorForm.locationId}
+            onChange={(e) => setNewVendorForm((current) => ({ ...current, locationId: e.target.value }))}
+            className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
+          >
+            <option value="">Selecciona ubicación</option>
+            {locationOptions.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>
@@ -299,8 +389,14 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
             >
               <option value="account_id">{correctionFieldLabel('account_id')}</option>
               <option value="vendor_name">{correctionFieldLabel('vendor_name')}</option>
-              <option value="issue_date">Fecha del documento</option>
+              <option value="issue_date">{correctionFieldLabel('issue_date')}</option>
+              <option value="accounting_date">{correctionFieldLabel('accounting_date')}</option>
+              <option value="due_date">{correctionFieldLabel('due_date')}</option>
+              <option value="payment_date">{correctionFieldLabel('payment_date')}</option>
               <option value="document_type">{correctionFieldLabel('document_type')}</option>
+              <option value="class_id">{correctionFieldLabel('class_id')}</option>
+              <option value="department_id">{correctionFieldLabel('department_id')}</option>
+              <option value="location_id">{correctionFieldLabel('location_id')}</option>
               <option value="approval_group">Grupo de aprobación</option>
               <option value="oc_category">Categoría Gasto</option>
               <option value="oc_policy">Política OC</option>
@@ -318,15 +414,27 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
                   ? currentValues.documentType || '-'
                   : correctionField === 'issue_date'
                     ? currentValues.issueDate || '-'
-                    : correctionField === 'approval_group'
-                      ? 'según circuito de aprobación'
-                      : correctionField === 'oc_category'
-                        ? 'según clasificación operativa'
-                        : correctionField === 'oc_policy'
-                          ? 'según política vigente'
-                          : correctionField === 'new_vendor_entity'
-                            ? 'Completa grupo, cuenta, categoría OC, política y entity'
-                            : 'según cuenta propuesta'}
+                    : correctionField === 'accounting_date'
+                      ? currentValues.accountingDate || '-'
+                      : correctionField === 'due_date'
+                        ? currentValues.dueDate || '-'
+                        : correctionField === 'payment_date'
+                          ? currentValues.paymentDate || '-'
+                          : correctionField === 'class_id'
+                            ? currentValues.classId || '-'
+                            : correctionField === 'department_id'
+                              ? currentValues.departmentId || '-'
+                              : correctionField === 'location_id'
+                                ? currentValues.locationId || '-'
+                                : correctionField === 'approval_group'
+                                  ? 'según circuito de aprobación'
+                                  : correctionField === 'oc_category'
+                                    ? 'según clasificación operativa'
+                                    : correctionField === 'oc_policy'
+                                      ? 'según política vigente'
+                                      : correctionField === 'new_vendor_entity'
+                                        ? 'Completa grupo, cuenta, clase, departamento, ubicación, categoría OC, política y entity'
+                                        : 'según cuenta propuesta'}
             </p>
           </div>
         </>

@@ -1,4 +1,5 @@
 import { db } from '@/lib/db/client';
+import { accountOptions, classOptions, departmentOptions, locationOptions } from '@/lib/review/catalogs';
 
 let cachedHasSandboxPublishStatus: boolean | null = null;
 
@@ -386,6 +387,15 @@ function normalizeIsoDate(value: unknown) {
   return new Date(`${year}-${month}-${day}T00:00:00.000Z`).toISOString();
 }
 
+function optionLabel(options: Array<{ value: string; label: string }>, value: string) {
+  return options.find((option) => option.value === value)?.label ?? value;
+}
+
+function parseCatalogId(value: string) {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : value;
+}
+
 function applyCorrectionsToCase(caseRow: { payload_json?: Record<string, any> | null; vendor_name?: string | null; document_type?: string | null; issue_date?: string | null; }, correctionJson?: Record<string, unknown>) {
   const corrections = correctionJson ?? {};
   const payload = { ...(caseRow.payload_json ?? {}) };
@@ -397,8 +407,11 @@ function applyCorrectionsToCase(caseRow: { payload_json?: Record<string, any> | 
   };
 
   if (typeof corrections.account_id === 'string' && corrections.account_id.trim()) {
-    context.accountCorrecta = corrections.account_id.trim();
-    context.accountIdProposed = corrections.account_id.trim();
+    const value = corrections.account_id.trim();
+    context.accountCorrecta = optionLabel(accountOptions, value);
+    context.accountIdProposed = parseCatalogId(value);
+    context.referenciaAccount = parseCatalogId(value);
+    document.accountId = parseCatalogId(value);
   }
 
   if (typeof corrections.approval_group === 'string' && corrections.approval_group.trim()) {
@@ -437,6 +450,54 @@ function applyCorrectionsToCase(caseRow: { payload_json?: Record<string, any> | 
       patch.issue_date = iso;
       document.issueDate = iso;
     }
+  }
+
+  if (corrections.accounting_date) {
+    const iso = normalizeIsoDate(corrections.accounting_date);
+    if (iso) {
+      document.accountingDateProposed = iso;
+      context.accountingDateProposed = iso;
+    }
+  }
+
+  if (corrections.due_date) {
+    const iso = normalizeIsoDate(corrections.due_date);
+    if (iso) {
+      document.dueDate = iso;
+      document.dueDateRule = 'Corregida manualmente en mesa de revisión';
+      context.dueDate = iso;
+    }
+  }
+
+  if (corrections.payment_date) {
+    const iso = normalizeIsoDate(corrections.payment_date);
+    if (iso) {
+      document.paymentDate = iso;
+      document.paymentDateRule = 'Corregida manualmente en mesa de revisión';
+      context.paymentDate = iso;
+      context.paymentDateRule = 'Corregida manualmente en mesa de revisión';
+    }
+  }
+
+  if (typeof corrections.class_id === 'string' && corrections.class_id.trim()) {
+    const value = corrections.class_id.trim();
+    context.classIdProposed = parseCatalogId(value);
+    context.classCorrecta = optionLabel(classOptions, value);
+    document.classId = parseCatalogId(value);
+  }
+
+  if (typeof corrections.department_id === 'string' && corrections.department_id.trim()) {
+    const value = corrections.department_id.trim();
+    context.departmentIdProposed = parseCatalogId(value);
+    context.departmentCorrecta = optionLabel(departmentOptions, value);
+    document.departmentId = parseCatalogId(value);
+  }
+
+  if (typeof corrections.location_id === 'string' && corrections.location_id.trim()) {
+    const value = corrections.location_id.trim();
+    context.locationIdProposed = parseCatalogId(value);
+    context.locationCorrecta = optionLabel(locationOptions, value);
+    document.locationId = parseCatalogId(value);
   }
 
   payload.document = document;
