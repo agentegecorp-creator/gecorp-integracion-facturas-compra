@@ -9,7 +9,7 @@ type CatalogOption = {
   vendorCount?: number;
 };
 
-export const accountOptions = [
+const rawAccountOptions = [
   { value: '742', label: '742 · 121004 - ANTICIPO PROVEEDORES' },
   { value: '1275', label: '1275 · 122006 - CREDITO SENCE' },
   { value: '645', label: '645 · 131001 - VEHICULOS' },
@@ -91,6 +91,11 @@ export const accountOptions = [
   { value: '730', label: '730 · 470112 - MULTAS FISCALES' },
   { value: '1050', label: '1050 · 470113 - COSTO DE FFMM' },
 ];
+
+export const accountOptions = rawAccountOptions.map((option) => ({
+  ...option,
+  label: option.label.replace(/^\d+\s*·\s*/, ''),
+}));
 
 export const documentTypeOptions = [
   { value: '33', label: '33 · Factura afecta' },
