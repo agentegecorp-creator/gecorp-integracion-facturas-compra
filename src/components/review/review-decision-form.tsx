@@ -37,6 +37,7 @@ type SelectOption = {
 type ReviewDecisionFormProps = {
   caseId: string;
   currentValues: {
+    accountId?: string | number | null;
     vendorName?: string | null;
     documentType?: string | null;
     issueDate?: string | Date | null;
@@ -46,8 +47,44 @@ type ReviewDecisionFormProps = {
     classId?: string | number | null;
     departmentId?: string | number | null;
     locationId?: string | number | null;
+    approvalGroup?: string | null;
+    ocCategory?: string | null;
+    ocPolicy?: string | null;
+    newVendorEntity?: string | number | null;
   };
 };
+
+type CorrectionValues = Partial<Record<CorrectionField, string>>;
+
+const editableFields: Array<{
+  field: CorrectionField;
+  placeholder: string;
+  kind: 'select' | 'date' | 'text';
+  options?: SelectOption[];
+}> = [
+  { field: 'account_id', placeholder: 'Selecciona cuenta contable', kind: 'select', options: accountOptions },
+  { field: 'vendor_name', placeholder: 'Selecciona proveedor', kind: 'select', options: vendorOptions },
+  { field: 'issue_date', placeholder: '', kind: 'date' },
+  { field: 'accounting_date', placeholder: '', kind: 'date' },
+  { field: 'due_date', placeholder: '', kind: 'date' },
+  { field: 'payment_date', placeholder: '', kind: 'date' },
+  { field: 'document_type', placeholder: 'Selecciona tipo documental', kind: 'select', options: documentTypeOptions },
+  { field: 'class_id', placeholder: 'Selecciona clase', kind: 'select', options: classOptions },
+  { field: 'department_id', placeholder: 'Selecciona departamento', kind: 'select', options: departmentOptions },
+  { field: 'location_id', placeholder: 'Selecciona ubicación', kind: 'select', options: locationOptions },
+  { field: 'approval_group', placeholder: 'Ej: Finanzas, Compras, Gonzalo', kind: 'text' },
+  { field: 'oc_category', placeholder: 'Ej: FLETE NACIONAL, RECHAZO_SII, INSUMOS', kind: 'text' },
+  {
+    field: 'oc_policy',
+    placeholder: 'Selecciona política OC',
+    kind: 'select',
+    options: [
+      { value: 'SIN OC', label: 'SIN OC' },
+      { value: 'OC OBLIGATORIA', label: 'OC OBLIGATORIA' },
+    ],
+  },
+  { field: 'new_vendor_entity', placeholder: 'Entity NetSuite', kind: 'text' },
+];
 
 function formatReferenceValue(value: string | number | Date | null | undefined) {
   if (value === null || value === undefined || value === '') return '-';
@@ -61,18 +98,7 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
   const router = useRouter();
   const [decisionType, setDecisionType] = useState<DecisionType>('approve');
   const [notes, setNotes] = useState('');
-  const [correctionField, setCorrectionField] = useState<CorrectionField>('account_id');
-  const [correctionValue, setCorrectionValue] = useState('');
-  const [newVendorForm, setNewVendorForm] = useState({
-    approvalGroup: '',
-    accountId: '',
-    classId: '',
-    departmentId: '',
-    locationId: '',
-    ocCategory: '',
-    ocPolicy: '',
-    entity: '',
-  });
+  const [correctionValues, setCorrectionValues] = useState<CorrectionValues>({});
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -82,29 +108,12 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
       return {};
     }
 
-    if (correctionField === 'new_vendor_entity') {
-      return Object.fromEntries(
-        Object.entries({
-          approval_group: newVendorForm.approvalGroup,
-          account_id: newVendorForm.accountId,
-          class_id: newVendorForm.classId,
-          department_id: newVendorForm.departmentId,
-          location_id: newVendorForm.locationId,
-          oc_category: newVendorForm.ocCategory,
-          oc_policy: newVendorForm.ocPolicy,
-          new_vendor_entity: newVendorForm.entity,
-        }).filter(([, value]) => value),
-      );
-    }
-
-    if (!correctionField || !correctionValue) {
-      return {};
-    }
-
-    return {
-      [correctionField]: correctionValue,
-    };
-  }, [decisionType, correctionField, correctionValue, newVendorForm]);
+    return Object.fromEntries(
+      Object.entries(correctionValues)
+        .map(([field, value]) => [field, typeof value === 'string' ? value.trim() : value])
+        .filter(([, value]) => value),
+    );
+  }, [decisionType, correctionValues]);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -113,9 +122,8 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
     setMessage(null);
 
     if (decisionType === 'correct_and_approve') {
-      const hasNewVendorPayload = correctionField === 'new_vendor_entity' && Object.keys(correctionPayload).length > 0;
-      if (!correctionValue && !hasNewVendorPayload) {
-        setError('Debes seleccionar un nuevo valor para la corrección.');
+      if (Object.keys(correctionPayload).length === 0) {
+        setError('Debes ingresar al menos una corrección.');
         setLoading(false);
         return;
       }
@@ -137,17 +145,7 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
 
       setMessage('Decisión guardada correctamente.');
       setNotes('');
-      setCorrectionValue('');
-      setNewVendorForm({
-        approvalGroup: '',
-        accountId: '',
-        classId: '',
-        departmentId: '',
-        locationId: '',
-        ocCategory: '',
-        ocPolicy: '',
-        entity: '',
-      });
+      setCorrectionValues({});
       router.refresh();
     } catch (err) {
       setError('Ocurrió un error de red al guardar la decisión.');
@@ -156,193 +154,47 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
     }
   }
 
-  function renderSelect(placeholder: string, options: SelectOption[]) {
-    return (
-      <select
-        value={correctionValue}
-        onChange={(e) => setCorrectionValue(e.target.value)}
-        className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
-      >
-        <option value="">{placeholder}</option>
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
-    );
+  function currentValueForField(field: CorrectionField) {
+    const values: Record<CorrectionField, string | number | Date | null | undefined> = {
+      account_id: currentValues.accountId,
+      vendor_name: currentValues.vendorName,
+      issue_date: currentValues.issueDate,
+      accounting_date: currentValues.accountingDate,
+      due_date: currentValues.dueDate,
+      payment_date: currentValues.paymentDate,
+      document_type: currentValues.documentType,
+      class_id: currentValues.classId,
+      department_id: currentValues.departmentId,
+      location_id: currentValues.locationId,
+      approval_group: currentValues.approvalGroup,
+      oc_category: currentValues.ocCategory,
+      oc_policy: currentValues.ocPolicy,
+      new_vendor_entity: currentValues.newVendorEntity,
+    };
+
+    return values[field];
   }
 
-  function renderDateInput() {
-    return (
-      <input
-        type="date"
-        value={correctionValue}
-        onChange={(e) => setCorrectionValue(e.target.value)}
-        className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
-      />
-    );
+  function updateCorrectionValue(field: CorrectionField, value: string) {
+    setCorrectionValues((current) => ({
+      ...current,
+      [field]: value,
+    }));
   }
 
-  function renderCorrectionInput() {
-    if (decisionType !== 'correct_and_approve') return null;
+  function renderFieldInput(fieldConfig: (typeof editableFields)[number]) {
+    const value = correctionValues[fieldConfig.field] ?? '';
+    const className = 'w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500';
 
-    if (correctionField === 'account_id') {
-      return renderSelect('Selecciona cuenta contable', accountOptions);
-    }
-
-    if (correctionField === 'document_type') {
-      return renderSelect('Selecciona tipo documental', documentTypeOptions);
-    }
-
-    if (correctionField === 'issue_date' || correctionField === 'accounting_date' || correctionField === 'due_date' || correctionField === 'payment_date') {
-      return renderDateInput();
-    }
-
-    if (correctionField === 'class_id') {
-      return renderSelect('Selecciona clase', classOptions);
-    }
-
-    if (correctionField === 'department_id') {
-      return renderSelect('Selecciona departamento', departmentOptions);
-    }
-
-    if (correctionField === 'location_id') {
-      return renderSelect('Selecciona ubicación', locationOptions);
-    }
-
-    if (correctionField === 'approval_group') {
-      return (
-        <input
-          type="text"
-          value={correctionValue}
-          onChange={(e) => setCorrectionValue(e.target.value)}
-          className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
-          placeholder="Ej: Finanzas, Compras, Gonzalo"
-        />
-      );
-    }
-
-    if (correctionField === 'oc_category') {
-      return (
-        <input
-          type="text"
-          value={correctionValue}
-          onChange={(e) => setCorrectionValue(e.target.value)}
-          className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
-          placeholder="Ej: FLETE NACIONAL, RECHAZO_SII, INSUMOS"
-        />
-      );
-    }
-
-    if (correctionField === 'oc_policy') {
+    if (fieldConfig.kind === 'select') {
       return (
         <select
-          value={correctionValue}
-          onChange={(e) => setCorrectionValue(e.target.value)}
-          className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
+          value={value}
+          onChange={(e) => updateCorrectionValue(fieldConfig.field, e.target.value)}
+          className={className}
         >
-          <option value="">Selecciona política OC</option>
-          <option value="SIN OC">SIN OC</option>
-          <option value="OC OBLIGATORIA">OC OBLIGATORIA</option>
-        </select>
-      );
-    }
-
-    if (correctionField === 'new_vendor_entity') {
-      return (
-        <div className="grid gap-3">
-          <input
-            type="text"
-            value={newVendorForm.approvalGroup}
-            onChange={(e) => setNewVendorForm((current) => ({ ...current, approvalGroup: e.target.value }))}
-            className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
-            placeholder="Grupo de aprobación"
-          />
-          <select
-            value={newVendorForm.accountId}
-            onChange={(e) => setNewVendorForm((current) => ({ ...current, accountId: e.target.value }))}
-            className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
-          >
-            <option value="">Selecciona cuenta contable</option>
-            {accountOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-          <select
-            value={newVendorForm.classId}
-            onChange={(e) => setNewVendorForm((current) => ({ ...current, classId: e.target.value }))}
-            className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
-          >
-            <option value="">Selecciona clase</option>
-            {classOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-          <select
-            value={newVendorForm.departmentId}
-            onChange={(e) => setNewVendorForm((current) => ({ ...current, departmentId: e.target.value }))}
-            className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
-          >
-            <option value="">Selecciona departamento</option>
-            {departmentOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-          <select
-            value={newVendorForm.locationId}
-            onChange={(e) => setNewVendorForm((current) => ({ ...current, locationId: e.target.value }))}
-            className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
-          >
-            <option value="">Selecciona ubicación</option>
-            {locationOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-          <input
-            type="text"
-            value={newVendorForm.ocCategory}
-            onChange={(e) => setNewVendorForm((current) => ({ ...current, ocCategory: e.target.value }))}
-            className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
-            placeholder="Categoría Gasto"
-          />
-          <select
-            value={newVendorForm.ocPolicy}
-            onChange={(e) => setNewVendorForm((current) => ({ ...current, ocPolicy: e.target.value }))}
-            className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
-          >
-            <option value="">Selecciona política OC</option>
-            <option value="SIN OC">SIN OC</option>
-            <option value="OC OBLIGATORIA">OC OBLIGATORIA</option>
-          </select>
-          <input
-            type="text"
-            value={newVendorForm.entity}
-            onChange={(e) => setNewVendorForm((current) => ({ ...current, entity: e.target.value }))}
-            className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
-            placeholder="Entity NetSuite"
-          />
-        </div>
-      );
-    }
-
-    if (correctionField === 'vendor_name') {
-      return (
-        <select
-          value={correctionValue}
-          onChange={(e) => setCorrectionValue(e.target.value)}
-          className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
-        >
-          <option value="">Selecciona proveedor</option>
-          {vendorOptions.map((option) => (
+          <option value="">{fieldConfig.placeholder}</option>
+          {(fieldConfig.options ?? []).map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>
@@ -353,11 +205,11 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
 
     return (
       <input
-        type="text"
-        value={correctionValue}
-        onChange={(e) => setCorrectionValue(e.target.value)}
-        className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
-        placeholder={currentValues.vendorName || 'Nuevo valor'}
+        type={fieldConfig.kind}
+        value={value}
+        onChange={(e) => updateCorrectionValue(fieldConfig.field, e.target.value)}
+        className={className}
+        placeholder={fieldConfig.placeholder}
       />
     );
   }
@@ -384,68 +236,35 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
       </div>
 
       {decisionType === 'correct_and_approve' ? (
-        <>
-          <div>
-            <label className="mb-1 block text-sm font-medium text-slate-700">Campo a corregir</label>
-            <select
-              value={correctionField}
-              onChange={(e) => {
-                setCorrectionField(e.target.value as CorrectionField);
-                setCorrectionValue('');
-              }}
-              className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
+        <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <h3 className="text-sm font-semibold text-slate-900">Correcciones a aplicar</h3>
+              <p className="mt-1 text-xs text-slate-600">
+                Completa solo los campos que quieras cambiar. Se guardarán juntos en una sola decisión.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setCorrectionValues({})}
+              className="rounded-lg border border-slate-300 px-3 py-1.5 text-xs text-slate-700 hover:bg-white"
             >
-              <option value="account_id">{correctionFieldLabel('account_id')}</option>
-              <option value="vendor_name">{correctionFieldLabel('vendor_name')}</option>
-              <option value="issue_date">{correctionFieldLabel('issue_date')}</option>
-              <option value="accounting_date">{correctionFieldLabel('accounting_date')}</option>
-              <option value="due_date">{correctionFieldLabel('due_date')}</option>
-              <option value="payment_date">{correctionFieldLabel('payment_date')}</option>
-              <option value="document_type">{correctionFieldLabel('document_type')}</option>
-              <option value="class_id">{correctionFieldLabel('class_id')}</option>
-              <option value="department_id">{correctionFieldLabel('department_id')}</option>
-              <option value="location_id">{correctionFieldLabel('location_id')}</option>
-              <option value="approval_group">Grupo de aprobación</option>
-              <option value="oc_category">Categoría Gasto</option>
-              <option value="oc_policy">Política OC</option>
-              <option value="new_vendor_entity">Alta de proveedor nuevo</option>
-            </select>
+              Limpiar
+            </button>
           </div>
 
-          <div>
-            <label className="mb-1 block text-sm font-medium text-slate-700">Nuevo valor</label>
-            {renderCorrectionInput()}
-            <p className="mt-1 text-xs text-slate-500">
-              Valor actual referencial: {correctionField === 'vendor_name'
-                ? formatReferenceValue(currentValues.vendorName)
-                : correctionField === 'document_type'
-                  ? formatReferenceValue(currentValues.documentType)
-                  : correctionField === 'issue_date'
-                    ? formatReferenceValue(currentValues.issueDate)
-                    : correctionField === 'accounting_date'
-                      ? formatReferenceValue(currentValues.accountingDate)
-                      : correctionField === 'due_date'
-                        ? formatReferenceValue(currentValues.dueDate)
-                        : correctionField === 'payment_date'
-                          ? formatReferenceValue(currentValues.paymentDate)
-                          : correctionField === 'class_id'
-                            ? formatReferenceValue(currentValues.classId)
-                            : correctionField === 'department_id'
-                              ? formatReferenceValue(currentValues.departmentId)
-                              : correctionField === 'location_id'
-                                ? formatReferenceValue(currentValues.locationId)
-                                : correctionField === 'approval_group'
-                                  ? 'según circuito de aprobación'
-                                  : correctionField === 'oc_category'
-                                    ? 'según clasificación operativa'
-                                    : correctionField === 'oc_policy'
-                                      ? 'según política vigente'
-                                      : correctionField === 'new_vendor_entity'
-                                        ? 'Completa grupo, cuenta, clase, departamento, ubicación, categoría OC, política y entity'
-                                        : 'según cuenta propuesta'}
-            </p>
+          <div className="mt-4 grid gap-3">
+            {editableFields.map((fieldConfig) => (
+              <div key={fieldConfig.field} className="grid gap-2 rounded-xl bg-white p-3 ring-1 ring-slate-200 md:grid-cols-[1fr_1.4fr]">
+                <div>
+                  <p className="text-sm font-medium text-slate-800">{correctionFieldLabel(fieldConfig.field)}</p>
+                  <p className="mt-1 text-xs text-slate-500">Actual: {formatReferenceValue(currentValueForField(fieldConfig.field))}</p>
+                </div>
+                <div>{renderFieldInput(fieldConfig)}</div>
+              </div>
+            ))}
           </div>
-        </>
+        </div>
       ) : null}
 
       <div>

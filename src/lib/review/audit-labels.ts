@@ -33,6 +33,22 @@ export function formatAuditDetails(details: Record<string, unknown> | null | und
     rows.push({ label: 'Notas', value: details.notes });
   }
 
+  const correctionChanges = details.correctionChanges;
+  if (Array.isArray(correctionChanges)) {
+    for (const change of correctionChanges) {
+      if (!change || typeof change !== 'object' || Array.isArray(change)) continue;
+      const field = 'field' in change ? change.field : null;
+      const before = 'before' in change ? change.before : null;
+      const after = 'after' in change ? change.after : null;
+      if (typeof field !== 'string') continue;
+      rows.push({
+        label: correctionFieldLabel(field),
+        value: `${before == null || before === '' ? '-' : String(before)} -> ${after == null || after === '' ? '-' : String(after)}`,
+      });
+    }
+    return rows;
+  }
+
   const correctionJson = details.correctionJson;
   if (correctionJson && typeof correctionJson === 'object' && !Array.isArray(correctionJson)) {
     for (const [key, value] of Object.entries(correctionJson)) {

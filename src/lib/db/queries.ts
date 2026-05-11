@@ -506,6 +506,49 @@ function applyCorrectionsToCase(caseRow: { payload_json?: Record<string, any> | 
   return patch;
 }
 
+function formatCorrectionValue(value: unknown) {
+  if (value === null || value === undefined || value === '') return null;
+  if (value instanceof Date) return value.toISOString();
+  return String(value);
+}
+
+function currentCorrectionValues(caseRow: { payload_json?: Record<string, any> | null; vendor_name?: string | null; document_type?: string | null; issue_date?: string | null; }) {
+  const payload = caseRow.payload_json ?? {};
+  const document = (payload.document as Record<string, unknown> | undefined) ?? {};
+  const context = (payload.context as Record<string, unknown> | undefined) ?? {};
+
+  return {
+    account_id: formatCorrectionValue(document.accountId ?? context.accountIdProposed ?? context.referenciaAccount),
+    vendor_name: formatCorrectionValue(caseRow.vendor_name ?? document.vendorName ?? context.razonSocial),
+    issue_date: formatCorrectionValue(caseRow.issue_date ?? document.issueDate),
+    accounting_date: formatCorrectionValue(document.accountingDateProposed ?? context.accountingDateProposed),
+    due_date: formatCorrectionValue(document.dueDate ?? context.dueDate),
+    payment_date: formatCorrectionValue(document.paymentDate ?? context.paymentDate),
+    document_type: formatCorrectionValue(caseRow.document_type ?? document.documentType),
+    approval_group: formatCorrectionValue(context.approvalGroup),
+    oc_category: formatCorrectionValue(context.ocCategory ?? context.categoriaOc),
+    oc_policy: formatCorrectionValue(context.ocPolicyCorrecta ?? context.ocPolicySuggestedB2),
+    class_id: formatCorrectionValue(document.classId ?? context.classIdProposed ?? context.classCorrecta ?? context.classSuggestedB2),
+    department_id: formatCorrectionValue(document.departmentId ?? context.departmentIdProposed ?? context.departmentCorrecta ?? context.departmentSuggestedB2),
+    location_id: formatCorrectionValue(document.locationId ?? context.locationIdProposed ?? context.locationCorrecta ?? context.locationSuggestedB2),
+    new_vendor_entity: formatCorrectionValue(context.entity ?? context.vendorIdProposed),
+  };
+}
+
+function correctionChanges(
+  beforeValues: Record<string, string | null>,
+  correctionJson?: Record<string, unknown>,
+) {
+  const corrections = correctionJson ?? {};
+  return Object.entries(corrections)
+    .filter(([, value]) => value !== null && value !== undefined && String(value).trim() !== '')
+    .map(([field, value]) => ({
+      field,
+      before: beforeValues[field] ?? null,
+      after: String(value),
+    }));
+}
+
 export async function createReviewDecision(params: {
   caseId: string;
   userId: string;
@@ -546,6 +589,7 @@ export async function createReviewDecision(params: {
 
     const nextStatus = nextStatusMap[params.decisionType];
     const caseRow = caseResult.rows[0];
+    const beforeCorrectionValues = currentCorrectionValues(caseRow);
     const correctedPatch = applyCorrectionsToCase(caseRow, params.correctionJson);
     const previewCaseRow = {
       ...caseRow,
@@ -609,6 +653,7 @@ export async function createReviewDecision(params: {
           sandboxPublishStatus,
           notes: params.notes ?? null,
           correctionJson: params.correctionJson ?? {},
+          correctionChanges: correctionChanges(beforeCorrectionValues, params.correctionJson),
         }),
       ],
     );

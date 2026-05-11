@@ -32,6 +32,7 @@ type ReviewCaseDetail = ReviewItem & {
       paymentTermsId?: string | number;
       paymentTermsLabel?: string;
       accountingDateProposed?: string;
+      accountId?: string | number;
       classId?: string | number;
       departmentId?: string | number;
       locationId?: string | number;
@@ -51,8 +52,8 @@ type ReviewCaseDetail = ReviewItem & {
       description?: string;
     };
     context?: {
-      entity?: number;
-      referenciaAccount?: number;
+      entity?: string | number;
+      referenciaAccount?: string | number;
       categoriaOc?: string;
       learningCategory?: string;
       motivo?: string;
@@ -75,8 +76,8 @@ type ReviewCaseDetail = ReviewItem & {
       engineNote?: string;
       ocCategory?: string;
       reviewStatus?: string;
-      vendorIdProposed?: number;
-      accountIdProposed?: number;
+      vendorIdProposed?: string | number;
+      accountIdProposed?: string | number;
       accountSuggestedB2?: string | number;
       classSuggestedB2?: string;
       departmentSuggestedB2?: string;
@@ -593,6 +594,7 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
               <ReviewDecisionForm
                 caseId={selected.id}
                 currentValues={{
+                  accountId: document?.accountId || context?.accountIdProposed || context?.referenciaAccount,
                   vendorName: selected.vendor_name,
                   documentType: selected.document_type,
                   issueDate: selected.issue_date,
@@ -602,6 +604,10 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                   classId: document?.classId || context?.classIdProposed || context?.classCorrecta || context?.classSuggestedB2,
                   departmentId: document?.departmentId || context?.departmentIdProposed || context?.departmentCorrecta || context?.departmentSuggestedB2,
                   locationId: document?.locationId || context?.locationIdProposed || context?.locationCorrecta || context?.locationSuggestedB2,
+                  approvalGroup: context?.approvalGroup,
+                  ocCategory: context?.ocCategory || context?.categoriaOc,
+                  ocPolicy: context?.ocPolicyCorrecta || context?.ocPolicySuggestedB2,
+                  newVendorEntity: context?.entity || context?.vendorIdProposed,
                 }}
               />
             </div>

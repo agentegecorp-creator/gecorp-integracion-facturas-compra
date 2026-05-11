@@ -125,6 +125,7 @@ export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
             <ReviewDecisionForm
               caseId={id}
               currentValues={{
+                accountId: document.accountId || context.accountIdProposed || context.referenciaAccount,
                 vendorName: item.vendor_name,
                 documentType: item.document_type,
                 issueDate: item.issue_date,
@@ -134,6 +135,10 @@ export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
                 classId: document.classId || context.classIdProposed || context.classCorrecta || context.classSuggestedB2,
                 departmentId: document.departmentId || context.departmentIdProposed || context.departmentCorrecta || context.departmentSuggestedB2,
                 locationId: document.locationId || context.locationIdProposed || context.locationCorrecta || context.locationSuggestedB2,
+                approvalGroup: optionalString(context.approvalGroup),
+                ocCategory: optionalString(context.ocCategory || context.categoriaOc),
+                ocPolicy: optionalString(context.ocPolicyCorrecta || context.ocPolicySuggestedB2),
+                newVendorEntity: context.entity || context.vendorIdProposed,
               }}
             />
           </div>
