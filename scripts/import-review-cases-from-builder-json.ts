@@ -33,6 +33,7 @@ type BuilderCase = {
   due_date?: string | null;
   due_date_rule?: string | null;
   payment_date?: string | null;
+  payment_date_rule?: string | null;
   payment_terms_id?: number | null;
   payment_terms_label?: string | null;
   service_description?: string | null;
@@ -118,6 +119,8 @@ async function main() {
         dueDate: item.due_date,
         dueDateRule: item.due_date_rule,
         paymentDate: item.payment_date,
+        paymentDateRule: item.payment_date_rule,
+        paymentTermsId: item.payment_terms_id,
         paymentTermsLabel: item.payment_terms_label,
         serviceDescription: item.service_description,
         amountNet: item.amount_net,
@@ -152,9 +155,11 @@ async function main() {
         postingStatus: item.posting_status,
         confidenceLevel: item.confidence_level,
         paymentTermsLabel: item.payment_terms_label,
+        paymentTermsId: item.payment_terms_id,
         accountingDateProposed: item.accounting_date_proposed,
         dueDate: item.due_date,
         paymentDate: item.payment_date,
+        paymentDateRule: item.payment_date_rule,
         engineNote: item.engine_note,
         assignedTo: item.assigned_to,
         reviewStatus: item.review_status,

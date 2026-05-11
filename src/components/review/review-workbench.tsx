@@ -28,6 +28,8 @@ type ReviewCaseDetail = ReviewItem & {
       dueDate?: string;
       dueDateRule?: string;
       paymentDate?: string;
+      paymentDateRule?: string;
+      paymentTermsId?: string | number;
       paymentTermsLabel?: string;
       accountingDateProposed?: string;
       purchaseOrderReference?: string;
@@ -84,9 +86,11 @@ type ReviewCaseDetail = ReviewItem & {
       postingStatus?: string;
       confidenceLevel?: string;
       paymentTermsLabel?: string;
+      paymentTermsId?: string | number;
       accountingDateProposed?: string;
       dueDate?: string;
       paymentDate?: string;
+      paymentDateRule?: string;
     };
   } | null;
 };
@@ -180,48 +184,6 @@ function nextActionLabel(bucket: string) {
   return 'Revisar y decidir';
 }
 
-function buildDecisionGuide(detail: ReviewCaseDetail | null) {
-  const context = detail?.payload_json?.context;
-  const bucket = detail?.bucket;
-  const reasons: string[] = [];
-  let recommendation = 'Revisar y decidir';
-  let tone = 'slate';
-
-  if (context?.approvalGroup || context?.entity || context?.accountCorrecta || context?.accountSuggestedB2) {
-    reasons.push('Hay datos contables o de alta ya definidos para avanzar.');
-  }
-
-  if (context?.motivo) {
-    reasons.push(`Motivo detectado: ${context.motivo}`);
-  }
-
-  if (context?.error) {
-    reasons.push(`Error reportado: ${context.error}`);
-  }
-
-  if (bucket === 'error_real') {
-    recommendation = context?.accountCorrecta || context?.accountSuggestedB2
-      ? 'Corregir y aprobar'
-      : 'Escalar como caso especial';
-    tone = context?.accountCorrecta || context?.accountSuggestedB2 ? 'emerald' : 'rose';
-  } else if (bucket === 'rejected_sii') {
-    recommendation = context?.entity || context?.vendorIdProposed
-      ? 'Completar corrección y aprobar'
-      : 'Gestionar rechazo o alta de proveedor';
-    tone = context?.entity || context?.vendorIdProposed ? 'sky' : 'amber';
-  } else if (bucket === 'revision_oc') {
-    recommendation = context?.ocPolicyCorrecta || context?.ocPolicySuggestedB2
-      ? 'Validar política OC y decidir'
-      : 'Revisar OC antes de aprobar';
-    tone = 'amber';
-  } else if (context?.approvalGroup && context?.accountCorrecta && (context?.ocCategory || context?.categoriaOc)) {
-    recommendation = 'Completar alta y aprobar';
-    tone = 'violet';
-  }
-
-  return { recommendation, reasons, tone };
-}
-
 export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
   const [selectedId, setSelectedId] = useState<string | null>(items[0]?.id ?? null);
   const [selectedDetail, setSelectedDetail] = useState<ReviewCaseDetail | null>(null);
@@ -256,6 +218,7 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
   const document = selectedDetail?.payload_json?.document;
   const dueDate = document?.dueDate || context?.dueDate;
   const paymentDate = document?.paymentDate || context?.paymentDate;
+  const paymentDateRule = document?.paymentDateRule || context?.paymentDateRule;
   const accountingDate = document?.accountingDateProposed || context?.accountingDateProposed;
   const paymentTermsLabel = document?.paymentTermsLabel || context?.paymentTermsLabel;
   const purchaseOrderReference = document?.purchaseOrderReference || context?.referenciaOcCorrelacion;
@@ -263,7 +226,6 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
   const amountVat = document?.amountVat;
   const amountVatNonRecoverable = document?.amountVatNonRecoverable;
   const amountExempt = document?.amountExempt;
-  const amountOtherTax = document?.amountOtherTax;
   const amountTotal = document?.amountTotal || selected?.amount_total;
   const amountTotalCalculated = document?.amountTotalCalculated;
   const amountTotalDelta = document?.amountTotalDelta;
@@ -271,15 +233,6 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
   const siiDocumentType = document?.documentType || selected?.document_type;
   const siiDocumentTypeLabel = document?.documentTypeLabel;
   const documentMemo = document?.serviceDescription || document?.memo || document?.description || document?.summary;
-  const decisionGuide = buildDecisionGuide(selectedDetail);
-  const decisionGuideClass = {
-    slate: 'border-slate-200 bg-slate-50 text-slate-800',
-    emerald: 'border-emerald-200 bg-emerald-50 text-emerald-800',
-    rose: 'border-rose-200 bg-rose-50 text-rose-800',
-    sky: 'border-sky-200 bg-sky-50 text-sky-800',
-    amber: 'border-amber-200 bg-amber-50 text-amber-800',
-    violet: 'border-violet-200 bg-violet-50 text-violet-800',
-  }[decisionGuide.tone];
 
   return (
     <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
@@ -366,23 +319,6 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                 </div>
               </div>
             </div>
-            <div className="rounded-2xl border border-indigo-100 bg-indigo-50 p-4">
-              <p className="text-xs font-semibold uppercase tracking-wide text-indigo-700">Siguiente acción sugerida</p>
-              <p className="mt-1 text-sm font-medium text-slate-900">{nextActionLabel(selected.bucket)}</p>
-            </div>
-            <div className={`rounded-2xl border p-4 ${decisionGuideClass}`}>
-              <p className="text-xs font-semibold uppercase tracking-wide">Recomendación B3</p>
-              <p className="mt-1 text-sm font-semibold">{decisionGuide.recommendation}</p>
-              {decisionGuide.reasons.length ? (
-                <ul className="mt-2 list-disc space-y-1 pl-5 text-sm">
-                  {decisionGuide.reasons.map((reason) => (
-                    <li key={reason}>{reason}</li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="mt-2 text-sm">Todavía faltan señales suficientes para recomendar una decisión más fuerte.</p>
-              )}
-            </div>
             <div className="grid gap-3 md:grid-cols-2">
               <div className="rounded-2xl bg-slate-50 p-4">
                 <p className="text-sm text-slate-500">Folio</p>
@@ -412,6 +348,7 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
               <div className="rounded-2xl bg-slate-50 p-4">
                 <p className="text-sm text-slate-500">Fecha pago propuesta</p>
                 <p className="mt-1 font-medium text-slate-900">{formatDate(paymentDate)}</p>
+                {paymentDateRule ? <p className="mt-1 text-xs text-slate-500">{paymentDateRule}</p> : null}
               </div>
               <div className="rounded-2xl bg-slate-50 p-4">
                 <p className="text-sm text-slate-500">Término de pago</p>
@@ -436,10 +373,6 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
               <div className="rounded-2xl bg-slate-50 p-4">
                 <p className="text-sm text-slate-500">Monto exento</p>
                 <p className="mt-1 font-medium text-slate-900">{formatCurrency(amountExempt)}</p>
-              </div>
-              <div className="rounded-2xl bg-slate-50 p-4">
-                <p className="text-sm text-slate-500">Otros impuestos</p>
-                <p className="mt-1 font-medium text-slate-900">{formatCurrency(amountOtherTax)}</p>
               </div>
               <div className="rounded-2xl bg-slate-50 p-4">
                 <p className="text-sm text-slate-500">Monto bruto (total)</p>
@@ -493,49 +426,6 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                         <p className="text-xs uppercase tracking-wide text-violet-700">Estado proveedor</p>
                         <p className="mt-1 text-sm font-medium text-slate-900">{context.vendorIdProposed ? 'Encontrado en NetSuite' : 'Pendiente de alta/validación'}</p>
                       </div>
-                    </div>
-                  </div>
-                ) : null}
-                {context.accountIdProposed || context.vendorIdProposed || context.ocCategory || context.assignedTo || context.reviewStatus || context.engineNote ? (
-                  <div className="rounded-2xl border border-sky-200 bg-sky-50 p-4">
-                    <p className="text-sm font-semibold text-sky-800">Señales operativas actuales</p>
-                    <div className="mt-3 grid gap-3 md:grid-cols-2">
-                      {context.accountIdProposed ? (
-                        <div>
-                          <p className="text-xs uppercase tracking-wide text-sky-700">Cuenta propuesta</p>
-                          <p className="mt-1 text-sm font-medium text-slate-900">Referencia contable disponible</p>
-                        </div>
-                      ) : null}
-                      {context.vendorIdProposed ? (
-                        <div>
-                          <p className="text-xs uppercase tracking-wide text-sky-700">Proveedor NetSuite</p>
-                          <p className="mt-1 text-sm font-medium text-slate-900">Encontrado</p>
-                        </div>
-                      ) : null}
-                      {context.expenseCategory || context.ocCategory ? (
-                        <div>
-                          <p className="text-xs uppercase tracking-wide text-sky-700">Categoría Gasto</p>
-                          <p className="mt-1 text-sm font-medium text-slate-900">{context.expenseCategory || context.ocCategory}</p>
-                        </div>
-                      ) : null}
-                      {context.assignedTo ? (
-                        <div>
-                          <p className="text-xs uppercase tracking-wide text-sky-700">Asignado a</p>
-                          <p className="mt-1 text-sm font-medium text-slate-900">{context.assignedTo}</p>
-                        </div>
-                      ) : null}
-                      {context.reviewStatus ? (
-                        <div>
-                          <p className="text-xs uppercase tracking-wide text-sky-700">Estado de revisión</p>
-                          <p className="mt-1 text-sm font-medium text-slate-900">{context.reviewStatus}</p>
-                        </div>
-                      ) : null}
-                      {context.engineNote ? (
-                        <div className="md:col-span-2">
-                          <p className="text-xs uppercase tracking-wide text-sky-700">Nota del motor</p>
-                          <p className="mt-1 text-sm text-slate-900">{context.engineNote}</p>
-                        </div>
-                      ) : null}
                     </div>
                   </div>
                 ) : null}

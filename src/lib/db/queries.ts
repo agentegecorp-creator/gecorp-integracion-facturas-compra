@@ -46,12 +46,32 @@ export async function listAuditLog(limit = 50) {
   return result.rows;
 }
 
-export async function getDashboardSummary() {
+type DashboardPeriod = {
+  startDate: string;
+  endDate: string;
+};
+
+export async function getDashboardSummary(period?: DashboardPeriod) {
+  const documentTypeValues: string[] = [];
+  const documentTypeConditions: string[] = [];
+
+  if (period) {
+    documentTypeValues.push(period.startDate, period.endDate);
+    documentTypeConditions.push(`issue_date >= $1::date and issue_date < $2::date`);
+  }
+
+  const documentTypeWhereClause = documentTypeConditions.length > 0 ? `where ${documentTypeConditions.join(' and ')}` : '';
+
   const [totalCases, byBucket, byStatus, rows] = await Promise.all([
     db.query(`select count(*)::int as total from review_cases`),
     db.query(`select bucket, count(*)::int as total from review_cases group by bucket order by bucket`),
     db.query(`select status, count(*)::int as total from review_cases group by status order by status`),
-    db.query(`select bucket, status, document_type, amount_total, vendor_name, payload_json from review_cases`),
+    db.query(
+      `select bucket, status, document_type, amount_total, vendor_name, payload_json
+       from review_cases
+       ${documentTypeWhereClause}`,
+      documentTypeValues,
+    ),
   ]);
 
   const operationalSummary = {
@@ -69,6 +89,7 @@ export async function getDashboardSummary() {
     ivaRecuperable: number;
     ivaUsoComun: number;
     ivaNoRecuperable: number;
+    montoOtrosImpuestos: number;
     montoTotal: number;
   }>();
 
@@ -80,7 +101,7 @@ export async function getDashboardSummary() {
     const amountTotal = Number(document.amountTotal ?? row.amount_total ?? 0) || 0;
     const amountNet = Number(document.amountNet ?? (String(row.document_type || '') === '34' ? 0 : amountTotal)) || 0;
     const amountExempt = Number(document.amountExempt ?? (String(row.document_type || '') === '34' ? amountTotal : 0)) || 0;
-    const amountOtherTax = Number(document.amountOtherTax ?? document.amountNoCreditTax ?? 0) || 0;
+    const amountOtherTax = (Number(document.amountOtherTax ?? 0) || 0) + (Number(document.amountNoCreditTax ?? 0) || 0);
     const ivaRecuperable = Number(document.amountVat ?? Math.max(amountTotal - amountNet - amountExempt - amountOtherTax, 0)) || 0;
     const ivaUsoComun = Number(document.amountCommonUseVat ?? document.ivaUsoComun ?? 0) || 0;
     const ivaNoRecuperable = Number(document.amountVatNonRecoverable ?? document.ivaNoRecuperable ?? 0) || 0;
@@ -109,6 +130,7 @@ export async function getDashboardSummary() {
         ivaRecuperable: 0,
         ivaUsoComun: 0,
         ivaNoRecuperable: 0,
+        montoOtrosImpuestos: 0,
         montoTotal: 0,
       });
     }
@@ -120,6 +142,7 @@ export async function getDashboardSummary() {
     target.ivaRecuperable += ivaRecuperable;
     target.ivaUsoComun += ivaUsoComun;
     target.ivaNoRecuperable += ivaNoRecuperable;
+    target.montoOtrosImpuestos += amountOtherTax;
     target.montoTotal += amountTotal;
   }
 

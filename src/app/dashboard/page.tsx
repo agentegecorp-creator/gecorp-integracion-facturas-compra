@@ -21,6 +21,46 @@ function formatCurrency(value: number) {
   }).format(value || 0);
 }
 
+function formatPeriodLabel(date: Date) {
+  return new Intl.DateTimeFormat('es-CL', { month: 'long', year: 'numeric' }).format(date);
+}
+
+function toDateInputValue(date: Date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+function getRcvPeriods(selectedPeriod: string | undefined) {
+  const now = new Date();
+  const currentStart = new Date(now.getFullYear(), now.getMonth(), 1);
+  const nextStart = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+  const previousStart = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+
+  const periods = [
+    {
+      key: 'current',
+      label: 'Mes actual',
+      detail: formatPeriodLabel(currentStart),
+      startDate: toDateInputValue(currentStart),
+      endDate: toDateInputValue(nextStart),
+    },
+    {
+      key: 'previous',
+      label: 'Mes anterior',
+      detail: formatPeriodLabel(previousStart),
+      startDate: toDateInputValue(previousStart),
+      endDate: toDateInputValue(currentStart),
+    },
+  ];
+
+  return {
+    selected: periods.find((period) => period.key === selectedPeriod) ?? periods[0],
+    periods,
+  };
+}
+
 function documentTypeLabel(code: string) {
   if (code === '33') return 'Factura Electrónica (33)';
   if (code === '34') return 'Factura no Afecta o Exenta Electrónica (34)';
@@ -37,9 +77,18 @@ function SiiCountCell({ value }: { value: number }) {
   return <td className="px-4 py-3 text-right text-sm text-slate-700">{value}</td>;
 }
 
-export default async function DashboardPage() {
+export default async function DashboardPage({
+  searchParams,
+}: {
+  searchParams?: Promise<{ rcvPeriod?: string }>;
+}) {
   const session = await requireSession();
-  const summary = await getDashboardSummary();
+  const resolvedSearchParams = searchParams ? await searchParams : undefined;
+  const rcvPeriods = getRcvPeriods(resolvedSearchParams?.rcvPeriod);
+  const summary = await getDashboardSummary({
+    startDate: rcvPeriods.selected.startDate,
+    endDate: rcvPeriods.selected.endDate,
+  });
   const recentCases = await listReviewCases(8);
   const pendingCount = summary.byStatus.find((row) => row.status === 'new')?.total ?? 0;
   const resolvedCount = summary.byStatus.find((row) => row.status === 'resolved')?.total ?? 0;
@@ -150,7 +199,30 @@ export default async function DashboardPage() {
               <p className="mt-1 text-sm text-slate-600">Ver eventos reales del flujo y decisiones tomadas.</p>
             </Link>
             <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
-              <h3 className="font-semibold text-slate-900">Totales RCV por tipo de documento</h3>
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div>
+                  <h3 className="font-semibold text-slate-900">Totales RCV por tipo de documento</h3>
+                  <p className="mt-1 text-xs text-slate-500">
+                    Período por fecha de documento: {rcvPeriods.selected.detail}. Base actual: casos importados a la mesa.
+                  </p>
+                </div>
+                <div className="inline-flex rounded-xl bg-slate-100 p-1 text-xs font-medium text-slate-600">
+                  {rcvPeriods.periods.map((period) => (
+                    <Link
+                      key={period.key}
+                      href={`/dashboard?rcvPeriod=${period.key}`}
+                      className={`rounded-lg px-3 py-2 ${
+                        period.key === rcvPeriods.selected.key
+                          ? 'bg-white text-slate-900 shadow-sm'
+                          : 'hover:bg-slate-200'
+                      }`}
+                    >
+                      <span className="block">{period.label}</span>
+                      <span className="block text-[11px] font-normal">{period.detail}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
               <div className="mt-3 overflow-x-auto rounded-2xl border border-slate-200">
                 <table className="min-w-full divide-y divide-slate-200 text-sm">
                   <thead className="bg-slate-50">
@@ -162,6 +234,7 @@ export default async function DashboardPage() {
                       <th className="px-4 py-3 text-right font-medium text-slate-600">IVA recuperable</th>
                       <th className="px-4 py-3 text-right font-medium text-slate-600">IVA uso común</th>
                       <th className="px-4 py-3 text-right font-medium text-slate-600">IVA no recuperable</th>
+                      <th className="px-4 py-3 text-right font-medium text-slate-600">Otros impuestos</th>
                       <th className="px-4 py-3 text-right font-medium text-slate-600">Monto total</th>
                     </tr>
                   </thead>
@@ -175,6 +248,7 @@ export default async function DashboardPage() {
                         <SiiAmountCell value={row.ivaRecuperable} />
                         <SiiAmountCell value={row.ivaUsoComun} />
                         <SiiAmountCell value={row.ivaNoRecuperable} />
+                        <SiiAmountCell value={row.montoOtrosImpuestos} />
                         <SiiAmountCell value={row.montoTotal} />
                       </tr>
                     ))}
