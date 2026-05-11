@@ -410,14 +410,26 @@ function addDaysIso(value: unknown, days: number) {
   return date.toISOString();
 }
 
-function nextFridayIso(value: unknown) {
+function proposedPaymentDateIso(value: unknown, withTef: boolean) {
   const raw = normalizeIsoDate(value);
   if (!raw) return null;
   const date = new Date(raw);
   const day = date.getUTCDay();
-  const daysUntilFriday = (5 - day + 7) % 7 || 7;
-  date.setUTCDate(date.getUTCDate() + daysUntilFriday);
+  if (withTef) {
+    if (day === 4) date.setUTCDate(date.getUTCDate() + 1);
+    else if (day !== 5) date.setUTCDate(date.getUTCDate() - ((day - 5 + 7) % 7));
+  } else if (day === 4 || day === 5) {
+    date.setUTCDate(date.getUTCDate() + ((8 - day) % 7));
+  } else {
+    date.setUTCDate(date.getUTCDate() - ((day - 1 + 7) % 7));
+  }
   return date.toISOString();
+}
+
+function paymentDateRule(withTef: boolean) {
+  return withTef
+    ? 'Regla pago GECORP con TEF: viernes según vencimiento base'
+    : 'Regla pago GECORP sin TEF: lunes según vencimiento base';
 }
 
 function usesTef(document: Record<string, unknown>, context: Record<string, unknown>) {
@@ -527,23 +539,47 @@ function applyCorrectionsToCase(caseRow: { payload_json?: Record<string, any> | 
     context.diasCreditoNs = days;
 
     if (!corrections.due_date) {
-      const accountingDate = document.accountingDateProposed ?? context.accountingDateProposed ?? document.issueDate ?? caseRow.issue_date;
-      const dueDate = addDaysIso(accountingDate, days);
+      const issueDate = document.issueDate ?? caseRow.issue_date;
+      const dueDate = addDaysIso(issueDate, days);
       if (dueDate) {
         document.dueDate = dueDate;
-        document.dueDateRule = `Término NetSuite: ${label} (${days} días desde fecha contable)`;
+        document.dueDateRule = `Vencimiento base: fecha documento + término NetSuite ${label} (${days} días)`;
         context.dueDate = dueDate;
       }
     }
 
-    if (!corrections.payment_date && usesTef(document, context)) {
-      const paymentDate = nextFridayIso(document.dueDate ?? context.dueDate);
+    if (!corrections.payment_date) {
+      const withTef = usesTef(document, context);
+      const paymentDate = proposedPaymentDateIso(document.dueDate ?? context.dueDate, withTef);
       if (paymentDate) {
         document.paymentDate = paymentDate;
-        document.paymentDateRule = 'Regla TEF GECORP: próximo viernes desde fecha de vencimiento';
+        document.paymentDateRule = paymentDateRule(withTef);
         context.paymentDate = paymentDate;
         context.paymentDateRule = document.paymentDateRule;
       }
+    }
+  }
+
+  if (!corrections.due_date && (corrections.issue_date || corrections.payment_terms_id)) {
+    const termsId = String(document.paymentTermsId ?? context.paymentTermsId ?? '').trim();
+    const days = termsId ? paymentTermDays(termsId) : Number(context.diasCreditoNs ?? 0);
+    const label = termsId ? optionName(paymentTermsOptions, termsId) : String(context.paymentTermsLabel ?? document.paymentTermsLabel ?? 'NetSuite');
+    const dueDate = addDaysIso(document.issueDate ?? caseRow.issue_date, days);
+    if (dueDate) {
+      document.dueDate = dueDate;
+      document.dueDateRule = `Vencimiento base: fecha documento + término NetSuite ${label} (${days} días)`;
+      context.dueDate = dueDate;
+    }
+  }
+
+  if (!corrections.payment_date && (corrections.issue_date || corrections.due_date || corrections.payment_terms_id)) {
+    const withTef = usesTef(document, context);
+    const paymentDate = proposedPaymentDateIso(document.dueDate ?? context.dueDate, withTef);
+    if (paymentDate) {
+      document.paymentDate = paymentDate;
+      document.paymentDateRule = paymentDateRule(withTef);
+      context.paymentDate = paymentDate;
+      context.paymentDateRule = document.paymentDateRule;
     }
   }
 

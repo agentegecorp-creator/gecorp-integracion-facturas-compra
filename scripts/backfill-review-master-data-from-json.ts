@@ -62,13 +62,25 @@ function addDaysIso(value: unknown, days: number) {
   return date.toISOString();
 }
 
-function nextFridayIso(value: unknown) {
+function proposedPaymentDateIso(value: unknown, withTef: boolean) {
   const date = normalizeDate(value);
   if (!date) return null;
   const day = date.getUTCDay();
-  const daysUntilFriday = (5 - day + 7) % 7 || 7;
-  date.setUTCDate(date.getUTCDate() + daysUntilFriday);
+  if (withTef) {
+    if (day === 4) date.setUTCDate(date.getUTCDate() + 1);
+    else if (day !== 5) date.setUTCDate(date.getUTCDate() - ((day - 5 + 7) % 7));
+  } else if (day === 4 || day === 5) {
+    date.setUTCDate(date.getUTCDate() + ((8 - day) % 7));
+  } else {
+    date.setUTCDate(date.getUTCDate() - ((day - 1 + 7) % 7));
+  }
   return date.toISOString();
+}
+
+function paymentDateRule(withTef: boolean) {
+  return withTef
+    ? 'Regla pago GECORP con TEF: viernes según vencimiento base'
+    : 'Regla pago GECORP sin TEF: lunes según vencimiento base';
 }
 
 function parseCatalogId(value: string | null | undefined) {
@@ -115,21 +127,21 @@ function main() {
           context.terminosNs = termName;
           context.diasCreditoNs = days;
 
-          const accountingDate = document.accountingDateProposed ?? context.accountingDateProposed ?? document.issueDate ?? row.issue_date;
-          const dueDate = addDaysIso(accountingDate, days);
+          const issueDate = document.issueDate ?? row.issue_date;
+          const dueDate = addDaysIso(issueDate, days);
           if (dueDate) {
             document.dueDate = dueDate;
-            document.dueDateRule = `Término NetSuite: ${termName} (${days} días desde fecha contable)`;
+            document.dueDateRule = `Vencimiento base: fecha documento + término NetSuite ${termName} (${days} días)`;
             context.dueDate = dueDate;
           }
         }
 
-        if (vendor.tef) {
-          context.pagoPorTef = true;
-          const paymentDate = nextFridayIso(document.dueDate ?? context.dueDate);
+        {
+          context.pagoPorTef = Boolean(vendor.tef);
+          const paymentDate = proposedPaymentDateIso(document.dueDate ?? context.dueDate, Boolean(vendor.tef));
           if (paymentDate) {
             document.paymentDate = paymentDate;
-            document.paymentDateRule = 'Regla TEF GECORP: próximo viernes desde fecha de vencimiento';
+            document.paymentDateRule = paymentDateRule(Boolean(vendor.tef));
             context.paymentDate = paymentDate;
             context.paymentDateRule = document.paymentDateRule;
           }
