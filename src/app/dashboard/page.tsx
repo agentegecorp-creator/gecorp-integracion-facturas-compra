@@ -3,13 +3,13 @@ import { requireSession } from '@/lib/auth/guards';
 import { getDashboardSummary, listReviewCases } from '@/lib/db/queries';
 import { estadoLabel, etapaLabel } from '@/lib/review/labels';
 
-function StatCard({ label, value, help }: { label: string; value: string | number; help: string }) {
+function StatCard({ label, value, help, href }: { label: string; value: string | number; help: string; href: string }) {
   return (
-    <div className="rounded-2xl bg-indigo-50 p-4 shadow-sm ring-1 ring-indigo-100">
+    <Link href={href} className="block rounded-2xl bg-indigo-50 p-4 shadow-sm ring-1 ring-indigo-100 transition hover:bg-indigo-100">
       <p className="text-sm text-slate-600">{label}</p>
       <p className="mt-2 text-3xl font-semibold text-slate-900">{value}</p>
       <p className="mt-1 text-xs text-slate-500">{help}</p>
-    </div>
+    </Link>
   );
 }
 
@@ -128,10 +128,30 @@ export default async function DashboardPage({
         </div>
 
         <div className="mt-8 grid gap-4 md:grid-cols-4">
-          <StatCard label="Contabilizados" value={operationalSummary.contabilizados} help="Documentos ya resueltos y contabilizados en la operación" />
-          <StatCard label="Por contabilizar" value={operationalSummary.porContabilizar} help="Documentos todavía pendientes de cierre operativo" />
-          <StatCard label="Excluidos" value={operationalSummary.excluidos} help="Documentos fuera del flujo normal, incluyendo DIN y sin valor" />
-          <StatCard label="Facturas nuevos proveedores" value={operationalSummary.nuevosProveedores} help="Casos que requieren tratamiento por proveedor nuevo" />
+          <StatCard
+            label="Contabilizados"
+            value={operationalSummary.contabilizados}
+            help="Documentos ya resueltos y contabilizados en la operación"
+            href="/pendiente-revision?operationalView=posted&monthScope=all"
+          />
+          <StatCard
+            label="Por contabilizar"
+            value={operationalSummary.porContabilizar}
+            help="Documentos todavía pendientes de cierre operativo"
+            href="/pendiente-revision?operationalView=pending&monthScope=all"
+          />
+          <StatCard
+            label="Excluidos"
+            value={operationalSummary.excluidos}
+            help="Documentos fuera del flujo normal, incluyendo DIN y sin valor"
+            href="/pendiente-revision?operationalView=excluded&monthScope=all"
+          />
+          <StatCard
+            label="Facturas nuevos proveedores"
+            value={operationalSummary.nuevosProveedores}
+            help="Casos que requieren tratamiento por proveedor nuevo"
+            href="/pendiente-revision?operationalView=new_vendors&monthScope=all"
+          />
         </div>
       </section>
 

@@ -7,7 +7,13 @@ import { ReviewWorkbench } from '@/components/review/review-workbench';
 export default async function PendingReviewPage({
   searchParams,
 }: {
-  searchParams?: Promise<{ bucket?: string; status?: string; sandboxPublishStatus?: string; monthScope?: 'active' | 'all' }>;
+  searchParams?: Promise<{
+    bucket?: string;
+    status?: string;
+    sandboxPublishStatus?: string;
+    monthScope?: 'active' | 'all';
+    operationalView?: 'posted' | 'pending' | 'excluded' | 'new_vendors';
+  }>;
 }) {
   await requireSession();
   const resolvedSearchParams = (await searchParams) ?? {};
@@ -15,11 +21,13 @@ export default async function PendingReviewPage({
   const status = resolvedSearchParams.status || '';
   const sandboxPublishStatus = resolvedSearchParams.sandboxPublishStatus || '';
   const monthScope = resolvedSearchParams.monthScope === 'all' ? 'all' : 'active';
-  const items = await listReviewCases(20, {
+  const operationalView = resolvedSearchParams.operationalView || '';
+  const items = await listReviewCases(100, {
     bucket: bucket || undefined,
     status: status || undefined,
     sandboxPublishStatus: sandboxPublishStatus || undefined,
     monthScope,
+    operationalView: operationalView || undefined,
   });
 
   return (
@@ -30,6 +38,7 @@ export default async function PendingReviewPage({
             <h1 className="text-3xl font-semibold text-slate-900">Pendiente revisión</h1>
             <p className="mt-2 text-sm text-slate-600">Mesa operativa para revisar documentos, filtrar la etapa del caso y abrir el detalle de cada documento.</p>
             <p className="mt-2 text-xs font-medium text-emerald-700">Última corrida importada: 7 casos nuevos de mayo · Sprint 1–3 activo en esta cola.</p>
+            <p className="mt-2 text-xs text-slate-500">Documentos en esta vista: {items.length}</p>
           </div>
           <Link href="/dashboard" className="rounded-xl border border-slate-300 px-4 py-2 text-sm hover:bg-slate-100">
             Volver al centro operativo
@@ -43,6 +52,7 @@ export default async function PendingReviewPage({
               ...(bucket ? { bucket } : {}),
               ...(status ? { status } : {}),
               ...(sandboxPublishStatus ? { sandboxPublishStatus } : {}),
+              ...(operationalView ? { operationalView } : {}),
             }).toString()}`}
             className={`rounded-full px-3 py-1 ring-1 ${monthScope === 'active' ? 'bg-slate-900 text-white ring-slate-900' : 'bg-white text-slate-700 ring-slate-300 hover:bg-slate-100'}`}
           >
@@ -53,6 +63,7 @@ export default async function PendingReviewPage({
               ...(bucket ? { bucket } : {}),
               ...(status ? { status } : {}),
               ...(sandboxPublishStatus ? { sandboxPublishStatus } : {}),
+              ...(operationalView ? { operationalView } : {}),
               monthScope: 'all',
             }).toString()}`}
             className={`rounded-full px-3 py-1 ring-1 ${monthScope === 'all' ? 'bg-slate-900 text-white ring-slate-900' : 'bg-white text-slate-700 ring-slate-300 hover:bg-slate-100'}`}
@@ -61,7 +72,13 @@ export default async function PendingReviewPage({
           </Link>
         </div>
 
-        <ReviewFilters currentBucket={bucket} currentStatus={status} currentSandboxPublishStatus={sandboxPublishStatus} currentMonthScope={monthScope} />
+        <ReviewFilters
+          currentBucket={bucket}
+          currentStatus={status}
+          currentSandboxPublishStatus={sandboxPublishStatus}
+          currentMonthScope={monthScope}
+          currentOperationalView={operationalView}
+        />
       </section>
 
       <ReviewWorkbench items={items} />

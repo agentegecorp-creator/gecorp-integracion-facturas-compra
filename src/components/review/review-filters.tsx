@@ -5,6 +5,7 @@ type FilterProps = {
   currentStatus?: string;
   currentSandboxPublishStatus?: string;
   currentMonthScope?: 'active' | 'all';
+  currentOperationalView?: string;
 };
 
 const BUCKET_OPTIONS = [
@@ -33,9 +34,46 @@ const SANDBOX_PUBLISH_OPTIONS = [
   { value: 'failed', label: 'Con fallo de publicación' },
 ];
 
-export function ReviewFilters({ currentBucket = '', currentStatus = '', currentSandboxPublishStatus = '', currentMonthScope = 'active' }: FilterProps) {
+const OPERATIONAL_VIEW_OPTIONS = [
+  { value: '', label: 'Vista operativa: todas' },
+  { value: 'posted', label: 'Contabilizados' },
+  { value: 'pending', label: 'Por contabilizar' },
+  { value: 'excluded', label: 'Excluidos' },
+  { value: 'new_vendors', label: 'Facturas nuevos proveedores' },
+];
+
+function buildQuery(params: Record<string, string>) {
+  return new URLSearchParams(
+    Object.fromEntries(Object.entries(params).filter(([, value]) => value)),
+  ).toString();
+}
+
+export function ReviewFilters({
+  currentBucket = '',
+  currentStatus = '',
+  currentSandboxPublishStatus = '',
+  currentMonthScope = 'active',
+  currentOperationalView = '',
+}: FilterProps) {
+  const scopeParams: Record<string, string> = currentMonthScope === 'all' ? { monthScope: 'all' } : {};
+
   return (
     <div className="mt-6 space-y-4">
+      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+        <a href={`/pendiente-revision?${buildQuery({ operationalView: 'posted', ...scopeParams })}`} className={`rounded-2xl border px-4 py-3 text-sm hover:bg-emerald-100 ${currentOperationalView === 'posted' ? 'border-emerald-400 bg-emerald-100 text-emerald-900' : 'border-emerald-200 bg-emerald-50 text-emerald-800'}`}>
+          Contabilizados
+        </a>
+        <a href={`/pendiente-revision?${buildQuery({ operationalView: 'pending', ...scopeParams })}`} className={`rounded-2xl border px-4 py-3 text-sm hover:bg-indigo-100 ${currentOperationalView === 'pending' ? 'border-indigo-400 bg-indigo-100 text-indigo-900' : 'border-indigo-200 bg-indigo-50 text-indigo-800'}`}>
+          Por contabilizar
+        </a>
+        <a href={`/pendiente-revision?${buildQuery({ operationalView: 'excluded', ...scopeParams })}`} className={`rounded-2xl border px-4 py-3 text-sm hover:bg-slate-100 ${currentOperationalView === 'excluded' ? 'border-slate-400 bg-slate-100 text-slate-900' : 'border-slate-200 bg-slate-50 text-slate-700'}`}>
+          Excluidos
+        </a>
+        <a href={`/pendiente-revision?${buildQuery({ operationalView: 'new_vendors', ...scopeParams })}`} className={`rounded-2xl border px-4 py-3 text-sm hover:bg-violet-100 ${currentOperationalView === 'new_vendors' ? 'border-violet-400 bg-violet-100 text-violet-900' : 'border-violet-200 bg-violet-50 text-violet-800'}`}>
+          Facturas nuevos proveedores
+        </a>
+      </div>
+
       <div className="grid gap-3 md:grid-cols-3 xl:grid-cols-5">
         <a href={`/pendiente-revision?${new URLSearchParams({ bucket: 'rejected_sii', status: 'new', ...(currentMonthScope === 'all' ? { monthScope: 'all' } : {}) }).toString()}`} className="rounded-2xl border border-orange-200 bg-orange-50 px-4 py-3 text-sm text-orange-800 hover:bg-orange-100">
           Ver rechazos SII nuevos
@@ -54,8 +92,23 @@ export function ReviewFilters({ currentBucket = '', currentStatus = '', currentS
         </a>
       </div>
 
-      <form className="grid gap-4 rounded-2xl bg-white p-4 shadow-sm md:grid-cols-5" method="get">
+      <form className="grid gap-4 rounded-2xl bg-white p-4 shadow-sm md:grid-cols-6" method="get">
       <input type="hidden" name="monthScope" value={currentMonthScope} />
+      <div>
+        <label className="mb-1 block text-sm font-medium text-slate-700">Vista operativa</label>
+        <select
+          name="operationalView"
+          defaultValue={currentOperationalView}
+          className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
+        >
+          {OPERATIONAL_VIEW_OPTIONS.map((option) => (
+            <option key={option.value || 'all-operational-views'} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </div>
+
       <div>
         <label className="mb-1 block text-sm font-medium text-slate-700">Etapa del caso</label>
         <select

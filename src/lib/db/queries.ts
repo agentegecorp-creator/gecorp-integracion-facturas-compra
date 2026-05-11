@@ -170,7 +170,13 @@ export async function getDashboardSummary(period?: DashboardPeriod) {
 
 export async function listReviewCases(
   limit = 20,
-  filters?: { bucket?: string; status?: string; sandboxPublishStatus?: string; monthScope?: 'active' | 'all' },
+  filters?: {
+    bucket?: string;
+    status?: string;
+    sandboxPublishStatus?: string;
+    monthScope?: 'active' | 'all';
+    operationalView?: 'posted' | 'pending' | 'excluded' | 'new_vendors';
+  },
 ) {
   const hasSandboxPublishStatus = await hasSandboxPublishStatusColumn();
   const conditions: string[] = [];
@@ -194,6 +200,29 @@ export async function listReviewCases(
   if (filters?.sandboxPublishStatus && hasSandboxPublishStatus) {
     values.push(filters.sandboxPublishStatus);
     conditions.push(`coalesce(sandbox_publish_status, 'not_ready') = $${values.length}`);
+  }
+
+  if (filters?.operationalView === 'posted') {
+    conditions.push(`status = 'resolved'`);
+  }
+
+  if (filters?.operationalView === 'pending') {
+    conditions.push(`status <> 'resolved'`);
+  }
+
+  if (filters?.operationalView === 'excluded') {
+    conditions.push(`(
+      upper(coalesce(vendor_name, '')) like '%DIN%'
+      or upper(coalesce(vendor_name, '')) like '%SCOTIABANK SIN VALOR%'
+      or coalesce(payload_json->'document'->>'documentType', document_type, '') = '914'
+    )`);
+  }
+
+  if (filters?.operationalView === 'new_vendors') {
+    conditions.push(`(
+      lower(coalesce(payload_json->'context'->>'motivo', '')) like '%proveedor nuevo%'
+      or lower(coalesce(payload_json->'context'->>'requiereRevisionManual', '')) = 'nuevo_proveedor'
+    )`);
   }
 
   values.push(limit);
