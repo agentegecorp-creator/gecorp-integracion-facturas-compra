@@ -30,7 +30,9 @@ type CorrectionField =
   | 'class_id'
   | 'department_id'
   | 'location_id'
-  | 'new_vendor_entity';
+  | 'new_vendor_entity'
+  | 'invoice_note'
+  | 'invoice_detail';
 
 type SelectOption = {
   value: string;
@@ -55,6 +57,8 @@ type ReviewDecisionFormProps = {
     ocCategory?: string | null;
     ocPolicy?: string | null;
     newVendorEntity?: string | number | null;
+    invoiceNote?: string | null;
+    invoiceDetail?: string | null;
   };
 };
 
@@ -63,7 +67,7 @@ type CorrectionValues = Partial<Record<CorrectionField, string>>;
 const editableFields: Array<{
   field: CorrectionField;
   placeholder: string;
-  kind: 'select' | 'date' | 'text';
+  kind: 'select' | 'date' | 'text' | 'textarea';
   options?: SelectOption[];
 }> = [
   { field: 'account_id', placeholder: 'Selecciona cuenta contable', kind: 'select', options: accountOptions },
@@ -89,6 +93,8 @@ const editableFields: Array<{
     ],
   },
   { field: 'new_vendor_entity', placeholder: 'Entity NetSuite', kind: 'text' },
+  { field: 'invoice_note', placeholder: 'Nota operativa para esta factura', kind: 'textarea' },
+  { field: 'invoice_detail', placeholder: 'Detalle factura / glosa para contabilización', kind: 'textarea' },
 ];
 
 function optionLabel(options: SelectOption[] | undefined, value: string | number | Date | null | undefined) {
@@ -97,15 +103,20 @@ function optionLabel(options: SelectOption[] | undefined, value: string | number
   return options?.find((option) => option.value === normalizedValue)?.label ?? null;
 }
 
-function formatReferenceValue(
-  value: string | number | Date | null | undefined,
-  options?: SelectOption[],
-) {
-  if (value === null || value === undefined || value === '') return '-';
-  if (value instanceof Date) {
-    return value.toISOString().slice(0, 10);
+function inputValue(value: string | number | Date | null | undefined) {
+  if (value === null || value === undefined) return '';
+  if (value instanceof Date) return value.toISOString().slice(0, 10);
+  const raw = String(value);
+  const date = new Date(raw);
+  if (/^\d{4}-\d{2}-\d{2}/.test(raw) && !Number.isNaN(date.getTime())) {
+    return raw.slice(0, 10);
   }
-  return optionLabel(options, value) ?? String(value);
+  return raw;
+}
+
+function isBalanceAccount(accountId: string | number | Date | null | undefined) {
+  const label = optionLabel(accountOptions, accountId);
+  return Boolean(label?.trim().match(/^[12]/));
 }
 
 export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionFormProps) {
@@ -125,7 +136,14 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
     return Object.fromEntries(
       Object.entries(correctionValues)
         .map(([field, value]) => [field, typeof value === 'string' ? value.trim() : value])
-        .filter(([, value]) => value),
+        .filter(([field, value]) => {
+          if (!value || String(value) === inputValue(currentValueForField(field as CorrectionField))) return false;
+          if (['class_id', 'department_id', 'location_id'].includes(field)) {
+            const selectedAccount = correctionValues.account_id ?? currentValues.accountId;
+            return !isBalanceAccount(selectedAccount);
+          }
+          return true;
+        }),
     );
   }, [decisionType, correctionValues]);
 
@@ -185,6 +203,8 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
       oc_category: currentValues.ocCategory,
       oc_policy: currentValues.ocPolicy,
       new_vendor_entity: currentValues.newVendorEntity,
+      invoice_note: currentValues.invoiceNote,
+      invoice_detail: currentValues.invoiceDetail,
     };
 
     return values[field];
@@ -198,7 +218,7 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
   }
 
   function renderFieldInput(fieldConfig: (typeof editableFields)[number]) {
-    const value = correctionValues[fieldConfig.field] ?? '';
+    const value = correctionValues[fieldConfig.field] ?? inputValue(currentValueForField(fieldConfig.field));
     const className = 'w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500';
 
     if (fieldConfig.kind === 'select') {
@@ -218,6 +238,17 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
       );
     }
 
+    if (fieldConfig.kind === 'textarea') {
+      return (
+        <textarea
+          value={value}
+          onChange={(e) => updateCorrectionValue(fieldConfig.field, e.target.value)}
+          className={`${className} min-h-24`}
+          placeholder={fieldConfig.placeholder}
+        />
+      );
+    }
+
     return (
       <input
         type={fieldConfig.kind}
@@ -228,6 +259,12 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
       />
     );
   }
+
+  const visibleEditableFields = editableFields.filter((fieldConfig) => {
+    if (!['class_id', 'department_id', 'location_id'].includes(fieldConfig.field)) return true;
+    const selectedAccount = correctionValues.account_id ?? currentValues.accountId;
+    return !isBalanceAccount(selectedAccount);
+  });
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 rounded-2xl bg-white p-6 shadow-sm">
@@ -269,17 +306,19 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
           </div>
 
           <div className="mt-4 grid gap-3">
-            {editableFields.map((fieldConfig) => (
+            {visibleEditableFields.map((fieldConfig) => (
               <div key={fieldConfig.field} className="grid gap-2 rounded-xl bg-white p-3 ring-1 ring-slate-200 md:grid-cols-[1fr_1.4fr]">
                 <div>
                   <p className="text-sm font-medium text-slate-800">{correctionFieldLabel(fieldConfig.field)}</p>
-                  <p className="mt-1 text-xs text-slate-500">
-                    Actual: {formatReferenceValue(currentValueForField(fieldConfig.field), fieldConfig.options)}
-                  </p>
                 </div>
                 <div>{renderFieldInput(fieldConfig)}</div>
               </div>
             ))}
+            {visibleEditableFields.length < editableFields.length ? (
+              <p className="rounded-xl bg-amber-50 px-3 py-2 text-xs text-amber-800 ring-1 ring-amber-200">
+                Cuenta de balance: clase/mercado, departamento y ubicación no aplican para esta factura.
+              </p>
+            ) : null}
           </div>
         </div>
       ) : null}

@@ -50,6 +50,8 @@ type ReviewCaseDetail = ReviewItem & {
       summary?: string;
       memo?: string;
       description?: string;
+      invoiceNote?: string;
+      invoiceDetail?: string;
     };
     context?: {
       entity?: string | number;
@@ -98,6 +100,9 @@ type ReviewCaseDetail = ReviewItem & {
       dueDate?: string;
       paymentDate?: string;
       paymentDateRule?: string;
+      invoiceNote?: string;
+      invoiceDetail?: string;
+      accountingDimensionRule?: string;
     };
   } | null;
 };
@@ -239,7 +244,9 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
   const amountReconciliationStatus = document?.amountReconciliationStatus;
   const siiDocumentType = document?.documentType || selected?.document_type;
   const siiDocumentTypeLabel = document?.documentTypeLabel;
-  const documentMemo = document?.serviceDescription || document?.memo || document?.description || document?.summary;
+  const invoiceNote = document?.invoiceNote || context?.invoiceNote;
+  const invoiceDetail = document?.invoiceDetail || context?.invoiceDetail;
+  const documentMemo = invoiceDetail || document?.serviceDescription || document?.memo || document?.description || document?.summary;
 
   return (
     <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
@@ -406,9 +413,18 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                 <p className="text-sm text-slate-500">Glosa con detalle del documento</p>
                 <p className="mt-1 text-sm text-slate-800">{documentMemo || '-'}</p>
               </div>
+              <div className="rounded-2xl bg-slate-50 p-4 md:col-span-2">
+                <p className="text-sm text-slate-500">Nota</p>
+                <p className="mt-1 text-sm text-slate-800">{invoiceNote || '-'}</p>
+              </div>
             </div>
             {context ? (
               <div className="space-y-3">
+                {context.accountingDimensionRule ? (
+                  <div className="rounded-2xl border border-amber-200 bg-amber-50 p-4">
+                    <p className="text-sm font-semibold text-amber-800">{context.accountingDimensionRule}</p>
+                  </div>
+                ) : null}
                 {context.vendorIdProposed === null || context.accountIdProposed === null ? (
                   <div className="rounded-2xl border border-violet-200 bg-violet-50 p-4">
                     <p className="text-sm font-semibold text-violet-800">Proveedor nuevo o incompleto</p>
@@ -592,6 +608,7 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
 
             <div className="pt-2">
               <ReviewDecisionForm
+                key={selected.id}
                 caseId={selected.id}
                 currentValues={{
                   accountId: document?.accountId || context?.accountIdProposed || context?.referenciaAccount,
@@ -608,6 +625,8 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                   ocCategory: context?.ocCategory || context?.categoriaOc,
                   ocPolicy: context?.ocPolicyCorrecta || context?.ocPolicySuggestedB2,
                   newVendorEntity: context?.entity || context?.vendorIdProposed,
+                  invoiceNote,
+                  invoiceDetail: documentMemo,
                 }}
               />
             </div>

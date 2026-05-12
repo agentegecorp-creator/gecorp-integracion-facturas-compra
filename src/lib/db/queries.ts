@@ -305,6 +305,63 @@ export async function listReviewCases(
   return result.rows;
 }
 
+export async function getReviewQueueCounts(monthScope: 'active' | 'all' = 'active') {
+  const conditions: string[] = [];
+
+  if (monthScope === 'active') {
+    conditions.push(`issue_date >= DATE '2026-04-01' and issue_date < DATE '2026-06-01'`);
+  }
+
+  const whereClause = conditions.length > 0 ? `where ${conditions.join(' and ')}` : '';
+  const result = await db.query(
+    `select bucket, status, vendor_name, payload_json
+     from review_cases
+     ${whereClause}`,
+  );
+
+  const counts = {
+    operational: {
+      posted: 0,
+      pending: 0,
+      excluded: 0,
+      new_vendors: 0,
+    },
+    quick: {
+      rejected_sii_new: 0,
+      error_real_new: 0,
+      revision_oc_new: 0,
+      in_review: 0,
+      all: result.rows.length,
+    },
+  };
+
+  for (const row of result.rows) {
+    const payload = row.payload_json ?? {};
+    const context = payload.context ?? {};
+    const document = payload.document ?? {};
+    const vendorName = String(row.vendor_name || '').toUpperCase();
+    const docType = String(document.documentType || '');
+
+    if (row.status === 'resolved') counts.operational.posted += 1;
+    else counts.operational.pending += 1;
+
+    if (vendorName.includes('DIN') || vendorName.includes('SCOTIABANK SIN VALOR') || docType === '914') {
+      counts.operational.excluded += 1;
+    }
+
+    if (String(context.motivo || '').toLowerCase().includes('proveedor nuevo') || String(context.requiereRevisionManual || '').toLowerCase() === 'nuevo_proveedor') {
+      counts.operational.new_vendors += 1;
+    }
+
+    if (row.bucket === 'rejected_sii' && row.status === 'new') counts.quick.rejected_sii_new += 1;
+    if (row.bucket === 'error_real' && row.status === 'new') counts.quick.error_real_new += 1;
+    if (row.bucket === 'revision_oc' && row.status === 'new') counts.quick.revision_oc_new += 1;
+    if (row.status === 'in_review') counts.quick.in_review += 1;
+  }
+
+  return counts;
+}
+
 export async function listReadyForSandbox(limit = 100) {
   const hasSandboxPublishStatus = await hasSandboxPublishStatusColumn();
 
@@ -511,6 +568,23 @@ function usesTef(document: Record<string, unknown>, context: Record<string, unkn
   return ['true', 't', '1', 'si', 'sí', 'yes'].includes(tefValue) || paymentRule.includes('tef');
 }
 
+function isBalanceAccountValue(value: unknown) {
+  const label = optionLabel(accountOptions, String(value ?? ''));
+  return Boolean(label?.trim().match(/^[12]/));
+}
+
+function clearAccountingDimensions(document: Record<string, unknown>, context: Record<string, unknown>) {
+  delete document.classId;
+  delete document.departmentId;
+  delete document.locationId;
+  delete context.classIdProposed;
+  delete context.classCorrecta;
+  delete context.departmentIdProposed;
+  delete context.departmentCorrecta;
+  delete context.locationIdProposed;
+  delete context.locationCorrecta;
+}
+
 function applyCorrectionsToCase(caseRow: { payload_json?: Record<string, any> | null; vendor_name?: string | null; document_type?: string | null; issue_date?: string | null; }, correctionJson?: Record<string, unknown>) {
   const corrections = correctionJson ?? {};
   const payload = { ...(caseRow.payload_json ?? {}) };
@@ -527,6 +601,13 @@ function applyCorrectionsToCase(caseRow: { payload_json?: Record<string, any> | 
     context.accountIdProposed = parseCatalogId(value);
     context.referenciaAccount = parseCatalogId(value);
     document.accountId = parseCatalogId(value);
+
+    if (isBalanceAccountValue(value)) {
+      clearAccountingDimensions(document, context);
+      context.accountingDimensionRule = 'Cuenta de balance: no requiere clase/mercado, departamento ni ubicación';
+    } else {
+      delete context.accountingDimensionRule;
+    }
   }
 
   if (typeof corrections.approval_group === 'string' && corrections.approval_group.trim()) {
@@ -552,6 +633,17 @@ function applyCorrectionsToCase(caseRow: { payload_json?: Record<string, any> | 
     const numericEntity = Number(corrections.new_vendor_entity.trim());
     context.entity = Number.isFinite(numericEntity) ? numericEntity : corrections.new_vendor_entity.trim();
     context.vendorIdProposed = Number.isFinite(numericEntity) ? numericEntity : corrections.new_vendor_entity.trim();
+  }
+
+  if (typeof corrections.invoice_note === 'string') {
+    document.invoiceNote = corrections.invoice_note.trim();
+    context.invoiceNote = corrections.invoice_note.trim();
+  }
+
+  if (typeof corrections.invoice_detail === 'string') {
+    document.invoiceDetail = corrections.invoice_detail.trim();
+    document.serviceDescription = corrections.invoice_detail.trim();
+    context.invoiceDetail = corrections.invoice_detail.trim();
   }
 
   if (typeof corrections.vendor_name === 'string' && corrections.vendor_name.trim()) {
@@ -656,21 +748,23 @@ function applyCorrectionsToCase(caseRow: { payload_json?: Record<string, any> | 
     }
   }
 
-  if (typeof corrections.class_id === 'string' && corrections.class_id.trim()) {
+  const hasBalanceAccount = isBalanceAccountValue(document.accountId ?? context.accountIdProposed ?? context.referenciaAccount);
+
+  if (!hasBalanceAccount && typeof corrections.class_id === 'string' && corrections.class_id.trim()) {
     const value = corrections.class_id.trim();
     context.classIdProposed = parseCatalogId(value);
     context.classCorrecta = optionLabel(classOptions, value);
     document.classId = parseCatalogId(value);
   }
 
-  if (typeof corrections.department_id === 'string' && corrections.department_id.trim()) {
+  if (!hasBalanceAccount && typeof corrections.department_id === 'string' && corrections.department_id.trim()) {
     const value = corrections.department_id.trim();
     context.departmentIdProposed = parseCatalogId(value);
     context.departmentCorrecta = optionLabel(departmentOptions, value);
     document.departmentId = parseCatalogId(value);
   }
 
-  if (typeof corrections.location_id === 'string' && corrections.location_id.trim()) {
+  if (!hasBalanceAccount && typeof corrections.location_id === 'string' && corrections.location_id.trim()) {
     const value = corrections.location_id.trim();
     context.locationIdProposed = parseCatalogId(value);
     context.locationCorrecta = optionLabel(locationOptions, value);
@@ -710,6 +804,8 @@ function currentCorrectionValues(caseRow: { payload_json?: Record<string, any> |
     department_id: formatCorrectionValue(document.departmentId ?? context.departmentIdProposed ?? context.departmentCorrecta ?? context.departmentSuggestedB2),
     location_id: formatCorrectionValue(document.locationId ?? context.locationIdProposed ?? context.locationCorrecta ?? context.locationSuggestedB2),
     new_vendor_entity: formatCorrectionValue(context.entity ?? context.vendorIdProposed),
+    invoice_note: formatCorrectionValue(document.invoiceNote ?? context.invoiceNote),
+    invoice_detail: formatCorrectionValue(document.invoiceDetail ?? document.serviceDescription ?? context.invoiceDetail),
   };
 }
 

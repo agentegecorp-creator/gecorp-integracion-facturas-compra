@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { requireSession } from '@/lib/auth/guards';
-import { listReviewCases } from '@/lib/db/queries';
+import { getReviewQueueCounts, listReviewCases } from '@/lib/db/queries';
 import { ReviewFilters } from '@/components/review/review-filters';
 import { ReviewWorkbench } from '@/components/review/review-workbench';
 
@@ -22,13 +22,16 @@ export default async function PendingReviewPage({
   const sandboxPublishStatus = resolvedSearchParams.sandboxPublishStatus || '';
   const monthScope = resolvedSearchParams.monthScope === 'all' ? 'all' : 'active';
   const operationalView = resolvedSearchParams.operationalView || '';
-  const items = await listReviewCases(100, {
-    bucket: bucket || undefined,
-    status: status || undefined,
-    sandboxPublishStatus: sandboxPublishStatus || undefined,
-    monthScope,
-    operationalView: operationalView || undefined,
-  });
+  const [items, counts] = await Promise.all([
+    listReviewCases(100, {
+      bucket: bucket || undefined,
+      status: status || undefined,
+      sandboxPublishStatus: sandboxPublishStatus || undefined,
+      monthScope,
+      operationalView: operationalView || undefined,
+    }),
+    getReviewQueueCounts(monthScope),
+  ]);
 
   return (
     <main className="mx-auto max-w-7xl space-y-6 p-8">
@@ -78,6 +81,7 @@ export default async function PendingReviewPage({
           currentSandboxPublishStatus={sandboxPublishStatus}
           currentMonthScope={monthScope}
           currentOperationalView={operationalView}
+          counts={counts}
         />
       </section>
 

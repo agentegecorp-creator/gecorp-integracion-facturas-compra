@@ -140,6 +140,8 @@ export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
                 ocCategory: optionalString(context.ocCategory || context.categoriaOc),
                 ocPolicy: optionalString(context.ocPolicyCorrecta || context.ocPolicySuggestedB2),
                 newVendorEntity: context.entity || context.vendorIdProposed,
+                invoiceNote: optionalString(document.invoiceNote || context.invoiceNote),
+                invoiceDetail: optionalString(document.invoiceDetail || document.serviceDescription || context.invoiceDetail),
               }}
             />
           </div>

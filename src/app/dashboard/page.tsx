@@ -99,6 +99,8 @@ export default async function DashboardPage({
   const operationalSummary = summary.operationalSummary;
   const documentTypeSummary = summary.documentTypeSummary;
   const rcvSource = summary.documentTypeSummarySource;
+  const rcvTotalDocuments = documentTypeSummary.reduce((total, row) => total + row.totalDocuments, 0);
+  const rcvTotalAmount = documentTypeSummary.reduce((total, row) => total + row.montoTotal, 0);
 
   return (
     <main className="mx-auto max-w-7xl space-y-8 p-8">
@@ -200,6 +202,7 @@ export default async function DashboardPage({
             <div className="mt-4 space-y-3 text-sm text-slate-600">
               <p>• Etapas activas: {summary.byBucket.map((row) => `${etapaLabel(row.bucket)}: ${row.total}`).join(' · ') || 'Sin datos'}.</p>
               <p>• Estados activos: {summary.byStatus.map((row) => `${estadoLabel(row.status)}: ${row.total}`).join(' · ') || 'Sin datos'}.</p>
+              <p>• Total documentos RCV del período: {rcvTotalDocuments} documentos por {formatCurrency(rcvTotalAmount)}.</p>
               <p>• Documentos con revisión de OC: {revisionOcCount}.</p>
               <p>• Rechazos SII: {rejectedSiiCount}. Errores contables: {errorRealCount}. Casos especiales: {exceptionCount}.</p>
             </div>

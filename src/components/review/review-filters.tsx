@@ -6,6 +6,21 @@ type FilterProps = {
   currentSandboxPublishStatus?: string;
   currentMonthScope?: 'active' | 'all';
   currentOperationalView?: string;
+  counts?: {
+    operational: {
+      posted: number;
+      pending: number;
+      excluded: number;
+      new_vendors: number;
+    };
+    quick: {
+      rejected_sii_new: number;
+      error_real_new: number;
+      revision_oc_new: number;
+      in_review: number;
+      all: number;
+    };
+  };
 };
 
 const BUCKET_OPTIONS = [
@@ -54,41 +69,44 @@ export function ReviewFilters({
   currentSandboxPublishStatus = '',
   currentMonthScope = 'active',
   currentOperationalView = '',
+  counts,
 }: FilterProps) {
   const scopeParams: Record<string, string> = currentMonthScope === 'all' ? { monthScope: 'all' } : {};
+  const operationalCounts = counts?.operational;
+  const quickCounts = counts?.quick;
 
   return (
     <div className="mt-6 space-y-4">
       <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
         <a href={`/pendiente-revision?${buildQuery({ operationalView: 'posted', ...scopeParams })}`} className={`rounded-2xl border px-4 py-3 text-sm hover:bg-emerald-100 ${currentOperationalView === 'posted' ? 'border-emerald-400 bg-emerald-100 text-emerald-900' : 'border-emerald-200 bg-emerald-50 text-emerald-800'}`}>
-          Contabilizados
+          Contabilizados ({operationalCounts?.posted ?? 0})
         </a>
         <a href={`/pendiente-revision?${buildQuery({ operationalView: 'pending', ...scopeParams })}`} className={`rounded-2xl border px-4 py-3 text-sm hover:bg-indigo-100 ${currentOperationalView === 'pending' ? 'border-indigo-400 bg-indigo-100 text-indigo-900' : 'border-indigo-200 bg-indigo-50 text-indigo-800'}`}>
-          Por contabilizar
+          Por contabilizar ({operationalCounts?.pending ?? 0})
         </a>
         <a href={`/pendiente-revision?${buildQuery({ operationalView: 'excluded', ...scopeParams })}`} className={`rounded-2xl border px-4 py-3 text-sm hover:bg-slate-100 ${currentOperationalView === 'excluded' ? 'border-slate-400 bg-slate-100 text-slate-900' : 'border-slate-200 bg-slate-50 text-slate-700'}`}>
-          Excluidos
+          Excluidos ({operationalCounts?.excluded ?? 0})
         </a>
         <a href={`/pendiente-revision?${buildQuery({ operationalView: 'new_vendors', ...scopeParams })}`} className={`rounded-2xl border px-4 py-3 text-sm hover:bg-violet-100 ${currentOperationalView === 'new_vendors' ? 'border-violet-400 bg-violet-100 text-violet-900' : 'border-violet-200 bg-violet-50 text-violet-800'}`}>
-          Facturas nuevos proveedores
+          Facturas nuevos proveedores ({operationalCounts?.new_vendors ?? 0})
         </a>
       </div>
 
       <div className="grid gap-3 md:grid-cols-3 xl:grid-cols-5">
         <a href={`/pendiente-revision?${new URLSearchParams({ bucket: 'rejected_sii', status: 'new', ...(currentMonthScope === 'all' ? { monthScope: 'all' } : {}) }).toString()}`} className="rounded-2xl border border-orange-200 bg-orange-50 px-4 py-3 text-sm text-orange-800 hover:bg-orange-100">
-          Ver rechazos SII nuevos
+          Ver rechazos SII nuevos ({quickCounts?.rejected_sii_new ?? 0})
         </a>
         <a href={`/pendiente-revision?${new URLSearchParams({ bucket: 'error_real', status: 'new', ...(currentMonthScope === 'all' ? { monthScope: 'all' } : {}) }).toString()}`} className="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800 hover:bg-rose-100">
-          Ver errores contables nuevos
+          Ver errores contables nuevos ({quickCounts?.error_real_new ?? 0})
         </a>
         <a href={`/pendiente-revision?${new URLSearchParams({ bucket: 'revision_oc', status: 'new', ...(currentMonthScope === 'all' ? { monthScope: 'all' } : {}) }).toString()}`} className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800 hover:bg-amber-100">
-          Ver revisión de OC nueva
+          Ver revisión de OC nueva ({quickCounts?.revision_oc_new ?? 0})
         </a>
         <a href={`/pendiente-revision?${new URLSearchParams({ status: 'in_review', ...(currentMonthScope === 'all' ? { monthScope: 'all' } : {}) }).toString()}`} className="rounded-2xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-800 hover:bg-blue-100">
-          Ver documentos en revisión
+          Ver documentos en revisión ({quickCounts?.in_review ?? 0})
         </a>
         <a href={`/pendiente-revision${currentMonthScope === 'all' ? '?monthScope=all' : ''}`} className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700 hover:bg-slate-100">
-          Ver toda la cola
+          Ver toda la cola ({quickCounts?.all ?? 0})
         </a>
       </div>
 

@@ -50,6 +50,8 @@ export function correctionFieldLabel(field: string) {
     department_id: 'Departamento',
     location_id: 'Ubicación',
     new_vendor_entity: 'Alta de proveedor nuevo',
+    invoice_note: 'Nota',
+    invoice_detail: 'Detalle factura',
   };
 
   return labels[field] || field;
