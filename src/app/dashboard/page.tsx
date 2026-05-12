@@ -77,6 +77,98 @@ function SiiCountCell({ value }: { value: number }) {
   return <td className="px-4 py-3 text-right text-sm text-slate-700">{value}</td>;
 }
 
+function RcvDocumentTypeTotals({
+  documentTypeSummary,
+  rcvPeriods,
+  rcvSource,
+  rcvTotalAmount,
+  rcvTotalDocuments,
+}: {
+  documentTypeSummary: Awaited<ReturnType<typeof getDashboardSummary>>['documentTypeSummary'];
+  rcvPeriods: ReturnType<typeof getRcvPeriods>;
+  rcvSource: Awaited<ReturnType<typeof getDashboardSummary>>['documentTypeSummarySource'];
+  rcvTotalAmount: number;
+  rcvTotalDocuments: number;
+}) {
+  return (
+    <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <h2 className="text-xl font-semibold text-slate-900">Totales RCV por tipo de documento</h2>
+          <p className="mt-1 text-sm text-slate-600">
+            Período SII: {rcvPeriods.selected.detail}. Base: registro RCV oficial descargado desde SII.
+          </p>
+          {rcvSource.type === 'sii_csv' ? (
+            <p className="mt-1 text-xs text-slate-400">Fuente: {rcvSource.sourceFile}</p>
+          ) : (
+            <p className="mt-1 text-xs text-amber-700">Sin CSV SII para este período; usando casos importados a la mesa.</p>
+          )}
+        </div>
+
+        <div className="flex flex-wrap items-start gap-3">
+          <div className="rounded-2xl bg-slate-50 px-4 py-3 ring-1 ring-slate-200">
+            <p className="text-xs font-medium text-slate-500">Documentos RCV</p>
+            <p className="mt-1 text-2xl font-semibold text-slate-900">{rcvTotalDocuments}</p>
+          </div>
+          <div className="rounded-2xl bg-slate-50 px-4 py-3 ring-1 ring-slate-200">
+            <p className="text-xs font-medium text-slate-500">Monto total RCV</p>
+            <p className="mt-1 text-2xl font-semibold text-slate-900">{formatCurrency(rcvTotalAmount)}</p>
+          </div>
+          <div className="inline-flex rounded-xl bg-slate-100 p-1 text-xs font-medium text-slate-600">
+            {rcvPeriods.periods.map((period) => (
+              <Link
+                key={period.key}
+                href={`/dashboard?rcvPeriod=${period.key}`}
+                className={`rounded-lg px-3 py-2 ${
+                  period.key === rcvPeriods.selected.key
+                    ? 'bg-white text-slate-900 shadow-sm'
+                    : 'hover:bg-slate-200'
+                }`}
+              >
+                <span className="block">{period.label}</span>
+                <span className="block text-[11px] font-normal">{period.detail}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-5 overflow-x-auto rounded-2xl border border-slate-200">
+        <table className="min-w-[1120px] divide-y divide-slate-200 text-sm">
+          <thead className="bg-slate-50">
+            <tr>
+              <th className="px-4 py-3 text-left font-medium text-slate-600">Tipo documento</th>
+              <th className="px-4 py-3 text-right font-medium text-slate-600">Total docs</th>
+              <th className="px-4 py-3 text-right font-medium text-slate-600">Monto exento</th>
+              <th className="px-4 py-3 text-right font-medium text-slate-600">Monto neto</th>
+              <th className="px-4 py-3 text-right font-medium text-slate-600">IVA recuperable</th>
+              <th className="px-4 py-3 text-right font-medium text-slate-600">IVA uso común</th>
+              <th className="px-4 py-3 text-right font-medium text-slate-600">IVA no recuperable</th>
+              <th className="px-4 py-3 text-right font-medium text-slate-600">Otros impuestos</th>
+              <th className="px-4 py-3 text-right font-medium text-slate-600">Monto total</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-slate-100 bg-white">
+            {documentTypeSummary.map((row) => (
+              <tr key={row.documentType} className="hover:bg-slate-50">
+                <td className="px-4 py-3 text-sm font-medium text-slate-800">{documentTypeLabel(row.documentType)}</td>
+                <SiiCountCell value={row.totalDocuments} />
+                <SiiAmountCell value={row.montoExento} />
+                <SiiAmountCell value={row.montoNeto} />
+                <SiiAmountCell value={row.ivaRecuperable} />
+                <SiiAmountCell value={row.ivaUsoComun} />
+                <SiiAmountCell value={row.ivaNoRecuperable} />
+                <SiiAmountCell value={row.montoOtrosImpuestos} />
+                <SiiAmountCell value={row.montoTotal} />
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  );
+}
+
 export default async function DashboardPage({
   searchParams,
 }: {
@@ -158,6 +250,14 @@ export default async function DashboardPage({
         </div>
       </section>
 
+      <RcvDocumentTypeTotals
+        documentTypeSummary={documentTypeSummary}
+        rcvPeriods={rcvPeriods}
+        rcvSource={rcvSource}
+        rcvTotalAmount={rcvTotalAmount}
+        rcvTotalDocuments={rcvTotalDocuments}
+      />
+
       <section className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
         <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
           <div className="flex items-center justify-between gap-4">
@@ -222,69 +322,6 @@ export default async function DashboardPage({
               <h3 className="font-semibold text-slate-900">Auditoría</h3>
               <p className="mt-1 text-sm text-slate-600">Ver eventos reales del flujo y decisiones tomadas.</p>
             </Link>
-            <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
-              <div className="flex flex-wrap items-start justify-between gap-3">
-                <div>
-                  <h3 className="font-semibold text-slate-900">Totales RCV por tipo de documento</h3>
-                  <p className="mt-1 text-xs text-slate-500">
-                    Período SII: {rcvPeriods.selected.detail}. Base: registro RCV oficial descargado desde SII.
-                  </p>
-                  {rcvSource.type === 'sii_csv' ? (
-                    <p className="mt-1 text-[11px] text-slate-400">Fuente: {rcvSource.sourceFile}</p>
-                  ) : (
-                    <p className="mt-1 text-[11px] text-amber-700">Sin CSV SII para este período; usando casos importados a la mesa.</p>
-                  )}
-                </div>
-                <div className="inline-flex rounded-xl bg-slate-100 p-1 text-xs font-medium text-slate-600">
-                  {rcvPeriods.periods.map((period) => (
-                    <Link
-                      key={period.key}
-                      href={`/dashboard?rcvPeriod=${period.key}`}
-                      className={`rounded-lg px-3 py-2 ${
-                        period.key === rcvPeriods.selected.key
-                          ? 'bg-white text-slate-900 shadow-sm'
-                          : 'hover:bg-slate-200'
-                      }`}
-                    >
-                      <span className="block">{period.label}</span>
-                      <span className="block text-[11px] font-normal">{period.detail}</span>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-              <div className="mt-3 overflow-x-auto rounded-2xl border border-slate-200">
-                <table className="min-w-full divide-y divide-slate-200 text-sm">
-                  <thead className="bg-slate-50">
-                    <tr>
-                      <th className="px-4 py-3 text-left font-medium text-slate-600">Tipo documento</th>
-                      <th className="px-4 py-3 text-right font-medium text-slate-600">Total docs</th>
-                      <th className="px-4 py-3 text-right font-medium text-slate-600">Monto exento</th>
-                      <th className="px-4 py-3 text-right font-medium text-slate-600">Monto neto</th>
-                      <th className="px-4 py-3 text-right font-medium text-slate-600">IVA recuperable</th>
-                      <th className="px-4 py-3 text-right font-medium text-slate-600">IVA uso común</th>
-                      <th className="px-4 py-3 text-right font-medium text-slate-600">IVA no recuperable</th>
-                      <th className="px-4 py-3 text-right font-medium text-slate-600">Otros impuestos</th>
-                      <th className="px-4 py-3 text-right font-medium text-slate-600">Monto total</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-100 bg-white">
-                    {documentTypeSummary.map((row) => (
-                      <tr key={row.documentType} className="hover:bg-slate-50">
-                        <td className="px-4 py-3 text-sm text-slate-800">{documentTypeLabel(row.documentType)}</td>
-                        <SiiCountCell value={row.totalDocuments} />
-                        <SiiAmountCell value={row.montoExento} />
-                        <SiiAmountCell value={row.montoNeto} />
-                        <SiiAmountCell value={row.ivaRecuperable} />
-                        <SiiAmountCell value={row.ivaUsoComun} />
-                        <SiiAmountCell value={row.ivaNoRecuperable} />
-                        <SiiAmountCell value={row.montoOtrosImpuestos} />
-                        <SiiAmountCell value={row.montoTotal} />
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
           </div>
         </div>
       </section>
