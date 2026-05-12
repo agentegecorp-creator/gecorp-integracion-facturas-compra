@@ -91,12 +91,21 @@ const editableFields: Array<{
   { field: 'new_vendor_entity', placeholder: 'Entity NetSuite', kind: 'text' },
 ];
 
-function formatReferenceValue(value: string | number | Date | null | undefined) {
+function optionLabel(options: SelectOption[] | undefined, value: string | number | Date | null | undefined) {
+  if (value === null || value === undefined || value === '' || value instanceof Date) return null;
+  const normalizedValue = String(value);
+  return options?.find((option) => option.value === normalizedValue)?.label ?? null;
+}
+
+function formatReferenceValue(
+  value: string | number | Date | null | undefined,
+  options?: SelectOption[],
+) {
   if (value === null || value === undefined || value === '') return '-';
   if (value instanceof Date) {
     return value.toISOString().slice(0, 10);
   }
-  return String(value);
+  return optionLabel(options, value) ?? String(value);
 }
 
 export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionFormProps) {
@@ -264,7 +273,9 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
               <div key={fieldConfig.field} className="grid gap-2 rounded-xl bg-white p-3 ring-1 ring-slate-200 md:grid-cols-[1fr_1.4fr]">
                 <div>
                   <p className="text-sm font-medium text-slate-800">{correctionFieldLabel(fieldConfig.field)}</p>
-                  <p className="mt-1 text-xs text-slate-500">Actual: {formatReferenceValue(currentValueForField(fieldConfig.field))}</p>
+                  <p className="mt-1 text-xs text-slate-500">
+                    Actual: {formatReferenceValue(currentValueForField(fieldConfig.field), fieldConfig.options)}
+                  </p>
                 </div>
                 <div>{renderFieldInput(fieldConfig)}</div>
               </div>
