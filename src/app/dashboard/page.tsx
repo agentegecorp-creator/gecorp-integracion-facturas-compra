@@ -32,7 +32,7 @@ function toDateInputValue(date: Date) {
   return `${year}-${month}-${day}`;
 }
 
-function getRcvPeriods(selectedPeriod: string | undefined) {
+function getDashboardPeriods(selectedPeriod: string | undefined) {
   const now = new Date();
   const currentStart = new Date(now.getFullYear(), now.getMonth(), 1);
   const nextStart = new Date(now.getFullYear(), now.getMonth() + 1, 1);
@@ -61,6 +61,34 @@ function getRcvPeriods(selectedPeriod: string | undefined) {
   };
 }
 
+function periodQuery(periodKey: string) {
+  return new URLSearchParams({ period: periodKey }).toString();
+}
+
+function PeriodSelector({ periods }: { periods: ReturnType<typeof getDashboardPeriods> }) {
+  return (
+    <div className="mt-6 flex flex-wrap items-center gap-3 rounded-2xl bg-slate-50 p-3 ring-1 ring-slate-200">
+      <span className="px-2 text-sm font-medium text-slate-700">Prefiltro</span>
+      <div className="inline-flex rounded-xl bg-white p-1 text-sm font-medium text-slate-600 ring-1 ring-slate-200">
+        {periods.periods.map((period) => (
+          <Link
+            key={period.key}
+            href={`/dashboard?${periodQuery(period.key)}`}
+            className={`rounded-lg px-4 py-2 ${
+              period.key === periods.selected.key
+                ? 'bg-slate-900 text-white shadow-sm'
+                : 'hover:bg-slate-100'
+            }`}
+          >
+            <span className="block">{period.label}</span>
+            <span className="block text-[11px] font-normal opacity-80">{period.detail}</span>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function documentTypeLabel(code: string) {
   if (code === '33') return 'Factura Electrónica (33)';
   if (code === '34') return 'Factura no Afecta o Exenta Electrónica (34)';
@@ -79,13 +107,13 @@ function SiiCountCell({ value }: { value: number }) {
 
 function RcvDocumentTypeTotals({
   documentTypeSummary,
-  rcvPeriods,
+  selectedPeriodDetail,
   rcvSource,
   rcvTotalAmount,
   rcvTotalDocuments,
 }: {
   documentTypeSummary: Awaited<ReturnType<typeof getDashboardSummary>>['documentTypeSummary'];
-  rcvPeriods: ReturnType<typeof getRcvPeriods>;
+  selectedPeriodDetail: string;
   rcvSource: Awaited<ReturnType<typeof getDashboardSummary>>['documentTypeSummarySource'];
   rcvTotalAmount: number;
   rcvTotalDocuments: number;
@@ -96,7 +124,7 @@ function RcvDocumentTypeTotals({
         <div>
           <h2 className="text-xl font-semibold text-slate-900">Totales RCV por tipo de documento</h2>
           <p className="mt-1 text-sm text-slate-600">
-            Período SII: {rcvPeriods.selected.detail}. Base: registro RCV oficial descargado desde SII.
+            Período SII: {selectedPeriodDetail}. Base: registro RCV oficial descargado desde SII.
           </p>
           {rcvSource.type === 'sii_csv' ? (
             <p className="mt-1 text-xs text-slate-400">Fuente: {rcvSource.sourceFile}</p>
@@ -113,22 +141,6 @@ function RcvDocumentTypeTotals({
           <div className="rounded-2xl bg-slate-50 px-4 py-3 ring-1 ring-slate-200">
             <p className="text-xs font-medium text-slate-500">Monto total RCV</p>
             <p className="mt-1 text-2xl font-semibold text-slate-900">{formatCurrency(rcvTotalAmount)}</p>
-          </div>
-          <div className="inline-flex rounded-xl bg-slate-100 p-1 text-xs font-medium text-slate-600">
-            {rcvPeriods.periods.map((period) => (
-              <Link
-                key={period.key}
-                href={`/dashboard?rcvPeriod=${period.key}`}
-                className={`rounded-lg px-3 py-2 ${
-                  period.key === rcvPeriods.selected.key
-                    ? 'bg-white text-slate-900 shadow-sm'
-                    : 'hover:bg-slate-200'
-                }`}
-              >
-                <span className="block">{period.label}</span>
-                <span className="block text-[11px] font-normal">{period.detail}</span>
-              </Link>
-            ))}
           </div>
         </div>
       </div>
@@ -172,16 +184,21 @@ function RcvDocumentTypeTotals({
 export default async function DashboardPage({
   searchParams,
 }: {
-  searchParams?: Promise<{ rcvPeriod?: string }>;
+  searchParams?: Promise<{ period?: string; rcvPeriod?: string }>;
 }) {
   const session = await requireSession();
   const resolvedSearchParams = searchParams ? await searchParams : undefined;
-  const rcvPeriods = getRcvPeriods(resolvedSearchParams?.rcvPeriod);
+  const dashboardPeriods = getDashboardPeriods(resolvedSearchParams?.period ?? resolvedSearchParams?.rcvPeriod);
   const summary = await getDashboardSummary({
-    startDate: rcvPeriods.selected.startDate,
-    endDate: rcvPeriods.selected.endDate,
+    startDate: dashboardPeriods.selected.startDate,
+    endDate: dashboardPeriods.selected.endDate,
   });
-  const recentCases = await listReviewCases(8);
+  const recentCases = await listReviewCases(8, {
+    period: {
+      startDate: dashboardPeriods.selected.startDate,
+      endDate: dashboardPeriods.selected.endDate,
+    },
+  });
   const pendingCount = summary.byStatus.find((row) => row.status === 'new')?.total ?? 0;
   const resolvedCount = summary.byStatus.find((row) => row.status === 'resolved')?.total ?? 0;
   const exceptionCount = summary.byStatus.find((row) => row.status === 'exception')?.total ?? 0;
@@ -204,7 +221,7 @@ export default async function DashboardPage({
             </div>
             <h1 className="mt-4 text-3xl font-semibold text-slate-900">Mesa de Revisión Contable</h1>
             <p className="mt-2 max-w-3xl text-sm text-slate-600">
-              Bienvenido, {session.name}. Esta portada muestra la carga operativa real y desde dónde entrar a resolverla.
+              Bienvenido, {session.name}. Esta portada muestra la carga operativa real para {dashboardPeriods.selected.detail} y desde dónde entrar a resolverla.
             </p>
             <p className="mt-2 text-xs font-medium text-emerald-700">Última corrida SII importada: 7 casos nuevos de mayo visibles arriba en la cola.</p>
             <div className="mt-4 flex flex-wrap gap-3 text-xs text-slate-500">
@@ -212,8 +229,9 @@ export default async function DashboardPage({
               <span>•</span>
               <span>Dominio: facturascompra.gecorp.cl</span>
               <span>•</span>
-              <span>Casos visibles hoy: {summary.totalCases}</span>
+              <span>Casos visibles del período: {summary.totalCases}</span>
             </div>
+            <PeriodSelector periods={dashboardPeriods} />
           </div>
           <form action="/api/auth/logout" method="post">
             <button className="rounded-xl border border-slate-300 px-4 py-2 text-sm hover:bg-slate-100">
@@ -227,32 +245,32 @@ export default async function DashboardPage({
             label="Contabilizados"
             value={operationalSummary.contabilizados}
             help="Documentos ya resueltos y contabilizados en la operación"
-            href="/pendiente-revision?operationalView=posted&monthScope=all"
+            href={`/pendiente-revision?${new URLSearchParams({ operationalView: 'posted', period: dashboardPeriods.selected.key }).toString()}`}
           />
           <StatCard
             label="Por contabilizar"
             value={operationalSummary.porContabilizar}
             help="Documentos todavía pendientes de cierre operativo"
-            href="/pendiente-revision?operationalView=pending&monthScope=all"
+            href={`/pendiente-revision?${new URLSearchParams({ operationalView: 'pending', period: dashboardPeriods.selected.key }).toString()}`}
           />
           <StatCard
             label="Excluidos"
             value={operationalSummary.excluidos}
             help="Documentos fuera del flujo normal, incluyendo DIN y sin valor"
-            href="/pendiente-revision?operationalView=excluded&monthScope=all"
+            href={`/pendiente-revision?${new URLSearchParams({ operationalView: 'excluded', period: dashboardPeriods.selected.key }).toString()}`}
           />
           <StatCard
             label="Facturas nuevos proveedores"
             value={operationalSummary.nuevosProveedores}
             help="Casos que requieren tratamiento por proveedor nuevo"
-            href="/pendiente-revision?operationalView=new_vendors&monthScope=all"
+            href={`/pendiente-revision?${new URLSearchParams({ operationalView: 'new_vendors', period: dashboardPeriods.selected.key }).toString()}`}
           />
         </div>
       </section>
 
       <RcvDocumentTypeTotals
         documentTypeSummary={documentTypeSummary}
-        rcvPeriods={rcvPeriods}
+        selectedPeriodDetail={dashboardPeriods.selected.detail}
         rcvSource={rcvSource}
         rcvTotalAmount={rcvTotalAmount}
         rcvTotalDocuments={rcvTotalDocuments}
@@ -265,7 +283,7 @@ export default async function DashboardPage({
               <h2 className="text-xl font-semibold text-slate-900">Documentos nuevos de la operación</h2>
               <p className="mt-1 text-sm text-slate-600">Lo último que entró a la mesa y requiere mirada operativa.</p>
             </div>
-            <Link href="/pendiente-revision" className="rounded-xl bg-slate-900 px-4 py-2 text-sm text-white hover:bg-slate-800">
+            <Link href={`/pendiente-revision?${periodQuery(dashboardPeriods.selected.key)}`} className="rounded-xl bg-slate-900 px-4 py-2 text-sm text-white hover:bg-slate-800">
               Abrir cola
             </Link>
           </div>

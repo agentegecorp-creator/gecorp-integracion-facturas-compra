@@ -87,6 +87,8 @@ function periodMonthKey(period?: DashboardPeriod) {
 }
 
 export async function getDashboardSummary(period?: DashboardPeriod) {
+  const periodValues = period ? [period.startDate, period.endDate] : [];
+  const periodWhereClause = period ? `where issue_date >= $1::date and issue_date < $2::date` : '';
   const documentTypeValues: string[] = [];
   const documentTypeConditions: string[] = [];
 
@@ -98,12 +100,14 @@ export async function getDashboardSummary(period?: DashboardPeriod) {
   const documentTypeWhereClause = documentTypeConditions.length > 0 ? `where ${documentTypeConditions.join(' and ')}` : '';
 
   const [totalCases, byBucket, byStatus, operationalRows, fallbackRows] = await Promise.all([
-    db.query(`select count(*)::int as total from review_cases`),
-    db.query(`select bucket, count(*)::int as total from review_cases group by bucket order by bucket`),
-    db.query(`select status, count(*)::int as total from review_cases group by status order by status`),
+    db.query(`select count(*)::int as total from review_cases ${periodWhereClause}`, periodValues),
+    db.query(`select bucket, count(*)::int as total from review_cases ${periodWhereClause} group by bucket order by bucket`, periodValues),
+    db.query(`select status, count(*)::int as total from review_cases ${periodWhereClause} group by status order by status`, periodValues),
     db.query(
       `select bucket, status, document_type, amount_total, vendor_name, payload_json
-       from review_cases`,
+       from review_cases
+       ${periodWhereClause}`,
+      periodValues,
     ),
     db.query(
       `select bucket, status, document_type, amount_total, vendor_name, payload_json
@@ -219,6 +223,7 @@ export async function listReviewCases(
     status?: string;
     sandboxPublishStatus?: string;
     monthScope?: 'active' | 'all';
+    period?: DashboardPeriod;
     operationalView?: 'posted' | 'pending' | 'excluded' | 'new_vendors';
   },
 ) {
@@ -227,7 +232,10 @@ export async function listReviewCases(
   const values: Array<string | number> = [];
   const monthScope = filters?.monthScope ?? 'active';
 
-  if (monthScope === 'active') {
+  if (filters?.period) {
+    values.push(filters.period.startDate, filters.period.endDate);
+    conditions.push(`issue_date >= $${values.length - 1}::date and issue_date < $${values.length}::date`);
+  } else if (monthScope === 'active') {
     conditions.push(`issue_date >= DATE '2026-04-01' and issue_date < DATE '2026-06-01'`);
   }
 
@@ -305,10 +313,14 @@ export async function listReviewCases(
   return result.rows;
 }
 
-export async function getReviewQueueCounts(monthScope: 'active' | 'all' = 'active') {
+export async function getReviewQueueCounts(monthScope: 'active' | 'all' = 'active', period?: DashboardPeriod) {
   const conditions: string[] = [];
+  const values: string[] = [];
 
-  if (monthScope === 'active') {
+  if (period) {
+    values.push(period.startDate, period.endDate);
+    conditions.push(`issue_date >= $1::date and issue_date < $2::date`);
+  } else if (monthScope === 'active') {
     conditions.push(`issue_date >= DATE '2026-04-01' and issue_date < DATE '2026-06-01'`);
   }
 
@@ -317,6 +329,7 @@ export async function getReviewQueueCounts(monthScope: 'active' | 'all' = 'activ
     `select bucket, status, vendor_name, payload_json
      from review_cases
      ${whereClause}`,
+    values,
   );
 
   const counts = {

@@ -5,6 +5,7 @@ type FilterProps = {
   currentStatus?: string;
   currentSandboxPublishStatus?: string;
   currentMonthScope?: 'active' | 'all';
+  currentPeriod?: string;
   currentOperationalView?: string;
   counts?: {
     operational: {
@@ -68,10 +69,15 @@ export function ReviewFilters({
   currentStatus = '',
   currentSandboxPublishStatus = '',
   currentMonthScope = 'active',
+  currentPeriod = '',
   currentOperationalView = '',
   counts,
 }: FilterProps) {
-  const scopeParams: Record<string, string> = currentMonthScope === 'all' ? { monthScope: 'all' } : {};
+  const scopeParams: Record<string, string> = currentPeriod
+    ? { period: currentPeriod }
+    : currentMonthScope === 'all'
+      ? { monthScope: 'all' }
+      : {};
   const operationalCounts = counts?.operational;
   const quickCounts = counts?.quick;
 
@@ -93,25 +99,29 @@ export function ReviewFilters({
       </div>
 
       <div className="grid gap-3 md:grid-cols-3 xl:grid-cols-5">
-        <a href={`/pendiente-revision?${new URLSearchParams({ bucket: 'rejected_sii', status: 'new', ...(currentMonthScope === 'all' ? { monthScope: 'all' } : {}) }).toString()}`} className="rounded-2xl border border-orange-200 bg-orange-50 px-4 py-3 text-sm text-orange-800 hover:bg-orange-100">
+        <a href={`/pendiente-revision?${new URLSearchParams({ bucket: 'rejected_sii', status: 'new', ...scopeParams }).toString()}`} className="rounded-2xl border border-orange-200 bg-orange-50 px-4 py-3 text-sm text-orange-800 hover:bg-orange-100">
           Ver rechazos SII nuevos ({quickCounts?.rejected_sii_new ?? 0})
         </a>
-        <a href={`/pendiente-revision?${new URLSearchParams({ bucket: 'error_real', status: 'new', ...(currentMonthScope === 'all' ? { monthScope: 'all' } : {}) }).toString()}`} className="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800 hover:bg-rose-100">
+        <a href={`/pendiente-revision?${new URLSearchParams({ bucket: 'error_real', status: 'new', ...scopeParams }).toString()}`} className="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800 hover:bg-rose-100">
           Ver errores contables nuevos ({quickCounts?.error_real_new ?? 0})
         </a>
-        <a href={`/pendiente-revision?${new URLSearchParams({ bucket: 'revision_oc', status: 'new', ...(currentMonthScope === 'all' ? { monthScope: 'all' } : {}) }).toString()}`} className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800 hover:bg-amber-100">
+        <a href={`/pendiente-revision?${new URLSearchParams({ bucket: 'revision_oc', status: 'new', ...scopeParams }).toString()}`} className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800 hover:bg-amber-100">
           Ver revisión de OC nueva ({quickCounts?.revision_oc_new ?? 0})
         </a>
-        <a href={`/pendiente-revision?${new URLSearchParams({ status: 'in_review', ...(currentMonthScope === 'all' ? { monthScope: 'all' } : {}) }).toString()}`} className="rounded-2xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-800 hover:bg-blue-100">
+        <a href={`/pendiente-revision?${new URLSearchParams({ status: 'in_review', ...scopeParams }).toString()}`} className="rounded-2xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-800 hover:bg-blue-100">
           Ver documentos en revisión ({quickCounts?.in_review ?? 0})
         </a>
-        <a href={`/pendiente-revision${currentMonthScope === 'all' ? '?monthScope=all' : ''}`} className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700 hover:bg-slate-100">
+        <a href={`/pendiente-revision${buildQuery(scopeParams) ? `?${buildQuery(scopeParams)}` : ''}`} className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700 hover:bg-slate-100">
           Ver toda la cola ({quickCounts?.all ?? 0})
         </a>
       </div>
 
       <form className="grid gap-4 rounded-2xl bg-white p-4 shadow-sm md:grid-cols-6" method="get">
-      <input type="hidden" name="monthScope" value={currentMonthScope} />
+      {currentPeriod ? (
+        <input type="hidden" name="period" value={currentPeriod} />
+      ) : (
+        <input type="hidden" name="monthScope" value={currentMonthScope} />
+      )}
       <div>
         <label className="mb-1 block text-sm font-medium text-slate-700">Vista operativa</label>
         <select
@@ -179,7 +189,7 @@ export function ReviewFilters({
       </div>
 
       <div className="flex items-end">
-        <a href={`/pendiente-revision${currentMonthScope === 'all' ? '?monthScope=all' : ''}`} className="w-full rounded-xl border border-slate-300 px-4 py-2 text-center text-sm hover:bg-slate-100">
+        <a href={`/pendiente-revision${buildQuery(scopeParams) ? `?${buildQuery(scopeParams)}` : ''}`} className="w-full rounded-xl border border-slate-300 px-4 py-2 text-center text-sm hover:bg-slate-100">
           Limpiar
         </a>
       </div>
