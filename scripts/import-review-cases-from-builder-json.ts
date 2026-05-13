@@ -179,7 +179,6 @@ async function main() {
              amount_tax = $9,
              amount_total = $10,
              bucket = $11,
-             status = 'new',
              summary_text = $12,
              payload_json = $13::jsonb,
              updated_at = now()
