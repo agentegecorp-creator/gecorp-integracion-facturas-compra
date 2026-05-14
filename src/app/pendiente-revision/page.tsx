@@ -4,6 +4,23 @@ import { getReviewQueueCounts, listReviewCases } from '@/lib/db/queries';
 import { ReviewFilters } from '@/components/review/review-filters';
 import { ReviewWorkbench } from '@/components/review/review-workbench';
 
+type ReviewPeriod =
+  | {
+      key: 'current' | 'previous';
+      label: string;
+      startDate: string;
+      endDate: string;
+    }
+  | {
+      key: 'all';
+      label: string;
+    };
+
+type DatePeriod = {
+  startDate: string;
+  endDate: string;
+};
+
 function toDateInputValue(date: Date) {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -11,11 +28,18 @@ function toDateInputValue(date: Date) {
   return `${year}-${month}-${day}`;
 }
 
-function getDashboardPeriod(periodKey?: string) {
+function getReviewPeriod(periodKey?: string, monthScope?: string): ReviewPeriod {
   const now = new Date();
   const currentStart = new Date(now.getFullYear(), now.getMonth(), 1);
   const nextStart = new Date(now.getFullYear(), now.getMonth() + 1, 1);
   const previousStart = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+
+  if (periodKey === 'all' || monthScope === 'all') {
+    return {
+      key: 'all',
+      label: 'Todos los meses',
+    };
+  }
 
   if (periodKey === 'previous') {
     return {
@@ -35,7 +59,12 @@ function getDashboardPeriod(periodKey?: string) {
     };
   }
 
-  return null;
+  return {
+    key: 'current',
+    label: 'Mes actual',
+    startDate: toDateInputValue(currentStart),
+    endDate: toDateInputValue(nextStart),
+  };
 }
 
 export default async function PendingReviewPage({
@@ -55,8 +84,11 @@ export default async function PendingReviewPage({
   const bucket = resolvedSearchParams.bucket || '';
   const status = resolvedSearchParams.status || '';
   const sandboxPublishStatus = resolvedSearchParams.sandboxPublishStatus || '';
-  const monthScope = resolvedSearchParams.monthScope === 'all' ? 'all' : 'active';
-  const dashboardPeriod = getDashboardPeriod(resolvedSearchParams.period);
+  const reviewPeriod = getReviewPeriod(resolvedSearchParams.period, resolvedSearchParams.monthScope);
+  const monthScope = reviewPeriod.key === 'all' ? 'all' : 'active';
+  const datePeriod: DatePeriod | undefined = reviewPeriod.key === 'all'
+    ? undefined
+    : { startDate: reviewPeriod.startDate, endDate: reviewPeriod.endDate };
   const operationalView = resolvedSearchParams.operationalView || '';
   const [items, counts] = await Promise.all([
     listReviewCases(100, {
@@ -64,10 +96,10 @@ export default async function PendingReviewPage({
       status: status || undefined,
       sandboxPublishStatus: sandboxPublishStatus || undefined,
       monthScope,
-      period: dashboardPeriod ? { startDate: dashboardPeriod.startDate, endDate: dashboardPeriod.endDate } : undefined,
+      period: datePeriod,
       operationalView: operationalView || undefined,
     }),
-    getReviewQueueCounts(monthScope, dashboardPeriod ? { startDate: dashboardPeriod.startDate, endDate: dashboardPeriod.endDate } : undefined),
+    getReviewQueueCounts(monthScope, datePeriod),
   ]);
 
   return (
@@ -80,10 +112,10 @@ export default async function PendingReviewPage({
             <p className="mt-2 text-xs font-medium text-emerald-700">Última corrida importada: 7 casos nuevos de mayo · Sprint 1–3 activo en esta cola.</p>
             <p className="mt-2 text-xs text-slate-500">
               Documentos en esta vista: {items.length}
-              {dashboardPeriod ? ` · ${dashboardPeriod.label}` : ''}
+              {` · ${reviewPeriod.label}`}
             </p>
           </div>
-          <Link href={`/dashboard${dashboardPeriod ? `?period=${dashboardPeriod.key}` : ''}`} className="rounded-xl border border-slate-300 px-4 py-2 text-sm hover:bg-slate-100">
+          <Link href={`/dashboard${reviewPeriod.key === 'previous' ? '?period=previous' : ''}`} className="rounded-xl border border-slate-300 px-4 py-2 text-sm hover:bg-slate-100">
             Volver al centro operativo
           </Link>
         </div>
@@ -96,11 +128,11 @@ export default async function PendingReviewPage({
               ...(status ? { status } : {}),
               ...(sandboxPublishStatus ? { sandboxPublishStatus } : {}),
               ...(operationalView ? { operationalView } : {}),
-              ...(dashboardPeriod ? { period: dashboardPeriod.key } : {}),
+              period: 'current',
             }).toString()}`}
-            className={`rounded-full px-3 py-1 ring-1 ${monthScope === 'active' ? 'bg-slate-900 text-white ring-slate-900' : 'bg-white text-slate-700 ring-slate-300 hover:bg-slate-100'}`}
+            className={`rounded-full px-3 py-1 ring-1 ${reviewPeriod.key === 'current' ? 'bg-slate-900 text-white ring-slate-900' : 'bg-white text-slate-700 ring-slate-300 hover:bg-slate-100'}`}
           >
-            Abril + mayo
+            Mes actual
           </Link>
           <Link
             href={`/pendiente-revision?${new URLSearchParams({
@@ -108,9 +140,21 @@ export default async function PendingReviewPage({
               ...(status ? { status } : {}),
               ...(sandboxPublishStatus ? { sandboxPublishStatus } : {}),
               ...(operationalView ? { operationalView } : {}),
-              monthScope: 'all',
+              period: 'previous',
             }).toString()}`}
-            className={`rounded-full px-3 py-1 ring-1 ${monthScope === 'all' ? 'bg-slate-900 text-white ring-slate-900' : 'bg-white text-slate-700 ring-slate-300 hover:bg-slate-100'}`}
+            className={`rounded-full px-3 py-1 ring-1 ${reviewPeriod.key === 'previous' ? 'bg-slate-900 text-white ring-slate-900' : 'bg-white text-slate-700 ring-slate-300 hover:bg-slate-100'}`}
+          >
+            Mes anterior
+          </Link>
+          <Link
+            href={`/pendiente-revision?${new URLSearchParams({
+              ...(bucket ? { bucket } : {}),
+              ...(status ? { status } : {}),
+              ...(sandboxPublishStatus ? { sandboxPublishStatus } : {}),
+              ...(operationalView ? { operationalView } : {}),
+              period: 'all',
+            }).toString()}`}
+            className={`rounded-full px-3 py-1 ring-1 ${reviewPeriod.key === 'all' ? 'bg-slate-900 text-white ring-slate-900' : 'bg-white text-slate-700 ring-slate-300 hover:bg-slate-100'}`}
           >
             Todos los meses
           </Link>
@@ -121,7 +165,7 @@ export default async function PendingReviewPage({
           currentStatus={status}
           currentSandboxPublishStatus={sandboxPublishStatus}
           currentMonthScope={monthScope}
-          currentPeriod={dashboardPeriod?.key}
+          currentPeriod={reviewPeriod.key}
           currentOperationalView={operationalView}
           counts={counts}
         />
