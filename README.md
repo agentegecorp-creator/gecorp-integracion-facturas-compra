@@ -38,8 +38,26 @@ Los siguientes scripts quedan como referencia histórica de cómo se armó el fl
 - `APP_BASE_URL`
 - `SEED_DEFAULT_PASSWORD`
 
+## Publicación en Vercel
+
+La app publicada en `facturascompra.gecorp.cl` se despliega desde GitHub/Vercel al hacer push a `main`.
+
+En sesiones OpenClaw/Codex, usar el `HOME` real de la máquina para que Git encuentre las credenciales correctas:
+
+```bash
+npm run build
+HOME=/Users/agentegecorp git push origin main
+```
+
+Verificación rápida después del push:
+
+```bash
+curl -I 'https://facturascompra.gecorp.cl/login?deploycheck=<commit>'
+```
+
+Se considera deploy tomado por Vercel cuando responde HTTP 200 y aparece `x-vercel-cache: PRERENDER` con `age: 0` o bajo. No asumir falta de acceso si `git push` falla sin `HOME=/Users/agentegecorp`; primero reintentar con ese `HOME`.
+
 ## Próximo foco
 - seguir reduciendo seed/demo
 - exponer mejor más contexto real en la mesa de revisión
 - consolidar aún más la operación real desde pipeline hacia app web
-
