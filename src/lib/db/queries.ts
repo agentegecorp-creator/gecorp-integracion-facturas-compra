@@ -12,6 +12,7 @@ import {
 } from '@/lib/review/catalogs';
 import pipelineRunSummaries from '@/lib/review/pipeline-run-summaries.json';
 import rcvSiiSummaries from '@/lib/review/rcv-sii-summaries.json';
+import automaticCreatedDocuments from '@/lib/review/automatic-created-documents.json';
 
 let cachedHasSandboxPublishStatus: boolean | null = null;
 
@@ -95,9 +96,40 @@ type PipelineRunSummary = {
   revisionOcReferential: number;
 };
 
+type AutomaticCreatedDocument = {
+  id: string;
+  sourceRun: string;
+  generatedAt: string;
+  vendor_name: string | null;
+  vendor_rut: string | null;
+  folio: string | null;
+  document_type: string | null;
+  issue_date: string | null;
+  reception_date: string | null;
+  bucket: string;
+  status: string;
+  amount_total: string | number | null;
+  summary_text: string | null;
+  sandbox_publish_status: string | null;
+  payload_json: {
+    document?: Record<string, unknown>;
+    context?: Record<string, unknown>;
+  };
+};
+
 function periodMonthKey(period?: DashboardPeriod) {
   if (!period?.startDate) return null;
   return period.startDate.slice(0, 7);
+}
+
+function automaticDocumentsForPeriod(period?: DashboardPeriod) {
+  const documentsByMonth = automaticCreatedDocuments as Record<string, AutomaticCreatedDocument[]>;
+
+  if (period) {
+    return documentsByMonth[periodMonthKey(period) ?? ''] ?? [];
+  }
+
+  return Object.values(documentsByMonth).flat();
 }
 
 export async function getDashboardSummary(period?: DashboardPeriod) {
@@ -256,9 +288,13 @@ export async function listReviewCases(
     sandboxPublishStatus?: string;
     monthScope?: 'active' | 'all';
     period?: DashboardPeriod;
-    operationalView?: 'posted' | 'pending' | 'excluded' | 'new_vendors';
+    operationalView?: 'automatic' | 'posted' | 'pending' | 'excluded' | 'new_vendors';
   },
 ) {
+  if (filters?.operationalView === 'automatic') {
+    return automaticDocumentsForPeriod(filters.period).slice(0, limit);
+  }
+
   const hasSandboxPublishStatus = await hasSandboxPublishStatusColumn();
   const conditions: string[] = [];
   const values: Array<string | number> = [];
@@ -366,6 +402,7 @@ export async function getReviewQueueCounts(monthScope: 'active' | 'all' = 'activ
 
   const counts = {
     operational: {
+      automatic: automaticDocumentsForPeriod(period).length,
       posted: 0,
       pending: 0,
       excluded: 0,
@@ -442,6 +479,10 @@ export async function listReadyForSandbox(limit = 100) {
 }
 
 export async function getReviewCaseById(id: string) {
+  if (id.startsWith('auto-')) {
+    return automaticDocumentsForPeriod().find((item) => item.id === id) ?? null;
+  }
+
   const result = await db.query(
     `select * from review_cases where id = $1 limit 1`,
     [id],

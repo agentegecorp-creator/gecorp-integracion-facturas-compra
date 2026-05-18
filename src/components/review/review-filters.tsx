@@ -9,6 +9,7 @@ type FilterProps = {
   currentOperationalView?: string;
   counts?: {
     operational: {
+      automatic: number;
       posted: number;
       pending: number;
       excluded: number;
@@ -52,6 +53,7 @@ const SANDBOX_PUBLISH_OPTIONS = [
 
 const OPERATIONAL_VIEW_OPTIONS = [
   { value: '', label: 'Vista operativa: todas' },
+  { value: 'automatic', label: 'Creadas automáticas' },
   { value: 'posted', label: 'Creadas manuales' },
   { value: 'pending', label: 'Por contabilizar' },
   { value: 'excluded', label: 'Excluidos' },
@@ -83,7 +85,10 @@ export function ReviewFilters({
 
   return (
     <div className="mt-6 space-y-4">
-      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
+        <a href={`/pendiente-revision?${buildQuery({ operationalView: 'automatic', ...scopeParams })}`} className={`rounded-2xl border px-4 py-3 text-sm hover:bg-cyan-100 ${currentOperationalView === 'automatic' ? 'border-cyan-400 bg-cyan-100 text-cyan-900' : 'border-cyan-200 bg-cyan-50 text-cyan-800'}`}>
+          Creadas automáticas ({operationalCounts?.automatic ?? 0})
+        </a>
         <a href={`/pendiente-revision?${buildQuery({ operationalView: 'posted', ...scopeParams })}`} className={`rounded-2xl border px-4 py-3 text-sm hover:bg-emerald-100 ${currentOperationalView === 'posted' ? 'border-emerald-400 bg-emerald-100 text-emerald-900' : 'border-emerald-200 bg-emerald-50 text-emerald-800'}`}>
           Creadas manuales ({operationalCounts?.posted ?? 0})
         </a>

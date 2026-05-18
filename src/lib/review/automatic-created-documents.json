@@ -1,0 +1,1732 @@
+{
+  "2026-05": [
+    {
+      "id": "auto-2026-05-33-39636-0",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "GLOBE EXPRESS SERVICES CHILE SPA",
+      "vendor_rut": "76085857-9",
+      "folio": "39636",
+      "document_type": "33",
+      "issue_date": "2026-04-30",
+      "reception_date": "30/04/2026 17:50:25",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "101150",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "85000",
+          "amountVat": "16150",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "101150",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-39636 GLOBE EXPRESS SERVICES CHILE SPA"
+        },
+        "context": {
+          "categoriaOc": "OC_RECOMENDADA",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-13380-1",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "SOCIEDAD  INVERSIONES MALAGA SPA 3103986",
+      "vendor_rut": "77864757-5",
+      "folio": "13380",
+      "document_type": "33",
+      "issue_date": "2026-05-01",
+      "reception_date": "01/05/2026 13:19:27",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "86025",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "62354",
+          "amountVat": "11847",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "11824",
+          "amountTotal": "86025",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-13380 SOCIEDAD  INVERSIONES MALAGA SPA 3103986"
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-73297386-2",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "Telefónica Móviles Chile S.A.",
+      "vendor_rut": "76124890-1",
+      "folio": "73297386",
+      "document_type": "33",
+      "issue_date": "2026-05-01",
+      "reception_date": "02/05/2026 11:05:53",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "63242",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "53145",
+          "amountVat": "10097",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "63242",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-73297386 Telefónica Móviles Chile S.A."
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-165574-3",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "COMUNICACIONES BERMANN SPA",
+      "vendor_rut": "96357000-7",
+      "folio": "165574",
+      "document_type": "33",
+      "issue_date": "2026-05-04",
+      "reception_date": "04/05/2026 09:30:06",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "31074",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "26113",
+          "amountVat": "4961",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "31074",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-165574 COMUNICACIONES BERMANN SPA"
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-3963-4",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "FIRST, SERVICIOS DE ASEO Y MANTENCION SPA",
+      "vendor_rut": "76058028-7",
+      "folio": "3963",
+      "document_type": "33",
+      "issue_date": "2026-05-04",
+      "reception_date": "04/05/2026 11:44:23",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "860515",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "723122",
+          "amountVat": "137393",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "860515",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-3963 FIRST, SERVICIOS DE ASEO Y MANTENCION SPA"
+        },
+        "context": {
+          "categoriaOc": "OC_OBLIGATORIA",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-13414-5",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "SOCIEDAD  INVERSIONES MALAGA SPA 3103986",
+      "vendor_rut": "77864757-5",
+      "folio": "13414",
+      "document_type": "33",
+      "issue_date": "2026-05-04",
+      "reception_date": "04/05/2026 16:00:08",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "181052",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "110911",
+          "amountVat": "21073",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "49068",
+          "amountTotal": "181052",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-13414 SOCIEDAD  INVERSIONES MALAGA SPA 3103986"
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-66222-6",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "Megacentro Chile SpA",
+      "vendor_rut": "76178665-2",
+      "folio": "66222",
+      "document_type": "33",
+      "issue_date": "2026-05-01",
+      "reception_date": "04/05/2026 16:08:09",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "1936623",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "1627414",
+          "amountVat": "309209",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "1936623",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-66222 Megacentro Chile SpA"
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-946-7",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "GIOVANNI OSVALDO DIAZ SILVA",
+      "vendor_rut": "15480941-4",
+      "folio": "946",
+      "document_type": "33",
+      "issue_date": "2026-05-04",
+      "reception_date": "04/05/2026 18:55:02",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "1237600",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "1040000",
+          "amountVat": "197600",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "1237600",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-946 GIOVANNI OSVALDO DIAZ SILVA"
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-2986804-8",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "GTD MANQUEHUE S.A.",
+      "vendor_rut": "93737000-8",
+      "folio": "2986804",
+      "document_type": "33",
+      "issue_date": "2026-05-05",
+      "reception_date": "05/05/2026 08:00:07",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "172040",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "144569",
+          "amountVat": "27471",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "172040",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-2986804 GTD MANQUEHUE S.A."
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-8453-9",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "EGA KAT DISTRIBUCION CHILE S.A.",
+      "vendor_rut": "76067893-7",
+      "folio": "8453",
+      "document_type": "33",
+      "issue_date": "2026-05-04",
+      "reception_date": "05/05/2026 10:06:59",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "716146",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "601803",
+          "amountVat": "114343",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "716146",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-8453 EGA KAT DISTRIBUCION CHILE S.A."
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-66492-10",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "Megacentro Chile SpA",
+      "vendor_rut": "76178665-2",
+      "folio": "66492",
+      "document_type": "33",
+      "issue_date": "2026-05-04",
+      "reception_date": "05/05/2026 13:50:28",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "59057",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "49628",
+          "amountVat": "9429",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "59057",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-66492 Megacentro Chile SpA"
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-1014380-11",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "SEAPORT S.A.",
+      "vendor_rut": "96796080-2",
+      "folio": "1014380",
+      "document_type": "33",
+      "issue_date": "2026-05-05",
+      "reception_date": "05/05/2026 15:51:13",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "484279",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "406957",
+          "amountVat": "77322",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "484279",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-1014380 SEAPORT S.A."
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-4131420-12",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "SERVICIOS EQUIFAX CHILE LIMITADA",
+      "vendor_rut": "85896100-9",
+      "folio": "4131420",
+      "document_type": "33",
+      "issue_date": "2026-04-30",
+      "reception_date": "06/05/2026 02:51:13",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "215799",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "181344",
+          "amountVat": "34455",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "215799",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-4131420 SERVICIOS EQUIFAX CHILE LIMITADA"
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-180454-13",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "CHUBB SEGUROS DE VIDA CHILE S.A.",
+      "vendor_rut": "99588060-1",
+      "folio": "180454",
+      "document_type": "33",
+      "issue_date": "2026-04-30",
+      "reception_date": "06/05/2026 16:13:06",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "25136",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "21123",
+          "amountVat": "4013",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "25136",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-180454 CHUBB SEGUROS DE VIDA CHILE S.A."
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-6548645-14",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "Manantial S.A",
+      "vendor_rut": "96711590-8",
+      "folio": "6548645",
+      "document_type": "33",
+      "issue_date": "2026-04-30",
+      "reception_date": "06/05/2026 17:31:13",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "40874",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "34348",
+          "amountVat": "6526",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "40874",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-6548645 Manantial S.A"
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-47302835-15",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "Banco de Chile",
+      "vendor_rut": "97004000-5",
+      "folio": "47302835",
+      "document_type": "33",
+      "issue_date": "2026-05-06",
+      "reception_date": "07/05/2026 09:13:22",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "20530",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "17252",
+          "amountVat": "3278",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "20530",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-47302835 Banco de Chile"
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-224-16",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "SOCIEDAD DE TRANSPORTES, SERVICIOS DE INGENIERIA Y ASESORIAS MACAF LIM",
+      "vendor_rut": "77159789-0",
+      "folio": "224",
+      "document_type": "33",
+      "issue_date": "2026-05-07",
+      "reception_date": "07/05/2026 11:36:13",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "245735",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "206500",
+          "amountVat": "39235",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "245735",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-224 SOCIEDAD DE TRANSPORTES, SERVICIOS DE INGENIERIA Y ASESORIAS MACAF LIM"
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-69719-17",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "TRANSPORTES CASABLANCA S.A.",
+      "vendor_rut": "85131900-K",
+      "folio": "69719",
+      "document_type": "33",
+      "issue_date": "2026-04-30",
+      "reception_date": "07/05/2026 13:26:04",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "2963981",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "2490740",
+          "amountVat": "473241",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "2963981",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-69719 TRANSPORTES CASABLANCA S.A."
+        },
+        "context": {
+          "categoriaOc": "OC_OBLIGATORIA",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-504-18",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "TRANSPORTES ELADIO ARNOLDO GONZÁLEZ KAEMPFER  E.I.R.L.",
+      "vendor_rut": "76969089-1",
+      "folio": "504",
+      "document_type": "33",
+      "issue_date": "2026-05-08",
+      "reception_date": "08/05/2026 11:47:17",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "2313777",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "1944350",
+          "amountVat": "369427",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "2313777",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-504 TRANSPORTES ELADIO ARNOLDO GONZÁLEZ KAEMPFER  E.I.R.L."
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-225-19",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "SOCIEDAD DE TRANSPORTES, SERVICIOS DE INGENIERIA Y ASESORIAS MACAF LIM",
+      "vendor_rut": "77159789-0",
+      "folio": "225",
+      "document_type": "33",
+      "issue_date": "2026-05-08",
+      "reception_date": "08/05/2026 12:47:32",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "143336",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "120450",
+          "amountVat": "22886",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "143336",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-225 SOCIEDAD DE TRANSPORTES, SERVICIOS DE INGENIERIA Y ASESORIAS MACAF LIM"
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-132724-20",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "SOCIEDAD COMERCIAL  VENSER LTDA",
+      "vendor_rut": "96607770-0",
+      "folio": "132724",
+      "document_type": "33",
+      "issue_date": "2026-05-11",
+      "reception_date": "08/05/2026 15:10:06",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "475369",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "399470",
+          "amountVat": "75899",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "475369",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-132724 SOCIEDAD COMERCIAL  VENSER LTDA"
+        },
+        "context": {
+          "categoriaOc": "OC_OBLIGATORIA",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-12419-21",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "IMPORTADORA Y EXPORTADORA GIRONA .S.A",
+      "vendor_rut": "96993560-0",
+      "folio": "12419",
+      "document_type": "33",
+      "issue_date": "2026-05-11",
+      "reception_date": "11/05/2026 08:59:27",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "1179958",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "991561",
+          "amountVat": "188397",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "1179958",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-12419 IMPORTADORA Y EXPORTADORA GIRONA .S.A"
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-304406-22",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "BUK SPA",
+      "vendor_rut": "76691442-K",
+      "folio": "304406",
+      "document_type": "33",
+      "issue_date": "2026-05-11",
+      "reception_date": "11/05/2026 16:25:53",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "156078",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "131158",
+          "amountVat": "24920",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "156078",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-304406 BUK SPA"
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-2860-23",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "RODRIGO IVAN LORENZO SANDOVAL",
+      "vendor_rut": "13755511-5",
+      "folio": "2860",
+      "document_type": "33",
+      "issue_date": "2026-05-11",
+      "reception_date": "11/05/2026 22:01:54",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "220150",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "185000",
+          "amountVat": "35150",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "220150",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-2860 RODRIGO IVAN LORENZO SANDOVAL"
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-14406446-24",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "PROVEEDORES INTEGRALES PRISA S A",
+      "vendor_rut": "96556940-5",
+      "folio": "14406446",
+      "document_type": "33",
+      "issue_date": "2026-05-13",
+      "reception_date": "12/05/2026 16:15:06",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "39275",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "33004",
+          "amountVat": "6271",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "39275",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-14406446 PROVEEDORES INTEGRALES PRISA S A"
+        },
+        "context": {
+          "categoriaOc": "OC_OBLIGATORIA",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-14406861-25",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "PROVEEDORES INTEGRALES PRISA S A",
+      "vendor_rut": "96556940-5",
+      "folio": "14406861",
+      "document_type": "33",
+      "issue_date": "2026-05-13",
+      "reception_date": "12/05/2026 17:37:19",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "67093",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "56381",
+          "amountVat": "10712",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "67093",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-14406861 PROVEEDORES INTEGRALES PRISA S A"
+        },
+        "context": {
+          "categoriaOc": "OC_OBLIGATORIA",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-2565020-26",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "Claro Comunicaciones S.p.A.",
+      "vendor_rut": "94675000-K",
+      "folio": "2565020",
+      "document_type": "33",
+      "issue_date": "2026-05-13",
+      "reception_date": "13/05/2026 05:01:36",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "18990",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "15958",
+          "amountVat": "3032",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "18990",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-2565020 Claro Comunicaciones S.p.A."
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-14407521-27",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "PROVEEDORES INTEGRALES PRISA S A",
+      "vendor_rut": "96556940-5",
+      "folio": "14407521",
+      "document_type": "33",
+      "issue_date": "2026-05-13",
+      "reception_date": "13/05/2026 09:40:08",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "131424",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "110440",
+          "amountVat": "20984",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "131424",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-14407521 PROVEEDORES INTEGRALES PRISA S A"
+        },
+        "context": {
+          "categoriaOc": "OC_OBLIGATORIA",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-162713-28",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "Navarro y Cia. SPA",
+      "vendor_rut": "83274700-9",
+      "folio": "162713",
+      "document_type": "33",
+      "issue_date": "2026-05-13",
+      "reception_date": "13/05/2026 13:03:20",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "3179992",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "2672262",
+          "amountVat": "507730",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "3179992",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-162713 Navarro y Cia. SPA"
+        },
+        "context": {
+          "categoriaOc": "OC_OBLIGATORIA",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-39738-29",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "GLOBE EXPRESS SERVICES CHILE SPA",
+      "vendor_rut": "76085857-9",
+      "folio": "39738",
+      "document_type": "33",
+      "issue_date": "2026-05-13",
+      "reception_date": "13/05/2026 17:20:07",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "119000",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "100000",
+          "amountVat": "19000",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "119000",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-39738 GLOBE EXPRESS SERVICES CHILE SPA"
+        },
+        "context": {
+          "categoriaOc": "OC_RECOMENDADA",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-39740-30",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "GLOBE EXPRESS SERVICES CHILE SPA",
+      "vendor_rut": "76085857-9",
+      "folio": "39740",
+      "document_type": "33",
+      "issue_date": "2026-05-13",
+      "reception_date": "13/05/2026 18:00:58",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "95200",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "80000",
+          "amountVat": "15200",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "95200",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-39740 GLOBE EXPRESS SERVICES CHILE SPA"
+        },
+        "context": {
+          "categoriaOc": "OC_RECOMENDADA",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-215796-31",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "Artikos Chile SpA",
+      "vendor_rut": "96953410-K",
+      "folio": "215796",
+      "document_type": "33",
+      "issue_date": "2026-05-14",
+      "reception_date": "14/05/2026 14:37:58",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "572916",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "481442",
+          "amountVat": "91474",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "572916",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-215796 Artikos Chile SpA"
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-52631-32",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "AG. DE AD. CRISTIAN HERRERA R. Y CIA. LTDA",
+      "vendor_rut": "77433157-3",
+      "folio": "52631",
+      "document_type": "33",
+      "issue_date": "2026-05-15",
+      "reception_date": "15/05/2026 01:15:42",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "158258",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "132990",
+          "amountVat": "25268",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "158258",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-52631 AG. DE AD. CRISTIAN HERRERA R. Y CIA. LTDA"
+        },
+        "context": {
+          "categoriaOc": "OC_RECOMENDADA",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-80026-33",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "AIRSEALOGISTICS SPA",
+      "vendor_rut": "76006532-3",
+      "folio": "80026",
+      "document_type": "33",
+      "issue_date": "2026-05-15",
+      "reception_date": "15/05/2026 10:32:46",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "89250",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "75000",
+          "amountVat": "14250",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "89250",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-80026 AIRSEALOGISTICS SPA"
+        },
+        "context": {
+          "categoriaOc": "OC_OBLIGATORIA",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-2865-34",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "RODRIGO IVAN LORENZO SANDOVAL",
+      "vendor_rut": "13755511-5",
+      "folio": "2865",
+      "document_type": "33",
+      "issue_date": "2026-05-15",
+      "reception_date": "15/05/2026 14:34:25",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "202300",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "170000",
+          "amountVat": "32300",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "202300",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-2865 RODRIGO IVAN LORENZO SANDOVAL"
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-34-272-35",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "SOC COMERCIAL LOS CANELOS LIMITADA",
+      "vendor_rut": "78318440-0",
+      "folio": "272",
+      "document_type": "34",
+      "issue_date": "2026-05-01",
+      "reception_date": "28/04/2026 18:22:02",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "1000000",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "34",
+          "documentTypeLabel": "Documento SII 34",
+          "amountExempt": "1000000",
+          "amountNet": "0",
+          "amountVat": "0",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "1000000",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-272 SOC COMERCIAL LOS CANELOS LIMITADA"
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-34-38835-36",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "GLOBE EXPRESS SERVICES CHILE SPA",
+      "vendor_rut": "76085857-9",
+      "folio": "38835",
+      "document_type": "34",
+      "issue_date": "2026-04-30",
+      "reception_date": "30/04/2026 17:49:30",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "153299",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "34",
+          "documentTypeLabel": "Documento SII 34",
+          "amountExempt": "153299",
+          "amountNet": "0",
+          "amountVat": "0",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "153299",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-38835 GLOBE EXPRESS SERVICES CHILE SPA"
+        },
+        "context": {
+          "categoriaOc": "OC_RECOMENDADA",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-34-198750-37",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "Empresa de Transportes Transvip SPA",
+      "vendor_rut": "76102176-1",
+      "folio": "198750",
+      "document_type": "34",
+      "issue_date": "2026-05-05",
+      "reception_date": "05/05/2026 14:53:14",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "76760",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "34",
+          "documentTypeLabel": "Documento SII 34",
+          "amountExempt": "76760",
+          "amountNet": "0",
+          "amountVat": "0",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "76760",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-198750 Empresa de Transportes Transvip SPA"
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-34-3262834-38",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "SOCIEDAD CONCESIONARIA VESPUCIO ORIENTE S.A.",
+      "vendor_rut": "76376061-8",
+      "folio": "3262834",
+      "document_type": "34",
+      "issue_date": "2026-05-12",
+      "reception_date": "12/05/2026 10:37:48",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "9149",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "34",
+          "documentTypeLabel": "Documento SII 34",
+          "amountExempt": "9149",
+          "amountNet": "0",
+          "amountVat": "0",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "9149",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-3262834 SOCIEDAD CONCESIONARIA VESPUCIO ORIENTE S.A."
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-34-38910-39",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "GLOBE EXPRESS SERVICES CHILE SPA",
+      "vendor_rut": "76085857-9",
+      "folio": "38910",
+      "document_type": "34",
+      "issue_date": "2026-05-13",
+      "reception_date": "13/05/2026 17:19:05",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "7523248",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "34",
+          "documentTypeLabel": "Documento SII 34",
+          "amountExempt": "7523248",
+          "amountNet": "0",
+          "amountVat": "0",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "7523248",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-38910 GLOBE EXPRESS SERVICES CHILE SPA"
+        },
+        "context": {
+          "categoriaOc": "OC_RECOMENDADA",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-34-38912-40",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "GLOBE EXPRESS SERVICES CHILE SPA",
+      "vendor_rut": "76085857-9",
+      "folio": "38912",
+      "document_type": "34",
+      "issue_date": "2026-05-13",
+      "reception_date": "13/05/2026 17:59:24",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "2524395",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "34",
+          "documentTypeLabel": "Documento SII 34",
+          "amountExempt": "2524395",
+          "amountNet": "0",
+          "amountVat": "0",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "2524395",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-38912 GLOBE EXPRESS SERVICES CHILE SPA"
+        },
+        "context": {
+          "categoriaOc": "OC_RECOMENDADA",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-34-38913-41",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "GLOBE EXPRESS SERVICES CHILE SPA",
+      "vendor_rut": "76085857-9",
+      "folio": "38913",
+      "document_type": "34",
+      "issue_date": "2026-05-13",
+      "reception_date": "13/05/2026 18:00:07",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "161984",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "34",
+          "documentTypeLabel": "Documento SII 34",
+          "amountExempt": "161984",
+          "amountNet": "0",
+          "amountVat": "0",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "161984",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-38913 GLOBE EXPRESS SERVICES CHILE SPA"
+        },
+        "context": {
+          "categoriaOc": "OC_RECOMENDADA",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-34-12101163-42",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "Sociedad Concesionaria Costanera Norte S.A.",
+      "vendor_rut": "76496130-7",
+      "folio": "12101163",
+      "document_type": "34",
+      "issue_date": "2026-05-13",
+      "reception_date": "13/05/2026 18:40:13",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "82378",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "34",
+          "documentTypeLabel": "Documento SII 34",
+          "amountExempt": "82378",
+          "amountNet": "0",
+          "amountVat": "0",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "82378",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-12101163 Sociedad Concesionaria Costanera Norte S.A."
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-34-12101766-43",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "Sociedad Concesionaria Costanera Norte S.A.",
+      "vendor_rut": "76496130-7",
+      "folio": "12101766",
+      "document_type": "34",
+      "issue_date": "2026-05-13",
+      "reception_date": "13/05/2026 18:48:58",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "68237",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "34",
+          "documentTypeLabel": "Documento SII 34",
+          "amountExempt": "68237",
+          "amountNet": "0",
+          "amountVat": "0",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "68237",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-12101766 Sociedad Concesionaria Costanera Norte S.A."
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-34-38924-44",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "GLOBE EXPRESS SERVICES CHILE SPA",
+      "vendor_rut": "76085857-9",
+      "folio": "38924",
+      "document_type": "34",
+      "issue_date": "2026-05-14",
+      "reception_date": "14/05/2026 13:11:11",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "7655926",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "34",
+          "documentTypeLabel": "Documento SII 34",
+          "amountExempt": "7655926",
+          "amountNet": "0",
+          "amountVat": "0",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "7655926",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-38924 GLOBE EXPRESS SERVICES CHILE SPA"
+        },
+        "context": {
+          "categoriaOc": "OC_RECOMENDADA",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-34-76576-45",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "AIRSEALOGISTICS SPA",
+      "vendor_rut": "76006532-3",
+      "folio": "76576",
+      "document_type": "34",
+      "issue_date": "2026-05-15",
+      "reception_date": "15/05/2026 10:32:24",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "137214",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "34",
+          "documentTypeLabel": "Documento SII 34",
+          "amountExempt": "137214",
+          "amountNet": "0",
+          "amountVat": "0",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "137214",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-76576 AIRSEALOGISTICS SPA"
+        },
+        "context": {
+          "categoriaOc": "OC_OBLIGATORIA",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-34-76577-46",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "AIRSEALOGISTICS SPA",
+      "vendor_rut": "76006532-3",
+      "folio": "76577",
+      "document_type": "34",
+      "issue_date": "2026-05-15",
+      "reception_date": "15/05/2026 10:32:35",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "3055656",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "34",
+          "documentTypeLabel": "Documento SII 34",
+          "amountExempt": "3055656",
+          "amountNet": "0",
+          "amountVat": "0",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "3055656",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-76577 AIRSEALOGISTICS SPA"
+        },
+        "context": {
+          "categoriaOc": "OC_OBLIGATORIA",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-61-6143-47",
+      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+      "generatedAt": "2026-05-18T06:01:41.477991",
+      "vendor_name": "GLOBE EXPRESS SERVICES CHILE SPA",
+      "vendor_rut": "76085857-9",
+      "folio": "6143",
+      "document_type": "61",
+      "issue_date": "2026-05-13",
+      "reception_date": "13/05/2026 17:59:00",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "7523248",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "61",
+          "documentTypeLabel": "Nota de Crédito Electrónica (61)",
+          "amountExempt": "7523248",
+          "amountNet": "0",
+          "amountVat": "0",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "7523248",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-6143 GLOBE EXPRESS SERVICES CHILE SPA"
+        },
+        "context": {
+          "categoriaOc": "OC_RECOMENDADA",
+          "nsId": "STUB-VENDORCREDIT-001",
+          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    }
+  ]
+}

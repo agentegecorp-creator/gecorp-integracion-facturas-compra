@@ -76,7 +76,7 @@ export default async function PendingReviewPage({
     sandboxPublishStatus?: string;
     monthScope?: 'active' | 'all';
     period?: string;
-    operationalView?: 'posted' | 'pending' | 'excluded' | 'new_vendors';
+    operationalView?: 'automatic' | 'posted' | 'pending' | 'excluded' | 'new_vendors';
   }>;
 }) {
   await requireSession();

@@ -90,6 +90,9 @@ type ReviewCaseDetail = ReviewItem & {
       approverSource?: string;
       expenseCategory?: string;
       postingStatus?: string;
+      nsId?: string | number;
+      sourceRun?: string;
+      automaticCreationMode?: string;
       confidenceLevel?: string;
       classIdProposed?: string | number;
       departmentIdProposed?: string | number;
@@ -117,6 +120,7 @@ function bucketChipClass(bucket: string) {
     revision_oc: 'bg-amber-50 text-amber-700 ring-amber-200',
     error_real: 'bg-rose-50 text-rose-700 ring-rose-200',
     rejected_sii: 'bg-blue-50 text-blue-700 ring-blue-200',
+    approved_auto: 'bg-cyan-50 text-cyan-700 ring-cyan-200',
   };
 
   return styles[bucket] || 'bg-slate-100 text-slate-700 ring-slate-200';
@@ -136,6 +140,10 @@ function formatCurrency(value: string | number | null | undefined) {
 
 function formatDate(value: string | null | undefined) {
   if (!value) return '-';
+  const dateOnly = value.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (dateOnly) {
+    return `${dateOnly[3]}-${dateOnly[2]}-${dateOnly[1]}`;
+  }
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return value;
   return new Intl.DateTimeFormat('es-CL', {
@@ -162,6 +170,7 @@ function statusChipClass(status: string) {
 }
 
 function priorityLabel(bucket: string) {
+  if (bucket === 'approved_auto') return 'Cerrado';
   if (bucket === 'error_real') return 'Crítico';
   if (bucket === 'rejected_sii') return 'Alto';
   if (bucket === 'revision_oc') return 'Medio';
@@ -170,6 +179,7 @@ function priorityLabel(bucket: string) {
 
 function priorityChipClass(bucket: string) {
   if (bucket === 'error_real') return 'bg-rose-50 text-rose-700 ring-rose-200';
+  if (bucket === 'approved_auto') return 'bg-cyan-50 text-cyan-700 ring-cyan-200';
   if (bucket === 'rejected_sii') return 'bg-orange-50 text-orange-700 ring-orange-200';
   if (bucket === 'revision_oc') return 'bg-amber-50 text-amber-700 ring-amber-200';
   return 'bg-slate-100 text-slate-700 ring-slate-200';
@@ -190,6 +200,7 @@ function sandboxPublishChipClass(status: string | null | undefined) {
 }
 
 function nextActionLabel(bucket: string) {
+  if (bucket === 'approved_auto') return 'Sin acción pendiente';
   if (bucket === 'error_real') return 'Definir corrección contable';
   if (bucket === 'rejected_sii') return 'Gestionar rechazo con proveedor';
   if (bucket === 'revision_oc') return 'Validar contra OC real';
@@ -247,6 +258,7 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
   const invoiceNote = document?.invoiceNote || context?.invoiceNote;
   const invoiceDetail = document?.invoiceDetail || context?.invoiceDetail;
   const documentMemo = invoiceDetail || document?.serviceDescription || document?.memo || document?.description || document?.summary;
+  const isAutomaticCreated = selected?.bucket === 'approved_auto';
 
   return (
     <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
@@ -409,6 +421,18 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                   {bucketLabel(selected.bucket)}
                 </div>
               </div>
+              {isAutomaticCreated ? (
+                <>
+                  <div className="rounded-2xl bg-cyan-50 p-4">
+                    <p className="text-sm text-cyan-700">ID NetSuite / pipeline</p>
+                    <p className="mt-1 font-medium text-slate-900">{context?.nsId || '-'}</p>
+                  </div>
+                  <div className="rounded-2xl bg-cyan-50 p-4">
+                    <p className="text-sm text-cyan-700">Modo creación automática</p>
+                    <p className="mt-1 font-medium text-slate-900">{context?.automaticCreationMode || '-'}</p>
+                  </div>
+                </>
+              ) : null}
               <div className="rounded-2xl bg-slate-50 p-4 md:col-span-2">
                 <p className="text-sm text-slate-500">Glosa con detalle del documento</p>
                 <p className="mt-1 text-sm text-slate-800">{documentMemo || '-'}</p>
@@ -606,6 +630,11 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
               </Link>
             </div>
 
+            {isAutomaticCreated ? (
+              <div className="rounded-2xl border border-cyan-200 bg-cyan-50 p-4 text-sm text-cyan-900">
+                Documento creado automáticamente por el pipeline. Esta vista es solo de consulta y no requiere decisión manual.
+              </div>
+            ) : (
             <div className="pt-2">
               <ReviewDecisionForm
                 key={selected.id}
@@ -630,6 +659,7 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                 }}
               />
             </div>
+            )}
           </div>
         )}
       </aside>

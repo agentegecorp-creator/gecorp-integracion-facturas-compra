@@ -20,6 +20,7 @@ if (fs.existsSync(envPath)) {
 const siiProjectDir = '/Users/agentegecorp/.openclaw/workspace/proyectos/sii-netsuite';
 const appProjectDir = '/Users/agentegecorp/Projects/gecorp-integracion-facturas-compra';
 const pipelineRunSummariesPath = path.join(appProjectDir, 'src/lib/review/pipeline-run-summaries.json');
+const automaticCreatedDocumentsPath = path.join(appProjectDir, 'src/lib/review/automatic-created-documents.json');
 
 function run(command: string, args: string[], cwd: string) {
   console.log(`\n> ${command} ${args.join(' ')}`);
@@ -52,6 +53,63 @@ function monthKey(month: string, year: string) {
   return `${year}-${String(Number(month)).padStart(2, '0')}`;
 }
 
+function parseNumber(value: string | undefined) {
+  if (!value) return 0;
+  return Number(value.replace(/\./g, '').replace(',', '.')) || 0;
+}
+
+function parseCsvLine(line: string) {
+  return line.split(';');
+}
+
+function normalizeSiiDate(value: string | undefined) {
+  const raw = String(value ?? '').trim();
+  const match = raw.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+  if (!match) return raw || null;
+  return `${match[3]}-${match[2]}-${match[1]}`;
+}
+
+function readSiiRowsByDocument(csvPath: string) {
+  const text = fs.readFileSync(csvPath, 'utf8').trim();
+  const [headerLine, ...lines] = text.split(/\r?\n/);
+  const headers = parseCsvLine(headerLine);
+  const indexes = new Map(headers.map((header, index) => [header, index]));
+  const rows = new Map<string, Record<string, string | null>>();
+
+  function value(columns: string[], header: string) {
+    const index = indexes.get(header);
+    return index === undefined ? '' : columns[index];
+  }
+
+  for (const line of lines) {
+    if (!line.trim()) continue;
+    const columns = parseCsvLine(line);
+    const documentType = value(columns, 'Tipo Doc');
+    const folio = value(columns, 'Folio');
+    if (!documentType || !folio) continue;
+
+    rows.set(`${documentType}:${folio}`, {
+      vendorRut: value(columns, 'RUT Proveedor'),
+      vendorName: value(columns, 'Razon Social'),
+      folio,
+      documentType,
+      issueDate: normalizeSiiDate(value(columns, 'Fecha Docto')),
+      receptionDate: normalizeSiiDate(value(columns, 'Fecha Recepcion')),
+      amountExempt: String(parseNumber(value(columns, 'Monto Exento'))),
+      amountNet: String(parseNumber(value(columns, 'Monto Neto'))),
+      amountVat: String(parseNumber(value(columns, 'Monto IVA Recuperable'))),
+      amountVatNonRecoverable: String(parseNumber(value(columns, 'Monto Iva No Recuperable'))),
+      amountOtherTax: String(
+        parseNumber(value(columns, 'Valor Otro Impuesto')) ||
+        parseNumber(value(columns, 'Impto. Sin Derecho a Credito')),
+      ),
+      amountTotal: String(parseNumber(value(columns, 'Monto Total'))),
+    });
+  }
+
+  return rows;
+}
+
 function updatePipelineRunSummary(month: string, year: string, runDir: string, reportJsonPath: string) {
   const report = JSON.parse(fs.readFileSync(reportJsonPath, 'utf8'));
   const existing = fs.existsSync(pipelineRunSummariesPath)
@@ -78,6 +136,64 @@ function updatePipelineRunSummary(month: string, year: string, runDir: string, r
   console.log(`\nActualizado resumen pipeline para ${key}: ${pipelineRunSummariesPath}`);
 }
 
+function updateAutomaticCreatedDocuments(month: string, year: string, runDir: string, reportJsonPath: string, csvPath: string) {
+  const report = JSON.parse(fs.readFileSync(reportJsonPath, 'utf8'));
+  const created = Array.isArray(report.creadas) ? report.creadas : [];
+  const existing = fs.existsSync(automaticCreatedDocumentsPath)
+    ? JSON.parse(fs.readFileSync(automaticCreatedDocumentsPath, 'utf8'))
+    : {};
+  const siiRows = readSiiRowsByDocument(csvPath);
+  const sourceRun = path.relative(siiProjectDir, runDir);
+  const key = monthKey(month, year);
+
+  existing[key] = created.map((item: Record<string, unknown>, index: number) => {
+    const documentType = String(item.tipo_doc ?? '');
+    const folio = String(item.folio ?? '');
+    const siiRow = siiRows.get(`${documentType}:${folio}`) ?? {};
+    const vendorName = String(siiRow.vendorName ?? item.proveedor ?? '');
+
+    return {
+      id: `auto-${key}-${documentType}-${folio}-${index}`,
+      sourceRun,
+      generatedAt: report.timestamp ?? new Date().toISOString(),
+      vendor_name: vendorName,
+      vendor_rut: siiRow.vendorRut ?? null,
+      folio,
+      document_type: documentType,
+      issue_date: siiRow.issueDate ?? null,
+      reception_date: siiRow.receptionDate ?? null,
+      bucket: 'approved_auto',
+      status: 'resolved',
+      amount_total: String(siiRow.amountTotal ?? item.monto ?? 0),
+      summary_text: `Creada automáticamente por pipeline SII → NetSuite (${report.resumen?.ambiente ?? 'Sandbox-STUB'}).`,
+      sandbox_publish_status: 'published',
+      payload_json: {
+        document: {
+          documentType,
+          documentTypeLabel: documentType === '61' ? 'Nota de Crédito Electrónica (61)' : `Documento SII ${documentType}`,
+          amountExempt: siiRow.amountExempt ?? 0,
+          amountNet: siiRow.amountNet ?? 0,
+          amountVat: siiRow.amountVat ?? 0,
+          amountVatNonRecoverable: siiRow.amountVatNonRecoverable ?? 0,
+          amountOtherTax: siiRow.amountOtherTax ?? 0,
+          amountTotal: siiRow.amountTotal ?? item.monto ?? 0,
+          purchaseOrderReference: item.po_vinculada ?? null,
+          memo: `RCV F-${folio} ${vendorName}`,
+        },
+        context: {
+          categoriaOc: item.categoria_oc ?? null,
+          nsId: item.ns_id ?? null,
+          sourceRun,
+          automaticCreationMode: report.resumen?.ambiente ?? 'Sandbox-STUB',
+        },
+      },
+    };
+  });
+
+  fs.writeFileSync(automaticCreatedDocumentsPath, `${JSON.stringify(existing, null, 2)}\n`);
+  console.log(`Actualizados documentos automáticos para ${key}: ${automaticCreatedDocumentsPath}`);
+}
+
 function main() {
   const monthArg = process.argv[2];
   const yearArg = process.argv[3];
@@ -95,6 +211,7 @@ function main() {
   console.log(JSON.stringify(summary, null, 2));
 
   updatePipelineRunSummary(month, year, runDir, summary.report_json_path);
+  updateAutomaticCreatedDocuments(month, year, runDir, summary.report_json_path, summary.csv_path);
   run('npx', ['tsx', 'scripts/generate-rcv-sii-summary.ts'], appProjectDir);
   run('npx', ['tsx', 'scripts/import-review-cases-from-builder-json.ts'], appProjectDir);
 

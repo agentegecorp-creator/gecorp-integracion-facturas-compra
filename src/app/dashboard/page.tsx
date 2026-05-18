@@ -261,6 +261,7 @@ export default async function DashboardPage({
             label="Creadas automáticas"
             value={operationalSummary.creadasAutomaticas}
             help="Documentos auto-creables por el pipeline SII → NetSuite"
+            href={`/pendiente-revision?${new URLSearchParams({ operationalView: 'automatic', period: dashboardPeriods.selected.key }).toString()}`}
           />
           <StatCard
             label="Creadas manuales"
