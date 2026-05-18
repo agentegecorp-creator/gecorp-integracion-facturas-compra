@@ -13,6 +13,7 @@ import {
 import pipelineRunSummaries from '@/lib/review/pipeline-run-summaries.json';
 import rcvSiiSummaries from '@/lib/review/rcv-sii-summaries.json';
 import automaticCreatedDocuments from '@/lib/review/automatic-created-documents.json';
+import unclassifiedDocuments from '@/lib/review/unclassified-documents.json';
 
 let cachedHasSandboxPublishStatus: boolean | null = null;
 
@@ -117,6 +118,8 @@ type AutomaticCreatedDocument = {
   };
 };
 
+type SyntheticReviewDocument = AutomaticCreatedDocument;
+
 function periodMonthKey(period?: DashboardPeriod) {
   if (!period?.startDate) return null;
   return period.startDate.slice(0, 7);
@@ -124,6 +127,16 @@ function periodMonthKey(period?: DashboardPeriod) {
 
 function automaticDocumentsForPeriod(period?: DashboardPeriod) {
   const documentsByMonth = automaticCreatedDocuments as Record<string, AutomaticCreatedDocument[]>;
+
+  if (period) {
+    return documentsByMonth[periodMonthKey(period) ?? ''] ?? [];
+  }
+
+  return Object.values(documentsByMonth).flat();
+}
+
+function unclassifiedDocumentsForPeriod(period?: DashboardPeriod) {
+  const documentsByMonth = unclassifiedDocuments as Record<string, SyntheticReviewDocument[]>;
 
   if (period) {
     return documentsByMonth[periodMonthKey(period) ?? ''] ?? [];
@@ -208,7 +221,8 @@ export async function getDashboardSummary(period?: DashboardPeriod) {
   if (siiSummary) {
     const rcvTotalDocuments = siiSummary.rows.reduce((total, row) => total + row.totalDocuments, 0);
     const mesaCases = Number(totalCases.rows[0]?.total ?? 0);
-    operationalSummary.fueraDeFlujo = Math.max(
+    const unclassifiedCount = unclassifiedDocumentsForPeriod(period).length;
+    operationalSummary.fueraDeFlujo = unclassifiedCount || Math.max(
       rcvTotalDocuments - operationalSummary.creadasAutomaticas - mesaCases,
       0,
     );
@@ -288,11 +302,15 @@ export async function listReviewCases(
     sandboxPublishStatus?: string;
     monthScope?: 'active' | 'all';
     period?: DashboardPeriod;
-    operationalView?: 'automatic' | 'posted' | 'pending' | 'excluded' | 'new_vendors';
+    operationalView?: 'automatic' | 'posted' | 'pending' | 'unclassified' | 'excluded' | 'new_vendors';
   },
 ) {
   if (filters?.operationalView === 'automatic') {
     return automaticDocumentsForPeriod(filters.period).slice(0, limit);
+  }
+
+  if (filters?.operationalView === 'unclassified') {
+    return unclassifiedDocumentsForPeriod(filters.period).slice(0, limit);
   }
 
   const hasSandboxPublishStatus = await hasSandboxPublishStatusColumn();
@@ -405,6 +423,7 @@ export async function getReviewQueueCounts(monthScope: 'active' | 'all' = 'activ
       automatic: automaticDocumentsForPeriod(period).length,
       posted: 0,
       pending: 0,
+      unclassified: unclassifiedDocumentsForPeriod(period).length,
       excluded: 0,
       new_vendors: 0,
     },
@@ -481,6 +500,10 @@ export async function listReadyForSandbox(limit = 100) {
 export async function getReviewCaseById(id: string) {
   if (id.startsWith('auto-')) {
     return automaticDocumentsForPeriod().find((item) => item.id === id) ?? null;
+  }
+
+  if (id.startsWith('unclassified-')) {
+    return unclassifiedDocumentsForPeriod().find((item) => item.id === id) ?? null;
   }
 
   const result = await db.query(

@@ -21,6 +21,7 @@ const siiProjectDir = '/Users/agentegecorp/.openclaw/workspace/proyectos/sii-net
 const appProjectDir = '/Users/agentegecorp/Projects/gecorp-integracion-facturas-compra';
 const pipelineRunSummariesPath = path.join(appProjectDir, 'src/lib/review/pipeline-run-summaries.json');
 const automaticCreatedDocumentsPath = path.join(appProjectDir, 'src/lib/review/automatic-created-documents.json');
+const unclassifiedDocumentsPath = path.join(appProjectDir, 'src/lib/review/unclassified-documents.json');
 
 function run(command: string, args: string[], cwd: string) {
   console.log(`\n> ${command} ${args.join(' ')}`);
@@ -194,6 +195,71 @@ function updateAutomaticCreatedDocuments(month: string, year: string, runDir: st
   console.log(`Actualizados documentos automáticos para ${key}: ${automaticCreatedDocumentsPath}`);
 }
 
+function updateUnclassifiedDocuments(month: string, year: string, runDir: string, reportJsonPath: string, csvPath: string) {
+  const report = JSON.parse(fs.readFileSync(reportJsonPath, 'utf8'));
+  const existing = fs.existsSync(unclassifiedDocumentsPath)
+    ? JSON.parse(fs.readFileSync(unclassifiedDocumentsPath, 'utf8'))
+    : {};
+  const siiRows = readSiiRowsByDocument(csvPath);
+  const sourceRun = path.relative(siiProjectDir, runDir);
+  const key = monthKey(month, year);
+  const processedFolios = new Set<string>();
+
+  for (const collectionName of ['creadas', 'pendientes_aprobacion', 'rechazadas_sii', 'revision_oc_referencial', 'errores']) {
+    const collection = Array.isArray(report[collectionName]) ? report[collectionName] : [];
+    for (const item of collection) {
+      if (item?.folio !== undefined && item?.folio !== null) {
+        processedFolios.add(String(item.folio));
+      }
+    }
+  }
+
+  existing[key] = Array.from(siiRows.values())
+    .filter((row) => row.folio && !processedFolios.has(String(row.folio)))
+    .map((row, index) => {
+      const folio = String(row.folio ?? '');
+      const documentType = String(row.documentType ?? '');
+      const vendorName = String(row.vendorName ?? '');
+
+      return {
+        id: `unclassified-${key}-${documentType}-${folio}-${index}`,
+        sourceRun,
+        generatedAt: report.timestamp ?? new Date().toISOString(),
+        vendor_name: vendorName,
+        vendor_rut: row.vendorRut ?? null,
+        folio,
+        document_type: documentType,
+        issue_date: row.issueDate ?? null,
+        reception_date: row.receptionDate ?? null,
+        bucket: 'unclassified_rcv',
+        status: 'exception',
+        amount_total: String(row.amountTotal ?? 0),
+        summary_text: 'Documento del RCV sin clasificación operativa en la corrida SII → NetSuite.',
+        sandbox_publish_status: 'not_ready',
+        payload_json: {
+          document: {
+            documentType,
+            documentTypeLabel: `Documento SII ${documentType}`,
+            amountExempt: row.amountExempt ?? 0,
+            amountNet: row.amountNet ?? 0,
+            amountVat: row.amountVat ?? 0,
+            amountVatNonRecoverable: row.amountVatNonRecoverable ?? 0,
+            amountOtherTax: row.amountOtherTax ?? 0,
+            amountTotal: row.amountTotal ?? 0,
+            memo: `RCV F-${folio} ${vendorName}`,
+          },
+          context: {
+            motivo: 'No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.',
+            sourceRun,
+          },
+        },
+      };
+    });
+
+  fs.writeFileSync(unclassifiedDocumentsPath, `${JSON.stringify(existing, null, 2)}\n`);
+  console.log(`Actualizados documentos fuera de flujo para ${key}: ${unclassifiedDocumentsPath}`);
+}
+
 function main() {
   const monthArg = process.argv[2];
   const yearArg = process.argv[3];
@@ -212,6 +278,7 @@ function main() {
 
   updatePipelineRunSummary(month, year, runDir, summary.report_json_path);
   updateAutomaticCreatedDocuments(month, year, runDir, summary.report_json_path, summary.csv_path);
+  updateUnclassifiedDocuments(month, year, runDir, summary.report_json_path, summary.csv_path);
   run('npx', ['tsx', 'scripts/generate-rcv-sii-summary.ts'], appProjectDir);
   run('npx', ['tsx', 'scripts/import-review-cases-from-builder-json.ts'], appProjectDir);
 

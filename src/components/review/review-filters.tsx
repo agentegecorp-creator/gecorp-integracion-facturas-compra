@@ -12,6 +12,7 @@ type FilterProps = {
       automatic: number;
       posted: number;
       pending: number;
+      unclassified: number;
       excluded: number;
       new_vendors: number;
     };
@@ -56,6 +57,7 @@ const OPERATIONAL_VIEW_OPTIONS = [
   { value: 'automatic', label: 'Creadas automáticas' },
   { value: 'posted', label: 'Creadas manuales' },
   { value: 'pending', label: 'Por contabilizar' },
+  { value: 'unclassified', label: 'Fuera de flujo' },
   { value: 'excluded', label: 'Excluidos' },
   { value: 'new_vendors', label: 'Facturas nuevos proveedores' },
 ];
@@ -85,7 +87,7 @@ export function ReviewFilters({
 
   return (
     <div className="mt-6 space-y-4">
-      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
+      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-6">
         <a href={`/pendiente-revision?${buildQuery({ operationalView: 'automatic', ...scopeParams })}`} className={`rounded-2xl border px-4 py-3 text-sm hover:bg-cyan-100 ${currentOperationalView === 'automatic' ? 'border-cyan-400 bg-cyan-100 text-cyan-900' : 'border-cyan-200 bg-cyan-50 text-cyan-800'}`}>
           Creadas automáticas ({operationalCounts?.automatic ?? 0})
         </a>
@@ -94,6 +96,9 @@ export function ReviewFilters({
         </a>
         <a href={`/pendiente-revision?${buildQuery({ operationalView: 'pending', ...scopeParams })}`} className={`rounded-2xl border px-4 py-3 text-sm hover:bg-indigo-100 ${currentOperationalView === 'pending' ? 'border-indigo-400 bg-indigo-100 text-indigo-900' : 'border-indigo-200 bg-indigo-50 text-indigo-800'}`}>
           Por contabilizar ({operationalCounts?.pending ?? 0})
+        </a>
+        <a href={`/pendiente-revision?${buildQuery({ operationalView: 'unclassified', ...scopeParams })}`} className={`rounded-2xl border px-4 py-3 text-sm hover:bg-amber-100 ${currentOperationalView === 'unclassified' ? 'border-amber-400 bg-amber-100 text-amber-900' : 'border-amber-200 bg-amber-50 text-amber-800'}`}>
+          Fuera de flujo ({operationalCounts?.unclassified ?? 0})
         </a>
         <a href={`/pendiente-revision?${buildQuery({ operationalView: 'excluded', ...scopeParams })}`} className={`rounded-2xl border px-4 py-3 text-sm hover:bg-slate-100 ${currentOperationalView === 'excluded' ? 'border-slate-400 bg-slate-100 text-slate-900' : 'border-slate-200 bg-slate-50 text-slate-700'}`}>
           Excluidos ({operationalCounts?.excluded ?? 0})

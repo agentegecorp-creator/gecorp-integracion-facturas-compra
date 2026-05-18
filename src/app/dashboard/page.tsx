@@ -279,6 +279,7 @@ export default async function DashboardPage({
             label="Fuera de flujo"
             value={operationalSummary.fueraDeFlujo}
             help="Documentos del RCV sin clasificación operativa en la corrida"
+            href={`/pendiente-revision?${new URLSearchParams({ operationalView: 'unclassified', period: dashboardPeriods.selected.key }).toString()}`}
           />
           <StatCard
             label="Excluidos"
