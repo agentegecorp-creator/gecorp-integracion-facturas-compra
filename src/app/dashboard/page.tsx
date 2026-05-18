@@ -256,7 +256,7 @@ export default async function DashboardPage({
           </form>
         </div>
 
-        <div className="mt-8 grid gap-4 md:grid-cols-5">
+        <div className="mt-8 grid gap-4 md:grid-cols-3 xl:grid-cols-6">
           <StatCard
             label="Creadas automáticas"
             value={operationalSummary.creadasAutomaticas}
@@ -273,6 +273,11 @@ export default async function DashboardPage({
             value={operationalSummary.porContabilizar}
             help="Documentos todavía pendientes de cierre operativo"
             href={`/pendiente-revision?${new URLSearchParams({ operationalView: 'pending', period: dashboardPeriods.selected.key }).toString()}`}
+          />
+          <StatCard
+            label="Fuera de flujo"
+            value={operationalSummary.fueraDeFlujo}
+            help="Documentos del RCV sin clasificación operativa en la corrida"
           />
           <StatCard
             label="Excluidos"

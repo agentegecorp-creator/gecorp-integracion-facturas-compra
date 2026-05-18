@@ -135,6 +135,7 @@ export async function getDashboardSummary(period?: DashboardPeriod) {
     creadasManuales: 0,
     creadasAutomaticas: 0,
     porContabilizar: 0,
+    fueraDeFlujo: 0,
     excluidos: 0,
     nuevosProveedores: 0,
   };
@@ -173,6 +174,13 @@ export async function getDashboardSummary(period?: DashboardPeriod) {
   const siiSummary = (rcvSiiSummaries as Record<string, RcvSiiSummary>)[monthKey];
 
   if (siiSummary) {
+    const rcvTotalDocuments = siiSummary.rows.reduce((total, row) => total + row.totalDocuments, 0);
+    const mesaCases = Number(totalCases.rows[0]?.total ?? 0);
+    operationalSummary.fueraDeFlujo = Math.max(
+      rcvTotalDocuments - operationalSummary.creadasAutomaticas - mesaCases,
+      0,
+    );
+
     return {
       totalCases: totalCases.rows[0]?.total ?? 0,
       byBucket: byBucket.rows,

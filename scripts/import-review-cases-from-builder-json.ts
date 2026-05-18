@@ -16,8 +16,6 @@ if (fs.existsSync(envPath)) {
   }
 }
 
-import { db } from '../src/lib/db/client';
-
 type BuilderCase = {
   case_id: string;
   source_system: string;
@@ -91,6 +89,7 @@ function summaryFromCase(item: BuilderCase) {
 }
 
 async function main() {
+  const { db } = await import('../src/lib/db/client');
   const raw = fs.readFileSync(inputPath, 'utf8');
   const items = JSON.parse(raw) as BuilderCase[];
   let inserted = 0;
@@ -250,6 +249,5 @@ async function main() {
 
 main().catch(async (error) => {
   console.error(error);
-  await db.end();
   process.exit(1);
 });
