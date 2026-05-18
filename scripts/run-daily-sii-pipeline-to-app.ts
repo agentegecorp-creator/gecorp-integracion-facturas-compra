@@ -19,6 +19,7 @@ if (fs.existsSync(envPath)) {
 
 const siiProjectDir = '/Users/agentegecorp/.openclaw/workspace/proyectos/sii-netsuite';
 const appProjectDir = '/Users/agentegecorp/Projects/gecorp-integracion-facturas-compra';
+const pipelineRunSummariesPath = path.join(appProjectDir, 'src/lib/review/pipeline-run-summaries.json');
 
 function run(command: string, args: string[], cwd: string) {
   console.log(`\n> ${command} ${args.join(' ')}`);
@@ -47,6 +48,36 @@ function currentMonthYear() {
   };
 }
 
+function monthKey(month: string, year: string) {
+  return `${year}-${String(Number(month)).padStart(2, '0')}`;
+}
+
+function updatePipelineRunSummary(month: string, year: string, runDir: string, reportJsonPath: string) {
+  const report = JSON.parse(fs.readFileSync(reportJsonPath, 'utf8'));
+  const existing = fs.existsSync(pipelineRunSummariesPath)
+    ? JSON.parse(fs.readFileSync(pipelineRunSummariesPath, 'utf8'))
+    : {};
+  const resumen = report.resumen ?? {};
+  const sourceRun = path.relative(siiProjectDir, runDir);
+  const key = monthKey(month, year);
+
+  existing[key] = {
+    sourceRun,
+    generatedAt: report.timestamp ?? new Date().toISOString(),
+    mode: 'dry-run / Sandbox-STUB',
+    createdAutomatically: Number(resumen.creadas ?? 0),
+    duplicates: Number(resumen.duplicadas ?? 0),
+    pendingApproval: Number(resumen.pendientes_aprobacion ?? 0),
+    newVendors: Number(resumen.proveedores_nuevos ?? 0),
+    rejectedSii: Number(resumen.rechazadas_sii ?? 0),
+    accountingErrors: Number(resumen.errores ?? 0),
+    revisionOcReferential: Number(resumen.revision_oc_referencial ?? 0),
+  };
+
+  fs.writeFileSync(pipelineRunSummariesPath, `${JSON.stringify(existing, null, 2)}\n`);
+  console.log(`\nActualizado resumen pipeline para ${key}: ${pipelineRunSummariesPath}`);
+}
+
 function main() {
   const monthArg = process.argv[2];
   const yearArg = process.argv[3];
@@ -63,6 +94,8 @@ function main() {
   console.log('\nResumen wrapper:');
   console.log(JSON.stringify(summary, null, 2));
 
+  updatePipelineRunSummary(month, year, runDir, summary.report_json_path);
+  run('npx', ['tsx', 'scripts/generate-rcv-sii-summary.ts'], appProjectDir);
   run('npx', ['tsx', 'scripts/import-review-cases-from-builder-json.ts'], appProjectDir);
 
   console.log('\nFlujo operativo completo ejecutado:');

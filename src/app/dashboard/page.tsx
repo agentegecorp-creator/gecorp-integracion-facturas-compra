@@ -3,13 +3,22 @@ import { requireSession } from '@/lib/auth/guards';
 import { getDashboardSummary, listReviewCases } from '@/lib/db/queries';
 import { estadoLabel, etapaLabel } from '@/lib/review/labels';
 
-function StatCard({ label, value, help, href }: { label: string; value: string | number; help: string; href: string }) {
-  return (
-    <Link href={href} className="block rounded-2xl bg-indigo-50 p-4 shadow-sm ring-1 ring-indigo-100 transition hover:bg-indigo-100">
+function StatCard({ label, value, help, href }: { label: string; value: string | number; help: string; href?: string }) {
+  const className = "block rounded-2xl bg-indigo-50 p-4 shadow-sm ring-1 ring-indigo-100 transition hover:bg-indigo-100";
+  const content = (
+    <>
       <p className="text-sm text-slate-600">{label}</p>
       <p className="mt-2 text-3xl font-semibold text-slate-900">{value}</p>
       <p className="mt-1 text-xs text-slate-500">{help}</p>
-    </Link>
+    </>
+  );
+
+  if (!href) {
+    return <div className={className}>{content}</div>;
+  }
+
+  return (
+    <Link href={href} className={className}>{content}</Link>
   );
 }
 
@@ -206,6 +215,7 @@ export default async function DashboardPage({
   const revisionOcCount = summary.byBucket.find((row) => row.bucket === 'revision_oc')?.total ?? 0;
   const errorRealCount = summary.byBucket.find((row) => row.bucket === 'error_real')?.total ?? 0;
   const operationalSummary = summary.operationalSummary;
+  const pipelineSummary = summary.pipelineSummary;
   const documentTypeSummary = summary.documentTypeSummary;
   const rcvSource = summary.documentTypeSummarySource;
   const rcvTotalDocuments = documentTypeSummary.reduce((total, row) => total + row.totalDocuments, 0);
@@ -223,7 +233,13 @@ export default async function DashboardPage({
             <p className="mt-2 max-w-3xl text-sm text-slate-600">
               Bienvenido, {session.name}. Esta portada muestra la carga operativa real para {dashboardPeriods.selected.detail} y desde dónde entrar a resolverla.
             </p>
-            <p className="mt-2 text-xs font-medium text-emerald-700">Última corrida SII importada: 7 casos nuevos de mayo visibles arriba en la cola.</p>
+            {pipelineSummary ? (
+              <p className="mt-2 text-xs font-medium text-emerald-700">
+                Última corrida SII: {pipelineSummary.createdAutomatically} creadas automáticas en {pipelineSummary.mode}; los casos manuales siguen en la Mesa.
+              </p>
+            ) : (
+              <p className="mt-2 text-xs font-medium text-emerald-700">Última corrida SII importada visible en la cola de revisión.</p>
+            )}
             <div className="mt-4 flex flex-wrap gap-3 text-xs text-slate-500">
               <span>Origen: Postgres + mission-control</span>
               <span>•</span>
@@ -240,11 +256,16 @@ export default async function DashboardPage({
           </form>
         </div>
 
-        <div className="mt-8 grid gap-4 md:grid-cols-4">
+        <div className="mt-8 grid gap-4 md:grid-cols-5">
           <StatCard
-            label="Contabilizados"
-            value={operationalSummary.contabilizados}
-            help="Documentos ya resueltos y contabilizados en la operación"
+            label="Creadas automáticas"
+            value={operationalSummary.creadasAutomaticas}
+            help="Documentos auto-creables por el pipeline SII → NetSuite"
+          />
+          <StatCard
+            label="Creadas manuales"
+            value={operationalSummary.creadasManuales}
+            help="Casos resueltos por acción humana desde la Mesa"
             href={`/pendiente-revision?${new URLSearchParams({ operationalView: 'posted', period: dashboardPeriods.selected.key }).toString()}`}
           />
           <StatCard

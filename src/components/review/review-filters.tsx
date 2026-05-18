@@ -52,7 +52,7 @@ const SANDBOX_PUBLISH_OPTIONS = [
 
 const OPERATIONAL_VIEW_OPTIONS = [
   { value: '', label: 'Vista operativa: todas' },
-  { value: 'posted', label: 'Contabilizados' },
+  { value: 'posted', label: 'Creadas manuales' },
   { value: 'pending', label: 'Por contabilizar' },
   { value: 'excluded', label: 'Excluidos' },
   { value: 'new_vendors', label: 'Facturas nuevos proveedores' },
@@ -85,7 +85,7 @@ export function ReviewFilters({
     <div className="mt-6 space-y-4">
       <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
         <a href={`/pendiente-revision?${buildQuery({ operationalView: 'posted', ...scopeParams })}`} className={`rounded-2xl border px-4 py-3 text-sm hover:bg-emerald-100 ${currentOperationalView === 'posted' ? 'border-emerald-400 bg-emerald-100 text-emerald-900' : 'border-emerald-200 bg-emerald-50 text-emerald-800'}`}>
-          Contabilizados ({operationalCounts?.posted ?? 0})
+          Creadas manuales ({operationalCounts?.posted ?? 0})
         </a>
         <a href={`/pendiente-revision?${buildQuery({ operationalView: 'pending', ...scopeParams })}`} className={`rounded-2xl border px-4 py-3 text-sm hover:bg-indigo-100 ${currentOperationalView === 'pending' ? 'border-indigo-400 bg-indigo-100 text-indigo-900' : 'border-indigo-200 bg-indigo-50 text-indigo-800'}`}>
           Por contabilizar ({operationalCounts?.pending ?? 0})

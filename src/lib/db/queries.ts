@@ -10,6 +10,7 @@ import {
   paymentTermDays,
   paymentTermsOptions,
 } from '@/lib/review/catalogs';
+import pipelineRunSummaries from '@/lib/review/pipeline-run-summaries.json';
 import rcvSiiSummaries from '@/lib/review/rcv-sii-summaries.json';
 
 let cachedHasSandboxPublishStatus: boolean | null = null;
@@ -81,6 +82,19 @@ type RcvSiiSummary = {
   rows: DocumentTypeSummaryRow[];
 };
 
+type PipelineRunSummary = {
+  sourceRun: string;
+  generatedAt: string;
+  mode: string;
+  createdAutomatically: number;
+  duplicates: number;
+  pendingApproval: number;
+  newVendors: number;
+  rejectedSii: number;
+  accountingErrors: number;
+  revisionOcReferential: number;
+};
+
 function periodMonthKey(period?: DashboardPeriod) {
   if (!period?.startDate) return null;
   return period.startDate.slice(0, 7);
@@ -118,7 +132,8 @@ export async function getDashboardSummary(period?: DashboardPeriod) {
   ]);
 
   const operationalSummary = {
-    contabilizados: 0,
+    creadasManuales: 0,
+    creadasAutomaticas: 0,
     porContabilizar: 0,
     excluidos: 0,
     nuevosProveedores: 0,
@@ -134,7 +149,7 @@ export async function getDashboardSummary(period?: DashboardPeriod) {
     const docType = String(document.documentType || row.document_type || 'Sin tipo');
 
     if (row.status === 'resolved') {
-      operationalSummary.contabilizados += 1;
+      operationalSummary.creadasManuales += 1;
     } else {
       operationalSummary.porContabilizar += 1;
     }
@@ -148,7 +163,14 @@ export async function getDashboardSummary(period?: DashboardPeriod) {
     }
   }
 
-  const siiSummary = (rcvSiiSummaries as Record<string, RcvSiiSummary>)[periodMonthKey(period) ?? ''];
+  const monthKey = periodMonthKey(period) ?? '';
+  const pipelineSummary = (pipelineRunSummaries as Record<string, PipelineRunSummary>)[monthKey];
+
+  if (pipelineSummary) {
+    operationalSummary.creadasAutomaticas = pipelineSummary.createdAutomatically;
+  }
+
+  const siiSummary = (rcvSiiSummaries as Record<string, RcvSiiSummary>)[monthKey];
 
   if (siiSummary) {
     return {
@@ -156,6 +178,7 @@ export async function getDashboardSummary(period?: DashboardPeriod) {
       byBucket: byBucket.rows,
       byStatus: byStatus.rows,
       operationalSummary,
+      pipelineSummary: pipelineSummary ?? null,
       documentTypeSummary: siiSummary.rows,
       documentTypeSummarySource: {
         type: 'sii_csv' as const,
@@ -209,6 +232,7 @@ export async function getDashboardSummary(period?: DashboardPeriod) {
     byBucket: byBucket.rows,
     byStatus: byStatus.rows,
     operationalSummary,
+    pipelineSummary: pipelineSummary ?? null,
     documentTypeSummary,
     documentTypeSummarySource: {
       type: 'review_cases' as const,
