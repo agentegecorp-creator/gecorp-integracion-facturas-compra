@@ -14,7 +14,7 @@ type ReviewItem = {
   status: string;
   amount_total: string | null;
   document_type?: string | null;
-  issue_date?: string | null;
+  issue_date?: string | Date | null;
   summary_text?: string | null;
   sandbox_publish_status?: string | null;
 };
@@ -138,14 +138,15 @@ function formatCurrency(value: string | number | null | undefined) {
   }).format(amount);
 }
 
-function formatDate(value: string | null | undefined) {
+function formatDate(value: string | Date | null | undefined) {
   if (!value) return '-';
-  const dateOnly = value.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  const raw = value instanceof Date ? value.toISOString() : String(value);
+  const dateOnly = raw.match(/^(\d{4})-(\d{2})-(\d{2})/);
   if (dateOnly) {
     return `${dateOnly[3]}-${dateOnly[2]}-${dateOnly[1]}`;
   }
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return value;
+  const date = new Date(raw);
+  if (Number.isNaN(date.getTime())) return raw;
   return new Intl.DateTimeFormat('es-CL', {
     year: 'numeric',
     month: '2-digit',
