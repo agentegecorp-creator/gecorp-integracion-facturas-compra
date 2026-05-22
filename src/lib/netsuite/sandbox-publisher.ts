@@ -1,4 +1,5 @@
 import crypto from 'node:crypto';
+import fs from 'node:fs';
 
 type ReviewCaseRow = {
   id: string;
@@ -22,6 +23,12 @@ type NetSuiteConfig = {
   tokenSecret: string;
   baseUrl: string;
 };
+
+const LEGACY_SANDBOX_CONFIG_PATHS = [
+  process.env.NETSUITE_SB_CONFIG_PATH,
+  '/Users/agentegecorp/.openclaw/workspace/proyectos/sii-netsuite/sandbox_runner.real.json',
+  '/Users/agentegecorp/.openclaw/workspace/proyectos/sii-netsuite/sandbox_runner.marzo.real.json',
+].filter(Boolean) as string[];
 
 const DOCUMENT_TYPE_NS: Record<string, number> = {
   '33': 2,
@@ -57,7 +64,7 @@ function requiredEnv(name: string) {
 }
 
 export function hasNetSuiteSandboxConfig() {
-  return [
+  const hasEnvConfig = [
     'NETSUITE_SB_ACCOUNT',
     'NETSUITE_SB_CONSUMER_KEY',
     'NETSUITE_SB_CONSUMER_SECRET',
@@ -65,9 +72,53 @@ export function hasNetSuiteSandboxConfig() {
     'NETSUITE_SB_TOKEN_SECRET',
     'NETSUITE_SB_BASE_URL',
   ].every((name) => Boolean(process.env[name]?.trim()));
+
+  return hasEnvConfig || Boolean(findLegacySandboxConfigPath());
+}
+
+function findLegacySandboxConfigPath() {
+  return LEGACY_SANDBOX_CONFIG_PATHS.find((configPath) => fs.existsSync(configPath));
+}
+
+function loadLegacyConfig(): NetSuiteConfig | null {
+  const configPath = findLegacySandboxConfigPath();
+  if (!configPath) return null;
+
+  const parsed = JSON.parse(fs.readFileSync(configPath, 'utf8')) as {
+    netsuite?: {
+      account?: string;
+      consumer_key?: string;
+      consumer_secret?: string;
+      token_id?: string;
+      token_secret?: string;
+      base_url?: string;
+    };
+  };
+  const netsuite = parsed.netsuite ?? {};
+  const required = [
+    netsuite.account,
+    netsuite.consumer_key,
+    netsuite.consumer_secret,
+    netsuite.token_id,
+    netsuite.token_secret,
+    netsuite.base_url,
+  ];
+  if (required.some((value) => !String(value ?? '').trim())) return null;
+
+  return {
+    account: String(netsuite.account),
+    consumerKey: String(netsuite.consumer_key),
+    consumerSecret: String(netsuite.consumer_secret),
+    tokenId: String(netsuite.token_id),
+    tokenSecret: String(netsuite.token_secret),
+    baseUrl: String(netsuite.base_url).replace(/\/$/, ''),
+  };
 }
 
 function loadConfig(): NetSuiteConfig {
+  const legacyConfig = loadLegacyConfig();
+  if (legacyConfig) return legacyConfig;
+
   return {
     account: requiredEnv('NETSUITE_SB_ACCOUNT'),
     consumerKey: requiredEnv('NETSUITE_SB_CONSUMER_KEY'),
