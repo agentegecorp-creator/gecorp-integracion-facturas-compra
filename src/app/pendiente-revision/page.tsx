@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import { requireSession } from '@/lib/auth/guards';
-import { getReviewQueueCounts, listReviewCases } from '@/lib/db/queries';
+import { countReadyForSandbox, getReviewQueueCounts, listReviewCases } from '@/lib/db/queries';
 import { ReviewFilters } from '@/components/review/review-filters';
 import { ReviewWorkbench } from '@/components/review/review-workbench';
+import { SandboxPublishPanel } from '@/components/review/sandbox-publish-panel';
+import { hasNetSuiteSandboxConfig } from '@/lib/netsuite/sandbox-publisher';
 
 type ReviewPeriod =
   | {
@@ -90,7 +92,7 @@ export default async function PendingReviewPage({
     ? undefined
     : { startDate: reviewPeriod.startDate, endDate: reviewPeriod.endDate };
   const operationalView = resolvedSearchParams.operationalView || '';
-  const [items, counts] = await Promise.all([
+  const [items, counts, readyForSandboxCount] = await Promise.all([
     listReviewCases(100, {
       bucket: bucket || undefined,
       status: status || undefined,
@@ -100,6 +102,7 @@ export default async function PendingReviewPage({
       operationalView: operationalView || undefined,
     }),
     getReviewQueueCounts(monthScope, datePeriod),
+    countReadyForSandbox(datePeriod),
   ]);
 
   return (
@@ -170,6 +173,12 @@ export default async function PendingReviewPage({
           counts={counts}
         />
       </section>
+
+      <SandboxPublishPanel
+        readyCount={readyForSandboxCount}
+        configReady={hasNetSuiteSandboxConfig()}
+        period={datePeriod}
+      />
 
       <ReviewWorkbench items={items} />
     </main>

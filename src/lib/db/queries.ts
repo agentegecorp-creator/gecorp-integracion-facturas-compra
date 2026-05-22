@@ -14,6 +14,58 @@ import {
 } from '@/lib/review/catalogs';
 
 let cachedHasSandboxPublishStatus: boolean | null = null;
+let sandboxPublishSchemaReady: boolean | null = null;
+
+export async function ensureSandboxPublishSchema() {
+  if (sandboxPublishSchemaReady) {
+    return;
+  }
+
+  await db.query(`
+    alter table review_cases
+      add column if not exists sandbox_publish_status text default 'not_ready',
+      add column if not exists sandbox_published_at timestamptz,
+      add column if not exists sandbox_record_type text,
+      add column if not exists sandbox_record_id text,
+      add column if not exists sandbox_publish_error text
+  `);
+
+  await db.query(`
+    create table if not exists sandbox_publish_runs (
+      id uuid primary key default gen_random_uuid(),
+      user_id uuid references users(id),
+      status text not null default 'running',
+      limit_count integer not null default 0,
+      attempted_count integer not null default 0,
+      created_count integer not null default 0,
+      skipped_count integer not null default 0,
+      failed_count integer not null default 0,
+      details_json jsonb not null default '{}'::jsonb,
+      created_at timestamptz not null default now(),
+      finished_at timestamptz
+    )
+  `);
+
+  await db.query(`
+    create table if not exists sandbox_publish_items (
+      id uuid primary key default gen_random_uuid(),
+      run_id uuid references sandbox_publish_runs(id),
+      case_id uuid references review_cases(id),
+      record_type text,
+      tran_id text,
+      entity_id text,
+      status text not null,
+      netsuite_record_id text,
+      error_text text,
+      payload_json jsonb,
+      result_json jsonb,
+      created_at timestamptz not null default now()
+    )
+  `);
+
+  sandboxPublishSchemaReady = true;
+  cachedHasSandboxPublishStatus = true;
+}
 
 async function hasSandboxPublishStatusColumn() {
   if (cachedHasSandboxPublishStatus !== null) {
@@ -31,6 +83,18 @@ async function hasSandboxPublishStatusColumn() {
 
   cachedHasSandboxPublishStatus = Boolean(result.rows[0]?.exists);
   return cachedHasSandboxPublishStatus;
+}
+
+function readyForSandboxWhereClause(alias = 'review_cases') {
+  return `
+    ${alias}.status = 'resolved'
+    and coalesce(${alias}.sandbox_publish_status, 'not_ready') in ('not_ready', 'ready', 'failed')
+    and ${alias}.bucket <> 'rejected_sii'
+    and coalesce(${alias}.payload_json->'context'->>'requiereRevisionManual', '') not in ('si', 'SI', 'true', 'TRUE', 'nuevo_proveedor')
+    and coalesce(${alias}.payload_json->'context'->>'error', '') = ''
+    and coalesce(${alias}.payload_json->'context'->>'vendorIdProposed', ${alias}.payload_json->'context'->>'entity', '') ~ '^[0-9]+$'
+    and coalesce(${alias}.payload_json->'context'->>'accountIdProposed', ${alias}.payload_json->'context'->>'referenciaAccount', ${alias}.payload_json->'document'->>'accountId', '') ~ '^[0-9]+$'
+  `;
 }
 
 export async function healthcheckDb() {
@@ -487,11 +551,14 @@ export async function getReviewQueueCounts(monthScope: 'active' | 'all' = 'activ
   return counts;
 }
 
-export async function listReadyForSandbox(limit = 100) {
-  const hasSandboxPublishStatus = await hasSandboxPublishStatusColumn();
+export async function listReadyForSandbox(limit = 100, period?: DashboardPeriod) {
+  await ensureSandboxPublishSchema();
+  const values: Array<string | number> = [limit];
+  const conditions = [readyForSandboxWhereClause('review_cases')];
 
-  if (!hasSandboxPublishStatus) {
-    return [];
+  if (period) {
+    values.push(period.startDate, period.endDate);
+    conditions.push(`issue_date >= $${values.length - 1}::date and issue_date < $${values.length}::date`);
   }
 
   const result = await db.query(
@@ -512,13 +579,135 @@ export async function listReadyForSandbox(limit = 100) {
             created_at,
             updated_at
      from review_cases
-     where coalesce(sandbox_publish_status, 'not_ready') = 'ready'
+     where ${conditions.join(' and ')}
      order by updated_at desc nulls last, created_at desc
      limit $1`,
-    [limit],
+    values,
   );
 
   return result.rows;
+}
+
+export async function countReadyForSandbox(period?: DashboardPeriod) {
+  await ensureSandboxPublishSchema();
+  const values: string[] = [];
+  const conditions = [readyForSandboxWhereClause('review_cases')];
+
+  if (period) {
+    values.push(period.startDate, period.endDate);
+    conditions.push(`issue_date >= $${values.length - 1}::date and issue_date < $${values.length}::date`);
+  }
+
+  const result = await db.query(
+    `select count(*)::int as total
+     from review_cases
+     where ${conditions.join(' and ')}`,
+    values,
+  );
+
+  return Number(result.rows[0]?.total ?? 0);
+}
+
+export async function createSandboxPublishRun(userId: string, limitCount: number) {
+  await ensureSandboxPublishSchema();
+  const result = await db.query(
+    `insert into sandbox_publish_runs (user_id, limit_count)
+     values ($1, $2)
+     returning id`,
+    [userId, limitCount],
+  );
+  return result.rows[0].id as string;
+}
+
+export async function finishSandboxPublishRun(
+  runId: string,
+  params: {
+    status: string;
+    attemptedCount: number;
+    createdCount: number;
+    skippedCount: number;
+    failedCount: number;
+    details?: Record<string, unknown>;
+  },
+) {
+  await db.query(
+    `update sandbox_publish_runs
+     set status = $2,
+         attempted_count = $3,
+         created_count = $4,
+         skipped_count = $5,
+         failed_count = $6,
+         details_json = $7::jsonb,
+         finished_at = now()
+     where id = $1`,
+    [
+      runId,
+      params.status,
+      params.attemptedCount,
+      params.createdCount,
+      params.skippedCount,
+      params.failedCount,
+      JSON.stringify(params.details ?? {}),
+    ],
+  );
+}
+
+export async function recordSandboxPublishItem(params: {
+  runId: string;
+  caseId: string;
+  recordType: string;
+  tranId: string;
+  entityId: string;
+  status: 'created' | 'duplicate' | 'failed' | 'skipped';
+  netsuiteRecordId?: string | null;
+  errorText?: string | null;
+  payload?: Record<string, unknown>;
+  result?: Record<string, unknown>;
+}) {
+  await db.query(
+    `insert into sandbox_publish_items
+       (run_id, case_id, record_type, tran_id, entity_id, status, netsuite_record_id, error_text, payload_json, result_json)
+     values ($1, $2, $3, $4, $5, $6, $7, $8, $9::jsonb, $10::jsonb)`,
+    [
+      params.runId,
+      params.caseId,
+      params.recordType,
+      params.tranId,
+      params.entityId,
+      params.status,
+      params.netsuiteRecordId ?? null,
+      params.errorText ?? null,
+      JSON.stringify(params.payload ?? {}),
+      JSON.stringify(params.result ?? {}),
+    ],
+  );
+}
+
+export async function markSandboxPublishResult(params: {
+  caseId: string;
+  status: 'published' | 'failed';
+  recordType: string;
+  recordId?: string | null;
+  errorText?: string | null;
+}) {
+  await ensureSandboxPublishSchema();
+  await db.query(
+    `update review_cases
+     set sandbox_publish_status = $2,
+         sandbox_published_at = case when $2 = 'published' then now() else sandbox_published_at end,
+         sandbox_record_type = $3,
+         sandbox_record_id = $4,
+         sandbox_publish_error = $5,
+         updated_at = now()
+     where id = $1`,
+    [
+      params.caseId,
+      params.status,
+      params.recordType,
+      params.recordId ?? null,
+      params.errorText ?? null,
+    ],
+  );
 }
 
 export async function getReviewCaseById(id: string) {
