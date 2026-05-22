@@ -107,6 +107,10 @@ function inputValue(value: string | number | Date | null | undefined) {
   if (value === null || value === undefined) return '';
   if (value instanceof Date) return value.toISOString().slice(0, 10);
   const raw = String(value);
+  const chileDate = raw.match(/^(\d{2})\/(\d{2})\/(\d{4})(?:\s|$)/);
+  if (chileDate) {
+    return `${chileDate[3]}-${chileDate[2]}-${chileDate[1]}`;
+  }
   const date = new Date(raw);
   if (/^\d{4}-\d{2}-\d{2}/.test(raw) && !Number.isNaN(date.getTime())) {
     return raw.slice(0, 10);

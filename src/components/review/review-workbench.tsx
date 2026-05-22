@@ -145,6 +145,10 @@ function formatDate(value: string | Date | null | undefined) {
   if (dateOnly) {
     return `${dateOnly[3]}-${dateOnly[2]}-${dateOnly[1]}`;
   }
+  const chileDate = raw.match(/^(\d{2})\/(\d{2})\/(\d{4})(?:\s|$)/);
+  if (chileDate) {
+    return `${chileDate[1]}-${chileDate[2]}-${chileDate[3]}`;
+  }
   const date = new Date(raw);
   if (Number.isNaN(date.getTime())) return raw;
   return new Intl.DateTimeFormat('es-CL', {

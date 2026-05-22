@@ -1,3 +1,5 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import { db } from '@/lib/db/client';
 import {
   accountOptions,
@@ -10,10 +12,6 @@ import {
   paymentTermDays,
   paymentTermsOptions,
 } from '@/lib/review/catalogs';
-import pipelineRunSummaries from '@/lib/review/pipeline-run-summaries.json';
-import rcvSiiSummaries from '@/lib/review/rcv-sii-summaries.json';
-import automaticCreatedDocuments from '@/lib/review/automatic-created-documents.json';
-import unclassifiedDocuments from '@/lib/review/unclassified-documents.json';
 
 let cachedHasSandboxPublishStatus: boolean | null = null;
 
@@ -120,13 +118,39 @@ type AutomaticCreatedDocument = {
 
 type SyntheticReviewDocument = AutomaticCreatedDocument;
 
+const reviewDataDir = path.join(process.cwd(), 'src', 'lib', 'review');
+
+function readReviewJson<T>(filename: string, fallback: T): T {
+  try {
+    return JSON.parse(fs.readFileSync(path.join(reviewDataDir, filename), 'utf8')) as T;
+  } catch {
+    return fallback;
+  }
+}
+
+function pipelineRunSummaries() {
+  return readReviewJson<Record<string, PipelineRunSummary>>('pipeline-run-summaries.json', {});
+}
+
+function rcvSiiSummaries() {
+  return readReviewJson<Record<string, RcvSiiSummary>>('rcv-sii-summaries.json', {});
+}
+
+function automaticCreatedDocuments() {
+  return readReviewJson<Record<string, AutomaticCreatedDocument[]>>('automatic-created-documents.json', {});
+}
+
+function unclassifiedDocuments() {
+  return readReviewJson<Record<string, SyntheticReviewDocument[]>>('unclassified-documents.json', {});
+}
+
 function periodMonthKey(period?: DashboardPeriod) {
   if (!period?.startDate) return null;
   return period.startDate.slice(0, 7);
 }
 
 function automaticDocumentsForPeriod(period?: DashboardPeriod) {
-  const documentsByMonth = automaticCreatedDocuments as Record<string, AutomaticCreatedDocument[]>;
+  const documentsByMonth = automaticCreatedDocuments();
 
   if (period) {
     return documentsByMonth[periodMonthKey(period) ?? ''] ?? [];
@@ -136,7 +160,7 @@ function automaticDocumentsForPeriod(period?: DashboardPeriod) {
 }
 
 function unclassifiedDocumentsForPeriod(period?: DashboardPeriod) {
-  const documentsByMonth = unclassifiedDocuments as Record<string, SyntheticReviewDocument[]>;
+  const documentsByMonth = unclassifiedDocuments();
 
   if (period) {
     return documentsByMonth[periodMonthKey(period) ?? ''] ?? [];
@@ -210,13 +234,13 @@ export async function getDashboardSummary(period?: DashboardPeriod) {
   }
 
   const monthKey = periodMonthKey(period) ?? '';
-  const pipelineSummary = (pipelineRunSummaries as Record<string, PipelineRunSummary>)[monthKey];
+  const pipelineSummary = pipelineRunSummaries()[monthKey];
 
   if (pipelineSummary) {
     operationalSummary.creadasAutomaticas = pipelineSummary.createdAutomatically;
   }
 
-  const siiSummary = (rcvSiiSummaries as Record<string, RcvSiiSummary>)[monthKey];
+  const siiSummary = rcvSiiSummaries()[monthKey];
 
   if (siiSummary) {
     const rcvTotalDocuments = siiSummary.rows.reduce((total, row) => total + row.totalDocuments, 0);
@@ -626,14 +650,16 @@ function inferSandboxPublishStatus(caseRow: {
 function normalizeIsoDate(value: unknown) {
   const raw = String(value ?? '').trim();
   if (!raw) return null;
+  const chileDate = raw.match(/^(\d{2})\/(\d{2})\/(\d{4})(?:\s|$)/);
+  if (chileDate) {
+    const [, day, month, year] = chileDate;
+    return new Date(`${year}-${month}-${day}T00:00:00.000Z`).toISOString();
+  }
   const direct = new Date(raw);
   if (!Number.isNaN(direct.getTime())) {
     return direct.toISOString();
   }
-  const match = raw.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
-  if (!match) return null;
-  const [, day, month, year] = match;
-  return new Date(`${year}-${month}-${day}T00:00:00.000Z`).toISOString();
+  return null;
 }
 
 function parseCatalogId(value: string) {

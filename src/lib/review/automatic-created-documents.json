@@ -2,14 +2,14 @@
   "2026-05": [
     {
       "id": "auto-2026-05-33-39636-0",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "GLOBE EXPRESS SERVICES CHILE SPA",
       "vendor_rut": "76085857-9",
       "folio": "39636",
       "document_type": "33",
       "issue_date": "2026-04-30",
-      "reception_date": "30/04/2026 17:50:25",
+      "reception_date": "2026-04-30",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "101150",
@@ -31,21 +31,21 @@
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-13380-1",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "SOCIEDAD  INVERSIONES MALAGA SPA 3103986",
       "vendor_rut": "77864757-5",
       "folio": "13380",
       "document_type": "33",
       "issue_date": "2026-05-01",
-      "reception_date": "01/05/2026 13:19:27",
+      "reception_date": "2026-05-01",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "86025",
@@ -67,21 +67,21 @@
         "context": {
           "categoriaOc": "SIN_OC",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-73297386-2",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "Telefónica Móviles Chile S.A.",
       "vendor_rut": "76124890-1",
       "folio": "73297386",
       "document_type": "33",
       "issue_date": "2026-05-01",
-      "reception_date": "02/05/2026 11:05:53",
+      "reception_date": "2026-05-02",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "63242",
@@ -103,21 +103,21 @@
         "context": {
           "categoriaOc": "SIN_OC",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-165574-3",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "COMUNICACIONES BERMANN SPA",
       "vendor_rut": "96357000-7",
       "folio": "165574",
       "document_type": "33",
       "issue_date": "2026-05-04",
-      "reception_date": "04/05/2026 09:30:06",
+      "reception_date": "2026-05-04",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "31074",
@@ -139,21 +139,21 @@
         "context": {
           "categoriaOc": "SIN_OC",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-3963-4",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "FIRST, SERVICIOS DE ASEO Y MANTENCION SPA",
       "vendor_rut": "76058028-7",
       "folio": "3963",
       "document_type": "33",
       "issue_date": "2026-05-04",
-      "reception_date": "04/05/2026 11:44:23",
+      "reception_date": "2026-05-04",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "860515",
@@ -175,21 +175,21 @@
         "context": {
           "categoriaOc": "OC_OBLIGATORIA",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-13414-5",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "SOCIEDAD  INVERSIONES MALAGA SPA 3103986",
       "vendor_rut": "77864757-5",
       "folio": "13414",
       "document_type": "33",
       "issue_date": "2026-05-04",
-      "reception_date": "04/05/2026 16:00:08",
+      "reception_date": "2026-05-04",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "181052",
@@ -211,21 +211,21 @@
         "context": {
           "categoriaOc": "SIN_OC",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-66222-6",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "Megacentro Chile SpA",
       "vendor_rut": "76178665-2",
       "folio": "66222",
       "document_type": "33",
       "issue_date": "2026-05-01",
-      "reception_date": "04/05/2026 16:08:09",
+      "reception_date": "2026-05-04",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "1936623",
@@ -247,21 +247,21 @@
         "context": {
           "categoriaOc": "SIN_OC",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-946-7",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "GIOVANNI OSVALDO DIAZ SILVA",
       "vendor_rut": "15480941-4",
       "folio": "946",
       "document_type": "33",
       "issue_date": "2026-05-04",
-      "reception_date": "04/05/2026 18:55:02",
+      "reception_date": "2026-05-04",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "1237600",
@@ -283,21 +283,21 @@
         "context": {
           "categoriaOc": "SIN_OC",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-2986804-8",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "GTD MANQUEHUE S.A.",
       "vendor_rut": "93737000-8",
       "folio": "2986804",
       "document_type": "33",
       "issue_date": "2026-05-05",
-      "reception_date": "05/05/2026 08:00:07",
+      "reception_date": "2026-05-05",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "172040",
@@ -319,21 +319,21 @@
         "context": {
           "categoriaOc": "SIN_OC",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-8453-9",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "EGA KAT DISTRIBUCION CHILE S.A.",
       "vendor_rut": "76067893-7",
       "folio": "8453",
       "document_type": "33",
       "issue_date": "2026-05-04",
-      "reception_date": "05/05/2026 10:06:59",
+      "reception_date": "2026-05-05",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "716146",
@@ -355,21 +355,21 @@
         "context": {
           "categoriaOc": "SIN_OC",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-66492-10",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "Megacentro Chile SpA",
       "vendor_rut": "76178665-2",
       "folio": "66492",
       "document_type": "33",
       "issue_date": "2026-05-04",
-      "reception_date": "05/05/2026 13:50:28",
+      "reception_date": "2026-05-05",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "59057",
@@ -391,21 +391,21 @@
         "context": {
           "categoriaOc": "SIN_OC",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-1014380-11",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "SEAPORT S.A.",
       "vendor_rut": "96796080-2",
       "folio": "1014380",
       "document_type": "33",
       "issue_date": "2026-05-05",
-      "reception_date": "05/05/2026 15:51:13",
+      "reception_date": "2026-05-05",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "484279",
@@ -427,21 +427,21 @@
         "context": {
           "categoriaOc": "SIN_OC",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-4131420-12",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "SERVICIOS EQUIFAX CHILE LIMITADA",
       "vendor_rut": "85896100-9",
       "folio": "4131420",
       "document_type": "33",
       "issue_date": "2026-04-30",
-      "reception_date": "06/05/2026 02:51:13",
+      "reception_date": "2026-05-06",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "215799",
@@ -463,21 +463,21 @@
         "context": {
           "categoriaOc": "SIN_OC",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-180454-13",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "CHUBB SEGUROS DE VIDA CHILE S.A.",
       "vendor_rut": "99588060-1",
       "folio": "180454",
       "document_type": "33",
       "issue_date": "2026-04-30",
-      "reception_date": "06/05/2026 16:13:06",
+      "reception_date": "2026-05-06",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "25136",
@@ -499,21 +499,21 @@
         "context": {
           "categoriaOc": "SIN_OC",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-6548645-14",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "Manantial S.A",
       "vendor_rut": "96711590-8",
       "folio": "6548645",
       "document_type": "33",
       "issue_date": "2026-04-30",
-      "reception_date": "06/05/2026 17:31:13",
+      "reception_date": "2026-05-06",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "40874",
@@ -535,21 +535,21 @@
         "context": {
           "categoriaOc": "SIN_OC",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-47302835-15",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "Banco de Chile",
       "vendor_rut": "97004000-5",
       "folio": "47302835",
       "document_type": "33",
       "issue_date": "2026-05-06",
-      "reception_date": "07/05/2026 09:13:22",
+      "reception_date": "2026-05-07",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "20530",
@@ -571,21 +571,21 @@
         "context": {
           "categoriaOc": "SIN_OC",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-224-16",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "SOCIEDAD DE TRANSPORTES, SERVICIOS DE INGENIERIA Y ASESORIAS MACAF LIM",
       "vendor_rut": "77159789-0",
       "folio": "224",
       "document_type": "33",
       "issue_date": "2026-05-07",
-      "reception_date": "07/05/2026 11:36:13",
+      "reception_date": "2026-05-07",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "245735",
@@ -607,21 +607,21 @@
         "context": {
           "categoriaOc": "SIN_OC",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-69719-17",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "TRANSPORTES CASABLANCA S.A.",
       "vendor_rut": "85131900-K",
       "folio": "69719",
       "document_type": "33",
       "issue_date": "2026-04-30",
-      "reception_date": "07/05/2026 13:26:04",
+      "reception_date": "2026-05-07",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "2963981",
@@ -643,21 +643,21 @@
         "context": {
           "categoriaOc": "OC_OBLIGATORIA",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-504-18",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "TRANSPORTES ELADIO ARNOLDO GONZÁLEZ KAEMPFER  E.I.R.L.",
       "vendor_rut": "76969089-1",
       "folio": "504",
       "document_type": "33",
       "issue_date": "2026-05-08",
-      "reception_date": "08/05/2026 11:47:17",
+      "reception_date": "2026-05-08",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "2313777",
@@ -679,21 +679,21 @@
         "context": {
           "categoriaOc": "SIN_OC",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-225-19",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "SOCIEDAD DE TRANSPORTES, SERVICIOS DE INGENIERIA Y ASESORIAS MACAF LIM",
       "vendor_rut": "77159789-0",
       "folio": "225",
       "document_type": "33",
       "issue_date": "2026-05-08",
-      "reception_date": "08/05/2026 12:47:32",
+      "reception_date": "2026-05-08",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "143336",
@@ -715,21 +715,21 @@
         "context": {
           "categoriaOc": "SIN_OC",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-132724-20",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "SOCIEDAD COMERCIAL  VENSER LTDA",
       "vendor_rut": "96607770-0",
       "folio": "132724",
       "document_type": "33",
       "issue_date": "2026-05-11",
-      "reception_date": "08/05/2026 15:10:06",
+      "reception_date": "2026-05-08",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "475369",
@@ -751,21 +751,21 @@
         "context": {
           "categoriaOc": "OC_OBLIGATORIA",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-12419-21",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "IMPORTADORA Y EXPORTADORA GIRONA .S.A",
       "vendor_rut": "96993560-0",
       "folio": "12419",
       "document_type": "33",
       "issue_date": "2026-05-11",
-      "reception_date": "11/05/2026 08:59:27",
+      "reception_date": "2026-05-11",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "1179958",
@@ -787,21 +787,21 @@
         "context": {
           "categoriaOc": "SIN_OC",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-304406-22",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "BUK SPA",
       "vendor_rut": "76691442-K",
       "folio": "304406",
       "document_type": "33",
       "issue_date": "2026-05-11",
-      "reception_date": "11/05/2026 16:25:53",
+      "reception_date": "2026-05-11",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "156078",
@@ -823,21 +823,21 @@
         "context": {
           "categoriaOc": "SIN_OC",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-2860-23",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "RODRIGO IVAN LORENZO SANDOVAL",
       "vendor_rut": "13755511-5",
       "folio": "2860",
       "document_type": "33",
       "issue_date": "2026-05-11",
-      "reception_date": "11/05/2026 22:01:54",
+      "reception_date": "2026-05-11",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "220150",
@@ -859,21 +859,21 @@
         "context": {
           "categoriaOc": "SIN_OC",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-14406446-24",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "PROVEEDORES INTEGRALES PRISA S A",
       "vendor_rut": "96556940-5",
       "folio": "14406446",
       "document_type": "33",
       "issue_date": "2026-05-13",
-      "reception_date": "12/05/2026 16:15:06",
+      "reception_date": "2026-05-12",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "39275",
@@ -895,21 +895,21 @@
         "context": {
           "categoriaOc": "OC_OBLIGATORIA",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-14406861-25",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "PROVEEDORES INTEGRALES PRISA S A",
       "vendor_rut": "96556940-5",
       "folio": "14406861",
       "document_type": "33",
       "issue_date": "2026-05-13",
-      "reception_date": "12/05/2026 17:37:19",
+      "reception_date": "2026-05-12",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "67093",
@@ -931,21 +931,21 @@
         "context": {
           "categoriaOc": "OC_OBLIGATORIA",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-2565020-26",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "Claro Comunicaciones S.p.A.",
       "vendor_rut": "94675000-K",
       "folio": "2565020",
       "document_type": "33",
       "issue_date": "2026-05-13",
-      "reception_date": "13/05/2026 05:01:36",
+      "reception_date": "2026-05-13",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "18990",
@@ -967,21 +967,21 @@
         "context": {
           "categoriaOc": "SIN_OC",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-14407521-27",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "PROVEEDORES INTEGRALES PRISA S A",
       "vendor_rut": "96556940-5",
       "folio": "14407521",
       "document_type": "33",
       "issue_date": "2026-05-13",
-      "reception_date": "13/05/2026 09:40:08",
+      "reception_date": "2026-05-13",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "131424",
@@ -1003,21 +1003,21 @@
         "context": {
           "categoriaOc": "OC_OBLIGATORIA",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-162713-28",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "Navarro y Cia. SPA",
       "vendor_rut": "83274700-9",
       "folio": "162713",
       "document_type": "33",
       "issue_date": "2026-05-13",
-      "reception_date": "13/05/2026 13:03:20",
+      "reception_date": "2026-05-13",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "3179992",
@@ -1039,21 +1039,21 @@
         "context": {
           "categoriaOc": "OC_OBLIGATORIA",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-39738-29",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "GLOBE EXPRESS SERVICES CHILE SPA",
       "vendor_rut": "76085857-9",
       "folio": "39738",
       "document_type": "33",
       "issue_date": "2026-05-13",
-      "reception_date": "13/05/2026 17:20:07",
+      "reception_date": "2026-05-13",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "119000",
@@ -1075,21 +1075,21 @@
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-39740-30",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "GLOBE EXPRESS SERVICES CHILE SPA",
       "vendor_rut": "76085857-9",
       "folio": "39740",
       "document_type": "33",
       "issue_date": "2026-05-13",
-      "reception_date": "13/05/2026 18:00:58",
+      "reception_date": "2026-05-13",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "95200",
@@ -1111,21 +1111,21 @@
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-215796-31",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "Artikos Chile SpA",
       "vendor_rut": "96953410-K",
       "folio": "215796",
       "document_type": "33",
       "issue_date": "2026-05-14",
-      "reception_date": "14/05/2026 14:37:58",
+      "reception_date": "2026-05-14",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "572916",
@@ -1147,21 +1147,21 @@
         "context": {
           "categoriaOc": "SIN_OC",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-52631-32",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "AG. DE AD. CRISTIAN HERRERA R. Y CIA. LTDA",
       "vendor_rut": "77433157-3",
       "folio": "52631",
       "document_type": "33",
       "issue_date": "2026-05-15",
-      "reception_date": "15/05/2026 01:15:42",
+      "reception_date": "2026-05-15",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "158258",
@@ -1183,21 +1183,21 @@
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-80026-33",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "AIRSEALOGISTICS SPA",
       "vendor_rut": "76006532-3",
       "folio": "80026",
       "document_type": "33",
       "issue_date": "2026-05-15",
-      "reception_date": "15/05/2026 10:32:46",
+      "reception_date": "2026-05-15",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "89250",
@@ -1219,21 +1219,21 @@
         "context": {
           "categoriaOc": "OC_OBLIGATORIA",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
       "id": "auto-2026-05-33-2865-34",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "RODRIGO IVAN LORENZO SANDOVAL",
       "vendor_rut": "13755511-5",
       "folio": "2865",
       "document_type": "33",
       "issue_date": "2026-05-15",
-      "reception_date": "15/05/2026 14:34:25",
+      "reception_date": "2026-05-15",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "202300",
@@ -1255,21 +1255,237 @@
         "context": {
           "categoriaOc": "SIN_OC",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
-      "id": "auto-2026-05-34-272-35",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "id": "auto-2026-05-33-13236227-35",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
+      "vendor_name": "SOC CONCESIONARIA AUTOPISTA CENTRAL S A",
+      "vendor_rut": "96945440-8",
+      "folio": "13236227",
+      "document_type": "33",
+      "issue_date": "2026-05-18",
+      "reception_date": "2026-05-18",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "111093",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "110353",
+          "amountNet": "622",
+          "amountVat": "118",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "111093",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-13236227 SOC CONCESIONARIA AUTOPISTA CENTRAL S A"
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-34642707-36",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
+      "vendor_name": "ENEL DISTRIBUCIÓN CHILE S.A",
+      "vendor_rut": "96800570-7",
+      "folio": "34642707",
+      "document_type": "33",
+      "issue_date": "2026-05-19",
+      "reception_date": "2026-05-19",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "402438",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "6302",
+          "amountNet": "332887",
+          "amountVat": "63249",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "402438",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-34642707 ENEL DISTRIBUCIÓN CHILE S.A"
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-13759-37",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
+      "vendor_name": "SOCIEDAD  INVERSIONES MALAGA SPA 3103986",
+      "vendor_rut": "77864757-5",
+      "folio": "13759",
+      "document_type": "33",
+      "issue_date": "2026-05-19",
+      "reception_date": "2026-05-19",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "176011",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "119003",
+          "amountVat": "22610",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "34398",
+          "amountTotal": "176011",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-13759 SOCIEDAD  INVERSIONES MALAGA SPA 3103986"
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-1608619-38",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
+      "vendor_name": "HAPAG-LLOYD CHILE SPA",
+      "vendor_rut": "76380217-5",
+      "folio": "1608619",
+      "document_type": "33",
+      "issue_date": "2026-05-20",
+      "reception_date": "2026-05-20",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "324275",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "272500",
+          "amountVat": "51775",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "324275",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-1608619 HAPAG-LLOYD CHILE SPA"
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-52901-39",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
+      "vendor_name": "AG. DE AD. CRISTIAN HERRERA R. Y CIA. LTDA",
+      "vendor_rut": "77433157-3",
+      "folio": "52901",
+      "document_type": "33",
+      "issue_date": "2026-05-22",
+      "reception_date": "2026-05-22",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "211755",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "177945",
+          "amountVat": "33810",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "211755",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-52901 AG. DE AD. CRISTIAN HERRERA R. Y CIA. LTDA"
+        },
+        "context": {
+          "categoriaOc": "OC_RECOMENDADA",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-33-52902-40",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
+      "vendor_name": "AG. DE AD. CRISTIAN HERRERA R. Y CIA. LTDA",
+      "vendor_rut": "77433157-3",
+      "folio": "52902",
+      "document_type": "33",
+      "issue_date": "2026-05-22",
+      "reception_date": "2026-05-22",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "158258",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "132990",
+          "amountVat": "25268",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "158258",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-52902 AG. DE AD. CRISTIAN HERRERA R. Y CIA. LTDA"
+        },
+        "context": {
+          "categoriaOc": "OC_RECOMENDADA",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-05-34-272-41",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "SOC COMERCIAL LOS CANELOS LIMITADA",
       "vendor_rut": "78318440-0",
       "folio": "272",
       "document_type": "34",
       "issue_date": "2026-05-01",
-      "reception_date": "28/04/2026 18:22:02",
+      "reception_date": "2026-04-28",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "1000000",
@@ -1291,21 +1507,21 @@
         "context": {
           "categoriaOc": "SIN_OC",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
-      "id": "auto-2026-05-34-38835-36",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "id": "auto-2026-05-34-38835-42",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "GLOBE EXPRESS SERVICES CHILE SPA",
       "vendor_rut": "76085857-9",
       "folio": "38835",
       "document_type": "34",
       "issue_date": "2026-04-30",
-      "reception_date": "30/04/2026 17:49:30",
+      "reception_date": "2026-04-30",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "153299",
@@ -1327,21 +1543,21 @@
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
-      "id": "auto-2026-05-34-198750-37",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "id": "auto-2026-05-34-198750-43",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "Empresa de Transportes Transvip SPA",
       "vendor_rut": "76102176-1",
       "folio": "198750",
       "document_type": "34",
       "issue_date": "2026-05-05",
-      "reception_date": "05/05/2026 14:53:14",
+      "reception_date": "2026-05-05",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "76760",
@@ -1363,21 +1579,21 @@
         "context": {
           "categoriaOc": "SIN_OC",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
-      "id": "auto-2026-05-34-3262834-38",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "id": "auto-2026-05-34-3262834-44",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "SOCIEDAD CONCESIONARIA VESPUCIO ORIENTE S.A.",
       "vendor_rut": "76376061-8",
       "folio": "3262834",
       "document_type": "34",
       "issue_date": "2026-05-12",
-      "reception_date": "12/05/2026 10:37:48",
+      "reception_date": "2026-05-12",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "9149",
@@ -1399,21 +1615,21 @@
         "context": {
           "categoriaOc": "SIN_OC",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
-      "id": "auto-2026-05-34-38910-39",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "id": "auto-2026-05-34-38910-45",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "GLOBE EXPRESS SERVICES CHILE SPA",
       "vendor_rut": "76085857-9",
       "folio": "38910",
       "document_type": "34",
       "issue_date": "2026-05-13",
-      "reception_date": "13/05/2026 17:19:05",
+      "reception_date": "2026-05-13",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "7523248",
@@ -1435,21 +1651,21 @@
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
-      "id": "auto-2026-05-34-38912-40",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "id": "auto-2026-05-34-38912-46",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "GLOBE EXPRESS SERVICES CHILE SPA",
       "vendor_rut": "76085857-9",
       "folio": "38912",
       "document_type": "34",
       "issue_date": "2026-05-13",
-      "reception_date": "13/05/2026 17:59:24",
+      "reception_date": "2026-05-13",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "2524395",
@@ -1471,21 +1687,21 @@
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
-      "id": "auto-2026-05-34-38913-41",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "id": "auto-2026-05-34-38913-47",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "GLOBE EXPRESS SERVICES CHILE SPA",
       "vendor_rut": "76085857-9",
       "folio": "38913",
       "document_type": "34",
       "issue_date": "2026-05-13",
-      "reception_date": "13/05/2026 18:00:07",
+      "reception_date": "2026-05-13",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "161984",
@@ -1507,21 +1723,21 @@
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
-      "id": "auto-2026-05-34-12101163-42",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "id": "auto-2026-05-34-12101163-48",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "Sociedad Concesionaria Costanera Norte S.A.",
       "vendor_rut": "76496130-7",
       "folio": "12101163",
       "document_type": "34",
       "issue_date": "2026-05-13",
-      "reception_date": "13/05/2026 18:40:13",
+      "reception_date": "2026-05-13",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "82378",
@@ -1543,21 +1759,21 @@
         "context": {
           "categoriaOc": "SIN_OC",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
-      "id": "auto-2026-05-34-12101766-43",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "id": "auto-2026-05-34-12101766-49",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "Sociedad Concesionaria Costanera Norte S.A.",
       "vendor_rut": "76496130-7",
       "folio": "12101766",
       "document_type": "34",
       "issue_date": "2026-05-13",
-      "reception_date": "13/05/2026 18:48:58",
+      "reception_date": "2026-05-13",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "68237",
@@ -1579,21 +1795,21 @@
         "context": {
           "categoriaOc": "SIN_OC",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
-      "id": "auto-2026-05-34-38924-44",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "id": "auto-2026-05-34-38924-50",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "GLOBE EXPRESS SERVICES CHILE SPA",
       "vendor_rut": "76085857-9",
       "folio": "38924",
       "document_type": "34",
       "issue_date": "2026-05-14",
-      "reception_date": "14/05/2026 13:11:11",
+      "reception_date": "2026-05-14",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "7655926",
@@ -1615,21 +1831,21 @@
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
-      "id": "auto-2026-05-34-76576-45",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "id": "auto-2026-05-34-76576-51",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "AIRSEALOGISTICS SPA",
       "vendor_rut": "76006532-3",
       "folio": "76576",
       "document_type": "34",
       "issue_date": "2026-05-15",
-      "reception_date": "15/05/2026 10:32:24",
+      "reception_date": "2026-05-15",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "137214",
@@ -1651,21 +1867,21 @@
         "context": {
           "categoriaOc": "OC_OBLIGATORIA",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
-      "id": "auto-2026-05-34-76577-46",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "id": "auto-2026-05-34-76577-52",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "AIRSEALOGISTICS SPA",
       "vendor_rut": "76006532-3",
       "folio": "76577",
       "document_type": "34",
       "issue_date": "2026-05-15",
-      "reception_date": "15/05/2026 10:32:35",
+      "reception_date": "2026-05-15",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "3055656",
@@ -1687,21 +1903,21 @@
         "context": {
           "categoriaOc": "OC_OBLIGATORIA",
           "nsId": "STUB-VENDORBILL-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }
     },
     {
-      "id": "auto-2026-05-61-6143-47",
-      "sourceRun": "runs/sii_to_pipeline/20260518-060118",
-      "generatedAt": "2026-05-18T06:01:41.477991",
+      "id": "auto-2026-05-61-6143-53",
+      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
+      "generatedAt": "2026-05-22T06:04:10.147302",
       "vendor_name": "GLOBE EXPRESS SERVICES CHILE SPA",
       "vendor_rut": "76085857-9",
       "folio": "6143",
       "document_type": "61",
       "issue_date": "2026-05-13",
-      "reception_date": "13/05/2026 17:59:00",
+      "reception_date": "2026-05-13",
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "7523248",
@@ -1723,7 +1939,7 @@
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
           "nsId": "STUB-VENDORCREDIT-001",
-          "sourceRun": "runs/sii_to_pipeline/20260518-060118",
+          "sourceRun": "runs/sii_to_pipeline/20260522-060336",
           "automaticCreationMode": "Sandbox-STUB"
         }
       }

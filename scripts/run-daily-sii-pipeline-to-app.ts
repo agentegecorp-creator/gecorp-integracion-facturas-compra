@@ -65,7 +65,7 @@ function parseCsvLine(line: string) {
 
 function normalizeSiiDate(value: string | undefined) {
   const raw = String(value ?? '').trim();
-  const match = raw.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+  const match = raw.match(/^(\d{2})\/(\d{2})\/(\d{4})(?:\s|$)/);
   if (!match) return raw || null;
   return `${match[3]}-${match[2]}-${match[1]}`;
 }
