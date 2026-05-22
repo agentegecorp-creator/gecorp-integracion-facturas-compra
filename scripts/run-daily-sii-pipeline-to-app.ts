@@ -242,7 +242,7 @@ function updateUnclassifiedDocuments(month: string, year: string, runDir: string
   const key = monthKey(month, year);
   const processedFolios = new Set<string>();
 
-  for (const collectionName of ['creadas', 'pendientes_aprobacion', 'rechazadas_sii', 'revision_oc_referencial', 'errores']) {
+  for (const collectionName of ['creadas', 'pendientes_aprobacion', 'proveedores_nuevos', 'rechazadas_sii', 'revision_oc_referencial', 'errores']) {
     const collection = Array.isArray(report[collectionName]) ? report[collectionName] : [];
     for (const item of collection) {
       if (item?.folio !== undefined && item?.folio !== null) {

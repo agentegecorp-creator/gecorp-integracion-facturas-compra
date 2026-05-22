@@ -35,6 +35,7 @@ export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
     | undefined;
   const document = payload?.document ?? {};
   const context = payload?.context ?? {};
+  const isSyntheticCase = id.startsWith('auto-') || id.startsWith('unclassified-');
 
   return (
     <main className="p-8">
@@ -122,28 +123,35 @@ export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
           </div>
 
           <div className="space-y-6">
-            <ReviewDecisionForm
-              caseId={id}
-              currentValues={{
-                accountId: document.accountId || context.accountIdProposed || context.referenciaAccount,
-                vendorName: item.vendor_name,
-                documentType: item.document_type,
-                issueDate: item.issue_date,
-                accountingDate: optionalString(document.accountingDateProposed || context.accountingDateProposed),
-                dueDate: optionalString(document.dueDate || context.dueDate),
-                paymentDate: optionalString(document.paymentDate || context.paymentDate),
-                paymentTermsId: document.paymentTermsId || context.paymentTermsId,
-                classId: document.classId || context.classIdProposed || context.classCorrecta || context.classSuggestedB2,
-                departmentId: document.departmentId || context.departmentIdProposed || context.departmentCorrecta || context.departmentSuggestedB2,
-                locationId: document.locationId || context.locationIdProposed || context.locationCorrecta || context.locationSuggestedB2,
-                approvalGroup: optionalString(context.approvalGroup),
-                ocCategory: optionalString(context.ocCategory || context.categoriaOc),
-                ocPolicy: optionalString(context.ocPolicyCorrecta || context.ocPolicySuggestedB2),
-                newVendorEntity: context.entity || context.vendorIdProposed,
-                invoiceNote: optionalString(document.invoiceNote || context.invoiceNote),
-                invoiceDetail: optionalString(document.invoiceDetail || document.serviceDescription || context.invoiceDetail),
-              }}
-            />
+            {isSyntheticCase ? (
+              <div className="rounded-3xl border border-amber-200 bg-amber-50 p-5 text-sm text-amber-900">
+                Este documento es informativo y no permite registrar decisiones. Si requiere contabilización, debe entrar a una cola operativa del pipeline.
+              </div>
+            ) : (
+              <ReviewDecisionForm
+                caseId={id}
+                currentValues={{
+                  accountId: document.accountId || context.accountIdProposed || context.referenciaAccount,
+                  vendorName: item.vendor_name,
+                  documentType: item.document_type,
+                  issueDate: item.issue_date,
+                  accountingDate: optionalString(document.accountingDateProposed || context.accountingDateProposed),
+                  dueDate: optionalString(document.dueDate || context.dueDate),
+                  paymentDate: optionalString(document.paymentDate || context.paymentDate),
+                  paymentTermsId: document.paymentTermsId || context.paymentTermsId,
+                  classId: document.classId || context.classIdProposed || context.classCorrecta || context.classSuggestedB2,
+                  departmentId: document.departmentId || context.departmentIdProposed || context.departmentCorrecta || context.departmentSuggestedB2,
+                  locationId: document.locationId || context.locationIdProposed || context.locationCorrecta || context.locationSuggestedB2,
+                  approvalGroup: optionalString(context.approvalGroup),
+                  ocCategory: optionalString(context.ocCategory || context.categoriaOc),
+                  expenseCategory: optionalString(context.expenseCategory),
+                  ocPolicy: optionalString(context.ocPolicyCorrecta || context.ocPolicySuggestedB2),
+                  newVendorEntity: context.entity || context.vendorIdProposed,
+                  invoiceNote: optionalString(document.invoiceNote || context.invoiceNote),
+                  invoiceDetail: optionalString(document.invoiceDetail || document.serviceDescription || context.invoiceDetail),
+                }}
+              />
+            )}
           </div>
         </div>
       )}
