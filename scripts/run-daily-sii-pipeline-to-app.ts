@@ -22,14 +22,51 @@ const appProjectDir = '/Users/agentegecorp/Projects/gecorp-integracion-facturas-
 const pipelineRunSummariesPath = path.join(appProjectDir, 'src/lib/review/pipeline-run-summaries.json');
 const automaticCreatedDocumentsPath = path.join(appProjectDir, 'src/lib/review/automatic-created-documents.json');
 const unclassifiedDocumentsPath = path.join(appProjectDir, 'src/lib/review/unclassified-documents.json');
+const rcvSiiSummariesPath = path.join(appProjectDir, 'src/lib/review/rcv-sii-summaries.json');
+const deployDataPaths = [
+  pipelineRunSummariesPath,
+  automaticCreatedDocumentsPath,
+  unclassifiedDocumentsPath,
+  rcvSiiSummariesPath,
+];
 
-function run(command: string, args: string[], cwd: string) {
+function run(command: string, args: string[], cwd: string, extraEnv?: Record<string, string>) {
   console.log(`\n> ${command} ${args.join(' ')}`);
   execFileSync(command, args, {
     cwd,
     stdio: 'inherit',
-    env: process.env,
+    env: { ...process.env, ...extraEnv },
   });
+}
+
+function hasGitChanges(pathsToCheck: string[]) {
+  const relativePaths = pathsToCheck.map((filePath) => path.relative(appProjectDir, filePath));
+
+  try {
+    execFileSync('git', ['diff', '--quiet', '--', ...relativePaths], {
+      cwd: appProjectDir,
+      stdio: 'ignore',
+      env: process.env,
+    });
+    return false;
+  } catch {
+    return true;
+  }
+}
+
+function hasStagedGitChanges(pathsToCheck: string[]) {
+  const relativePaths = pathsToCheck.map((filePath) => path.relative(appProjectDir, filePath));
+
+  try {
+    execFileSync('git', ['diff', '--cached', '--quiet', '--', ...relativePaths], {
+      cwd: appProjectDir,
+      stdio: 'ignore',
+      env: process.env,
+    });
+    return false;
+  } catch {
+    return true;
+  }
 }
 
 function latestRunDir() {
@@ -260,6 +297,33 @@ function updateUnclassifiedDocuments(month: string, year: string, runDir: string
   console.log(`Actualizados documentos fuera de flujo para ${key}: ${unclassifiedDocumentsPath}`);
 }
 
+function deployDashboardData(month: string, year: string) {
+  if (process.env.SKIP_VERCEL_DEPLOY === '1') {
+    console.log('\nSKIP_VERCEL_DEPLOY=1: no se publican cambios del dashboard en Vercel.');
+    return;
+  }
+
+  if (!hasGitChanges(deployDataPaths)) {
+    console.log('\nSin cambios en JSON operativos; no se gatilla deploy de Vercel.');
+    return;
+  }
+
+  const relativePaths = deployDataPaths.map((filePath) => path.relative(appProjectDir, filePath));
+  const commitMessage = `Refresh SII dashboard data ${monthKey(month, year)}`;
+
+  run('npm', ['run', 'build'], appProjectDir);
+  run('git', ['add', ...relativePaths], appProjectDir);
+
+  if (!hasStagedGitChanges(deployDataPaths)) {
+    console.log('\nNo hay cambios staged en JSON operativos; no se crea commit.');
+    return;
+  }
+
+  run('git', ['commit', '-m', commitMessage], appProjectDir);
+  run('git', ['push', 'origin', 'main'], appProjectDir, { HOME: '/Users/agentegecorp' });
+  console.log('\nCambios de dashboard publicados en main; Vercel tomará el deploy automáticamente.');
+}
+
 function main() {
   const monthArg = process.argv[2];
   const yearArg = process.argv[3];
@@ -281,6 +345,7 @@ function main() {
   updateUnclassifiedDocuments(month, year, runDir, summary.report_json_path, summary.csv_path);
   run('npx', ['tsx', 'scripts/generate-rcv-sii-summary.ts'], appProjectDir);
   run('npx', ['tsx', 'scripts/import-review-cases-from-builder-json.ts'], appProjectDir);
+  deployDashboardData(month, year);
 
   console.log('\nFlujo operativo completo ejecutado:');
   console.log(JSON.stringify({
