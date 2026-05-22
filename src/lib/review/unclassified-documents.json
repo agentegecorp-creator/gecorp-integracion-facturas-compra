@@ -2,8 +2,8 @@
   "2026-05": [
     {
       "id": "unclassified-2026-05-33-9413791-0",
-      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
-      "generatedAt": "2026-05-22T06:04:10.147302",
+      "sourceRun": "runs/sii_to_pipeline/20260522-124011",
+      "generatedAt": "2026-05-22T12:40:33.732273",
       "vendor_name": "SCOTIABANK CHILE",
       "vendor_rut": "97018000-1",
       "folio": "9413791",
@@ -29,14 +29,14 @@
         },
         "context": {
           "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260522-060336"
+          "sourceRun": "runs/sii_to_pipeline/20260522-124011"
         }
       }
     },
     {
       "id": "unclassified-2026-05-33-30950960-1",
-      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
-      "generatedAt": "2026-05-22T06:04:10.147302",
+      "sourceRun": "runs/sii_to_pipeline/20260522-124011",
+      "generatedAt": "2026-05-22T12:40:33.732273",
       "vendor_name": "COPEC S.A.",
       "vendor_rut": "99520000-7",
       "folio": "30950960",
@@ -62,14 +62,14 @@
         },
         "context": {
           "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260522-060336"
+          "sourceRun": "runs/sii_to_pipeline/20260522-124011"
         }
       }
     },
     {
       "id": "unclassified-2026-05-33-57775201-2",
-      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
-      "generatedAt": "2026-05-22T06:04:10.147302",
+      "sourceRun": "runs/sii_to_pipeline/20260522-124011",
+      "generatedAt": "2026-05-22T12:40:33.732273",
       "vendor_name": "Transbank S.A",
       "vendor_rut": "96689310-9",
       "folio": "57775201",
@@ -95,14 +95,14 @@
         },
         "context": {
           "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260522-060336"
+          "sourceRun": "runs/sii_to_pipeline/20260522-124011"
         }
       }
     },
     {
       "id": "unclassified-2026-05-33-30966757-3",
-      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
-      "generatedAt": "2026-05-22T06:04:10.147302",
+      "sourceRun": "runs/sii_to_pipeline/20260522-124011",
+      "generatedAt": "2026-05-22T12:40:33.732273",
       "vendor_name": "COPEC S.A.",
       "vendor_rut": "99520000-7",
       "folio": "30966757",
@@ -128,14 +128,14 @@
         },
         "context": {
           "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260522-060336"
+          "sourceRun": "runs/sii_to_pipeline/20260522-124011"
         }
       }
     },
     {
       "id": "unclassified-2026-05-34-17417258-4",
-      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
-      "generatedAt": "2026-05-22T06:04:10.147302",
+      "sourceRun": "runs/sii_to_pipeline/20260522-124011",
+      "generatedAt": "2026-05-22T12:40:33.732273",
       "vendor_name": "SCOTIABANK CHILE",
       "vendor_rut": "97018000-1",
       "folio": "17417258",
@@ -161,14 +161,14 @@
         },
         "context": {
           "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260522-060336"
+          "sourceRun": "runs/sii_to_pipeline/20260522-124011"
         }
       }
     },
     {
       "id": "unclassified-2026-05-34-17421349-5",
-      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
-      "generatedAt": "2026-05-22T06:04:10.147302",
+      "sourceRun": "runs/sii_to_pipeline/20260522-124011",
+      "generatedAt": "2026-05-22T12:40:33.732273",
       "vendor_name": "SCOTIABANK CHILE",
       "vendor_rut": "97018000-1",
       "folio": "17421349",
@@ -194,14 +194,14 @@
         },
         "context": {
           "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260522-060336"
+          "sourceRun": "runs/sii_to_pipeline/20260522-124011"
         }
       }
     },
     {
       "id": "unclassified-2026-05-34-17422954-6",
-      "sourceRun": "runs/sii_to_pipeline/20260522-060336",
-      "generatedAt": "2026-05-22T06:04:10.147302",
+      "sourceRun": "runs/sii_to_pipeline/20260522-124011",
+      "generatedAt": "2026-05-22T12:40:33.732273",
       "vendor_name": "SCOTIABANK CHILE",
       "vendor_rut": "97018000-1",
       "folio": "17422954",
@@ -227,7 +227,7 @@
         },
         "context": {
           "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260522-060336"
+          "sourceRun": "runs/sii_to_pipeline/20260522-124011"
         }
       }
     }
