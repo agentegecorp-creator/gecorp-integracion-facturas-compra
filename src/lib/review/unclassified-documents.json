@@ -1,174 +1,9 @@
 {
   "2026-05": [
     {
-      "id": "unclassified-2026-05-33-9413791-0",
-      "sourceRun": "runs/sii_to_pipeline/20260522-124011",
-      "generatedAt": "2026-05-22T12:40:33.732273",
-      "vendor_name": "SCOTIABANK CHILE",
-      "vendor_rut": "97018000-1",
-      "folio": "9413791",
-      "document_type": "33",
-      "issue_date": "2026-04-30",
-      "reception_date": "2026-05-01",
-      "bucket": "unclassified_rcv",
-      "status": "exception",
-      "amount_total": "85658",
-      "summary_text": "Documento del RCV sin clasificación operativa en la corrida SII → NetSuite.",
-      "sandbox_publish_status": "not_ready",
-      "payload_json": {
-        "document": {
-          "documentType": "33",
-          "documentTypeLabel": "Documento SII 33",
-          "amountExempt": "0",
-          "amountNet": "71981",
-          "amountVat": "13677",
-          "amountVatNonRecoverable": "0",
-          "amountOtherTax": "0",
-          "amountTotal": "85658",
-          "memo": "RCV F-9413791 SCOTIABANK CHILE"
-        },
-        "context": {
-          "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260522-124011"
-        }
-      }
-    },
-    {
-      "id": "unclassified-2026-05-33-30950960-1",
-      "sourceRun": "runs/sii_to_pipeline/20260522-124011",
-      "generatedAt": "2026-05-22T12:40:33.732273",
-      "vendor_name": "COPEC S.A.",
-      "vendor_rut": "99520000-7",
-      "folio": "30950960",
-      "document_type": "33",
-      "issue_date": "2026-04-30",
-      "reception_date": "2026-05-02",
-      "bucket": "unclassified_rcv",
-      "status": "exception",
-      "amount_total": "454622",
-      "summary_text": "Documento del RCV sin clasificación operativa en la corrida SII → NetSuite.",
-      "sandbox_publish_status": "not_ready",
-      "payload_json": {
-        "document": {
-          "documentType": "33",
-          "documentTypeLabel": "Documento SII 33",
-          "amountExempt": "0",
-          "amountNet": "358987",
-          "amountVat": "68208",
-          "amountVatNonRecoverable": "0",
-          "amountOtherTax": "27427",
-          "amountTotal": "454622",
-          "memo": "RCV F-30950960 COPEC S.A."
-        },
-        "context": {
-          "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260522-124011"
-        }
-      }
-    },
-    {
-      "id": "unclassified-2026-05-33-57775201-2",
-      "sourceRun": "runs/sii_to_pipeline/20260522-124011",
-      "generatedAt": "2026-05-22T12:40:33.732273",
-      "vendor_name": "Transbank S.A",
-      "vendor_rut": "96689310-9",
-      "folio": "57775201",
-      "document_type": "33",
-      "issue_date": "2026-04-29",
-      "reception_date": "2026-05-04",
-      "bucket": "unclassified_rcv",
-      "status": "exception",
-      "amount_total": "66229",
-      "summary_text": "Documento del RCV sin clasificación operativa en la corrida SII → NetSuite.",
-      "sandbox_publish_status": "not_ready",
-      "payload_json": {
-        "document": {
-          "documentType": "33",
-          "documentTypeLabel": "Documento SII 33",
-          "amountExempt": "0",
-          "amountNet": "55655",
-          "amountVat": "10574",
-          "amountVatNonRecoverable": "0",
-          "amountOtherTax": "0",
-          "amountTotal": "66229",
-          "memo": "RCV F-57775201 Transbank S.A"
-        },
-        "context": {
-          "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260522-124011"
-        }
-      }
-    },
-    {
-      "id": "unclassified-2026-05-33-30966757-3",
-      "sourceRun": "runs/sii_to_pipeline/20260522-124011",
-      "generatedAt": "2026-05-22T12:40:33.732273",
-      "vendor_name": "COPEC S.A.",
-      "vendor_rut": "99520000-7",
-      "folio": "30966757",
-      "document_type": "33",
-      "issue_date": "2026-05-15",
-      "reception_date": "2026-05-16",
-      "bucket": "unclassified_rcv",
-      "status": "exception",
-      "amount_total": "415676",
-      "summary_text": "Documento del RCV sin clasificación operativa en la corrida SII → NetSuite.",
-      "sandbox_publish_status": "not_ready",
-      "payload_json": {
-        "document": {
-          "documentType": "33",
-          "documentTypeLabel": "Documento SII 33",
-          "amountExempt": "0",
-          "amountNet": "314569",
-          "amountVat": "59768",
-          "amountVatNonRecoverable": "0",
-          "amountOtherTax": "41339",
-          "amountTotal": "415676",
-          "memo": "RCV F-30966757 COPEC S.A."
-        },
-        "context": {
-          "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260522-124011"
-        }
-      }
-    },
-    {
-      "id": "unclassified-2026-05-34-17417258-4",
-      "sourceRun": "runs/sii_to_pipeline/20260522-124011",
-      "generatedAt": "2026-05-22T12:40:33.732273",
-      "vendor_name": "SCOTIABANK CHILE",
-      "vendor_rut": "97018000-1",
-      "folio": "17417258",
-      "document_type": "34",
-      "issue_date": "2026-04-30",
-      "reception_date": "2026-05-01",
-      "bucket": "unclassified_rcv",
-      "status": "exception",
-      "amount_total": "4004",
-      "summary_text": "Documento del RCV sin clasificación operativa en la corrida SII → NetSuite.",
-      "sandbox_publish_status": "not_ready",
-      "payload_json": {
-        "document": {
-          "documentType": "34",
-          "documentTypeLabel": "Documento SII 34",
-          "amountExempt": "4004",
-          "amountNet": "0",
-          "amountVat": "0",
-          "amountVatNonRecoverable": "0",
-          "amountOtherTax": "0",
-          "amountTotal": "4004",
-          "memo": "RCV F-17417258 SCOTIABANK CHILE"
-        },
-        "context": {
-          "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260522-124011"
-        }
-      }
-    },
-    {
-      "id": "unclassified-2026-05-34-17421349-5",
-      "sourceRun": "runs/sii_to_pipeline/20260522-124011",
-      "generatedAt": "2026-05-22T12:40:33.732273",
+      "id": "unclassified-2026-05-34-17421349-0",
+      "sourceRun": "runs/sii_to_pipeline/20260522-125839",
+      "generatedAt": "2026-05-22T12:59:00.444650",
       "vendor_name": "SCOTIABANK CHILE",
       "vendor_rut": "97018000-1",
       "folio": "17421349",
@@ -194,14 +29,14 @@
         },
         "context": {
           "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260522-124011"
+          "sourceRun": "runs/sii_to_pipeline/20260522-125839"
         }
       }
     },
     {
-      "id": "unclassified-2026-05-34-17422954-6",
-      "sourceRun": "runs/sii_to_pipeline/20260522-124011",
-      "generatedAt": "2026-05-22T12:40:33.732273",
+      "id": "unclassified-2026-05-34-17422954-1",
+      "sourceRun": "runs/sii_to_pipeline/20260522-125839",
+      "generatedAt": "2026-05-22T12:59:00.444650",
       "vendor_name": "SCOTIABANK CHILE",
       "vendor_rut": "97018000-1",
       "folio": "17422954",
@@ -227,7 +62,7 @@
         },
         "context": {
           "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260522-124011"
+          "sourceRun": "runs/sii_to_pipeline/20260522-125839"
         }
       }
     }
