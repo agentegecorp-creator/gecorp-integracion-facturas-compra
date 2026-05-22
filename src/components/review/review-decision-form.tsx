@@ -55,6 +55,7 @@ type ReviewDecisionFormProps = {
     locationId?: string | number | null;
     approvalGroup?: string | null;
     ocCategory?: string | null;
+    expenseCategory?: string | null;
     ocPolicy?: string | null;
     newVendorEntity?: string | number | null;
     invoiceNote?: string | null;
@@ -82,7 +83,7 @@ const editableFields: Array<{
   { field: 'department_id', placeholder: 'Selecciona departamento', kind: 'select', options: departmentOptions },
   { field: 'location_id', placeholder: 'Selecciona ubicación', kind: 'select', options: locationOptions },
   { field: 'approval_group', placeholder: 'Selecciona grupo de aprobación', kind: 'select', options: approvalGroupOptions },
-  { field: 'oc_category', placeholder: 'Ej: FLETE NACIONAL, RECHAZO_SII, INSUMOS', kind: 'text' },
+  { field: 'oc_category', placeholder: 'Selecciona categoría gasto', kind: 'text' },
   {
     field: 'oc_policy',
     placeholder: 'Selecciona política OC',
@@ -123,6 +124,14 @@ function isBalanceAccount(accountId: string | number | Date | null | undefined) 
   return Boolean(label?.trim().match(/^[12]/));
 }
 
+function categoryOptions(value: string | null | undefined): SelectOption[] {
+  return String(value ?? '')
+    .split(/\r?\n/)
+    .map((item) => item.trim())
+    .filter(Boolean)
+    .map((item) => ({ value: item, label: item }));
+}
+
 export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionFormProps) {
   const router = useRouter();
   const [decisionType, setDecisionType] = useState<DecisionType>('approve');
@@ -131,6 +140,10 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const expenseCategoryOptions = useMemo(
+    () => categoryOptions(currentValues.expenseCategory),
+    [currentValues.expenseCategory],
+  );
 
   const correctionPayload = useMemo(() => {
     if (decisionType !== 'correct_and_approve') {
@@ -222,10 +235,18 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
   }
 
   function renderFieldInput(fieldConfig: (typeof editableFields)[number]) {
-    const value = correctionValues[fieldConfig.field] ?? inputValue(currentValueForField(fieldConfig.field));
+    const dynamicOptions = fieldConfig.field === 'oc_category' && expenseCategoryOptions.length > 0
+      ? expenseCategoryOptions
+      : fieldConfig.options;
+    const dynamicKind = fieldConfig.field === 'oc_category' && expenseCategoryOptions.length > 1
+      ? 'select'
+      : fieldConfig.kind;
+    const currentValue = inputValue(currentValueForField(fieldConfig.field));
+    const value = correctionValues[fieldConfig.field]
+      ?? (dynamicKind === 'select' && !dynamicOptions?.some((option) => option.value === currentValue) ? '' : currentValue);
     const className = 'w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500';
 
-    if (fieldConfig.kind === 'select') {
+    if (dynamicKind === 'select') {
       return (
         <select
           value={value}
@@ -233,7 +254,7 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
           className={className}
         >
           <option value="">{fieldConfig.placeholder}</option>
-          {(fieldConfig.options ?? []).map((option) => (
+          {(dynamicOptions ?? []).map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>

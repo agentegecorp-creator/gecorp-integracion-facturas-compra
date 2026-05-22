@@ -657,6 +657,7 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                   locationId: document?.locationId || context?.locationIdProposed || context?.locationCorrecta || context?.locationSuggestedB2,
                   approvalGroup: context?.approvalGroup,
                   ocCategory: context?.ocCategory || context?.categoriaOc,
+                  expenseCategory: context?.expenseCategory,
                   ocPolicy: context?.ocPolicyCorrecta || context?.ocPolicySuggestedB2,
                   newVendorEntity: context?.entity || context?.vendorIdProposed,
                   invoiceNote,
