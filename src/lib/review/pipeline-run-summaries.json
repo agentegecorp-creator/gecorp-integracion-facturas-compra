@@ -1,14 +1,14 @@
 {
   "2026-05": {
-    "sourceRun": "runs/sii_to_pipeline/20260526-060130",
-    "generatedAt": "2026-05-26T06:01:53.075047",
+    "sourceRun": "runs/sii_to_pipeline/20260526-234621",
+    "generatedAt": "2026-05-26T23:46:42.221156",
     "mode": "dry-run / Sandbox-STUB",
-    "createdAutomatically": 58,
+    "createdAutomatically": 64,
     "duplicates": 0,
     "pendingApproval": 6,
     "newVendors": 6,
-    "rejectedSii": 6,
+    "rejectedSii": 7,
     "accountingErrors": 6,
-    "revisionOcReferential": 21
+    "revisionOcReferential": 22
   }
 }
