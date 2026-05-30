@@ -155,7 +155,12 @@ function oauthHeader(config: NetSuiteConfig, method: string, url: string) {
   return `OAuth ${Object.entries(params).map(([key, value]) => `${encode(key)}="${encode(value)}"`).join(', ')}, realm="${config.account}"`;
 }
 
-async function requestNetSuite(method: string, path: string, payload?: Record<string, unknown>) {
+async function requestNetSuite(
+  method: string,
+  path: string,
+  payload?: Record<string, unknown>,
+  options?: { prefer?: string },
+) {
   const config = loadConfig();
   const url = `${config.baseUrl}${path}`;
   const response = await fetch(url, {
@@ -166,7 +171,7 @@ async function requestNetSuite(method: string, path: string, payload?: Record<st
       ...(payload
         ? {
             'Content-Type': 'application/json',
-            Prefer: 'return=representation',
+            Prefer: options?.prefer ?? 'return=representation',
           }
         : {}),
     },
@@ -184,7 +189,7 @@ async function requestNetSuite(method: string, path: string, payload?: Record<st
 }
 
 async function suiteql(query: string) {
-  const result = await requestNetSuite('POST', '/services/rest/query/v1/suiteql', { q: query });
+  const result = await requestNetSuite('POST', '/services/rest/query/v1/suiteql', { q: query }, { prefer: 'transient' });
   if (!result.success) {
     throw new Error(`SuiteQL Sandbox falló HTTP ${result.status}: ${result.raw || JSON.stringify(result.body)}`);
   }
