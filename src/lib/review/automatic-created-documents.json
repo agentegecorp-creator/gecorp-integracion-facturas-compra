@@ -2808,5 +2808,223 @@
         }
       }
     }
+  ],
+  "2026-06": [
+    {
+      "id": "auto-2026-06-33-166601-0",
+      "sourceRun": "runs/sii_to_pipeline/20260602-090819",
+      "generatedAt": "2026-06-02T09:08:40.844974",
+      "vendor_name": "COMUNICACIONES BERMANN SPA",
+      "vendor_rut": "96357000-7",
+      "folio": "166601",
+      "document_type": "33",
+      "issue_date": "2026-06-01",
+      "reception_date": "2026-06-01",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "31426",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "26408",
+          "amountVat": "5018",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "31426",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-166601 COMUNICACIONES BERMANN SPA"
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260602-090819",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-06-33-4008-1",
+      "sourceRun": "runs/sii_to_pipeline/20260602-090819",
+      "generatedAt": "2026-06-02T09:08:40.844974",
+      "vendor_name": "FIRST, SERVICIOS DE ASEO Y MANTENCION SPA",
+      "vendor_rut": "76058028-7",
+      "folio": "4008",
+      "document_type": "33",
+      "issue_date": "2026-06-01",
+      "reception_date": "2026-06-01",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "483468",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "406276",
+          "amountVat": "77192",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "483468",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-4008 FIRST, SERVICIOS DE ASEO Y MANTENCION SPA"
+        },
+        "context": {
+          "categoriaOc": "OC_OBLIGATORIA",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260602-090819",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-06-33-66839-2",
+      "sourceRun": "runs/sii_to_pipeline/20260602-090819",
+      "generatedAt": "2026-06-02T09:08:40.844974",
+      "vendor_name": "Megacentro Chile SpA",
+      "vendor_rut": "76178665-2",
+      "folio": "66839",
+      "document_type": "33",
+      "issue_date": "2026-06-01",
+      "reception_date": "2026-06-01",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "2170775",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "1824181",
+          "amountVat": "346594",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "2170775",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-66839 Megacentro Chile SpA"
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260602-090819",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-06-33-959-3",
+      "sourceRun": "runs/sii_to_pipeline/20260602-090819",
+      "generatedAt": "2026-06-02T09:08:40.844974",
+      "vendor_name": "GIOVANNI OSVALDO DIAZ SILVA",
+      "vendor_rut": "15480941-4",
+      "folio": "959",
+      "document_type": "33",
+      "issue_date": "2026-06-01",
+      "reception_date": "2026-06-01",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "309400",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "260000",
+          "amountVat": "49400",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "309400",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-959 GIOVANNI OSVALDO DIAZ SILVA"
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260602-090819",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-06-34-274-4",
+      "sourceRun": "runs/sii_to_pipeline/20260602-090819",
+      "generatedAt": "2026-06-02T09:08:40.844974",
+      "vendor_name": "SOC COMERCIAL LOS CANELOS LIMITADA",
+      "vendor_rut": "78318440-0",
+      "folio": "274",
+      "document_type": "34",
+      "issue_date": "2026-06-01",
+      "reception_date": "2026-05-27",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "1000000",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "34",
+          "documentTypeLabel": "Documento SII 34",
+          "amountExempt": "1000000",
+          "amountNet": "0",
+          "amountVat": "0",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "1000000",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-274 SOC COMERCIAL LOS CANELOS LIMITADA"
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "nsId": "STUB-VENDORBILL-001",
+          "sourceRun": "runs/sii_to_pipeline/20260602-090819",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-06-61-1083-5",
+      "sourceRun": "runs/sii_to_pipeline/20260602-090819",
+      "generatedAt": "2026-06-02T09:08:40.844974",
+      "vendor_name": "MALTEXCO S.A.",
+      "vendor_rut": "91942000-6",
+      "folio": "1083",
+      "document_type": "61",
+      "issue_date": "2026-06-01",
+      "reception_date": "2026-06-01",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "20260",
+      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "sandbox_publish_status": "published",
+      "payload_json": {
+        "document": {
+          "documentType": "61",
+          "documentTypeLabel": "Nota de Crédito Electrónica (61)",
+          "amountExempt": "0",
+          "amountNet": "17025",
+          "amountVat": "3235",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "20260",
+          "purchaseOrderReference": null,
+          "memo": "RCV F-1083 MALTEXCO S.A."
+        },
+        "context": {
+          "categoriaOc": "OC_OBLIGATORIA",
+          "nsId": "STUB-VENDORCREDIT-001",
+          "sourceRun": "runs/sii_to_pipeline/20260602-090819",
+          "automaticCreationMode": "Sandbox-STUB"
+        }
+      }
+    }
   ]
 }
