@@ -1,7 +1,7 @@
 {
   "2026-05": {
-    "sourceRun": "runs/sii_to_pipeline/20260601-060138",
-    "generatedAt": "2026-06-01T06:01:59.828141",
+    "sourceRun": "runs/sii_to_pipeline/20260601-234702",
+    "generatedAt": "2026-06-01T23:47:23.830477",
     "mode": "dry-run / Sandbox-STUB",
     "createdAutomatically": 78,
     "duplicates": 0,
