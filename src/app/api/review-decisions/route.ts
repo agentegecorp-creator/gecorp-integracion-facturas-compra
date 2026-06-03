@@ -22,12 +22,16 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: false, message: 'Faltan caseId o decisionType.' }, { status: 400 });
     }
 
+    const sanitizedCorrections = corrections && typeof corrections === 'object'
+      ? Object.fromEntries(Object.entries(corrections).filter(([field]) => field !== 'vendor_name'))
+      : corrections;
+
     await createReviewDecision({
       caseId,
       userId: session.user_id,
       decisionType,
       notes,
-      correctionJson: corrections,
+      correctionJson: sanitizedCorrections,
     });
 
     return NextResponse.json({ ok: true });

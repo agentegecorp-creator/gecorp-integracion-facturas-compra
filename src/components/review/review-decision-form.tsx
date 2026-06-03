@@ -10,14 +10,12 @@ import {
   documentTypeOptions,
   locationOptions,
   paymentTermsOptions,
-  vendorOptions,
 } from '@/lib/review/catalogs';
 import { correctionFieldLabel, decisionLabel } from '@/lib/review/labels';
 
 type DecisionType = 'approve' | 'correct_and_approve' | 'exception' | 'reject_for_learning';
 type CorrectionField =
   | 'account_id'
-  | 'vendor_name'
   | 'issue_date'
   | 'accounting_date'
   | 'due_date'
@@ -72,7 +70,6 @@ const editableFields: Array<{
   options?: SelectOption[];
 }> = [
   { field: 'account_id', placeholder: 'Selecciona cuenta contable', kind: 'select', options: accountOptions },
-  { field: 'vendor_name', placeholder: 'Selecciona proveedor', kind: 'select', options: vendorOptions },
   { field: 'issue_date', placeholder: '', kind: 'date' },
   { field: 'accounting_date', placeholder: '', kind: 'date' },
   { field: 'due_date', placeholder: '', kind: 'date' },
@@ -206,7 +203,6 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
   function currentValueForField(field: CorrectionField) {
     const values: Record<CorrectionField, string | number | Date | null | undefined> = {
       account_id: currentValues.accountId,
-      vendor_name: currentValues.vendorName,
       issue_date: currentValues.issueDate,
       accounting_date: currentValues.accountingDate,
       due_date: currentValues.dueDate,
