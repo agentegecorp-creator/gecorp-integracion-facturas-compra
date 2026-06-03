@@ -148,6 +148,25 @@ function readSiiRowsByDocument(csvPath: string) {
   return rows;
 }
 
+function readDryRunPayloadsByDocument(reportJsonPath: string) {
+  const logPath = path.join(path.dirname(reportJsonPath), 'dry_run_create_log.jsonl');
+  const rows = new Map<string, Record<string, unknown>>();
+  if (!fs.existsSync(logPath)) return rows;
+
+  for (const line of fs.readFileSync(logPath, 'utf8').split(/\r?\n/)) {
+    if (!line.trim()) continue;
+    const parsed = JSON.parse(line) as { record_type?: string; data?: Record<string, unknown> };
+    const data = parsed.data ?? {};
+    const tranId = String(data.tranId ?? '');
+    const documentType = parsed.record_type === 'vendorcredit' ? '61' : '';
+    if (!tranId) continue;
+    rows.set(tranId, { recordType: parsed.record_type, data });
+    if (documentType) rows.set(`${documentType}:${tranId}`, { recordType: parsed.record_type, data });
+  }
+
+  return rows;
+}
+
 function updatePipelineRunSummary(month: string, year: string, runDir: string, reportJsonPath: string) {
   const report = JSON.parse(fs.readFileSync(reportJsonPath, 'utf8'));
   const existing = fs.existsSync(pipelineRunSummariesPath)
@@ -181,6 +200,7 @@ function updateAutomaticCreatedDocuments(month: string, year: string, runDir: st
     ? JSON.parse(fs.readFileSync(automaticCreatedDocumentsPath, 'utf8'))
     : {};
   const siiRows = readSiiRowsByDocument(csvPath);
+  const dryRunPayloads = readDryRunPayloadsByDocument(reportJsonPath);
   const sourceRun = path.relative(siiProjectDir, runDir);
   const key = monthKey(month, year);
 
@@ -188,6 +208,17 @@ function updateAutomaticCreatedDocuments(month: string, year: string, runDir: st
     const documentType = String(item.tipo_doc ?? '');
     const folio = String(item.folio ?? '');
     const siiRow = siiRows.get(`${documentType}:${folio}`) ?? {};
+    const dryRun = dryRunPayloads.get(`${documentType}:${folio}`) ?? dryRunPayloads.get(folio) ?? {};
+    const dryRunData = (dryRun.data ?? {}) as Record<string, unknown>;
+    const expenseItems = ((dryRunData.expense as { items?: Array<Record<string, unknown>> } | undefined)?.items ?? []);
+    const expense = expenseItems[0] ?? {};
+    const entityId = (dryRunData.entity as { id?: string } | undefined)?.id ?? null;
+    const accountId = (expense.account as { id?: string } | undefined)?.id ?? null;
+    const locationId = (expense.location as { id?: string } | undefined)?.id ?? (dryRunData.location as { id?: string } | undefined)?.id ?? null;
+    const classId = (expense.class as { id?: string } | undefined)?.id ?? (dryRunData.class as { id?: string } | undefined)?.id ?? null;
+    const departmentId = (expense.department as { id?: string } | undefined)?.id ?? (dryRunData.department as { id?: string } | undefined)?.id ?? null;
+    const requesterId = (dryRunData.custbody_gecorp_solicitante as { id?: string } | undefined)?.id ?? null;
+    const documentTypeNs = (dryRunData.custbody_gd_tipo_documento as { id?: string } | undefined)?.id ?? null;
     const vendorName = String(siiRow.vendorName ?? item.proveedor ?? '');
 
     return {
@@ -203,8 +234,8 @@ function updateAutomaticCreatedDocuments(month: string, year: string, runDir: st
       bucket: 'approved_auto',
       status: 'resolved',
       amount_total: String(siiRow.amountTotal ?? item.monto ?? 0),
-      summary_text: `Creada automáticamente por pipeline SII → NetSuite (${report.resumen?.ambiente ?? 'Sandbox-STUB'}).`,
-      sandbox_publish_status: 'published',
+      summary_text: `Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.`,
+      sandbox_publish_status: 'ready',
       payload_json: {
         document: {
           documentType,
@@ -216,11 +247,24 @@ function updateAutomaticCreatedDocuments(month: string, year: string, runDir: st
           amountOtherTax: siiRow.amountOtherTax ?? 0,
           amountTotal: siiRow.amountTotal ?? item.monto ?? 0,
           purchaseOrderReference: item.po_vinculada ?? null,
+          accountId,
+          locationId,
+          classId,
+          departmentId,
           memo: `RCV F-${folio} ${vendorName}`,
         },
         context: {
           categoriaOc: item.categoria_oc ?? null,
-          nsId: item.ns_id ?? null,
+          stubNsId: item.ns_id ?? null,
+          vendorIdProposed: entityId,
+          accountIdProposed: accountId,
+          locationIdProposed: locationId,
+          classIdProposed: classId,
+          departmentIdProposed: departmentId,
+          requesterIdProposed: requesterId,
+          documentTypeNsProposed: documentTypeNs,
+          accountingDateProposed: dryRunData.tranDate ?? siiRow.issueDate ?? null,
+          dueDate: dryRunData.dueDate ?? siiRow.issueDate ?? null,
           sourceRun,
           automaticCreationMode: report.resumen?.ambiente ?? 'Sandbox-STUB',
         },
@@ -345,6 +389,7 @@ function main() {
   updateUnclassifiedDocuments(month, year, runDir, summary.report_json_path, summary.csv_path);
   run('npx', ['tsx', 'scripts/generate-rcv-sii-summary.ts'], appProjectDir);
   run('npx', ['tsx', 'scripts/import-review-cases-from-builder-json.ts'], appProjectDir);
+  run('npx', ['tsx', 'scripts/import-automatic-created-documents.ts', monthKey(month, year)], appProjectDir);
   deployDashboardData(month, year);
 
   console.log('\nFlujo operativo completo ejecutado:');

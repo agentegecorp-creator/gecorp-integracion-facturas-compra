@@ -28,8 +28,11 @@ export function SandboxPublishPanel({
         setMessage(payload.message || 'No se pudo publicar a Sandbox.');
         return;
       }
+      const selectedText = payload.totalSelected < limit
+        ? ` Se tomaron ${payload.totalSelected} de ${limit} porque no había más casos publicables.`
+        : ` Se tomaron ${payload.totalSelected} casos.`;
       setMessage(
-        `Lote ${payload.runId}: ${payload.createdCount} creados, ${payload.skippedCount} duplicados, ${payload.failedCount} fallidos.`,
+        `Lote ${payload.runId}:${selectedText} Resultado: ${payload.createdCount} creados, ${payload.skippedCount} duplicados, ${payload.failedCount} fallidos.`,
       );
     });
   }

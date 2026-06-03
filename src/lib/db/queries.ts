@@ -282,7 +282,9 @@ export async function getDashboardSummary(period?: DashboardPeriod) {
     const vendorName = String(row.vendor_name || '').toUpperCase();
     const docType = String(document.documentType || row.document_type || 'Sin tipo');
 
-    if (row.status === 'resolved') {
+    if (row.bucket === 'approved_auto') {
+      // Las automáticas son aprobadas por regla, pero requieren publicación manual a Sandbox.
+    } else if (row.status === 'resolved') {
       operationalSummary.creadasManuales += 1;
     } else {
       operationalSummary.porContabilizar += 1;
@@ -394,7 +396,25 @@ export async function listReviewCases(
   },
 ) {
   if (filters?.operationalView === 'automatic') {
-    return automaticDocumentsForPeriod(filters.period).slice(0, limit);
+    const values: Array<string | number> = [limit];
+    const conditions = [`bucket = 'approved_auto'`];
+
+    if (filters.period) {
+      values.push(filters.period.startDate, filters.period.endDate);
+      conditions.push(`issue_date >= $${values.length - 1}::date and issue_date < $${values.length}::date`);
+    }
+
+    const result = await db.query(
+      `select id, vendor_name, vendor_rut, folio, document_type, issue_date, bucket, status, amount_total, summary_text, created_at,
+              coalesce(sandbox_publish_status, 'not_ready') as sandbox_publish_status
+       from review_cases
+       where ${conditions.join(' and ')}
+       order by created_at desc
+       limit $1`,
+      values,
+    );
+
+    return result.rows.length > 0 ? result.rows : automaticDocumentsForPeriod(filters.period).slice(0, limit);
   }
 
   if (filters?.operationalView === 'unclassified') {
