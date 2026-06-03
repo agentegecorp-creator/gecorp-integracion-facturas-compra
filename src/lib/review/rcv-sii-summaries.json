@@ -1,7 +1,7 @@
 {
   "2026-02": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202602.csv",
-    "generatedAt": "2026-06-02T13:08:42.291Z",
+    "generatedAt": "2026-06-03T03:47:43.281Z",
     "rows": [
       {
         "documentType": "33",
@@ -51,7 +51,7 @@
   },
   "2026-03": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202603.csv",
-    "generatedAt": "2026-06-02T13:08:42.307Z",
+    "generatedAt": "2026-06-03T03:47:43.299Z",
     "rows": [
       {
         "documentType": "33",
@@ -101,7 +101,7 @@
   },
   "2026-04": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202604.csv",
-    "generatedAt": "2026-06-02T13:08:42.308Z",
+    "generatedAt": "2026-06-03T03:47:43.302Z",
     "rows": [
       {
         "documentType": "33",
@@ -140,7 +140,7 @@
   },
   "2026-05": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202605.csv",
-    "generatedAt": "2026-06-02T13:08:42.308Z",
+    "generatedAt": "2026-06-03T03:47:43.306Z",
     "rows": [
       {
         "documentType": "33",
@@ -179,51 +179,40 @@
   },
   "2026-06": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202606.csv",
-    "generatedAt": "2026-06-02T13:08:42.309Z",
+    "generatedAt": "2026-06-03T03:47:43.309Z",
     "rows": [
       {
         "documentType": "33",
-        "totalDocuments": 10,
+        "totalDocuments": 17,
         "montoExento": 0,
-        "montoNeto": 2905599,
-        "ivaRecuperable": 552064,
+        "montoNeto": 4236353,
+        "ivaRecuperable": 804908,
         "ivaUsoComun": 0,
         "ivaNoRecuperable": 0,
         "montoOtrosImpuestos": 13688,
-        "montoTotal": 3471351
+        "montoTotal": 5054949
       },
       {
         "documentType": "34",
-        "totalDocuments": 1,
-        "montoExento": 1000000,
+        "totalDocuments": 2,
+        "montoExento": 6608948,
         "montoNeto": 0,
         "ivaRecuperable": 0,
         "ivaUsoComun": 0,
         "ivaNoRecuperable": 0,
         "montoOtrosImpuestos": 0,
-        "montoTotal": 1000000
+        "montoTotal": 6608948
       },
       {
         "documentType": "61",
-        "totalDocuments": 2,
+        "totalDocuments": 3,
         "montoExento": 0,
-        "montoNeto": 57664,
-        "ivaRecuperable": 10956,
+        "montoNeto": 148420,
+        "ivaRecuperable": 28200,
         "ivaUsoComun": 0,
         "ivaNoRecuperable": 0,
         "montoOtrosImpuestos": 0,
-        "montoTotal": 68620
-      },
-      {
-        "documentType": "914",
-        "totalDocuments": 1,
-        "montoExento": 0,
-        "montoNeto": 32385182,
-        "ivaRecuperable": 6153184,
-        "ivaUsoComun": 0,
-        "ivaNoRecuperable": 0,
-        "montoOtrosImpuestos": 0,
-        "montoTotal": 38538368
+        "montoTotal": 176620
       }
     ]
   }
