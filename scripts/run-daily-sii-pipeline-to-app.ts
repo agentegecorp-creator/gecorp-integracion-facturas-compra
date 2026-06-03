@@ -179,7 +179,7 @@ function updatePipelineRunSummary(month: string, year: string, runDir: string, r
   existing[key] = {
     sourceRun,
     generatedAt: report.timestamp ?? new Date().toISOString(),
-    mode: 'dry-run / Sandbox-STUB',
+    mode: 'dry-run / pendiente de publicación manual a Sandbox real',
     createdAutomatically: Number(resumen.creadas ?? 0),
     duplicates: Number(resumen.duplicadas ?? 0),
     pendingApproval: Number(resumen.pendientes_aprobacion ?? 0),
@@ -255,7 +255,7 @@ function updateAutomaticCreatedDocuments(month: string, year: string, runDir: st
         },
         context: {
           categoriaOc: item.categoria_oc ?? null,
-          stubNsId: item.ns_id ?? null,
+          simulatedNsId: item.ns_id ?? null,
           vendorIdProposed: entityId,
           accountIdProposed: accountId,
           locationIdProposed: locationId,
@@ -266,7 +266,7 @@ function updateAutomaticCreatedDocuments(month: string, year: string, runDir: st
           accountingDateProposed: dryRunData.tranDate ?? siiRow.issueDate ?? null,
           dueDate: dryRunData.dueDate ?? siiRow.issueDate ?? null,
           sourceRun,
-          automaticCreationMode: report.resumen?.ambiente ?? 'Sandbox-STUB',
+          automaticCreationMode: 'Pipeline automático; pendiente de Sandbox real',
         },
       },
     };

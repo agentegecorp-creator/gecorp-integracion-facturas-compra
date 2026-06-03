@@ -450,6 +450,7 @@ export async function listReviewCases(
 
   if (filters?.operationalView === 'posted') {
     conditions.push(`status = 'resolved'`);
+    conditions.push(`bucket <> 'approved_auto'`);
   }
 
   if (filters?.operationalView === 'pending') {
@@ -551,7 +552,9 @@ export async function getReviewQueueCounts(monthScope: 'active' | 'all' = 'activ
     const vendorName = String(row.vendor_name || '').toUpperCase();
     const docType = String(document.documentType || '');
 
-    if (row.status === 'resolved') counts.operational.posted += 1;
+    if (row.bucket === 'approved_auto') {
+      // Las automaticas tienen aprobacion de regla, pero pertenecen a su propia vista operativa.
+    } else if (row.status === 'resolved') counts.operational.posted += 1;
     else counts.operational.pending += 1;
 
     if (vendorName.includes('DIN') || vendorName.includes('SCOTIABANK SIN VALOR') || docType === '914') {

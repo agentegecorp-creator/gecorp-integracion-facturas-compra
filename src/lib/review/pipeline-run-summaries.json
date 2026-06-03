@@ -2,7 +2,7 @@
   "2026-05": {
     "sourceRun": "runs/sii_to_pipeline/20260602-060334",
     "generatedAt": "2026-06-02T06:04:01.972198",
-    "mode": "dry-run / Sandbox-STUB",
+    "mode": "dry-run / pendiente de publicación manual a Sandbox real",
     "createdAutomatically": 78,
     "duplicates": 0,
     "pendingApproval": 11,
@@ -14,7 +14,7 @@
   "2026-06": {
     "sourceRun": "runs/sii_to_pipeline/20260602-234720",
     "generatedAt": "2026-06-02T23:47:41.814259",
-    "mode": "dry-run / Sandbox-STUB",
+    "mode": "dry-run / pendiente de publicación manual a Sandbox real",
     "createdAutomatically": 10,
     "duplicates": 0,
     "pendingApproval": 2,

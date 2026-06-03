@@ -17,6 +17,8 @@ type ReviewItem = {
   issue_date?: string | Date | null;
   summary_text?: string | null;
   sandbox_publish_status?: string | null;
+  sandbox_record_id?: string | null;
+  sandbox_record_type?: string | null;
 };
 
 type ReviewCaseDetail = ReviewItem & {
@@ -204,8 +206,26 @@ function sandboxPublishChipClass(status: string | null | undefined) {
   return 'bg-slate-100 text-slate-700 ring-slate-200';
 }
 
-function nextActionLabel(bucket: string) {
-  if (bucket === 'approved_auto') return 'Sin acción pendiente';
+function pipelineModeLabel(mode: string | null | undefined) {
+  if (!mode) return '-';
+  if (mode.includes('STUB')) return 'Simulación del pipeline, no publicación real';
+  return mode;
+}
+
+function displaySummaryText(item: ReviewItem) {
+  if (item.bucket === 'approved_auto' && item.summary_text?.includes('Sandbox-STUB')) {
+    return item.summary_text.replace(' (Sandbox-STUB)', '; pendiente de publicación manual a Sandbox');
+  }
+
+  return item.summary_text || 'Sin resumen.';
+}
+
+function nextActionLabel(bucket: string, sandboxPublishStatus?: string | null) {
+  if (bucket === 'approved_auto') {
+    if (sandboxPublishStatus === 'published') return 'Ya publicado en Sandbox';
+    if (sandboxPublishStatus === 'failed') return 'Reintentar publicación a Sandbox';
+    return 'Publicar manualmente a Sandbox';
+  }
   if (bucket === 'error_real') return 'Definir corrección contable';
   if (bucket === 'rejected_sii') return 'Gestionar rechazo con proveedor';
   if (bucket === 'revision_oc') return 'Validar contra OC real';
@@ -314,8 +334,8 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                     </div>
                   </div>
                 </div>
-                <p className="mt-3 text-sm text-slate-600">{item.summary_text || 'Sin resumen.'}</p>
-                <p className="mt-2 text-xs font-medium text-slate-500">Siguiente acción sugerida: {nextActionLabel(item.bucket)}</p>
+                <p className="mt-3 text-sm text-slate-600">{displaySummaryText(item)}</p>
+                <p className="mt-2 text-xs font-medium text-slate-500">Siguiente acción sugerida: {nextActionLabel(item.bucket, item.sandbox_publish_status)}</p>
               </button>
             ))
           )}
@@ -429,12 +449,12 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
               {isAutomaticCreated ? (
                 <>
                   <div className="rounded-2xl bg-cyan-50 p-4">
-                    <p className="text-sm text-cyan-700">ID NetSuite / pipeline</p>
-                    <p className="mt-1 font-medium text-slate-900">{context?.nsId || '-'}</p>
+                    <p className="text-sm text-cyan-700">ID Sandbox real</p>
+                    <p className="mt-1 font-medium text-slate-900">{selectedDetail?.sandbox_record_id || '-'}</p>
                   </div>
                   <div className="rounded-2xl bg-cyan-50 p-4">
-                    <p className="text-sm text-cyan-700">Modo creación automática</p>
-                    <p className="mt-1 font-medium text-slate-900">{context?.automaticCreationMode || '-'}</p>
+                    <p className="text-sm text-cyan-700">Origen automático</p>
+                    <p className="mt-1 font-medium text-slate-900">{pipelineModeLabel(context?.automaticCreationMode)}</p>
                   </div>
                 </>
               ) : null}

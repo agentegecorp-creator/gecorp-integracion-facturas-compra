@@ -13,7 +13,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "101150",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -30,9 +30,9 @@
         },
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -49,7 +49,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "86025",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -66,9 +66,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -85,7 +85,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "63242",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -102,9 +102,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -121,7 +121,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "31074",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -138,9 +138,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -157,7 +157,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "860515",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -174,9 +174,9 @@
         },
         "context": {
           "categoriaOc": "OC_OBLIGATORIA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -193,7 +193,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "181052",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -210,9 +210,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -229,7 +229,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "1936623",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -246,9 +246,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -265,7 +265,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "1237600",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -282,9 +282,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -301,7 +301,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "172040",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -318,9 +318,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -337,7 +337,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "716146",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -354,9 +354,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -373,7 +373,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "59057",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -390,9 +390,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -409,7 +409,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "484279",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -426,9 +426,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -445,7 +445,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "215799",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -462,9 +462,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -481,7 +481,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "25136",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -498,9 +498,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -517,7 +517,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "40874",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -534,9 +534,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -553,7 +553,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "20530",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -570,9 +570,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -589,7 +589,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "245735",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -606,9 +606,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -625,7 +625,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "2963981",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -642,9 +642,9 @@
         },
         "context": {
           "categoriaOc": "OC_OBLIGATORIA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -661,7 +661,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "2313777",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -678,9 +678,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -697,7 +697,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "143336",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -714,9 +714,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -733,7 +733,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "475369",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -750,9 +750,9 @@
         },
         "context": {
           "categoriaOc": "OC_OBLIGATORIA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -769,7 +769,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "1179958",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -786,9 +786,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -805,7 +805,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "156078",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -822,9 +822,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -841,7 +841,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "220150",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -858,9 +858,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -877,7 +877,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "39275",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -894,9 +894,9 @@
         },
         "context": {
           "categoriaOc": "OC_OBLIGATORIA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -913,7 +913,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "67093",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -930,9 +930,9 @@
         },
         "context": {
           "categoriaOc": "OC_OBLIGATORIA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -949,7 +949,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "18990",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -966,9 +966,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -985,7 +985,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "131424",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1002,9 +1002,9 @@
         },
         "context": {
           "categoriaOc": "OC_OBLIGATORIA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -1021,7 +1021,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "3179992",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1038,9 +1038,9 @@
         },
         "context": {
           "categoriaOc": "OC_OBLIGATORIA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -1057,7 +1057,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "119000",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1074,9 +1074,9 @@
         },
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -1093,7 +1093,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "95200",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1110,9 +1110,9 @@
         },
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -1129,7 +1129,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "572916",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1146,9 +1146,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -1165,7 +1165,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "158258",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1182,9 +1182,9 @@
         },
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -1201,7 +1201,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "89250",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1218,9 +1218,9 @@
         },
         "context": {
           "categoriaOc": "OC_OBLIGATORIA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -1237,7 +1237,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "202300",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1254,9 +1254,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -1273,7 +1273,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "111093",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1290,9 +1290,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -1309,7 +1309,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "402438",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1326,9 +1326,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -1345,7 +1345,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "176011",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1362,9 +1362,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -1381,7 +1381,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "324275",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1398,9 +1398,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -1417,7 +1417,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "211755",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1434,9 +1434,9 @@
         },
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -1453,7 +1453,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "158258",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1470,9 +1470,9 @@
         },
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -1489,7 +1489,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "468930",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1506,9 +1506,9 @@
         },
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -1525,7 +1525,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "35700",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1542,9 +1542,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -1561,7 +1561,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "499800",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1578,9 +1578,9 @@
         },
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -1597,7 +1597,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "117768",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1614,9 +1614,9 @@
         },
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -1633,7 +1633,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "583100",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1650,9 +1650,9 @@
         },
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -1669,7 +1669,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "158258",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1686,9 +1686,9 @@
         },
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -1705,7 +1705,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "324275",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1722,9 +1722,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -1741,7 +1741,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "137396",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1758,9 +1758,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -1777,7 +1777,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "53550",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1794,9 +1794,9 @@
         },
         "context": {
           "categoriaOc": "OC_OBLIGATORIA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -1813,7 +1813,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "158258",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1830,9 +1830,9 @@
         },
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -1849,7 +1849,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "158258",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1866,9 +1866,9 @@
         },
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -1885,7 +1885,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "334757",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1902,9 +1902,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -1921,7 +1921,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "338005",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1938,9 +1938,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -1957,7 +1957,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "158258",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1974,9 +1974,9 @@
         },
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -1993,7 +1993,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "1000000",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2010,9 +2010,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -2029,7 +2029,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "153299",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2046,9 +2046,9 @@
         },
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -2065,7 +2065,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "76760",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2082,9 +2082,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -2101,7 +2101,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "9149",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2118,9 +2118,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -2137,7 +2137,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "7523248",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2154,9 +2154,9 @@
         },
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -2173,7 +2173,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "2524395",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2190,9 +2190,9 @@
         },
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -2209,7 +2209,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "161984",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2226,9 +2226,9 @@
         },
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -2245,7 +2245,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "82378",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2262,9 +2262,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -2281,7 +2281,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "68237",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2298,9 +2298,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -2317,7 +2317,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "7655926",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2334,9 +2334,9 @@
         },
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -2353,7 +2353,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "137214",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2370,9 +2370,9 @@
         },
         "context": {
           "categoriaOc": "OC_OBLIGATORIA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -2389,7 +2389,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "3055656",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2406,9 +2406,9 @@
         },
         "context": {
           "categoriaOc": "OC_OBLIGATORIA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -2425,7 +2425,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "688930",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2442,9 +2442,9 @@
         },
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -2461,7 +2461,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "202546",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2478,9 +2478,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -2497,7 +2497,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "243056",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2514,9 +2514,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -2533,7 +2533,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "19683",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2550,9 +2550,9 @@
         },
         "context": {
           "categoriaOc": "OC_OBLIGATORIA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -2569,7 +2569,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "282620",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2586,9 +2586,9 @@
         },
         "context": {
           "categoriaOc": "OC_OBLIGATORIA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -2605,7 +2605,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "22728",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2622,9 +2622,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -2641,7 +2641,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "108325",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2658,9 +2658,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -2677,7 +2677,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "39900",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2694,9 +2694,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -2713,7 +2713,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "693677",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2730,9 +2730,9 @@
         },
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -2749,7 +2749,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "7523248",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2766,9 +2766,9 @@
         },
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
-          "nsId": "STUB-VENDORCREDIT-001",
+          "simulatedNsId": "SIMULATED-VENDORCREDIT-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -2785,7 +2785,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "464922",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2802,9 +2802,9 @@
         },
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
-          "nsId": "STUB-VENDORCREDIT-001",
+          "simulatedNsId": "SIMULATED-VENDORCREDIT-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     }
@@ -2823,7 +2823,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "31426",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2840,9 +2840,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-234720",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -2859,7 +2859,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "483468",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2876,9 +2876,9 @@
         },
         "context": {
           "categoriaOc": "OC_OBLIGATORIA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-234720",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -2895,7 +2895,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "2170775",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2912,9 +2912,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-234720",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -2931,7 +2931,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "309400",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2948,9 +2948,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-234720",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -2967,7 +2967,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "54789",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2984,9 +2984,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-234720",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -3003,7 +3003,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "41650",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -3020,9 +3020,9 @@
         },
         "context": {
           "categoriaOc": "OC_RECOMENDADA",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-234720",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -3039,7 +3039,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "70411",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -3056,9 +3056,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-234720",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -3075,7 +3075,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "409122",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -3092,9 +3092,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-234720",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -3111,7 +3111,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "1000000",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -3128,9 +3128,9 @@
         },
         "context": {
           "categoriaOc": "SIN_OC",
-          "nsId": "STUB-VENDORBILL-001",
+          "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-234720",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
@@ -3147,7 +3147,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "20260",
-      "summary_text": "Creada automáticamente por pipeline SII → NetSuite (Sandbox-STUB).",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -3164,9 +3164,9 @@
         },
         "context": {
           "categoriaOc": "OC_OBLIGATORIA",
-          "nsId": "STUB-VENDORCREDIT-001",
+          "simulatedNsId": "SIMULATED-VENDORCREDIT-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-234720",
-          "automaticCreationMode": "Sandbox-STUB"
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     }
