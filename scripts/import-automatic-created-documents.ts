@@ -170,6 +170,7 @@ async function main() {
         await db.query(
           `update review_cases
            set source_run_id = $1,
+               source_document_id = $2,
                vendor_name = $3,
                vendor_rut = $4,
                folio = $5,
