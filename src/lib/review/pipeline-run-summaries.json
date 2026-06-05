@@ -12,15 +12,15 @@
     "revisionOcReferential": 26
   },
   "2026-06": {
-    "sourceRun": "runs/sii_to_pipeline/20260604-060207",
-    "generatedAt": "2026-06-04T06:02:47.439013",
+    "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+    "generatedAt": "2026-06-04T23:50:53.836447",
     "mode": "dry-run / pendiente de publicación manual a Sandbox real",
-    "createdAutomatically": 12,
+    "createdAutomatically": 21,
     "duplicates": 0,
     "pendingApproval": 2,
     "newVendors": 1,
-    "rejectedSii": 1,
+    "rejectedSii": 2,
     "accountingErrors": 1,
-    "revisionOcReferential": 8
+    "revisionOcReferential": 9
   }
 }

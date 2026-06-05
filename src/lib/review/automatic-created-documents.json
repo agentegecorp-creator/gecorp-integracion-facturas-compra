@@ -2812,8 +2812,8 @@
   "2026-06": [
     {
       "id": "auto-2026-06-33-166601-0",
-      "sourceRun": "runs/sii_to_pipeline/20260604-060207",
-      "generatedAt": "2026-06-04T06:02:47.439013",
+      "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+      "generatedAt": "2026-06-04T23:50:53.836447",
       "vendor_name": "COMUNICACIONES BERMANN SPA",
       "vendor_rut": "96357000-7",
       "folio": "166601",
@@ -2854,15 +2854,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-06-01",
           "dueDate": "2026-06-16",
-          "sourceRun": "runs/sii_to_pipeline/20260604-060207",
+          "sourceRun": "runs/sii_to_pipeline/20260604-235032",
           "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
     {
       "id": "auto-2026-06-33-4008-1",
-      "sourceRun": "runs/sii_to_pipeline/20260604-060207",
-      "generatedAt": "2026-06-04T06:02:47.439013",
+      "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+      "generatedAt": "2026-06-04T23:50:53.836447",
       "vendor_name": "FIRST, SERVICIOS DE ASEO Y MANTENCION SPA",
       "vendor_rut": "76058028-7",
       "folio": "4008",
@@ -2903,15 +2903,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-06-01",
           "dueDate": "2026-07-01",
-          "sourceRun": "runs/sii_to_pipeline/20260604-060207",
+          "sourceRun": "runs/sii_to_pipeline/20260604-235032",
           "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
     {
       "id": "auto-2026-06-33-66839-2",
-      "sourceRun": "runs/sii_to_pipeline/20260604-060207",
-      "generatedAt": "2026-06-04T06:02:47.439013",
+      "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+      "generatedAt": "2026-06-04T23:50:53.836447",
       "vendor_name": "Megacentro Chile SpA",
       "vendor_rut": "76178665-2",
       "folio": "66839",
@@ -2952,15 +2952,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-06-01",
           "dueDate": "2026-06-01",
-          "sourceRun": "runs/sii_to_pipeline/20260604-060207",
+          "sourceRun": "runs/sii_to_pipeline/20260604-235032",
           "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
     {
       "id": "auto-2026-06-33-3257-3",
-      "sourceRun": "runs/sii_to_pipeline/20260604-060207",
-      "generatedAt": "2026-06-04T06:02:47.439013",
+      "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+      "generatedAt": "2026-06-04T23:50:53.836447",
       "vendor_name": "MI FIBRA SPA",
       "vendor_rut": "76871367-7",
       "folio": "3257",
@@ -3001,15 +3001,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-06-01",
           "dueDate": "2026-06-01",
-          "sourceRun": "runs/sii_to_pipeline/20260604-060207",
+          "sourceRun": "runs/sii_to_pipeline/20260604-235032",
           "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
     {
       "id": "auto-2026-06-33-959-4",
-      "sourceRun": "runs/sii_to_pipeline/20260604-060207",
-      "generatedAt": "2026-06-04T06:02:47.439013",
+      "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+      "generatedAt": "2026-06-04T23:50:53.836447",
       "vendor_name": "GIOVANNI OSVALDO DIAZ SILVA",
       "vendor_rut": "15480941-4",
       "folio": "959",
@@ -3050,15 +3050,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-06-01",
           "dueDate": "2026-07-01",
-          "sourceRun": "runs/sii_to_pipeline/20260604-060207",
+          "sourceRun": "runs/sii_to_pipeline/20260604-235032",
           "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
     {
       "id": "auto-2026-06-33-73415841-5",
-      "sourceRun": "runs/sii_to_pipeline/20260604-060207",
-      "generatedAt": "2026-06-04T06:02:47.439013",
+      "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+      "generatedAt": "2026-06-04T23:50:53.836447",
       "vendor_name": "Telefónica Móviles Chile S.A.",
       "vendor_rut": "76124890-1",
       "folio": "73415841",
@@ -3099,15 +3099,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-06-01",
           "dueDate": "2026-07-01",
-          "sourceRun": "runs/sii_to_pipeline/20260604-060207",
+          "sourceRun": "runs/sii_to_pipeline/20260604-235032",
           "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
     {
       "id": "auto-2026-06-33-44787-6",
-      "sourceRun": "runs/sii_to_pipeline/20260604-060207",
-      "generatedAt": "2026-06-04T06:02:47.439013",
+      "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+      "generatedAt": "2026-06-04T23:50:53.836447",
       "vendor_name": "TIBA CHILE SPA",
       "vendor_rut": "76320613-0",
       "folio": "44787",
@@ -3148,15 +3148,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-06-02",
           "dueDate": "2026-07-02",
-          "sourceRun": "runs/sii_to_pipeline/20260604-060207",
+          "sourceRun": "runs/sii_to_pipeline/20260604-235032",
           "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
     {
       "id": "auto-2026-06-33-67212-7",
-      "sourceRun": "runs/sii_to_pipeline/20260604-060207",
-      "generatedAt": "2026-06-04T06:02:47.439013",
+      "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+      "generatedAt": "2026-06-04T23:50:53.836447",
       "vendor_name": "Megacentro Chile SpA",
       "vendor_rut": "76178665-2",
       "folio": "67212",
@@ -3197,15 +3197,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-06-02",
           "dueDate": "2026-06-02",
-          "sourceRun": "runs/sii_to_pipeline/20260604-060207",
+          "sourceRun": "runs/sii_to_pipeline/20260604-235032",
           "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
     {
       "id": "auto-2026-06-33-1614090-8",
-      "sourceRun": "runs/sii_to_pipeline/20260604-060207",
-      "generatedAt": "2026-06-04T06:02:47.439013",
+      "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+      "generatedAt": "2026-06-04T23:50:53.836447",
       "vendor_name": "HAPAG-LLOYD CHILE SPA",
       "vendor_rut": "76380217-5",
       "folio": "1614090",
@@ -3246,15 +3246,64 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-06-02",
           "dueDate": "2026-07-02",
-          "sourceRun": "runs/sii_to_pipeline/20260604-060207",
+          "sourceRun": "runs/sii_to_pipeline/20260604-235032",
           "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
     {
-      "id": "auto-2026-06-33-14039-9",
-      "sourceRun": "runs/sii_to_pipeline/20260604-060207",
-      "generatedAt": "2026-06-04T06:02:47.439013",
+      "id": "auto-2026-06-33-4146120-9",
+      "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+      "generatedAt": "2026-06-04T23:50:53.836447",
+      "vendor_name": "SERVICIOS EQUIFAX CHILE LIMITADA",
+      "vendor_rut": "85896100-9",
+      "folio": "4146120",
+      "document_type": "33",
+      "issue_date": "2026-06-01",
+      "reception_date": "2026-06-03",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "258790",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "sandbox_publish_status": "ready",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "217471",
+          "amountVat": "41319",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "258790",
+          "purchaseOrderReference": null,
+          "accountId": "701",
+          "locationId": "5",
+          "classId": null,
+          "departmentId": null,
+          "memo": "RCV F-4146120 SERVICIOS EQUIFAX CHILE LIMITADA"
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "simulatedNsId": "STUB-VENDORBILL-001",
+          "vendorIdProposed": "3278",
+          "accountIdProposed": "701",
+          "locationIdProposed": "5",
+          "classIdProposed": null,
+          "departmentIdProposed": null,
+          "requesterIdProposed": "731",
+          "documentTypeNsProposed": "2",
+          "accountingDateProposed": "2026-06-01",
+          "dueDate": "2026-07-01",
+          "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-06-33-14039-10",
+      "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+      "generatedAt": "2026-06-04T23:50:53.836447",
       "vendor_name": "SOCIEDAD  INVERSIONES MALAGA SPA 3103986",
       "vendor_rut": "77864757-5",
       "folio": "14039",
@@ -3295,15 +3344,260 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-06-03",
           "dueDate": "2026-06-03",
-          "sourceRun": "runs/sii_to_pipeline/20260604-060207",
+          "sourceRun": "runs/sii_to_pipeline/20260604-235032",
           "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
     {
-      "id": "auto-2026-06-34-274-10",
-      "sourceRun": "runs/sii_to_pipeline/20260604-060207",
-      "generatedAt": "2026-06-04T06:02:47.439013",
+      "id": "auto-2026-06-33-6577686-11",
+      "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+      "generatedAt": "2026-06-04T23:50:53.836447",
+      "vendor_name": "Manantial S.A",
+      "vendor_rut": "96711590-8",
+      "folio": "6577686",
+      "document_type": "33",
+      "issue_date": "2026-05-31",
+      "reception_date": "2026-06-03",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "41978",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "sandbox_publish_status": "ready",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "35276",
+          "amountVat": "6702",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "41978",
+          "purchaseOrderReference": null,
+          "accountId": "704",
+          "locationId": "5",
+          "classId": null,
+          "departmentId": null,
+          "memo": "RCV F-6577686 Manantial S.A"
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "simulatedNsId": "STUB-VENDORBILL-001",
+          "vendorIdProposed": "4848",
+          "accountIdProposed": "704",
+          "locationIdProposed": "5",
+          "classIdProposed": null,
+          "departmentIdProposed": null,
+          "requesterIdProposed": null,
+          "documentTypeNsProposed": "2",
+          "accountingDateProposed": "2026-05-31",
+          "dueDate": "2026-05-31",
+          "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-06-33-14443869-12",
+      "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+      "generatedAt": "2026-06-04T23:50:53.836447",
+      "vendor_name": "PROVEEDORES INTEGRALES PRISA S A",
+      "vendor_rut": "96556940-5",
+      "folio": "14443869",
+      "document_type": "33",
+      "issue_date": "2026-06-04",
+      "reception_date": "2026-06-03",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "87801",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "sandbox_publish_status": "ready",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "73782",
+          "amountVat": "14019",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "87801",
+          "purchaseOrderReference": null,
+          "accountId": "112",
+          "locationId": "5",
+          "classId": null,
+          "departmentId": null,
+          "memo": "RCV F-14443869 PROVEEDORES INTEGRALES PRISA S A"
+        },
+        "context": {
+          "categoriaOc": "OC_OBLIGATORIA",
+          "simulatedNsId": "STUB-VENDORBILL-001",
+          "vendorIdProposed": "3291",
+          "accountIdProposed": "112",
+          "locationIdProposed": "5",
+          "classIdProposed": null,
+          "departmentIdProposed": null,
+          "requesterIdProposed": "731",
+          "documentTypeNsProposed": "2",
+          "accountingDateProposed": "2026-06-04",
+          "dueDate": "2026-07-04",
+          "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-06-33-518-13",
+      "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+      "generatedAt": "2026-06-04T23:50:53.836447",
+      "vendor_name": "TRANSPORTES ELADIO ARNOLDO GONZÁLEZ KAEMPFER  E.I.R.L.",
+      "vendor_rut": "76969089-1",
+      "folio": "518",
+      "document_type": "33",
+      "issue_date": "2026-06-03",
+      "reception_date": "2026-06-03",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "2824644",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "sandbox_publish_status": "ready",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "2373650",
+          "amountVat": "450994",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "2824644",
+          "purchaseOrderReference": null,
+          "accountId": "686",
+          "locationId": "5",
+          "classId": "1",
+          "departmentId": "2",
+          "memo": "RCV F-518 TRANSPORTES ELADIO ARNOLDO GONZÁLEZ KAEMPFER  E.I.R.L."
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "simulatedNsId": "STUB-VENDORBILL-001",
+          "vendorIdProposed": "3240",
+          "accountIdProposed": "686",
+          "locationIdProposed": "5",
+          "classIdProposed": "1",
+          "departmentIdProposed": "2",
+          "requesterIdProposed": null,
+          "documentTypeNsProposed": "2",
+          "accountingDateProposed": "2026-06-03",
+          "dueDate": "2026-07-03",
+          "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-06-33-8457-14",
+      "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+      "generatedAt": "2026-06-04T23:50:53.836447",
+      "vendor_name": "EGA KAT DISTRIBUCION CHILE S.A.",
+      "vendor_rut": "76067893-7",
+      "folio": "8457",
+      "document_type": "33",
+      "issue_date": "2026-06-01",
+      "reception_date": "2026-06-04",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "724900",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "sandbox_publish_status": "ready",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "609160",
+          "amountVat": "115740",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "724900",
+          "purchaseOrderReference": null,
+          "accountId": "694",
+          "locationId": "5",
+          "classId": null,
+          "departmentId": null,
+          "memo": "RCV F-8457 EGA KAT DISTRIBUCION CHILE S.A."
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "simulatedNsId": "STUB-VENDORBILL-001",
+          "vendorIdProposed": "3174",
+          "accountIdProposed": "694",
+          "locationIdProposed": "5",
+          "classIdProposed": null,
+          "departmentIdProposed": null,
+          "requesterIdProposed": "731",
+          "documentTypeNsProposed": "2",
+          "accountingDateProposed": "2026-06-01",
+          "dueDate": "2026-07-01",
+          "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-06-33-70061-15",
+      "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+      "generatedAt": "2026-06-04T23:50:53.836447",
+      "vendor_name": "TRANSPORTES CASABLANCA S.A.",
+      "vendor_rut": "85131900-K",
+      "folio": "70061",
+      "document_type": "33",
+      "issue_date": "2026-05-31",
+      "reception_date": "2026-06-04",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "4240222",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "sandbox_publish_status": "ready",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "amountExempt": "0",
+          "amountNet": "3563212",
+          "amountVat": "677010",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "4240222",
+          "purchaseOrderReference": null,
+          "accountId": "112",
+          "locationId": "5",
+          "classId": null,
+          "departmentId": null,
+          "memo": "RCV F-70061 TRANSPORTES CASABLANCA S.A."
+        },
+        "context": {
+          "categoriaOc": "OC_OBLIGATORIA",
+          "simulatedNsId": "STUB-VENDORBILL-001",
+          "vendorIdProposed": "3277",
+          "accountIdProposed": "112",
+          "locationIdProposed": "5",
+          "classIdProposed": null,
+          "departmentIdProposed": null,
+          "requesterIdProposed": "731",
+          "documentTypeNsProposed": "2",
+          "accountingDateProposed": "2026-05-31",
+          "dueDate": "2026-06-30",
+          "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-06-34-274-16",
+      "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+      "generatedAt": "2026-06-04T23:50:53.836447",
       "vendor_name": "SOC COMERCIAL LOS CANELOS LIMITADA",
       "vendor_rut": "78318440-0",
       "folio": "274",
@@ -3344,15 +3638,64 @@
           "documentTypeNsProposed": "104",
           "accountingDateProposed": "2026-06-01",
           "dueDate": "2026-06-01",
-          "sourceRun": "runs/sii_to_pipeline/20260604-060207",
+          "sourceRun": "runs/sii_to_pipeline/20260604-235032",
           "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
     },
     {
-      "id": "auto-2026-06-61-1083-11",
-      "sourceRun": "runs/sii_to_pipeline/20260604-060207",
-      "generatedAt": "2026-06-04T06:02:47.439013",
+      "id": "auto-2026-06-34-69996-17",
+      "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+      "generatedAt": "2026-06-04T23:50:53.836447",
+      "vendor_name": "TIBA CHILE SPA",
+      "vendor_rut": "76320613-0",
+      "folio": "69996",
+      "document_type": "34",
+      "issue_date": "2026-06-03",
+      "reception_date": "2026-06-03",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "674345",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "sandbox_publish_status": "ready",
+      "payload_json": {
+        "document": {
+          "documentType": "34",
+          "documentTypeLabel": "Documento SII 34",
+          "amountExempt": "674345",
+          "amountNet": "0",
+          "amountVat": "0",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "674345",
+          "purchaseOrderReference": null,
+          "accountId": "1048",
+          "locationId": "5",
+          "classId": "1",
+          "departmentId": "2",
+          "memo": "RCV F-69996 TIBA CHILE SPA"
+        },
+        "context": {
+          "categoriaOc": "OC_RECOMENDADA",
+          "simulatedNsId": "STUB-VENDORBILL-001",
+          "vendorIdProposed": "5781",
+          "accountIdProposed": "1048",
+          "locationIdProposed": "5",
+          "classIdProposed": "1",
+          "departmentIdProposed": "2",
+          "requesterIdProposed": null,
+          "documentTypeNsProposed": "104",
+          "accountingDateProposed": "2026-06-03",
+          "dueDate": "2026-07-03",
+          "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-06-61-1083-18",
+      "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+      "generatedAt": "2026-06-04T23:50:53.836447",
       "vendor_name": "MALTEXCO S.A.",
       "vendor_rut": "91942000-6",
       "folio": "1083",
@@ -3393,7 +3736,105 @@
           "documentTypeNsProposed": "107",
           "accountingDateProposed": "2026-06-01",
           "dueDate": "2026-07-31",
-          "sourceRun": "runs/sii_to_pipeline/20260604-060207",
+          "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-06-61-1095-19",
+      "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+      "generatedAt": "2026-06-04T23:50:53.836447",
+      "vendor_name": "AG. DE AD. CRISTIAN HERRERA R. Y CIA. LTDA",
+      "vendor_rut": "77433157-3",
+      "folio": "1095",
+      "document_type": "61",
+      "issue_date": "2026-06-03",
+      "reception_date": "2026-06-04",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "95914",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "sandbox_publish_status": "ready",
+      "payload_json": {
+        "document": {
+          "documentType": "61",
+          "documentTypeLabel": "Nota de Crédito Electrónica (61)",
+          "amountExempt": "0",
+          "amountNet": "80600",
+          "amountVat": "15314",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "95914",
+          "purchaseOrderReference": null,
+          "accountId": "1048",
+          "locationId": "5",
+          "classId": "1",
+          "departmentId": "2",
+          "memo": "RCV F-1095 AG. DE AD. CRISTIAN HERRERA R. Y CIA. LTDA"
+        },
+        "context": {
+          "categoriaOc": "OC_RECOMENDADA",
+          "simulatedNsId": "STUB-VENDORCREDIT-001",
+          "vendorIdProposed": "6346",
+          "accountIdProposed": "1048",
+          "locationIdProposed": "5",
+          "classIdProposed": "1",
+          "departmentIdProposed": "2",
+          "requesterIdProposed": null,
+          "documentTypeNsProposed": "107",
+          "accountingDateProposed": "2026-06-03",
+          "dueDate": "2026-06-03",
+          "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-06-61-6183-20",
+      "sourceRun": "runs/sii_to_pipeline/20260604-235032",
+      "generatedAt": "2026-06-04T23:50:53.836447",
+      "vendor_name": "GLOBE EXPRESS SERVICES CHILE SPA",
+      "vendor_rut": "76085857-9",
+      "folio": "6183",
+      "document_type": "61",
+      "issue_date": "2026-06-04",
+      "reception_date": "2026-06-04",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "35996",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "sandbox_publish_status": "ready",
+      "payload_json": {
+        "document": {
+          "documentType": "61",
+          "documentTypeLabel": "Nota de Crédito Electrónica (61)",
+          "amountExempt": "35996",
+          "amountNet": "0",
+          "amountVat": "0",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "35996",
+          "purchaseOrderReference": null,
+          "accountId": "1048",
+          "locationId": "5",
+          "classId": "1",
+          "departmentId": "2",
+          "memo": "RCV F-6183 GLOBE EXPRESS SERVICES CHILE SPA"
+        },
+        "context": {
+          "categoriaOc": "OC_RECOMENDADA",
+          "simulatedNsId": "STUB-VENDORCREDIT-001",
+          "vendorIdProposed": "3177",
+          "accountIdProposed": "1048",
+          "locationIdProposed": "5",
+          "classIdProposed": "1",
+          "departmentIdProposed": "2",
+          "requesterIdProposed": "731",
+          "documentTypeNsProposed": "107",
+          "accountingDateProposed": "2026-06-04",
+          "dueDate": "2026-07-04",
+          "sourceRun": "runs/sii_to_pipeline/20260604-235032",
           "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
         }
       }
