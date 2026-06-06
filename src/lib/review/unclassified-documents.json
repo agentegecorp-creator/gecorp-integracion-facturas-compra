@@ -100,39 +100,5 @@
       }
     }
   ],
-  "2026-06": [
-    {
-      "id": "unclassified-2026-06-914-3660316619-0",
-      "sourceRun": "runs/sii_to_pipeline/20260605-060203",
-      "generatedAt": "2026-06-05T06:02:24.553932",
-      "vendor_name": "null",
-      "vendor_rut": "55555555-5",
-      "folio": "3660316619",
-      "document_type": "914",
-      "issue_date": "2026-06-04",
-      "reception_date": "2026-06-04",
-      "bucket": "unclassified_rcv",
-      "status": "exception",
-      "amount_total": "4339453",
-      "summary_text": "Documento del RCV sin clasificación operativa en la corrida SII → NetSuite.",
-      "sandbox_publish_status": "not_ready",
-      "payload_json": {
-        "document": {
-          "documentType": "914",
-          "documentTypeLabel": "Documento SII 914",
-          "amountExempt": "0",
-          "amountNet": "3646599",
-          "amountVat": "692854",
-          "amountVatNonRecoverable": "0",
-          "amountOtherTax": "0",
-          "amountTotal": "4339453",
-          "memo": "RCV F-3660316619 null"
-        },
-        "context": {
-          "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260605-060203"
-        }
-      }
-    }
-  ]
+  "2026-06": []
 }
