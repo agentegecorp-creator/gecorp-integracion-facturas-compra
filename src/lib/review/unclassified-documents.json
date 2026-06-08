@@ -100,5 +100,72 @@
       }
     }
   ],
-  "2026-06": []
+  "2026-06": [
+    {
+      "id": "unclassified-2026-06-914-3660316806-0",
+      "sourceRun": "runs/sii_to_pipeline/20260608-060151",
+      "generatedAt": "2026-06-08T06:02:12.485976",
+      "vendor_name": "null",
+      "vendor_rut": "55555555-5",
+      "folio": "3660316806",
+      "document_type": "914",
+      "issue_date": "2026-06-05",
+      "reception_date": "2026-06-05",
+      "bucket": "unclassified_rcv",
+      "status": "exception",
+      "amount_total": "1842328",
+      "summary_text": "Documento del RCV sin clasificación operativa en la corrida SII → NetSuite.",
+      "sandbox_publish_status": "not_ready",
+      "payload_json": {
+        "document": {
+          "documentType": "914",
+          "documentTypeLabel": "Documento SII 914",
+          "amountExempt": "0",
+          "amountNet": "1548175",
+          "amountVat": "294153",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "1842328",
+          "memo": "RCV F-3660316806 null"
+        },
+        "context": {
+          "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
+          "sourceRun": "runs/sii_to_pipeline/20260608-060151"
+        }
+      }
+    },
+    {
+      "id": "unclassified-2026-06-914-3660316289-1",
+      "sourceRun": "runs/sii_to_pipeline/20260608-060151",
+      "generatedAt": "2026-06-08T06:02:12.485976",
+      "vendor_name": "null",
+      "vendor_rut": "55555555-5",
+      "folio": "3660316289",
+      "document_type": "914",
+      "issue_date": "2026-06-05",
+      "reception_date": "2026-06-05",
+      "bucket": "unclassified_rcv",
+      "status": "exception",
+      "amount_total": "15893375",
+      "summary_text": "Documento del RCV sin clasificación operativa en la corrida SII → NetSuite.",
+      "sandbox_publish_status": "not_ready",
+      "payload_json": {
+        "document": {
+          "documentType": "914",
+          "documentTypeLabel": "Documento SII 914",
+          "amountExempt": "0",
+          "amountNet": "13355777",
+          "amountVat": "2537598",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "15893375",
+          "memo": "RCV F-3660316289 null"
+        },
+        "context": {
+          "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
+          "sourceRun": "runs/sii_to_pipeline/20260608-060151"
+        }
+      }
+    }
+  ]
 }
