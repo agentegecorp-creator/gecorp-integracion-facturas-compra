@@ -158,3 +158,19 @@ export function paymentTermDays(value: string) {
 export function approvalGroupIds(value: string) {
   return approvalGroupOptions.find((option) => option.value === value)?.ids ?? null;
 }
+
+export function approvalGroupValueFromIds(ids: unknown) {
+  if (!Array.isArray(ids) || ids.length === 0) return null;
+  const normalizedIds = ids
+    .map((id) => Number(id))
+    .filter((id) => Number.isFinite(id))
+    .sort((a, b) => a - b);
+
+  const match = approvalGroupOptions.find((option) => {
+    const optionIds = (option.ids ?? []).map((id) => Number(id)).sort((a, b) => a - b);
+    return optionIds.length === normalizedIds.length
+      && optionIds.every((id, index) => id === normalizedIds[index]);
+  });
+
+  return match?.value ?? null;
+}

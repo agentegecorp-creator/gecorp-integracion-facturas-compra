@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { approvalGroupValueFromIds } from '../src/lib/review/catalogs';
 
 const envPath = path.resolve('.env.local');
 if (fs.existsSync(envPath)) {
@@ -59,6 +60,10 @@ type BuilderCase = {
   approver_ids_proposed?: number[] | null;
   approver_group_proposed?: string | null;
   approver_source?: string | null;
+  account_label_proposed?: string | null;
+  oc_policy_proposed?: string | null;
+  oc_reference_proposed?: string | null;
+  payment_tef_label?: string | null;
   oc_category: string | null;
   expense_category?: string | null;
   posting_status?: string | null;
@@ -88,6 +93,36 @@ function summaryFromCase(item: BuilderCase) {
   return [item.supplier_name, amountText, item.review_reason].filter(Boolean).join(' · ');
 }
 
+function proposedApprovalGroup(item: BuilderCase) {
+  return item.approver_group_proposed
+    || approvalGroupValueFromIds(item.approver_ids_proposed)
+    || null;
+}
+
+function normalizeDateOnly(value: string | null | undefined) {
+  const raw = String(value ?? '');
+  const match = raw.match(/^(\d{4}-\d{2}-\d{2})/);
+  return match?.[1] ?? null;
+}
+
+function nextPaymentDateOnOrAfter(value: string, withTef: boolean) {
+  const date = new Date(`${value}T00:00:00Z`);
+  const targetDay = withTef ? 5 : 1;
+  const delta = (targetDay - date.getUTCDay() + 7) % 7 || 7;
+  date.setUTCDate(date.getUTCDate() + delta);
+  return date.toISOString().slice(0, 10);
+}
+
+function safePaymentDate(item: BuilderCase) {
+  const paymentDate = normalizeDateOnly(item.payment_date);
+  const documentDate = normalizeDateOnly(item.document_date);
+  if (!paymentDate || !documentDate || paymentDate >= documentDate) return item.payment_date;
+
+  const dueDate = normalizeDateOnly(item.due_date) ?? documentDate;
+  const withTef = String(item.payment_date_rule ?? '').toLowerCase().includes('con tef');
+  return nextPaymentDateOnOrAfter(dueDate, withTef);
+}
+
 async function main() {
   const { db } = await import('../src/lib/db/client');
   const raw = fs.readFileSync(inputPath, 'utf8');
@@ -100,6 +135,8 @@ async function main() {
     const bucket = bucketFromCase(item);
     const summaryText = summaryFromCase(item);
     const exists = await db.query(`select id from review_cases where source_document_id = $1 limit 1`, [sourceDocumentId]);
+    const approvalGroup = proposedApprovalGroup(item);
+    const paymentDate = safePaymentDate(item);
 
     const payloadJson = {
       source: 'builder review_cases.json',
@@ -117,7 +154,7 @@ async function main() {
         accountingDateProposed: item.accounting_date_proposed,
         dueDate: item.due_date,
         dueDateRule: item.due_date_rule,
-        paymentDate: item.payment_date,
+        paymentDate,
         paymentDateRule: item.payment_date_rule,
         paymentTermsId: item.payment_terms_id,
         paymentTermsLabel: item.payment_terms_label,
@@ -147,8 +184,13 @@ async function main() {
         classIdProposed: item.class_id_proposed,
         requesterIdProposed: item.requester_id_proposed,
         approverIdsProposed: item.approver_ids_proposed,
-        approverGroup: item.approver_group_proposed,
+        approvalGroup,
         approverSource: item.approver_source,
+        accountCorrecta: item.account_label_proposed,
+        ocPolicyCorrecta: item.oc_policy_proposed,
+        trabajaConOc: item.oc_reference_proposed,
+        pagoPorTef: item.payment_tef_label,
+        terminosNs: item.payment_terms_label,
         ocCategory: item.oc_category,
         expenseCategory: item.expense_category || item.oc_category,
         postingStatus: item.posting_status,
@@ -157,7 +199,7 @@ async function main() {
         paymentTermsId: item.payment_terms_id,
         accountingDateProposed: item.accounting_date_proposed,
         dueDate: item.due_date,
-        paymentDate: item.payment_date,
+        paymentDate,
         paymentDateRule: item.payment_date_rule,
         engineNote: item.engine_note,
         assignedTo: item.assigned_to,

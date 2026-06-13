@@ -72,6 +72,30 @@ function idFromRef(value: unknown) {
   return (value as { id?: string | number } | undefined)?.id ?? null;
 }
 
+function normalizeDateOnly(value: unknown) {
+  const raw = String(value ?? '');
+  const match = raw.match(/^(\d{4}-\d{2}-\d{2})/);
+  return match?.[1] ?? null;
+}
+
+function nextPaymentDateOnOrAfter(value: string, withTef: boolean) {
+  const date = new Date(`${value}T00:00:00Z`);
+  const targetDay = withTef ? 5 : 1;
+  const delta = (targetDay - date.getUTCDay() + 7) % 7 || 7;
+  date.setUTCDate(date.getUTCDate() + delta);
+  return date.toISOString().slice(0, 10);
+}
+
+function safePaymentDate(document: Record<string, unknown>, context: Record<string, unknown>, fallbackIssueDate?: string | null) {
+  const paymentDate = normalizeDateOnly(document.paymentDate ?? context.paymentDate);
+  const documentDate = normalizeDateOnly(document.issueDate ?? fallbackIssueDate);
+  if (!paymentDate || !documentDate || paymentDate >= documentDate) return document.paymentDate ?? context.paymentDate;
+
+  const dueDate = normalizeDateOnly(document.dueDate ?? context.dueDate) ?? documentDate;
+  const paymentRule = String(document.paymentDateRule ?? context.paymentDateRule ?? '').toLowerCase();
+  return nextPaymentDateOnOrAfter(dueDate, paymentRule.includes('con tef'));
+}
+
 function publishStatus(item: AutomaticDocument) {
   const mode = String(item.payload_json?.context?.automaticCreationMode ?? '');
   if (item.sandbox_publish_status === 'published' && !mode.includes('STUB')) return 'published';
@@ -115,6 +139,7 @@ async function main() {
       const departmentId = context.departmentIdProposed ?? document.departmentId ?? idFromRef(expense.department) ?? idFromRef(dryRunData.department);
       const requesterId = context.requesterIdProposed ?? idFromRef(dryRunData.custbody_gecorp_solicitante);
       const documentTypeNs = context.documentTypeNsProposed ?? idFromRef(dryRunData.custbody_gd_tipo_documento);
+      const paymentDate = safePaymentDate(document, context, item.issue_date);
 
       if (!item.folio || !item.document_type) {
         skipped += 1;
@@ -131,6 +156,7 @@ async function main() {
           locationId,
           classId,
           departmentId,
+          paymentDate,
         },
         context: {
           ...context,
@@ -143,6 +169,7 @@ async function main() {
           documentTypeNsProposed: documentTypeNs,
           accountingDateProposed: context.accountingDateProposed ?? dryRunData.tranDate ?? item.issue_date ?? null,
           dueDate: context.dueDate ?? dryRunData.dueDate ?? item.issue_date ?? null,
+          paymentDate,
         },
       };
 

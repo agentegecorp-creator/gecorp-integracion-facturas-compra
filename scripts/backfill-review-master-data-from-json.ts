@@ -62,7 +62,14 @@ function addDaysIso(value: unknown, days: number) {
   return date.toISOString();
 }
 
-function proposedPaymentDateIso(value: unknown, withTef: boolean) {
+function advanceToNextPaymentDay(date: Date, targetDay: number) {
+  const next = new Date(date);
+  const delta = (targetDay - next.getUTCDay() + 7) % 7 || 7;
+  next.setUTCDate(next.getUTCDate() + delta);
+  return next;
+}
+
+function proposedPaymentDateIso(value: unknown, withTef: boolean, minimumValue?: unknown) {
   const date = normalizeDate(value);
   if (!date) return null;
   const day = date.getUTCDay();
@@ -73,6 +80,10 @@ function proposedPaymentDateIso(value: unknown, withTef: boolean) {
     date.setUTCDate(date.getUTCDate() + ((8 - day) % 7));
   } else {
     date.setUTCDate(date.getUTCDate() - ((day - 1 + 7) % 7));
+  }
+  const minimumDate = normalizeDate(minimumValue);
+  if (minimumDate && date < minimumDate) {
+    return advanceToNextPaymentDay(date, withTef ? 5 : 1).toISOString();
   }
   return date.toISOString();
 }
@@ -138,7 +149,7 @@ function main() {
 
         {
           context.pagoPorTef = Boolean(vendor.tef);
-          const paymentDate = proposedPaymentDateIso(document.dueDate ?? context.dueDate, Boolean(vendor.tef));
+          const paymentDate = proposedPaymentDateIso(document.dueDate ?? context.dueDate, Boolean(vendor.tef), document.issueDate ?? row.issue_date);
           if (paymentDate) {
             document.paymentDate = paymentDate;
             document.paymentDateRule = paymentDateRule(Boolean(vendor.tef));

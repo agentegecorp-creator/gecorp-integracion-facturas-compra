@@ -3,6 +3,7 @@ import { requireSession } from '@/lib/auth/guards';
 import { getReviewCaseById, getReviewDecisionsByCaseId } from '@/lib/db/queries';
 import { ReviewDecisionForm } from '@/components/review/review-decision-form';
 import { decisionLabel, estadoLabel, etapaLabel } from '@/lib/review/labels';
+import { approvalGroupValueFromIds } from '@/lib/review/catalogs';
 
 function formatDateTime(value: string | null | undefined) {
   if (!value) return '-';
@@ -14,6 +15,11 @@ function formatDateTime(value: string | null | undefined) {
 function optionalString(value: unknown) {
   if (value == null) return undefined;
   return String(value);
+}
+
+function formValue(value: unknown) {
+  if (typeof value === 'string' || typeof value === 'number') return value;
+  return undefined;
 }
 
 type CaseDetailPageProps = {
@@ -29,12 +35,17 @@ export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
   const decisions = await getReviewDecisionsByCaseId(id);
   const payload = item?.payload_json as
     | {
-        document?: Record<string, string | number | null | undefined>;
-        context?: Record<string, string | number | null | undefined>;
+        document?: Record<string, unknown>;
+        context?: Record<string, unknown>;
       }
     | undefined;
   const document = payload?.document ?? {};
   const context = payload?.context ?? {};
+  const proposedApprovalGroup = optionalString(
+    context.approvalGroup
+      || context.approverGroup
+      || approvalGroupValueFromIds(context.approverIdsProposed),
+  );
   const isSyntheticCase = id.startsWith('auto-') || id.startsWith('unclassified-');
 
   return (
@@ -131,22 +142,22 @@ export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
               <ReviewDecisionForm
                 caseId={id}
                 currentValues={{
-                  accountId: document.accountId || context.accountIdProposed || context.referenciaAccount,
+                  accountId: formValue(document.accountId || context.accountIdProposed || context.referenciaAccount),
                   vendorName: item.vendor_name,
                   documentType: item.document_type,
                   issueDate: item.issue_date,
                   accountingDate: optionalString(document.accountingDateProposed || context.accountingDateProposed),
                   dueDate: optionalString(document.dueDate || context.dueDate),
                   paymentDate: optionalString(document.paymentDate || context.paymentDate),
-                  paymentTermsId: document.paymentTermsId || context.paymentTermsId,
-                  classId: document.classId || context.classIdProposed || context.classCorrecta || context.classSuggestedB2,
-                  departmentId: document.departmentId || context.departmentIdProposed || context.departmentCorrecta || context.departmentSuggestedB2,
-                  locationId: document.locationId || context.locationIdProposed || context.locationCorrecta || context.locationSuggestedB2,
-                  approvalGroup: optionalString(context.approvalGroup),
+                  paymentTermsId: formValue(document.paymentTermsId || context.paymentTermsId),
+                  classId: formValue(document.classId || context.classIdProposed || context.classCorrecta || context.classSuggestedB2),
+                  departmentId: formValue(document.departmentId || context.departmentIdProposed || context.departmentCorrecta || context.departmentSuggestedB2),
+                  locationId: formValue(document.locationId || context.locationIdProposed || context.locationCorrecta || context.locationSuggestedB2),
+                  approvalGroup: proposedApprovalGroup,
                   ocCategory: optionalString(context.ocCategory || context.categoriaOc),
                   expenseCategory: optionalString(context.expenseCategory),
                   ocPolicy: optionalString(context.ocPolicyCorrecta || context.ocPolicySuggestedB2),
-                  newVendorEntity: context.entity || context.vendorIdProposed,
+                  newVendorEntity: formValue(context.entity || context.vendorIdProposed),
                   invoiceNote: optionalString(document.invoiceNote || context.invoiceNote),
                   invoiceDetail: optionalString(document.invoiceDetail || document.serviceDescription || context.invoiceDetail),
                 }}

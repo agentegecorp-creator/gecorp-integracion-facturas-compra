@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import { ReviewDecisionForm } from '@/components/review/review-decision-form';
 import { estadoLabel, etapaLabel, fieldLabel } from '@/lib/review/labels';
+import { approvalGroupValueFromIds } from '@/lib/review/catalogs';
 
 type ReviewItem = {
   id: string;
@@ -89,6 +90,8 @@ type ReviewCaseDetail = ReviewItem & {
       ocPolicySuggestedB2?: string;
       sourceSuggestedB2?: string;
       approvalGroup?: string;
+      approverGroup?: string;
+      approverIdsProposed?: number[];
       approverSource?: string;
       expenseCategory?: string;
       postingStatus?: string;
@@ -199,6 +202,14 @@ function sandboxPublishLabel(status: string | null | undefined) {
   return 'No listo para Sandbox';
 }
 
+function sandboxPublishDisplay(item: { sandbox_publish_status?: string | null; sandbox_record_id?: string | null }) {
+  const label = sandboxPublishLabel(item.sandbox_publish_status);
+  if (item.sandbox_publish_status === 'published' && item.sandbox_record_id) {
+    return `${label} #${item.sandbox_record_id}`;
+  }
+  return label;
+}
+
 function sandboxPublishChipClass(status: string | null | undefined) {
   if (status === 'ready') return 'bg-emerald-50 text-emerald-700 ring-emerald-200';
   if (status === 'published') return 'bg-sky-50 text-sky-700 ring-sky-200';
@@ -283,6 +294,9 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
   const invoiceNote = document?.invoiceNote || context?.invoiceNote;
   const invoiceDetail = document?.invoiceDetail || context?.invoiceDetail;
   const documentMemo = invoiceDetail || document?.serviceDescription || document?.memo || document?.description || document?.summary;
+  const proposedApprovalGroup = context?.approvalGroup
+    || context?.approverGroup
+    || approvalGroupValueFromIds(context?.approverIdsProposed);
   const isAutomaticCreated = selected?.bucket === 'approved_auto';
 
   return (
@@ -330,7 +344,7 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                       Prioridad {priorityLabel(item.bucket)}
                     </div>
                     <div className={`mt-1 inline-flex rounded-full px-2 py-0.5 ring-1 ${sandboxPublishChipClass(item.sandbox_publish_status)}`}>
-                      {sandboxPublishLabel(item.sandbox_publish_status)}
+                      {sandboxPublishDisplay(item)}
                     </div>
                   </div>
                 </div>
@@ -365,7 +379,7 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                     Prioridad {priorityLabel(selected.bucket)}
                   </span>
                   <span className={`inline-flex rounded-full px-2.5 py-1 text-sm font-medium ring-1 ${sandboxPublishChipClass(selected.sandbox_publish_status)}`}>
-                    {sandboxPublishLabel(selected.sandbox_publish_status)}
+                    {sandboxPublishDisplay(selected)}
                   </span>
                 </div>
               </div>
@@ -446,17 +460,23 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                   {bucketLabel(selected.bucket)}
                 </div>
               </div>
-              {isAutomaticCreated ? (
+              {selected.sandbox_publish_status === 'published' ? (
                 <>
                   <div className="rounded-2xl bg-cyan-50 p-4">
                     <p className="text-sm text-cyan-700">ID Sandbox real</p>
                     <p className="mt-1 font-medium text-slate-900">{selectedDetail?.sandbox_record_id || '-'}</p>
                   </div>
                   <div className="rounded-2xl bg-cyan-50 p-4">
-                    <p className="text-sm text-cyan-700">Origen automático</p>
-                    <p className="mt-1 font-medium text-slate-900">{pipelineModeLabel(context?.automaticCreationMode)}</p>
+                    <p className="text-sm text-cyan-700">Registro Sandbox</p>
+                    <p className="mt-1 font-medium text-slate-900">{selectedDetail?.sandbox_record_type || 'vendorbill'}</p>
                   </div>
                 </>
+              ) : null}
+              {isAutomaticCreated && selected.sandbox_publish_status !== 'published' ? (
+                <div className="rounded-2xl bg-cyan-50 p-4 md:col-span-2">
+                  <p className="text-sm text-cyan-700">Origen automático</p>
+                  <p className="mt-1 font-medium text-slate-900">{pipelineModeLabel(context?.automaticCreationMode)}</p>
+                </div>
               ) : null}
               <div className="rounded-2xl bg-slate-50 p-4 md:col-span-2">
                 <p className="text-sm text-slate-500">Glosa con detalle del documento</p>
@@ -480,7 +500,7 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                     <div className="mt-3 grid gap-3 md:grid-cols-2">
                       <div>
                         <p className="text-xs uppercase tracking-wide text-violet-700">Grupo de aprobación</p>
-                        <p className="mt-1 text-sm font-medium text-slate-900">{context.approvalGroup || 'Pendiente de definir'}</p>
+                        <p className="mt-1 text-sm font-medium text-slate-900">{proposedApprovalGroup || 'Pendiente de definir'}</p>
                       </div>
                       <div>
                         <p className="text-xs uppercase tracking-wide text-violet-700">Cuenta contable</p>
@@ -561,7 +581,7 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                     </div>
                   </div>
                 ) : null}
-                {context.accountCorrecta || context.classCorrecta || context.departmentCorrecta || context.locationCorrecta || context.terminosNs || context.pagoPorTef || context.trabajaConOc ? (
+                {context.accountCorrecta || context.classCorrecta || context.departmentCorrecta || context.locationCorrecta || context.terminosNs || context.pagoPorTef || context.trabajaConOc || context.ocPolicyCorrecta || proposedApprovalGroup ? (
                   <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 md:col-span-2">
                     <p className="text-sm font-semibold text-emerald-800">Datos enriquecidos desde conocimiento previo</p>
                     <div className="mt-3 grid gap-3 md:grid-cols-2">
@@ -605,6 +625,18 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                         <div className="md:col-span-2">
                           <p className="text-xs uppercase tracking-wide text-emerald-700">Trabajo con OC</p>
                           <p className="mt-1 text-sm text-slate-900">{context.trabajaConOc}</p>
+                        </div>
+                      ) : null}
+                      {context.ocPolicyCorrecta ? (
+                        <div>
+                          <p className="text-xs uppercase tracking-wide text-emerald-700">Política OC</p>
+                          <p className="mt-1 text-sm font-medium text-slate-900">{context.ocPolicyCorrecta}</p>
+                        </div>
+                      ) : null}
+                      {proposedApprovalGroup ? (
+                        <div>
+                          <p className="text-xs uppercase tracking-wide text-emerald-700">Grupo de aprobación</p>
+                          <p className="mt-1 text-sm font-medium text-slate-900">{proposedApprovalGroup}</p>
                         </div>
                       ) : null}
                     </div>
@@ -675,7 +707,7 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                   classId: document?.classId || context?.classIdProposed || context?.classCorrecta || context?.classSuggestedB2,
                   departmentId: document?.departmentId || context?.departmentIdProposed || context?.departmentCorrecta || context?.departmentSuggestedB2,
                   locationId: document?.locationId || context?.locationIdProposed || context?.locationCorrecta || context?.locationSuggestedB2,
-                  approvalGroup: context?.approvalGroup,
+                  approvalGroup: proposedApprovalGroup,
                   ocCategory: context?.ocCategory || context?.categoriaOc,
                   expenseCategory: context?.expenseCategory,
                   ocPolicy: context?.ocPolicyCorrecta || context?.ocPolicySuggestedB2,

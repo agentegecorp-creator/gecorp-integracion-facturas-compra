@@ -8,6 +8,7 @@ type ReviewCaseRow = {
   document_type: string | null;
   issue_date: string | Date | null;
   reception_date: string | Date | null;
+  amount_tax?: string | number | null;
   amount_total: string | number | null;
   payload_json?: {
     document?: Record<string, unknown>;
@@ -265,6 +266,11 @@ export function buildSandboxPayload(row: ReviewCaseRow) {
 
   const memo = String(document.invoiceDetail ?? document.serviceDescription ?? `RCV F-${folio} ${row.vendor_name ?? ''}`).slice(0, 300);
   const nsDocumentType = numericId(context.documentTypeNsProposed, document.documentTypeNs, DOCUMENT_TYPE_NS[documentType]);
+  const amountVat = numberValue(document.amountVat ?? row.amount_tax);
+  const nonTaxedAmount = documentType === '33'
+    ? numberValue(document.amountExempt) + numberValue(document.amountOtherTax)
+    : 0;
+  const hasTaxOverride = documentType === '34' || nonTaxedAmount > 0;
   const lineAmount = documentType === '34'
     ? numberValue(document.amountExempt) || numberValue(row.amount_total)
     : numberValue(document.amountNet) || numberValue(row.amount_total);
@@ -291,9 +297,9 @@ export function buildSandboxPayload(row: ReviewCaseRow) {
   if (String(document.paymentDateRule ?? context.paymentDateRule ?? '').toLowerCase().includes('tef')) {
     header.custbody_9997_is_for_ep_eft = true;
   }
-  if (documentType === '34') {
+  if (hasTaxOverride) {
     header.taxDetailsOverride = true;
-    header.userTaxTotal = 0;
+    header.userTaxTotal = documentType === '33' ? amountVat : 0;
   }
 
   const line: Record<string, unknown> = {
@@ -304,13 +310,29 @@ export function buildSandboxPayload(row: ReviewCaseRow) {
   };
   if (classId) line.class = { id: classId };
   if (departmentId) line.department = { id: departmentId };
-  if (documentType === '34') {
+  if (hasTaxOverride) {
     line.taxCode = { id: String(TAX_CODE[documentType]) };
-    line.taxRate = 0;
-    line.taxAmount = 0;
+    line.taxRate = documentType === '33' ? 19 : 0;
+    line.taxAmount = documentType === '33' ? amountVat : 0;
   }
 
-  header.expense = { items: [line] };
+  const expenseItems = [line];
+  if (documentType === '33' && nonTaxedAmount > 0) {
+    const nonTaxedLine: Record<string, unknown> = {
+      account: { id: accountId },
+      amount: nonTaxedAmount,
+      memo: `${memo} EXENTO/NO GRAVADO`.slice(0, 300),
+      location: { id: locationId },
+      taxCode: { id: String(TAX_CODE['34']) },
+      taxRate: 0,
+      taxAmount: 0,
+    };
+    if (classId) nonTaxedLine.class = { id: classId };
+    if (departmentId) nonTaxedLine.department = { id: departmentId };
+    expenseItems.push(nonTaxedLine);
+  }
+
+  header.expense = { items: expenseItems };
   return { recordType, payload: header, tranId: folio, entityId };
 }
 

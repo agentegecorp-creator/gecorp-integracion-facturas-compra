@@ -406,7 +406,9 @@ export async function listReviewCases(
 
     const result = await db.query(
       `select id, vendor_name, vendor_rut, folio, document_type, issue_date, bucket, status, amount_total, summary_text, created_at,
-              coalesce(sandbox_publish_status, 'not_ready') as sandbox_publish_status
+              coalesce(sandbox_publish_status, 'not_ready') as sandbox_publish_status,
+              sandbox_record_id,
+              sandbox_record_type
        from review_cases
        where ${conditions.join(' and ')}
        order by created_at desc
@@ -481,7 +483,9 @@ export async function listReviewCases(
 
   const result = await db.query(
     `select id, vendor_name, vendor_rut, folio, document_type, issue_date, bucket, status, amount_total, summary_text, created_at,
-            ${sandboxPublishSelect} as sandbox_publish_status
+            ${sandboxPublishSelect} as sandbox_publish_status,
+            sandbox_record_id,
+            sandbox_record_type
      from review_cases
      ${whereClause}
      order by
@@ -887,7 +891,14 @@ function addDaysIso(value: unknown, days: number) {
   return date.toISOString();
 }
 
-function proposedPaymentDateIso(value: unknown, withTef: boolean) {
+function advanceToNextPaymentDay(date: Date, targetDay: number) {
+  const next = new Date(date);
+  const delta = (targetDay - next.getUTCDay() + 7) % 7 || 7;
+  next.setUTCDate(next.getUTCDate() + delta);
+  return next;
+}
+
+function proposedPaymentDateIso(value: unknown, withTef: boolean, minimumValue?: unknown) {
   const raw = normalizeIsoDate(value);
   if (!raw) return null;
   const date = new Date(raw);
@@ -899,6 +910,13 @@ function proposedPaymentDateIso(value: unknown, withTef: boolean) {
     date.setUTCDate(date.getUTCDate() + ((8 - day) % 7));
   } else {
     date.setUTCDate(date.getUTCDate() - ((day - 1 + 7) % 7));
+  }
+  const minimumRaw = normalizeIsoDate(minimumValue);
+  if (minimumRaw) {
+    const minimumDate = new Date(minimumRaw);
+    if (date < minimumDate) {
+      return advanceToNextPaymentDay(date, withTef ? 5 : 1).toISOString();
+    }
   }
   return date.toISOString();
 }
@@ -1062,7 +1080,7 @@ function applyCorrectionsToCase(caseRow: { payload_json?: Record<string, any> | 
 
     if (!corrections.payment_date) {
       const withTef = usesTef(document, context);
-      const paymentDate = proposedPaymentDateIso(document.dueDate ?? context.dueDate, withTef);
+      const paymentDate = proposedPaymentDateIso(document.dueDate ?? context.dueDate, withTef, document.issueDate ?? caseRow.issue_date);
       if (paymentDate) {
         document.paymentDate = paymentDate;
         document.paymentDateRule = paymentDateRule(withTef);
@@ -1086,7 +1104,7 @@ function applyCorrectionsToCase(caseRow: { payload_json?: Record<string, any> | 
 
   if (!corrections.payment_date && (corrections.issue_date || corrections.due_date || corrections.payment_terms_id)) {
     const withTef = usesTef(document, context);
-    const paymentDate = proposedPaymentDateIso(document.dueDate ?? context.dueDate, withTef);
+    const paymentDate = proposedPaymentDateIso(document.dueDate ?? context.dueDate, withTef, document.issueDate ?? caseRow.issue_date);
     if (paymentDate) {
       document.paymentDate = paymentDate;
       document.paymentDateRule = paymentDateRule(withTef);
