@@ -1,7 +1,7 @@
 {
   "2026-02": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202602.csv",
-    "generatedAt": "2026-06-12T10:01:58.202Z",
+    "generatedAt": "2026-06-13T03:46:50.896Z",
     "rows": [
       {
         "documentType": "33",
@@ -51,7 +51,7 @@
   },
   "2026-03": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202603.csv",
-    "generatedAt": "2026-06-12T10:01:58.219Z",
+    "generatedAt": "2026-06-13T03:46:50.914Z",
     "rows": [
       {
         "documentType": "33",
@@ -101,7 +101,7 @@
   },
   "2026-04": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202604.csv",
-    "generatedAt": "2026-06-12T10:01:58.222Z",
+    "generatedAt": "2026-06-13T03:46:50.916Z",
     "rows": [
       {
         "documentType": "33",
@@ -140,7 +140,7 @@
   },
   "2026-05": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202605.csv",
-    "generatedAt": "2026-06-12T10:01:58.224Z",
+    "generatedAt": "2026-06-13T03:46:50.919Z",
     "rows": [
       {
         "documentType": "33",
@@ -179,29 +179,29 @@
   },
   "2026-06": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202606.csv",
-    "generatedAt": "2026-06-12T10:01:58.227Z",
+    "generatedAt": "2026-06-13T03:46:50.920Z",
     "rows": [
       {
         "documentType": "33",
-        "totalDocuments": 53,
+        "totalDocuments": 60,
         "montoExento": 0,
-        "montoNeto": 62958975,
-        "ivaRecuperable": 11962206,
+        "montoNeto": 69279314,
+        "ivaRecuperable": 13163070,
         "ivaUsoComun": 0,
         "ivaNoRecuperable": 0,
         "montoOtrosImpuestos": 88941,
-        "montoTotal": 75010122
+        "montoTotal": 82531325
       },
       {
         "documentType": "34",
-        "totalDocuments": 10,
-        "montoExento": 8100389,
+        "totalDocuments": 15,
+        "montoExento": 9230291,
         "montoNeto": 0,
         "ivaRecuperable": 0,
         "ivaUsoComun": 0,
         "ivaNoRecuperable": 0,
         "montoOtrosImpuestos": 0,
-        "montoTotal": 8100389
+        "montoTotal": 9230291
       },
       {
         "documentType": "56",
