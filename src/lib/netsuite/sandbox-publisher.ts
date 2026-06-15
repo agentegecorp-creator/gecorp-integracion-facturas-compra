@@ -270,7 +270,7 @@ export function buildSandboxPayload(row: ReviewCaseRow) {
   const nonTaxedAmount = documentType === '33'
     ? numberValue(document.amountExempt) + numberValue(document.amountOtherTax)
     : 0;
-  const hasTaxOverride = documentType === '34' || nonTaxedAmount > 0;
+  const hasTaxOverride = nonTaxedAmount > 0;
   const lineAmount = documentType === '34'
     ? numberValue(document.amountExempt) || numberValue(row.amount_total)
     : numberValue(document.amountNet) || numberValue(row.amount_total);
@@ -310,7 +310,9 @@ export function buildSandboxPayload(row: ReviewCaseRow) {
   };
   if (classId) line.class = { id: classId };
   if (departmentId) line.department = { id: departmentId };
-  if (hasTaxOverride) {
+  if (documentType === '34') {
+    line.taxCode = { id: String(TAX_CODE[documentType]) };
+  } else if (hasTaxOverride) {
     line.taxCode = { id: String(TAX_CODE[documentType]) };
     line.taxRate = documentType === '33' ? 19 : 0;
     line.taxAmount = documentType === '33' ? amountVat : 0;
