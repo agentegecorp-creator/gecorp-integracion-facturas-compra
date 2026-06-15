@@ -271,6 +271,9 @@ export async function getDashboardSummary(period?: DashboardPeriod) {
     fueraDeFlujo: 0,
     excluidos: 0,
     nuevosProveedores: 0,
+    clasificadosPipeline: 0,
+    totalRcvControl: 0,
+    diferenciaRcv: 0,
   };
 
   const documentTypeSummaryMap = new Map<string, DocumentTypeSummaryRow>();
@@ -304,6 +307,20 @@ export async function getDashboardSummary(period?: DashboardPeriod) {
 
   if (pipelineSummary) {
     operationalSummary.creadasAutomaticas = pipelineSummary.createdAutomatically;
+    operationalSummary.porContabilizar =
+      pipelineSummary.pendingApproval
+      + pipelineSummary.newVendors
+      + pipelineSummary.rejectedSii
+      + pipelineSummary.accountingErrors
+      + pipelineSummary.revisionOcReferential;
+    operationalSummary.nuevosProveedores = pipelineSummary.newVendors;
+    operationalSummary.clasificadosPipeline =
+      pipelineSummary.createdAutomatically
+      + pipelineSummary.pendingApproval
+      + pipelineSummary.newVendors
+      + pipelineSummary.rejectedSii
+      + pipelineSummary.accountingErrors
+      + pipelineSummary.revisionOcReferential;
   }
 
   const siiSummary = rcvSiiSummaries()[monthKey];
@@ -311,11 +328,25 @@ export async function getDashboardSummary(period?: DashboardPeriod) {
   if (siiSummary) {
     const rcvTotalDocuments = siiSummary.rows.reduce((total, row) => total + row.totalDocuments, 0);
     const mesaCases = Number(totalCases.rows[0]?.total ?? 0);
-    const unclassifiedCount = unclassifiedDocumentsForPeriod(period).length;
+    const unclassifiedDocuments = unclassifiedDocumentsForPeriod(period);
+    const unclassifiedCount = unclassifiedDocuments.length;
+    operationalSummary.totalRcvControl = rcvTotalDocuments;
     operationalSummary.fueraDeFlujo = unclassifiedCount || Math.max(
       rcvTotalDocuments - operationalSummary.creadasAutomaticas - mesaCases,
       0,
     );
+    operationalSummary.excluidos = unclassifiedDocuments.filter((item) => {
+      const document = item.payload_json?.document ?? {};
+      const documentType = String(document.documentType ?? item.document_type ?? '');
+      const amountTotal = Number(document.amountTotal ?? item.amount_total ?? 0) || 0;
+      const vendorName = String(item.vendor_name ?? '').toUpperCase();
+      return documentType === '914' || amountTotal === 0 || vendorName.includes('DIN') || vendorName.includes('SCOTIABANK');
+    }).length;
+    if (!pipelineSummary) {
+      operationalSummary.clasificadosPipeline = Math.max(rcvTotalDocuments - operationalSummary.fueraDeFlujo, 0);
+    }
+    operationalSummary.diferenciaRcv =
+      rcvTotalDocuments - operationalSummary.clasificadosPipeline - operationalSummary.fueraDeFlujo;
 
     return {
       totalCases: totalCases.rows[0]?.total ?? 0,

@@ -101,6 +101,7 @@ function PeriodSelector({ periods }: { periods: ReturnType<typeof getDashboardPe
 function documentTypeLabel(code: string) {
   if (code === '33') return 'Factura Electrónica (33)';
   if (code === '34') return 'Factura no Afecta o Exenta Electrónica (34)';
+  if (code === '56') return 'Nota de débito (56)';
   if (code === '61') return 'Nota de Crédito Electrónica (61)';
   if (code === '914') return 'Declaración de Ingreso (DIN) (914)';
   return code;
@@ -245,7 +246,7 @@ export default async function DashboardPage({
               <span>•</span>
               <span>Dominio: facturascompra.gecorp.cl</span>
               <span>•</span>
-              <span>Casos visibles del período: {summary.totalCases}</span>
+              <span>Total maestro RCV: {rcvTotalDocuments}</span>
             </div>
             <PeriodSelector periods={dashboardPeriods} />
           </div>
@@ -258,21 +259,30 @@ export default async function DashboardPage({
 
         <div className="mt-8 grid gap-4 md:grid-cols-3 xl:grid-cols-6">
           <StatCard
+            label="Documentos RCV"
+            value={rcvTotalDocuments}
+            help="Total maestro desde el CSV oficial SII"
+          />
+          <StatCard
+            label="Clasificados pipeline"
+            value={operationalSummary.clasificadosPipeline}
+            help="Creadas + revisión + rechazos + proveedores nuevos"
+          />
+          <StatCard
+            label="Diferencia cuadratura"
+            value={operationalSummary.diferenciaRcv}
+            help="Debe quedar en 0 contra el RCV oficial"
+          />
+          <StatCard
             label="Creadas automáticas"
             value={operationalSummary.creadasAutomaticas}
             help="Documentos auto-creables por el pipeline SII → NetSuite"
             href={`/pendiente-revision?${new URLSearchParams({ operationalView: 'automatic', period: dashboardPeriods.selected.key }).toString()}`}
           />
           <StatCard
-            label="Creadas manuales"
-            value={operationalSummary.creadasManuales}
-            help="Casos resueltos por acción humana desde la Mesa"
-            href={`/pendiente-revision?${new URLSearchParams({ operationalView: 'posted', period: dashboardPeriods.selected.key }).toString()}`}
-          />
-          <StatCard
-            label="Por contabilizar"
+            label="Revisión manual"
             value={operationalSummary.porContabilizar}
-            help="Documentos todavía pendientes de cierre operativo"
+            help="Pendientes, rechazos, OC referencial y proveedor nuevo"
             href={`/pendiente-revision?${new URLSearchParams({ operationalView: 'pending', period: dashboardPeriods.selected.key }).toString()}`}
           />
           <StatCard
@@ -280,18 +290,6 @@ export default async function DashboardPage({
             value={operationalSummary.fueraDeFlujo}
             help="Documentos del RCV sin clasificación operativa en la corrida"
             href={`/pendiente-revision?${new URLSearchParams({ operationalView: 'unclassified', period: dashboardPeriods.selected.key }).toString()}`}
-          />
-          <StatCard
-            label="Excluidos"
-            value={operationalSummary.excluidos}
-            help="Documentos fuera del flujo normal, incluyendo DIN y sin valor"
-            href={`/pendiente-revision?${new URLSearchParams({ operationalView: 'excluded', period: dashboardPeriods.selected.key }).toString()}`}
-          />
-          <StatCard
-            label="Facturas nuevos proveedores"
-            value={operationalSummary.nuevosProveedores}
-            help="Casos que requieren tratamiento por proveedor nuevo"
-            href={`/pendiente-revision?${new URLSearchParams({ operationalView: 'new_vendors', period: dashboardPeriods.selected.key }).toString()}`}
           />
         </div>
       </section>
@@ -346,11 +344,10 @@ export default async function DashboardPage({
           <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
             <h2 className="text-xl font-semibold text-slate-900">Resumen operativo del mes</h2>
             <div className="mt-4 space-y-3 text-sm text-slate-600">
-              <p>• Etapas activas: {summary.byBucket.map((row) => `${etapaLabel(row.bucket)}: ${row.total}`).join(' · ') || 'Sin datos'}.</p>
-              <p>• Estados activos: {summary.byStatus.map((row) => `${estadoLabel(row.status)}: ${row.total}`).join(' · ') || 'Sin datos'}.</p>
+              <p>• Cuadratura: {rcvTotalDocuments} RCV = {operationalSummary.clasificadosPipeline} clasificados por pipeline + {operationalSummary.fueraDeFlujo} fuera de flujo + {operationalSummary.diferenciaRcv} diferencia.</p>
               <p>• Total documentos RCV del período: {rcvTotalDocuments} documentos por {formatCurrency(rcvTotalAmount)}.</p>
-              <p>• Documentos con revisión de OC: {revisionOcCount}.</p>
-              <p>• Rechazos SII: {rejectedSiiCount}. Errores contables: {errorRealCount}. Casos especiales: {exceptionCount}.</p>
+              <p>• Revisión manual: {operationalSummary.porContabilizar} documentos, incluyendo {revisionOcCount} con revisión de OC y {operationalSummary.nuevosProveedores} proveedores nuevos.</p>
+              <p>• Rechazos SII: {rejectedSiiCount}. Errores contables: {errorRealCount}. Fuera de flujo/excluidos: {operationalSummary.excluidos}.</p>
             </div>
           </div>
 
