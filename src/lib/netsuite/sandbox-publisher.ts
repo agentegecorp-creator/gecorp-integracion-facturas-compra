@@ -209,6 +209,10 @@ export async function createRecord(recordType: string, payload: Record<string, u
   };
 }
 
+export async function updateRecord(recordType: string, recordId: string, payload: Record<string, unknown>) {
+  return requestNetSuite('PATCH', `/services/rest/record/v1/${recordType}/${recordId}`, payload);
+}
+
 function isoDate(value: unknown) {
   if (!value) return null;
   if (value instanceof Date) return value.toISOString().slice(0, 10);
@@ -270,7 +274,7 @@ export function buildSandboxPayload(row: ReviewCaseRow) {
   const nonTaxedAmount = documentType === '33'
     ? numberValue(document.amountExempt) + numberValue(document.amountOtherTax)
     : 0;
-  const hasTaxOverride = nonTaxedAmount > 0;
+  const hasTaxOverride = documentType === '34' || nonTaxedAmount > 0;
   const lineAmount = documentType === '34'
     ? numberValue(document.amountExempt) || numberValue(row.amount_total)
     : numberValue(document.amountNet) || numberValue(row.amount_total);
@@ -312,6 +316,8 @@ export function buildSandboxPayload(row: ReviewCaseRow) {
   if (departmentId) line.department = { id: departmentId };
   if (documentType === '34') {
     line.taxCode = { id: String(TAX_CODE[documentType]) };
+    line.taxRate = 0;
+    line.taxAmount = 0;
   } else if (hasTaxOverride) {
     line.taxCode = { id: String(TAX_CODE[documentType]) };
     line.taxRate = documentType === '33' ? 19 : 0;
