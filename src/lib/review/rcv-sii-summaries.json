@@ -1,7 +1,7 @@
 {
   "2026-02": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202602.csv",
-    "generatedAt": "2026-06-16T10:02:37.343Z",
+    "generatedAt": "2026-06-17T03:46:45.804Z",
     "rows": [
       {
         "documentType": "33",
@@ -51,7 +51,7 @@
   },
   "2026-03": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202603.csv",
-    "generatedAt": "2026-06-16T10:02:37.361Z",
+    "generatedAt": "2026-06-17T03:46:45.822Z",
     "rows": [
       {
         "documentType": "33",
@@ -101,7 +101,7 @@
   },
   "2026-04": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202604.csv",
-    "generatedAt": "2026-06-16T10:02:37.364Z",
+    "generatedAt": "2026-06-17T03:46:45.824Z",
     "rows": [
       {
         "documentType": "33",
@@ -140,7 +140,7 @@
   },
   "2026-05": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202605.csv",
-    "generatedAt": "2026-06-16T10:02:37.367Z",
+    "generatedAt": "2026-06-17T03:46:45.826Z",
     "rows": [
       {
         "documentType": "33",
@@ -179,18 +179,18 @@
   },
   "2026-06": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202606.csv",
-    "generatedAt": "2026-06-16T10:02:37.370Z",
+    "generatedAt": "2026-06-17T03:46:45.828Z",
     "rows": [
       {
         "documentType": "33",
-        "totalDocuments": 69,
+        "totalDocuments": 70,
         "montoExento": 80871,
-        "montoNeto": 70437881,
-        "ivaRecuperable": 13383198,
+        "montoNeto": 70572686,
+        "ivaRecuperable": 13408811,
         "ivaUsoComun": 0,
         "ivaNoRecuperable": 0,
         "montoOtrosImpuestos": 88941,
-        "montoTotal": 83990891
+        "montoTotal": 84151309
       },
       {
         "documentType": "34",
