@@ -88,7 +88,7 @@ async function hasSandboxPublishStatusColumn() {
 function readyForSandboxWhereClause(alias = 'review_cases') {
   return `
     ${alias}.status = 'resolved'
-    and coalesce(${alias}.sandbox_publish_status, 'not_ready') in ('not_ready', 'ready', 'failed')
+    and coalesce(${alias}.sandbox_publish_status, 'not_ready') = 'ready'
     and ${alias}.bucket <> 'rejected_sii'
     and coalesce(${alias}.payload_json->'context'->>'requiereRevisionManual', '') not in ('si', 'SI', 'true', 'TRUE', 'nuevo_proveedor')
     and coalesce(${alias}.payload_json->'context'->>'error', '') = ''
@@ -435,6 +435,11 @@ export async function listReviewCases(
       conditions.push(`issue_date >= $${values.length - 1}::date and issue_date < $${values.length}::date`);
     }
 
+    if (filters.sandboxPublishStatus) {
+      values.push(filters.sandboxPublishStatus);
+      conditions.push(`coalesce(sandbox_publish_status, 'not_ready') = $${values.length}`);
+    }
+
     const result = await db.query(
       `select id, vendor_name, vendor_rut, folio, document_type, issue_date, bucket, status, amount_total, summary_text, created_at,
               coalesce(sandbox_publish_status, 'not_ready') as sandbox_publish_status,
@@ -442,7 +447,7 @@ export async function listReviewCases(
               sandbox_record_type
        from review_cases
        where ${conditions.join(' and ')}
-       order by created_at desc
+       order by updated_at desc nulls last, created_at desc
        limit $1`,
       values,
     );
