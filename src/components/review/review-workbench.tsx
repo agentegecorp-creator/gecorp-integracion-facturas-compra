@@ -20,6 +20,9 @@ type ReviewItem = {
   sandbox_publish_status?: string | null;
   sandbox_record_id?: string | null;
   sandbox_record_type?: string | null;
+  production_publish_status?: string | null;
+  production_record_id?: string | null;
+  production_record_type?: string | null;
 };
 
 type ReviewCaseDetail = ReviewItem & {
@@ -217,6 +220,28 @@ function sandboxPublishChipClass(status: string | null | undefined) {
   return 'bg-slate-100 text-slate-700 ring-slate-200';
 }
 
+function productionPublishLabel(status: string | null | undefined) {
+  if (status === 'ready') return 'Listo para Producción';
+  if (status === 'published') return 'Publicado en Producción';
+  if (status === 'failed') return 'Falló publicación Producción';
+  return 'No listo para Producción';
+}
+
+function productionPublishDisplay(item: { production_publish_status?: string | null; production_record_id?: string | null }) {
+  const label = productionPublishLabel(item.production_publish_status);
+  if (item.production_publish_status === 'published' && item.production_record_id) {
+    return `${label} #${item.production_record_id}`;
+  }
+  return label;
+}
+
+function productionPublishChipClass(status: string | null | undefined) {
+  if (status === 'ready') return 'bg-emerald-50 text-emerald-700 ring-emerald-200';
+  if (status === 'published') return 'bg-green-50 text-green-700 ring-green-200';
+  if (status === 'failed') return 'bg-rose-50 text-rose-700 ring-rose-200';
+  return 'bg-slate-100 text-slate-700 ring-slate-200';
+}
+
 function pipelineModeLabel(mode: string | null | undefined) {
   if (!mode) return '-';
   if (mode.includes('STUB')) return 'Simulación del pipeline, no publicación real';
@@ -241,6 +266,13 @@ function nextActionLabel(bucket: string, sandboxPublishStatus?: string | null) {
   if (bucket === 'rejected_sii') return 'Gestionar rechazo con proveedor';
   if (bucket === 'revision_oc') return 'Validar contra OC real';
   return 'Revisar y decidir';
+}
+
+function nextProductionActionLabel(item: ReviewItem) {
+  if (item.production_publish_status === 'published') return 'Ya publicado en Producción';
+  if (item.production_publish_status === 'failed') return 'Reintentar publicación a Producción';
+  if (item.sandbox_publish_status === 'published') return 'Publicar a Producción cuando corresponda';
+  return null;
 }
 
 export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
@@ -346,10 +378,16 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                     <div className={`mt-1 inline-flex rounded-full px-2 py-0.5 ring-1 ${sandboxPublishChipClass(item.sandbox_publish_status)}`}>
                       {sandboxPublishDisplay(item)}
                     </div>
+                    <div className={`mt-1 inline-flex rounded-full px-2 py-0.5 ring-1 ${productionPublishChipClass(item.production_publish_status)}`}>
+                      {productionPublishDisplay(item)}
+                    </div>
                   </div>
                 </div>
                 <p className="mt-3 text-sm text-slate-600">{displaySummaryText(item)}</p>
                 <p className="mt-2 text-xs font-medium text-slate-500">Siguiente acción sugerida: {nextActionLabel(item.bucket, item.sandbox_publish_status)}</p>
+                {nextProductionActionLabel(item) ? (
+                  <p className="mt-1 text-xs font-medium text-slate-500">Producción: {nextProductionActionLabel(item)}</p>
+                ) : null}
               </button>
             ))
           )}
@@ -380,6 +418,9 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                   </span>
                   <span className={`inline-flex rounded-full px-2.5 py-1 text-sm font-medium ring-1 ${sandboxPublishChipClass(selected.sandbox_publish_status)}`}>
                     {sandboxPublishDisplay(selected)}
+                  </span>
+                  <span className={`inline-flex rounded-full px-2.5 py-1 text-sm font-medium ring-1 ${productionPublishChipClass(selected.production_publish_status)}`}>
+                    {productionPublishDisplay(selected)}
                   </span>
                 </div>
               </div>
@@ -469,6 +510,18 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                   <div className="rounded-2xl bg-cyan-50 p-4">
                     <p className="text-sm text-cyan-700">Registro Sandbox</p>
                     <p className="mt-1 font-medium text-slate-900">{selectedDetail?.sandbox_record_type || 'vendorbill'}</p>
+                  </div>
+                </>
+              ) : null}
+              {selected.production_publish_status === 'published' ? (
+                <>
+                  <div className="rounded-2xl bg-emerald-50 p-4">
+                    <p className="text-sm text-emerald-700">ID Producción</p>
+                    <p className="mt-1 font-medium text-slate-900">{selectedDetail?.production_record_id || '-'}</p>
+                  </div>
+                  <div className="rounded-2xl bg-emerald-50 p-4">
+                    <p className="text-sm text-emerald-700">Registro Producción</p>
+                    <p className="mt-1 font-medium text-slate-900">{selectedDetail?.production_record_type || 'vendorbill'}</p>
                   </div>
                 </>
               ) : null}

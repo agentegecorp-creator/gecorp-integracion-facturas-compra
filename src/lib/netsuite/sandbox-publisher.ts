@@ -25,11 +25,32 @@ type NetSuiteConfig = {
   baseUrl: string;
 };
 
+export type NetSuiteTarget = 'sandbox' | 'production';
+
 const LEGACY_SANDBOX_CONFIG_PATHS = [
   process.env.NETSUITE_SB_CONFIG_PATH,
   '/Users/agentegecorp/.openclaw/workspace/proyectos/sii-netsuite/sandbox_runner.real.json',
   '/Users/agentegecorp/.openclaw/workspace/proyectos/sii-netsuite/sandbox_runner.marzo.real.json',
 ].filter(Boolean) as string[];
+
+const ENV_CONFIG_BY_TARGET: Record<NetSuiteTarget, Record<keyof NetSuiteConfig, string>> = {
+  sandbox: {
+    account: 'NETSUITE_SB_ACCOUNT',
+    consumerKey: 'NETSUITE_SB_CONSUMER_KEY',
+    consumerSecret: 'NETSUITE_SB_CONSUMER_SECRET',
+    tokenId: 'NETSUITE_SB_TOKEN_ID',
+    tokenSecret: 'NETSUITE_SB_TOKEN_SECRET',
+    baseUrl: 'NETSUITE_SB_BASE_URL',
+  },
+  production: {
+    account: 'NETSUITE_PROD_ACCOUNT',
+    consumerKey: 'NETSUITE_PROD_CONSUMER_KEY',
+    consumerSecret: 'NETSUITE_PROD_CONSUMER_SECRET',
+    tokenId: 'NETSUITE_PROD_TOKEN_ID',
+    tokenSecret: 'NETSUITE_PROD_TOKEN_SECRET',
+    baseUrl: 'NETSUITE_PROD_BASE_URL',
+  },
+};
 
 const DOCUMENT_TYPE_NS: Record<string, number> = {
   '33': 2,
@@ -65,16 +86,18 @@ function requiredEnv(name: string) {
 }
 
 export function hasNetSuiteSandboxConfig() {
-  const hasEnvConfig = [
-    'NETSUITE_SB_ACCOUNT',
-    'NETSUITE_SB_CONSUMER_KEY',
-    'NETSUITE_SB_CONSUMER_SECRET',
-    'NETSUITE_SB_TOKEN_ID',
-    'NETSUITE_SB_TOKEN_SECRET',
-    'NETSUITE_SB_BASE_URL',
-  ].every((name) => Boolean(process.env[name]?.trim()));
+  return hasNetSuiteConfig('sandbox');
+}
 
-  return hasEnvConfig || Boolean(findLegacySandboxConfigPath());
+export function hasNetSuiteProductionConfig() {
+  return hasNetSuiteConfig('production');
+}
+
+export function hasNetSuiteConfig(target: NetSuiteTarget = 'sandbox') {
+  const envConfig = ENV_CONFIG_BY_TARGET[target];
+  const hasEnvConfig = Object.values(envConfig).every((name) => Boolean(process.env[name]?.trim()));
+
+  return hasEnvConfig || (target === 'sandbox' && Boolean(findLegacySandboxConfigPath()));
 }
 
 function findLegacySandboxConfigPath() {
@@ -116,17 +139,18 @@ function loadLegacyConfig(): NetSuiteConfig | null {
   };
 }
 
-function loadConfig(): NetSuiteConfig {
-  const legacyConfig = loadLegacyConfig();
+function loadConfig(target: NetSuiteTarget = 'sandbox'): NetSuiteConfig {
+  const legacyConfig = target === 'sandbox' ? loadLegacyConfig() : null;
   if (legacyConfig) return legacyConfig;
 
+  const envConfig = ENV_CONFIG_BY_TARGET[target];
   return {
-    account: requiredEnv('NETSUITE_SB_ACCOUNT'),
-    consumerKey: requiredEnv('NETSUITE_SB_CONSUMER_KEY'),
-    consumerSecret: requiredEnv('NETSUITE_SB_CONSUMER_SECRET'),
-    tokenId: requiredEnv('NETSUITE_SB_TOKEN_ID'),
-    tokenSecret: requiredEnv('NETSUITE_SB_TOKEN_SECRET'),
-    baseUrl: requiredEnv('NETSUITE_SB_BASE_URL').replace(/\/$/, ''),
+    account: requiredEnv(envConfig.account),
+    consumerKey: requiredEnv(envConfig.consumerKey),
+    consumerSecret: requiredEnv(envConfig.consumerSecret),
+    tokenId: requiredEnv(envConfig.tokenId),
+    tokenSecret: requiredEnv(envConfig.tokenSecret),
+    baseUrl: requiredEnv(envConfig.baseUrl).replace(/\/$/, ''),
   };
 }
 
@@ -169,8 +193,9 @@ export async function requestNetSuite(
   path: string,
   payload?: Record<string, unknown>,
   options?: { prefer?: string; accept?: string },
+  target: NetSuiteTarget = 'sandbox',
 ) {
-  const config = loadConfig();
+  const config = loadConfig(target);
   const url = `${config.baseUrl}${path}`;
   const response = await fetch(url, {
     method,
@@ -197,17 +222,17 @@ export async function requestNetSuite(
   };
 }
 
-async function suiteql(query: string) {
-  const result = await requestNetSuite('POST', '/services/rest/query/v1/suiteql', { q: query }, { prefer: 'transient' });
+async function suiteql(query: string, target: NetSuiteTarget = 'sandbox') {
+  const result = await requestNetSuite('POST', '/services/rest/query/v1/suiteql', { q: query }, { prefer: 'transient' }, target);
   if (!result.success) {
-    throw new Error(`SuiteQL Sandbox falló HTTP ${result.status}: ${result.raw || JSON.stringify(result.body)}`);
+    throw new Error(`SuiteQL NetSuite ${target} falló HTTP ${result.status}: ${result.raw || JSON.stringify(result.body)}`);
   }
   const body = result.body as { items?: Record<string, unknown>[] };
   return body.items ?? [];
 }
 
-export async function createRecord(recordType: string, payload: Record<string, unknown>) {
-  const result = await requestNetSuite('POST', `/services/rest/record/v1/${recordType}`, payload);
+export async function createRecord(recordType: string, payload: Record<string, unknown>, target: NetSuiteTarget = 'sandbox') {
+  const result = await requestNetSuite('POST', `/services/rest/record/v1/${recordType}`, payload, undefined, target);
   const body = result.body as Record<string, unknown>;
   const links = Array.isArray(body.links) ? body.links as Array<{ href?: string }> : [];
   const recordId = String(body.id ?? body.internalId ?? result.location ?? links.at(-1)?.href ?? '');
@@ -217,16 +242,16 @@ export async function createRecord(recordType: string, payload: Record<string, u
   };
 }
 
-export async function updateRecord(recordType: string, recordId: string, payload: Record<string, unknown>) {
-  return requestNetSuite('PATCH', `/services/rest/record/v1/${recordType}/${recordId}`, payload);
+export async function updateRecord(recordType: string, recordId: string, payload: Record<string, unknown>, target: NetSuiteTarget = 'sandbox') {
+  return requestNetSuite('PATCH', `/services/rest/record/v1/${recordType}/${recordId}`, payload, undefined, target);
 }
 
-export async function replaceRecordTaxDetails(recordType: string, recordId: string, payload: Record<string, unknown>) {
-  return requestNetSuite('PATCH', `/services/rest/record/v1/${recordType}/${recordId}?replace=taxDetails`, payload);
+export async function replaceRecordTaxDetails(recordType: string, recordId: string, payload: Record<string, unknown>, target: NetSuiteTarget = 'sandbox') {
+  return requestNetSuite('PATCH', `/services/rest/record/v1/${recordType}/${recordId}?replace=taxDetails`, payload, undefined, target);
 }
 
-async function verifyExemptVendorBillTaxIsZero(recordType: string, recordId: string) {
-  const result = await requestNetSuite('GET', `/services/rest/record/v1/${recordType}/${recordId}?expandSubResources=true`);
+async function verifyExemptVendorBillTaxIsZero(recordType: string, recordId: string, target: NetSuiteTarget = 'sandbox') {
+  const result = await requestNetSuite('GET', `/services/rest/record/v1/${recordType}/${recordId}?expandSubResources=true`, undefined, undefined, target);
   if (!result.success) return { ...result, verified: false };
 
   const body = result.body as {
@@ -393,13 +418,14 @@ export async function enforceZeroTaxDetailsForExemptDocument(
   recordType: string,
   recordId: string,
   zeroTaxDetails: Record<string, unknown> | null,
+  target: NetSuiteTarget = 'sandbox',
 ) {
   if (!zeroTaxDetails || recordType !== 'vendorbill') return null;
   const payload = JSON.parse(JSON.stringify(zeroTaxDetails).replace(/__RECORD_ID__/g, recordId)) as Record<string, unknown>;
-  const replaceResult = await replaceRecordTaxDetails(recordType, recordId, payload);
+  const replaceResult = await replaceRecordTaxDetails(recordType, recordId, payload, target);
   if (replaceResult.success) return replaceResult;
 
-  const verification = await verifyExemptVendorBillTaxIsZero(recordType, recordId);
+  const verification = await verifyExemptVendorBillTaxIsZero(recordType, recordId, target);
   if (!verification.verified) return replaceResult;
 
   return {
@@ -418,7 +444,7 @@ export async function enforceZeroTaxDetailsForExemptDocument(
   };
 }
 
-export async function findExistingTransaction(tranId: string, entityId: string) {
+export async function findExistingTransaction(tranId: string, entityId: string, target: NetSuiteTarget = 'sandbox') {
   const safeTranId = tranId.replace(/'/g, "''");
   const safeEntityId = entityId.replace(/[^0-9]/g, '');
   const rows = await suiteql(`
@@ -427,7 +453,7 @@ export async function findExistingTransaction(tranId: string, entityId: string) 
     WHERE t.type IN ('VendBill','VendCred')
       AND t.tranId = '${safeTranId}'
       AND t.entity = ${safeEntityId}
-  `);
+  `, target);
   const row = rows[0];
   if (!row) return null;
   return {

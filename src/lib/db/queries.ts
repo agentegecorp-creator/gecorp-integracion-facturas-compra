@@ -15,6 +15,8 @@ import {
 
 let cachedHasSandboxPublishStatus: boolean | null = null;
 let sandboxPublishSchemaReady: boolean | null = null;
+let cachedHasProductionPublishStatus: boolean | null = null;
+let productionPublishSchemaReady: boolean | null = null;
 
 export async function ensureSandboxPublishSchema() {
   if (sandboxPublishSchemaReady) {
@@ -67,6 +69,59 @@ export async function ensureSandboxPublishSchema() {
   cachedHasSandboxPublishStatus = true;
 }
 
+export async function ensureProductionPublishSchema() {
+  if (productionPublishSchemaReady) {
+    return;
+  }
+
+  await ensureSandboxPublishSchema();
+
+  await db.query(`
+    alter table review_cases
+      add column if not exists production_publish_status text default 'not_ready',
+      add column if not exists production_published_at timestamptz,
+      add column if not exists production_record_type text,
+      add column if not exists production_record_id text,
+      add column if not exists production_publish_error text
+  `);
+
+  await db.query(`
+    create table if not exists production_publish_runs (
+      id uuid primary key default gen_random_uuid(),
+      user_id uuid references users(id),
+      status text not null default 'running',
+      limit_count integer not null default 0,
+      attempted_count integer not null default 0,
+      created_count integer not null default 0,
+      skipped_count integer not null default 0,
+      failed_count integer not null default 0,
+      details_json jsonb not null default '{}'::jsonb,
+      created_at timestamptz not null default now(),
+      finished_at timestamptz
+    )
+  `);
+
+  await db.query(`
+    create table if not exists production_publish_items (
+      id uuid primary key default gen_random_uuid(),
+      run_id uuid references production_publish_runs(id),
+      case_id uuid references review_cases(id),
+      record_type text,
+      tran_id text,
+      entity_id text,
+      status text not null,
+      netsuite_record_id text,
+      error_text text,
+      payload_json jsonb,
+      result_json jsonb,
+      created_at timestamptz not null default now()
+    )
+  `);
+
+  productionPublishSchemaReady = true;
+  cachedHasProductionPublishStatus = true;
+}
+
 async function hasSandboxPublishStatusColumn() {
   if (cachedHasSandboxPublishStatus !== null) {
     return cachedHasSandboxPublishStatus;
@@ -85,6 +140,24 @@ async function hasSandboxPublishStatusColumn() {
   return cachedHasSandboxPublishStatus;
 }
 
+async function hasProductionPublishStatusColumn() {
+  if (cachedHasProductionPublishStatus !== null) {
+    return cachedHasProductionPublishStatus;
+  }
+
+  const result = await db.query(
+    `select exists (
+      select 1
+      from information_schema.columns
+      where table_name = 'review_cases'
+        and column_name = 'production_publish_status'
+    ) as exists`,
+  );
+
+  cachedHasProductionPublishStatus = Boolean(result.rows[0]?.exists);
+  return cachedHasProductionPublishStatus;
+}
+
 function readyForSandboxWhereClause(alias = 'review_cases') {
   return `
     ${alias}.status = 'resolved'
@@ -94,6 +167,16 @@ function readyForSandboxWhereClause(alias = 'review_cases') {
     and coalesce(${alias}.payload_json->'context'->>'error', '') = ''
     and coalesce(${alias}.payload_json->'context'->>'vendorIdProposed', ${alias}.payload_json->'context'->>'entity', '') ~ '^[0-9]+$'
     and coalesce(${alias}.payload_json->'context'->>'accountIdProposed', ${alias}.payload_json->'context'->>'referenciaAccount', ${alias}.payload_json->'document'->>'accountId', '') ~ '^[0-9]+$'
+  `;
+}
+
+function readyForProductionWhereClause(alias = 'review_cases') {
+  return `
+    ${readyForSandboxWhereClause(alias).replace(
+      `coalesce(${alias}.sandbox_publish_status, 'not_ready') = 'ready'`,
+      `coalesce(${alias}.sandbox_publish_status, 'not_ready') = 'published'`,
+    )}
+    and coalesce(${alias}.production_publish_status, 'ready') in ('not_ready', 'ready', 'failed')
   `;
 }
 
@@ -426,6 +509,8 @@ export async function listReviewCases(
     operationalView?: 'automatic' | 'posted' | 'pending' | 'unclassified' | 'excluded' | 'new_vendors';
   },
 ) {
+  const hasProductionPublishStatus = await hasProductionPublishStatusColumn();
+
   if (filters?.operationalView === 'automatic') {
     const values: Array<string | number> = [limit];
     const conditions = [`bucket = 'approved_auto'`];
@@ -440,11 +525,20 @@ export async function listReviewCases(
       conditions.push(`coalesce(sandbox_publish_status, 'not_ready') = $${values.length}`);
     }
 
+    const productionPublishSelect = hasProductionPublishStatus
+      ? `coalesce(production_publish_status, 'not_ready')`
+      : `'not_ready'`;
+    const productionRecordSelect = hasProductionPublishStatus ? `production_record_id` : `null`;
+    const productionRecordTypeSelect = hasProductionPublishStatus ? `production_record_type` : `null`;
+
     const result = await db.query(
       `select id, vendor_name, vendor_rut, folio, document_type, issue_date, bucket, status, amount_total, summary_text, created_at,
               coalesce(sandbox_publish_status, 'not_ready') as sandbox_publish_status,
               sandbox_record_id,
-              sandbox_record_type
+              sandbox_record_type,
+              ${productionPublishSelect} as production_publish_status,
+              ${productionRecordSelect} as production_record_id,
+              ${productionRecordTypeSelect} as production_record_type
        from review_cases
        where ${conditions.join(' and ')}
        order by updated_at desc nulls last, created_at desc
@@ -516,12 +610,20 @@ export async function listReviewCases(
   const sandboxPublishSelect = hasSandboxPublishStatus
     ? `coalesce(sandbox_publish_status, 'not_ready')`
     : `'not_ready'`;
+  const productionPublishSelect = hasProductionPublishStatus
+    ? `coalesce(production_publish_status, 'not_ready')`
+    : `'not_ready'`;
+  const productionRecordSelect = hasProductionPublishStatus ? `production_record_id` : `null`;
+  const productionRecordTypeSelect = hasProductionPublishStatus ? `production_record_type` : `null`;
 
   const result = await db.query(
     `select id, vendor_name, vendor_rut, folio, document_type, issue_date, bucket, status, amount_total, summary_text, created_at,
             ${sandboxPublishSelect} as sandbox_publish_status,
             sandbox_record_id,
-            sandbox_record_type
+            sandbox_record_type,
+            ${productionPublishSelect} as production_publish_status,
+            ${productionRecordSelect} as production_record_id,
+            ${productionRecordTypeSelect} as production_record_type
      from review_cases
      ${whereClause}
      order by
@@ -671,10 +773,83 @@ export async function countReadyForSandbox(period?: DashboardPeriod) {
   return Number(result.rows[0]?.total ?? 0);
 }
 
+export async function listReadyForProduction(limit = 20, period?: DashboardPeriod) {
+  await ensureProductionPublishSchema();
+  const values: Array<string | number> = [limit];
+  const conditions = [readyForProductionWhereClause('review_cases')];
+
+  if (period) {
+    values.push(period.startDate, period.endDate);
+    conditions.push(`issue_date >= $${values.length - 1}::date and issue_date < $${values.length}::date`);
+  }
+
+  const result = await db.query(
+    `select id,
+            source_document_id,
+            vendor_name,
+            vendor_rut,
+            folio,
+            document_type,
+            issue_date,
+            reception_date,
+            amount_total,
+            bucket,
+            status,
+            coalesce(sandbox_publish_status, 'not_ready') as sandbox_publish_status,
+            sandbox_record_id,
+            sandbox_record_type,
+            coalesce(production_publish_status, 'not_ready') as production_publish_status,
+            production_record_id,
+            production_record_type,
+            payload_json,
+            summary_text,
+            created_at,
+            updated_at
+     from review_cases
+     where ${conditions.join(' and ')}
+     order by updated_at desc nulls last, created_at desc
+     limit $1`,
+    values,
+  );
+
+  return result.rows;
+}
+
+export async function countReadyForProduction(period?: DashboardPeriod) {
+  await ensureProductionPublishSchema();
+  const values: string[] = [];
+  const conditions = [readyForProductionWhereClause('review_cases')];
+
+  if (period) {
+    values.push(period.startDate, period.endDate);
+    conditions.push(`issue_date >= $${values.length - 1}::date and issue_date < $${values.length}::date`);
+  }
+
+  const result = await db.query(
+    `select count(*)::int as total
+     from review_cases
+     where ${conditions.join(' and ')}`,
+    values,
+  );
+
+  return Number(result.rows[0]?.total ?? 0);
+}
+
 export async function createSandboxPublishRun(userId: string, limitCount: number) {
   await ensureSandboxPublishSchema();
   const result = await db.query(
     `insert into sandbox_publish_runs (user_id, limit_count)
+     values ($1, $2)
+     returning id`,
+    [userId, limitCount],
+  );
+  return result.rows[0].id as string;
+}
+
+export async function createProductionPublishRun(userId: string, limitCount: number) {
+  await ensureProductionPublishSchema();
+  const result = await db.query(
+    `insert into production_publish_runs (user_id, limit_count)
      values ($1, $2)
      returning id`,
     [userId, limitCount],
@@ -695,6 +870,39 @@ export async function finishSandboxPublishRun(
 ) {
   await db.query(
     `update sandbox_publish_runs
+     set status = $2,
+         attempted_count = $3,
+         created_count = $4,
+         skipped_count = $5,
+         failed_count = $6,
+         details_json = $7::jsonb,
+         finished_at = now()
+     where id = $1`,
+    [
+      runId,
+      params.status,
+      params.attemptedCount,
+      params.createdCount,
+      params.skippedCount,
+      params.failedCount,
+      JSON.stringify(params.details ?? {}),
+    ],
+  );
+}
+
+export async function finishProductionPublishRun(
+  runId: string,
+  params: {
+    status: string;
+    attemptedCount: number;
+    createdCount: number;
+    skippedCount: number;
+    failedCount: number;
+    details?: Record<string, unknown>;
+  },
+) {
+  await db.query(
+    `update production_publish_runs
      set status = $2,
          attempted_count = $3,
          created_count = $4,
@@ -746,6 +954,38 @@ export async function recordSandboxPublishItem(params: {
   );
 }
 
+export async function recordProductionPublishItem(params: {
+  runId: string;
+  caseId: string;
+  recordType: string;
+  tranId: string;
+  entityId: string;
+  status: 'created' | 'duplicate' | 'failed' | 'skipped';
+  netsuiteRecordId?: string | null;
+  errorText?: string | null;
+  payload?: Record<string, unknown>;
+  result?: Record<string, unknown>;
+}) {
+  await ensureProductionPublishSchema();
+  await db.query(
+    `insert into production_publish_items
+       (run_id, case_id, record_type, tran_id, entity_id, status, netsuite_record_id, error_text, payload_json, result_json)
+     values ($1, $2, $3, $4, $5, $6, $7, $8, $9::jsonb, $10::jsonb)`,
+    [
+      params.runId,
+      params.caseId,
+      params.recordType,
+      params.tranId,
+      params.entityId,
+      params.status,
+      params.netsuiteRecordId ?? null,
+      params.errorText ?? null,
+      JSON.stringify(params.payload ?? {}),
+      JSON.stringify(params.result ?? {}),
+    ],
+  );
+}
+
 export async function markSandboxPublishResult(params: {
   caseId: string;
   status: 'published' | 'failed';
@@ -753,7 +993,7 @@ export async function markSandboxPublishResult(params: {
   recordId?: string | null;
   errorText?: string | null;
 }) {
-  await ensureSandboxPublishSchema();
+  await ensureProductionPublishSchema();
   await db.query(
     `update review_cases
      set sandbox_publish_status = $2,
@@ -761,6 +1001,39 @@ export async function markSandboxPublishResult(params: {
          sandbox_record_type = $3,
          sandbox_record_id = $4,
          sandbox_publish_error = $5,
+         production_publish_status = case
+           when $2 = 'published'
+             and coalesce(production_publish_status, 'not_ready') in ('not_ready', 'ready', 'failed')
+           then coalesce(nullif(production_publish_status, 'failed'), 'ready')
+           else production_publish_status
+         end,
+         updated_at = now()
+     where id = $1`,
+    [
+      params.caseId,
+      params.status,
+      params.recordType,
+      params.recordId ?? null,
+      params.errorText ?? null,
+    ],
+  );
+}
+
+export async function markProductionPublishResult(params: {
+  caseId: string;
+  status: 'published' | 'failed';
+  recordType: string;
+  recordId?: string | null;
+  errorText?: string | null;
+}) {
+  await ensureProductionPublishSchema();
+  await db.query(
+    `update review_cases
+     set production_publish_status = $2,
+         production_published_at = case when $2 = 'published' then now() else production_published_at end,
+         production_record_type = $3,
+         production_record_id = $4,
+         production_publish_error = $5,
          updated_at = now()
      where id = $1`,
     [
