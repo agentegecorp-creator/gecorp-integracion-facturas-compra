@@ -10,6 +10,7 @@ import {
 import {
   buildSandboxPayload,
   createRecord,
+  enforceZeroTaxDetailsForExemptDocument,
   findExistingTransaction,
   hasNetSuiteSandboxConfig,
   normalizeRecordId,
@@ -55,6 +56,37 @@ export async function POST(request: Request) {
       const existing = await findExistingTransaction(built.tranId, built.entityId);
 
       if (existing) {
+        const taxDetailsResult = await enforceZeroTaxDetailsForExemptDocument(
+          built.recordType,
+          existing.id,
+          built.zeroTaxDetails,
+        );
+        if (taxDetailsResult && !taxDetailsResult.success) {
+          failedCount += 1;
+          const errorText = taxDetailsResult.raw || JSON.stringify(taxDetailsResult.body);
+          await recordSandboxPublishItem({
+            runId,
+            caseId: item.id,
+            recordType: built.recordType,
+            tranId: built.tranId,
+            entityId: built.entityId,
+            status: 'failed',
+            netsuiteRecordId: existing.id,
+            errorText,
+            payload: built.payload,
+            result: { existing, taxDetailsResult },
+          });
+          await markSandboxPublishResult({
+            caseId: item.id,
+            status: 'failed',
+            recordType: built.recordType,
+            recordId: existing.id,
+            errorText,
+          });
+          results.push({ caseId: item.id, folio: built.tranId, status: 'failed', recordId: existing.id, error: errorText.slice(0, 500) });
+          continue;
+        }
+
         skippedCount += 1;
         await recordSandboxPublishItem({
           runId,
@@ -65,7 +97,7 @@ export async function POST(request: Request) {
           status: 'duplicate',
           netsuiteRecordId: existing.id,
           payload: built.payload,
-          result: existing,
+          result: taxDetailsResult ? { existing, taxDetailsResult } : existing,
         });
         await markSandboxPublishResult({
           caseId: item.id,
@@ -80,8 +112,39 @@ export async function POST(request: Request) {
 
       const createResult = await createRecord(built.recordType, built.payload);
       if (createResult.success) {
-        createdCount += 1;
         const recordId = normalizeRecordId(createResult.recordId);
+        const taxDetailsResult = await enforceZeroTaxDetailsForExemptDocument(
+          built.recordType,
+          recordId,
+          built.zeroTaxDetails,
+        );
+        if (taxDetailsResult && !taxDetailsResult.success) {
+          failedCount += 1;
+          const errorText = taxDetailsResult.raw || JSON.stringify(taxDetailsResult.body);
+          await recordSandboxPublishItem({
+            runId,
+            caseId: item.id,
+            recordType: built.recordType,
+            tranId: built.tranId,
+            entityId: built.entityId,
+            status: 'failed',
+            netsuiteRecordId: recordId,
+            errorText,
+            payload: built.payload,
+            result: { createResult, taxDetailsResult },
+          });
+          await markSandboxPublishResult({
+            caseId: item.id,
+            status: 'failed',
+            recordType: built.recordType,
+            recordId,
+            errorText,
+          });
+          results.push({ caseId: item.id, folio: built.tranId, status: 'failed', recordId, error: errorText.slice(0, 500) });
+          continue;
+        }
+
+        createdCount += 1;
         await recordSandboxPublishItem({
           runId,
           caseId: item.id,
@@ -91,7 +154,7 @@ export async function POST(request: Request) {
           status: 'created',
           netsuiteRecordId: recordId,
           payload: built.payload,
-          result: createResult,
+          result: taxDetailsResult ? { createResult, taxDetailsResult } : createResult,
         });
         await markSandboxPublishResult({
           caseId: item.id,

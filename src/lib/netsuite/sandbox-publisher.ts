@@ -138,6 +138,7 @@ function encode(value: string | number) {
 function oauthHeader(config: NetSuiteConfig, method: string, url: string) {
   const nonce = crypto.randomBytes(16).toString('hex');
   const timestamp = Math.floor(Date.now() / 1000).toString();
+  const parsedUrl = new URL(url);
   const params: Record<string, string> = {
     oauth_consumer_key: config.consumerKey,
     oauth_token: config.tokenId,
@@ -146,21 +147,28 @@ function oauthHeader(config: NetSuiteConfig, method: string, url: string) {
     oauth_signature_method: 'HMAC-SHA256',
     oauth_version: '1.0',
   };
+  parsedUrl.searchParams.forEach((value, key) => {
+    params[key] = value;
+  });
   const normalized = Object.keys(params)
     .sort()
     .map((key) => `${encode(key)}=${encode(params[key])}`)
     .join('&');
-  const baseString = [method.toUpperCase(), encode(url), encode(normalized)].join('&');
+  const baseUrl = `${parsedUrl.origin}${parsedUrl.pathname}`;
+  const baseString = [method.toUpperCase(), encode(baseUrl), encode(normalized)].join('&');
   const signingKey = `${encode(config.consumerSecret)}&${encode(config.tokenSecret)}`;
   params.oauth_signature = crypto.createHmac('sha256', signingKey).update(baseString).digest('base64');
+  parsedUrl.searchParams.forEach((_value, key) => {
+    delete params[key];
+  });
   return `OAuth ${Object.entries(params).map(([key, value]) => `${encode(key)}="${encode(value)}"`).join(', ')}, realm="${config.account}"`;
 }
 
-async function requestNetSuite(
+export async function requestNetSuite(
   method: string,
   path: string,
   payload?: Record<string, unknown>,
-  options?: { prefer?: string },
+  options?: { prefer?: string; accept?: string },
 ) {
   const config = loadConfig();
   const url = `${config.baseUrl}${path}`;
@@ -168,7 +176,7 @@ async function requestNetSuite(
     method,
     headers: {
       Authorization: oauthHeader(config, method, url),
-      Accept: 'application/json',
+      Accept: options?.accept ?? 'application/json',
       ...(payload
         ? {
             'Content-Type': 'application/json',
@@ -211,6 +219,10 @@ export async function createRecord(recordType: string, payload: Record<string, u
 
 export async function updateRecord(recordType: string, recordId: string, payload: Record<string, unknown>) {
   return requestNetSuite('PATCH', `/services/rest/record/v1/${recordType}/${recordId}`, payload);
+}
+
+export async function replaceRecordTaxDetails(recordType: string, recordId: string, payload: Record<string, unknown>) {
+  return requestNetSuite('PATCH', `/services/rest/record/v1/${recordType}/${recordId}?replace=taxDetails`, payload);
 }
 
 function isoDate(value: unknown) {
@@ -340,8 +352,36 @@ export function buildSandboxPayload(row: ReviewCaseRow) {
     expenseItems.push(nonTaxedLine);
   }
 
+  const zeroTaxDetails = documentType === '34'
+    ? {
+        taxDetails: {
+          items: [
+            {
+              taxDetailsReference: '__RECORD_ID___1',
+              taxType: { id: '6' },
+              taxCode: { id: String(TAX_CODE['34']) },
+              taxBasis: lineAmount,
+              taxRate: 0,
+              taxAmount: 0,
+              netAmount: lineAmount,
+            },
+          ],
+        },
+      }
+    : null;
+
   header.expense = { items: expenseItems };
-  return { recordType, payload: header, tranId: folio, entityId };
+  return { recordType, payload: header, tranId: folio, entityId, documentType, zeroTaxDetails };
+}
+
+export async function enforceZeroTaxDetailsForExemptDocument(
+  recordType: string,
+  recordId: string,
+  zeroTaxDetails: Record<string, unknown> | null,
+) {
+  if (!zeroTaxDetails || recordType !== 'vendorbill') return null;
+  const payload = JSON.parse(JSON.stringify(zeroTaxDetails).replace(/__RECORD_ID__/g, recordId)) as Record<string, unknown>;
+  return replaceRecordTaxDetails(recordType, recordId, payload);
 }
 
 export async function findExistingTransaction(tranId: string, entityId: string) {
