@@ -225,6 +225,21 @@ export async function replaceRecordTaxDetails(recordType: string, recordId: stri
   return requestNetSuite('PATCH', `/services/rest/record/v1/${recordType}/${recordId}?replace=taxDetails`, payload);
 }
 
+async function verifyExemptVendorBillTaxIsZero(recordType: string, recordId: string) {
+  const result = await requestNetSuite('GET', `/services/rest/record/v1/${recordType}/${recordId}?expandSubResources=true`);
+  if (!result.success) return { ...result, verified: false };
+
+  const body = result.body as {
+    taxDetailsOverride?: unknown;
+    userTaxTotal?: unknown;
+    taxDetails?: { items?: Array<{ taxAmount?: unknown; taxRate?: unknown }> };
+  };
+  const taxItems = Array.isArray(body.taxDetails?.items) ? body.taxDetails.items : [];
+  const hasPositiveTaxLine = taxItems.some((item) => numberValue(item.taxAmount) !== 0 || numberValue(item.taxRate) !== 0);
+  const verified = body.taxDetailsOverride === true && numberValue(body.userTaxTotal) === 0 && !hasPositiveTaxLine;
+  return { ...result, verified };
+}
+
 function isoDate(value: unknown) {
   if (!value) return null;
   if (value instanceof Date) return value.toISOString().slice(0, 10);
@@ -381,7 +396,26 @@ export async function enforceZeroTaxDetailsForExemptDocument(
 ) {
   if (!zeroTaxDetails || recordType !== 'vendorbill') return null;
   const payload = JSON.parse(JSON.stringify(zeroTaxDetails).replace(/__RECORD_ID__/g, recordId)) as Record<string, unknown>;
-  return replaceRecordTaxDetails(recordType, recordId, payload);
+  const replaceResult = await replaceRecordTaxDetails(recordType, recordId, payload);
+  if (replaceResult.success) return replaceResult;
+
+  const verification = await verifyExemptVendorBillTaxIsZero(recordType, recordId);
+  if (!verification.verified) return replaceResult;
+
+  return {
+    ...replaceResult,
+    success: true,
+    status: verification.status,
+    body: {
+      fallback: 'verified_zero_tax_after_replace_failure',
+      replaceResult: replaceResult.body,
+      verification: verification.body,
+    },
+    raw: JSON.stringify({
+      fallback: 'verified_zero_tax_after_replace_failure',
+      replaceStatus: replaceResult.status,
+    }),
+  };
 }
 
 export async function findExistingTransaction(tranId: string, entityId: string) {
