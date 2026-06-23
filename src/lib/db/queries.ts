@@ -1152,7 +1152,7 @@ function inferSandboxPublishStatus(caseRow: {
     return 'not_ready';
   }
 
-  if (caseRow.bucket === 'rejected_sii' || caseRow.bucket === 'revision_oc' || caseRow.bucket === 'error_real') {
+  if (caseRow.bucket === 'rejected_sii') {
     return 'not_ready';
   }
 
