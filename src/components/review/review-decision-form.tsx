@@ -48,6 +48,7 @@ type ReviewDecisionFormProps = {
     dueDate?: string | Date | null;
     paymentDate?: string | Date | null;
     paymentTermsId?: string | number | null;
+    paymentTermsLabel?: string | null;
     classId?: string | number | null;
     departmentId?: string | number | null;
     locationId?: string | number | null;
@@ -119,6 +120,18 @@ function inputValue(value: string | number | Date | null | undefined) {
 function isBalanceAccount(accountId: string | number | Date | null | undefined) {
   const label = optionLabel(accountOptions, accountId);
   return Boolean(label?.trim().match(/^[12]/));
+}
+
+function paymentTermIdFromLabel(label: string | null | undefined) {
+  const normalizedLabel = String(label ?? '').trim().toLowerCase();
+  if (!normalizedLabel) return null;
+  return paymentTermsOptions.find((option) => {
+    const optionLabel = option.label.trim().toLowerCase();
+    const optionName = option.name?.trim().toLowerCase();
+    return optionLabel === normalizedLabel
+      || optionName === normalizedLabel
+      || optionLabel.replace(/^\d+\s*·\s*/, '') === normalizedLabel;
+  })?.value ?? null;
 }
 
 function categoryOptions(value: string | null | undefined): SelectOption[] {
@@ -207,7 +220,7 @@ export function ReviewDecisionForm({ caseId, currentValues }: ReviewDecisionForm
       accounting_date: currentValues.accountingDate,
       due_date: currentValues.dueDate,
       payment_date: currentValues.paymentDate,
-      payment_terms_id: currentValues.paymentTermsId,
+      payment_terms_id: currentValues.paymentTermsId ?? paymentTermIdFromLabel(currentValues.paymentTermsLabel),
       document_type: currentValues.documentType,
       class_id: currentValues.classId,
       department_id: currentValues.departmentId,

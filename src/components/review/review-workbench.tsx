@@ -757,6 +757,8 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                   accountingDate,
                   dueDate,
                   paymentDate,
+                  paymentTermsId: document?.paymentTermsId || context?.paymentTermsId,
+                  paymentTermsLabel: document?.paymentTermsLabel || context?.paymentTermsLabel || context?.terminosNs,
                   classId: document?.classId || context?.classIdProposed || context?.classCorrecta || context?.classSuggestedB2,
                   departmentId: document?.departmentId || context?.departmentIdProposed || context?.departmentCorrecta || context?.departmentSuggestedB2,
                   locationId: document?.locationId || context?.locationIdProposed || context?.locationCorrecta || context?.locationSuggestedB2,

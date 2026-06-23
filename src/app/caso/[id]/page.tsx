@@ -150,6 +150,7 @@ export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
                   dueDate: optionalString(document.dueDate || context.dueDate),
                   paymentDate: optionalString(document.paymentDate || context.paymentDate),
                   paymentTermsId: formValue(document.paymentTermsId || context.paymentTermsId),
+                  paymentTermsLabel: optionalString(document.paymentTermsLabel || context.paymentTermsLabel || context.terminosNs),
                   classId: formValue(document.classId || context.classIdProposed || context.classCorrecta || context.classSuggestedB2),
                   departmentId: formValue(document.departmentId || context.departmentIdProposed || context.departmentCorrecta || context.departmentSuggestedB2),
                   locationId: formValue(document.locationId || context.locationIdProposed || context.locationCorrecta || context.locationSuggestedB2),
