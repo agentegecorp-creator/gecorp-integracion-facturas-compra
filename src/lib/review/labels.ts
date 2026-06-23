@@ -49,7 +49,7 @@ export function correctionFieldLabel(field: string) {
     class_id: 'Clase',
     department_id: 'Departamento',
     location_id: 'Ubicación',
-    new_vendor_entity: 'Alta de proveedor nuevo',
+    new_vendor_entity: 'ID interno NetSuite proveedor nuevo',
     invoice_note: 'Nota',
     invoice_detail: 'Detalle factura',
   };

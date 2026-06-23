@@ -91,7 +91,7 @@ const editableFields: Array<{
       { value: 'OC OBLIGATORIA', label: 'OC OBLIGATORIA' },
     ],
   },
-  { field: 'new_vendor_entity', placeholder: 'Entity NetSuite', kind: 'text' },
+  { field: 'new_vendor_entity', placeholder: 'Ej: 6607', kind: 'text' },
   { field: 'invoice_note', placeholder: 'Nota operativa para esta factura', kind: 'textarea' },
   { field: 'invoice_detail', placeholder: 'Detalle factura / glosa para contabilización', kind: 'textarea' },
 ];
