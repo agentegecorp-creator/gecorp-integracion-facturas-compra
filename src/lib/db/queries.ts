@@ -1160,14 +1160,14 @@ function inferSandboxPublishStatus(caseRow: {
   const requiereRevisionManual = String(context.requiereRevisionManual ?? '').toLowerCase();
   const error = String(context.error ?? '').trim();
   const motivo = String(context.motivo ?? '').trim();
-  const entity = context.entity;
-  const referenciaAccount = context.referenciaAccount;
+  const entity = context.vendorIdProposed ?? context.entity;
+  const referenciaAccount = context.accountIdProposed ?? context.referenciaAccount;
 
   if (requiereRevisionManual === 'si' || requiereRevisionManual === 'true') return 'not_ready';
   if (error) return 'not_ready';
   if (motivo.toLowerCase().includes('rechazo')) return 'not_ready';
-  if (typeof entity !== 'number') return 'not_ready';
-  if (typeof referenciaAccount !== 'number') return 'not_ready';
+  if (!String(entity ?? '').match(/^[0-9]+$/)) return 'not_ready';
+  if (!String(referenciaAccount ?? '').match(/^[0-9]+$/)) return 'not_ready';
 
   return 'ready';
 }
