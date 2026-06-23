@@ -317,6 +317,7 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
   const amountVat = document?.amountVat;
   const amountVatNonRecoverable = document?.amountVatNonRecoverable;
   const amountExempt = document?.amountExempt;
+  const amountOtherTax = document?.amountOtherTax;
   const amountTotal = document?.amountTotal || selected?.amount_total;
   const amountTotalCalculated = document?.amountTotalCalculated;
   const amountTotalDelta = document?.amountTotalDelta;
@@ -479,6 +480,10 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
               <div className="rounded-2xl bg-slate-50 p-4">
                 <p className="text-sm text-slate-500">Monto exento</p>
                 <p className="mt-1 font-medium text-slate-900">{formatCurrency(amountExempt)}</p>
+              </div>
+              <div className="rounded-2xl bg-slate-50 p-4">
+                <p className="text-sm text-slate-500">Otros impuestos / no gravado</p>
+                <p className="mt-1 font-medium text-slate-900">{formatCurrency(amountOtherTax)}</p>
               </div>
               <div className="rounded-2xl bg-slate-50 p-4">
                 <p className="text-sm text-slate-500">Monto bruto (total)</p>

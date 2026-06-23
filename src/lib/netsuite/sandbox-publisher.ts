@@ -323,8 +323,10 @@ export function buildSandboxPayload(row: ReviewCaseRow) {
   const memo = String(document.invoiceDetail ?? document.serviceDescription ?? `RCV F-${folio} ${row.vendor_name ?? ''}`).slice(0, 300);
   const nsDocumentType = numericId(context.documentTypeNsProposed, document.documentTypeNs, DOCUMENT_TYPE_NS[documentType]);
   const amountVat = numberValue(document.amountVat ?? row.amount_tax);
+  const amountExempt = numberValue(document.amountExempt);
+  const amountOtherTax = numberValue(document.amountOtherTax);
   const nonTaxedAmount = documentType === '33'
-    ? numberValue(document.amountExempt) + numberValue(document.amountOtherTax)
+    ? amountExempt + amountOtherTax
     : 0;
   const hasTaxOverride = documentType === '34' || nonTaxedAmount > 0;
   const lineAmount = documentType === '34'
@@ -378,10 +380,13 @@ export function buildSandboxPayload(row: ReviewCaseRow) {
 
   const expenseItems = [line];
   if (documentType === '33' && nonTaxedAmount > 0) {
+    const nonTaxedMemoSuffix = amountOtherTax > 0 && amountExempt === 0
+      ? 'IMP. ESP. DIESEL / OTRO IMPUESTO'
+      : 'EXENTO/NO GRAVADO';
     const nonTaxedLine: Record<string, unknown> = {
       account: { id: accountId },
       amount: nonTaxedAmount,
-      memo: `${memo} EXENTO/NO GRAVADO`.slice(0, 300),
+      memo: `${memo} ${nonTaxedMemoSuffix}`.slice(0, 300),
       location: { id: locationId },
       taxCode: { id: String(TAX_CODE['34']) },
       taxRate: 0,
