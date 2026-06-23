@@ -162,7 +162,6 @@ function readyForSandboxWhereClause(alias = 'review_cases') {
   return `
     ${alias}.status = 'resolved'
     and coalesce(${alias}.sandbox_publish_status, 'not_ready') = 'ready'
-    and ${alias}.bucket <> 'rejected_sii'
     and coalesce(${alias}.payload_json->'context'->>'requiereRevisionManual', '') not in ('si', 'SI', 'true', 'TRUE', 'nuevo_proveedor')
     and coalesce(${alias}.payload_json->'context'->>'error', '') = ''
     and coalesce(${alias}.payload_json->'context'->>'vendorIdProposed', ${alias}.payload_json->'context'->>'entity', '') ~ '^[0-9]+$'
@@ -1149,10 +1148,6 @@ function inferSandboxPublishStatus(caseRow: {
   payload_json?: { context?: Record<string, unknown> } | null;
 }, decisionType: 'approve' | 'correct_and_approve' | 'exception' | 'reject_for_learning') {
   if (decisionType !== 'approve' && decisionType !== 'correct_and_approve') {
-    return 'not_ready';
-  }
-
-  if (caseRow.bucket === 'rejected_sii') {
     return 'not_ready';
   }
 
