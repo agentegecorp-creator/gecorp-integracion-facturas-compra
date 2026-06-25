@@ -969,6 +969,22 @@ export async function claimSandboxPublishCase(caseId: string) {
   return Boolean(result.rows[0]?.id);
 }
 
+export async function claimProductionPublishCase(caseId: string) {
+  await ensureProductionPublishSchema();
+  const result = await db.query(
+    `update review_cases
+     set production_publish_status = 'publishing',
+         production_publish_error = null,
+         updated_at = now()
+     where id = $1
+       and coalesce(production_publish_status, 'not_ready') = 'ready'
+     returning id`,
+    [caseId],
+  );
+
+  return Boolean(result.rows[0]?.id);
+}
+
 export async function recordProductionPublishItem(params: {
   runId: string;
   caseId: string;

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getSessionFromCookie } from '@/lib/auth/session';
 import {
+  claimProductionPublishCase,
   createProductionPublishRun,
   finishProductionPublishRun,
   listReadyForProduction,
@@ -62,6 +63,22 @@ export async function POST(request: Request) {
   for (const item of items) {
     attemptedCount += 1;
     try {
+      const claimed = await claimProductionPublishCase(item.id);
+      if (!claimed) {
+        skippedCount += 1;
+        await recordProductionPublishItem({
+          runId,
+          caseId: item.id,
+          recordType: '',
+          tranId: String(item.folio ?? ''),
+          entityId: '',
+          status: 'skipped',
+          result: { reason: 'already_claimed_or_not_ready' },
+        });
+        results.push({ caseId: item.id, folio: item.folio, status: 'skipped', reason: 'already_claimed_or_not_ready' });
+        continue;
+      }
+
       const built = buildSandboxPayload(item);
       const existing = await findExistingTransaction(built.tranId, built.entityId, 'production');
 
