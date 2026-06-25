@@ -45,7 +45,7 @@ export function ProductionPublishPanel({
         <div>
           <h2 className="text-lg font-semibold text-slate-900">Publicar a Producción</h2>
           <p className="mt-1 text-sm text-slate-600">
-            Casos validados en Sandbox y pendientes de Producción: <span className="font-semibold text-slate-900">{readyCount}</span>
+            Casos listos y pendientes de Producción: <span className="font-semibold text-slate-900">{readyCount}</span>
           </p>
           <p className="mt-1 text-xs text-slate-500">
             Este flujo usa credenciales Producción, valida duplicados en NetSuite Producción y guarda estado separado.

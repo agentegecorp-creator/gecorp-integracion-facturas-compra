@@ -1,11 +1,10 @@
 import Link from 'next/link';
 import { requireSession } from '@/lib/auth/guards';
-import { countReadyForProduction, countReadyForSandbox, getReviewQueueCounts, listReviewCases } from '@/lib/db/queries';
+import { countReadyForProduction, getReviewQueueCounts, listReviewCases } from '@/lib/db/queries';
 import { ReviewFilters } from '@/components/review/review-filters';
 import { ReviewWorkbench } from '@/components/review/review-workbench';
 import { ProductionPublishPanel } from '@/components/review/production-publish-panel';
-import { SandboxPublishPanel } from '@/components/review/sandbox-publish-panel';
-import { hasNetSuiteProductionConfig, hasNetSuiteSandboxConfig } from '@/lib/netsuite/sandbox-publisher';
+import { hasNetSuiteProductionConfig } from '@/lib/netsuite/sandbox-publisher';
 
 type ReviewPeriod =
   | {
@@ -76,7 +75,6 @@ export default async function PendingReviewPage({
   searchParams?: Promise<{
     bucket?: string;
     status?: string;
-    sandboxPublishStatus?: string;
     monthScope?: 'active' | 'all';
     period?: string;
     operationalView?: 'automatic' | 'posted' | 'pending' | 'unclassified' | 'excluded' | 'new_vendors';
@@ -86,24 +84,21 @@ export default async function PendingReviewPage({
   const resolvedSearchParams = (await searchParams) ?? {};
   const bucket = resolvedSearchParams.bucket || '';
   const status = resolvedSearchParams.status || '';
-  const sandboxPublishStatus = resolvedSearchParams.sandboxPublishStatus || '';
   const reviewPeriod = getReviewPeriod(resolvedSearchParams.period, resolvedSearchParams.monthScope);
   const monthScope = reviewPeriod.key === 'all' ? 'all' : 'active';
   const datePeriod: DatePeriod | undefined = reviewPeriod.key === 'all'
     ? undefined
     : { startDate: reviewPeriod.startDate, endDate: reviewPeriod.endDate };
   const operationalView = resolvedSearchParams.operationalView || '';
-  const [items, counts, readyForSandboxCount, readyForProductionCount] = await Promise.all([
+  const [items, counts, readyForProductionCount] = await Promise.all([
     listReviewCases(100, {
       bucket: bucket || undefined,
       status: status || undefined,
-      sandboxPublishStatus: sandboxPublishStatus || undefined,
       monthScope,
       period: datePeriod,
       operationalView: operationalView || undefined,
     }),
     getReviewQueueCounts(monthScope, datePeriod),
-    countReadyForSandbox(datePeriod),
     countReadyForProduction(datePeriod),
   ]);
 
@@ -131,7 +126,6 @@ export default async function PendingReviewPage({
             href={`/pendiente-revision?${new URLSearchParams({
               ...(bucket ? { bucket } : {}),
               ...(status ? { status } : {}),
-              ...(sandboxPublishStatus ? { sandboxPublishStatus } : {}),
               ...(operationalView ? { operationalView } : {}),
               period: 'current',
             }).toString()}`}
@@ -143,7 +137,6 @@ export default async function PendingReviewPage({
             href={`/pendiente-revision?${new URLSearchParams({
               ...(bucket ? { bucket } : {}),
               ...(status ? { status } : {}),
-              ...(sandboxPublishStatus ? { sandboxPublishStatus } : {}),
               ...(operationalView ? { operationalView } : {}),
               period: 'previous',
             }).toString()}`}
@@ -155,7 +148,6 @@ export default async function PendingReviewPage({
             href={`/pendiente-revision?${new URLSearchParams({
               ...(bucket ? { bucket } : {}),
               ...(status ? { status } : {}),
-              ...(sandboxPublishStatus ? { sandboxPublishStatus } : {}),
               ...(operationalView ? { operationalView } : {}),
               period: 'all',
             }).toString()}`}
@@ -168,19 +160,12 @@ export default async function PendingReviewPage({
         <ReviewFilters
           currentBucket={bucket}
           currentStatus={status}
-          currentSandboxPublishStatus={sandboxPublishStatus}
           currentMonthScope={monthScope}
           currentPeriod={reviewPeriod.key}
           currentOperationalView={operationalView}
           counts={counts}
         />
       </section>
-
-      <SandboxPublishPanel
-        readyCount={readyForSandboxCount}
-        configReady={hasNetSuiteSandboxConfig()}
-        period={datePeriod}
-      />
 
       <ProductionPublishPanel
         readyCount={readyForProductionCount}

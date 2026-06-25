@@ -3,7 +3,6 @@ import { estadoLabel, etapaLabel } from '@/lib/review/labels';
 type FilterProps = {
   currentBucket?: string;
   currentStatus?: string;
-  currentSandboxPublishStatus?: string;
   currentMonthScope?: 'active' | 'all';
   currentPeriod?: string;
   currentOperationalView?: string;
@@ -44,14 +43,6 @@ const STATUS_OPTIONS = [
   { value: 'rejected_for_learning', label: estadoLabel('rejected_for_learning') },
 ];
 
-const SANDBOX_PUBLISH_OPTIONS = [
-  { value: '', label: 'Publicación Sandbox: todos' },
-  { value: 'ready', label: 'Listos para Sandbox' },
-  { value: 'not_ready', label: 'No listos para Sandbox' },
-  { value: 'published', label: 'Ya publicados en Sandbox' },
-  { value: 'failed', label: 'Con fallo de publicación' },
-];
-
 const OPERATIONAL_VIEW_OPTIONS = [
   { value: '', label: 'Vista operativa: todas' },
   { value: 'automatic', label: 'Creadas automáticas' },
@@ -71,7 +62,6 @@ function buildQuery(params: Record<string, string>) {
 export function ReviewFilters({
   currentBucket = '',
   currentStatus = '',
-  currentSandboxPublishStatus = '',
   currentMonthScope = 'active',
   currentPeriod = '',
   currentOperationalView = '',
@@ -126,7 +116,7 @@ export function ReviewFilters({
         </a>
       </div>
 
-      <form className="grid gap-4 rounded-2xl bg-white p-4 shadow-sm md:grid-cols-6" method="get">
+      <form className="grid gap-4 rounded-2xl bg-white p-4 shadow-sm md:grid-cols-5" method="get">
       {currentPeriod ? (
         <input type="hidden" name="period" value={currentPeriod} />
       ) : (
@@ -171,21 +161,6 @@ export function ReviewFilters({
         >
           {STATUS_OPTIONS.map((option) => (
             <option key={option.value || 'all-status'} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div>
-        <label className="mb-1 block text-sm font-medium text-slate-700">Publicación Sandbox</label>
-        <select
-          name="sandboxPublishStatus"
-          defaultValue={currentSandboxPublishStatus}
-          className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
-        >
-          {SANDBOX_PUBLISH_OPTIONS.map((option) => (
-            <option key={option.value || 'all-sandbox-publish'} value={option.value}>
               {option.label}
             </option>
           ))}
