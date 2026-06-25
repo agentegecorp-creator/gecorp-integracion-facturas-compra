@@ -212,7 +212,7 @@ async function main() {
                summary_text = $14,
                payload_json = $15::jsonb,
                sandbox_publish_status = case
-                 when coalesce(sandbox_publish_status, 'not_ready') = 'published' then sandbox_publish_status
+                 when coalesce(sandbox_publish_status, 'not_ready') in ('published', 'publishing', 'failed') then sandbox_publish_status
                  else $16
                end,
                updated_at = now()

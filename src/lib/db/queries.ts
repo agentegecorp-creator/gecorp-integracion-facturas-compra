@@ -953,6 +953,22 @@ export async function recordSandboxPublishItem(params: {
   );
 }
 
+export async function claimSandboxPublishCase(caseId: string) {
+  await ensureSandboxPublishSchema();
+  const result = await db.query(
+    `update review_cases
+     set sandbox_publish_status = 'publishing',
+         sandbox_publish_error = null,
+         updated_at = now()
+     where id = $1
+       and coalesce(sandbox_publish_status, 'not_ready') = 'ready'
+     returning id`,
+    [caseId],
+  );
+
+  return Boolean(result.rows[0]?.id);
+}
+
 export async function recordProductionPublishItem(params: {
   runId: string;
   caseId: string;
