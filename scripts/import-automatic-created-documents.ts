@@ -173,7 +173,22 @@ async function main() {
         },
       };
 
-      const exists = await db.query(`select id from review_cases where source_document_id = $1 limit 1`, [sourceDocumentId]);
+      const exists = await db.query(
+        `select id
+         from review_cases
+         where source_document_id = $1
+            or (
+              vendor_rut is not distinct from $2
+              and folio = $3
+              and document_type = $4
+              and bucket = 'approved_auto'
+            )
+         order by case when source_document_id = $1 then 0 else 1 end,
+                  updated_at desc nulls last,
+                  created_at desc
+         limit 1`,
+        [sourceDocumentId, item.vendor_rut ?? null, String(item.folio), String(item.document_type)],
+      );
       const params = [
         item.sourceRun ?? `automatic_${period}`,
         sourceDocumentId,

@@ -220,13 +220,14 @@ function updateAutomaticCreatedDocuments(month: string, year: string, runDir: st
     const requesterId = (dryRunData.custbody_gecorp_solicitante as { id?: string } | undefined)?.id ?? null;
     const documentTypeNs = (dryRunData.custbody_gd_tipo_documento as { id?: string } | undefined)?.id ?? null;
     const vendorName = String(siiRow.vendorName ?? item.proveedor ?? '');
+    const vendorRut = String(siiRow.vendorRut ?? item.rut_proveedor ?? item.rut ?? entityId ?? '').trim();
 
     return {
-      id: `auto-${key}-${documentType}-${folio}-${index}`,
+      id: `auto-${key}-${documentType}-${folio}-${vendorRut || entityId || 'sin-rut'}`,
       sourceRun,
       generatedAt: report.timestamp ?? new Date().toISOString(),
       vendor_name: vendorName,
-      vendor_rut: siiRow.vendorRut ?? null,
+      vendor_rut: vendorRut || null,
       folio,
       document_type: documentType,
       issue_date: siiRow.issueDate ?? null,
