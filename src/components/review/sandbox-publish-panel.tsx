@@ -2,6 +2,8 @@
 
 import { useState, useTransition } from 'react';
 
+const SANDBOX_PUBLISH_DISABLED = true;
+
 export function SandboxPublishPanel({
   readyCount,
   configReady,
@@ -38,7 +40,7 @@ export function SandboxPublishPanel({
   }
 
   return (
-    <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-cyan-200">
+    <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <h2 className="text-lg font-semibold text-slate-900">Publicar a Sandbox</h2>
@@ -46,7 +48,7 @@ export function SandboxPublishPanel({
             Casos aprobados y publicables pendientes: <span className="font-semibold text-slate-900">{readyCount}</span>
           </p>
           <p className="mt-1 text-xs text-slate-500">
-            El lote valida duplicados en NetSuite antes de crear y marca cada caso como publicado o fallido.
+            Publicación desactivada temporalmente mientras se prepara el paso controlado a Producción.
           </p>
         </div>
 
@@ -60,19 +62,25 @@ export function SandboxPublishPanel({
               value={limit}
               onChange={(event) => setLimit(Number(event.target.value))}
               className="w-24 rounded-xl border border-slate-300 px-3 py-2 text-sm"
-              disabled={readyCount === 0 || !configReady || isPending}
+              disabled={SANDBOX_PUBLISH_DISABLED || readyCount === 0 || !configReady || isPending}
             />
           </label>
           <button
             type="button"
             onClick={publish}
-            disabled={readyCount === 0 || !configReady || isPending}
+            disabled={SANDBOX_PUBLISH_DISABLED || readyCount === 0 || !configReady || isPending}
             className="rounded-xl bg-cyan-700 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-cyan-800 disabled:cursor-not-allowed disabled:bg-slate-300"
           >
-            {isPending ? 'Publicando...' : 'Publicar a Sandbox'}
+            {SANDBOX_PUBLISH_DISABLED ? 'Sandbox desactivado' : isPending ? 'Publicando...' : 'Publicar a Sandbox'}
           </button>
         </div>
       </div>
+
+      {SANDBOX_PUBLISH_DISABLED ? (
+        <p className="mt-4 rounded-2xl bg-slate-50 px-4 py-3 text-sm text-slate-700 ring-1 ring-slate-200">
+          La publicación a Sandbox está bloqueada para evitar confusión durante la etapa de Producción.
+        </p>
+      ) : null}
 
       {!configReady ? (
         <p className="mt-4 rounded-2xl bg-amber-50 px-4 py-3 text-sm text-amber-800 ring-1 ring-amber-200">

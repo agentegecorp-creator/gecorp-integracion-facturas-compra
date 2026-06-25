@@ -19,10 +19,22 @@ import {
 
 export const runtime = 'nodejs';
 
+const SANDBOX_PUBLISH_DISABLED = true;
+
 export async function POST(request: Request) {
   const session = await getSessionFromCookie();
   if (!session) {
     return NextResponse.json({ ok: false, message: 'Sesión no válida.' }, { status: 401 });
+  }
+
+  if (SANDBOX_PUBLISH_DISABLED) {
+    return NextResponse.json(
+      {
+        ok: false,
+        message: 'Publicación a Sandbox desactivada temporalmente durante la etapa de Producción.',
+      },
+      { status: 403 },
+    );
   }
 
   if (!hasNetSuiteSandboxConfig()) {
