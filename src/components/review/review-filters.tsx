@@ -3,9 +3,11 @@ import { estadoLabel, etapaLabel } from '@/lib/review/labels';
 type FilterProps = {
   currentBucket?: string;
   currentStatus?: string;
+  currentProductionPublishStatus?: string;
   currentMonthScope?: 'active' | 'all';
   currentPeriod?: string;
   currentOperationalView?: string;
+  productionPendingCount?: number;
   counts?: {
     operational: {
       automatic: number;
@@ -48,9 +50,17 @@ const OPERATIONAL_VIEW_OPTIONS = [
   { value: 'automatic', label: 'Creadas automáticas' },
   { value: 'posted', label: 'Creadas manuales' },
   { value: 'pending', label: 'Por contabilizar' },
+  { value: 'production_pending', label: 'Pendientes Producción' },
   { value: 'unclassified', label: 'Fuera de flujo' },
   { value: 'excluded', label: 'Excluidos' },
   { value: 'new_vendors', label: 'Facturas nuevos proveedores' },
+];
+
+const PRODUCTION_PUBLISH_OPTIONS = [
+  { value: '', label: 'Producción: todos' },
+  { value: 'pending', label: 'Pendientes de publicación' },
+  { value: 'published', label: 'Ya publicados' },
+  { value: 'failed', label: 'Con fallo de publicación' },
 ];
 
 function buildQuery(params: Record<string, string>) {
@@ -62,9 +72,11 @@ function buildQuery(params: Record<string, string>) {
 export function ReviewFilters({
   currentBucket = '',
   currentStatus = '',
+  currentProductionPublishStatus = '',
   currentMonthScope = 'active',
   currentPeriod = '',
   currentOperationalView = '',
+  productionPendingCount = 0,
   counts,
 }: FilterProps) {
   const scopeParams: Record<string, string> = currentPeriod
@@ -77,7 +89,7 @@ export function ReviewFilters({
 
   return (
     <div className="mt-6 space-y-4">
-      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-6">
+      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-7">
         <a href={`/pendiente-revision?${buildQuery({ operationalView: 'automatic', ...scopeParams })}`} className={`rounded-2xl border px-4 py-3 text-sm hover:bg-cyan-100 ${currentOperationalView === 'automatic' ? 'border-cyan-400 bg-cyan-100 text-cyan-900' : 'border-cyan-200 bg-cyan-50 text-cyan-800'}`}>
           Creadas automáticas ({operationalCounts?.automatic ?? 0})
         </a>
@@ -86,6 +98,9 @@ export function ReviewFilters({
         </a>
         <a href={`/pendiente-revision?${buildQuery({ operationalView: 'pending', ...scopeParams })}`} className={`rounded-2xl border px-4 py-3 text-sm hover:bg-indigo-100 ${currentOperationalView === 'pending' ? 'border-indigo-400 bg-indigo-100 text-indigo-900' : 'border-indigo-200 bg-indigo-50 text-indigo-800'}`}>
           Por contabilizar ({operationalCounts?.pending ?? 0})
+        </a>
+        <a href={`/pendiente-revision?${buildQuery({ productionPublishStatus: 'pending', ...scopeParams })}`} className={`rounded-2xl border px-4 py-3 text-sm hover:bg-emerald-100 ${currentProductionPublishStatus === 'pending' ? 'border-emerald-400 bg-emerald-100 text-emerald-900' : 'border-emerald-200 bg-emerald-50 text-emerald-800'}`}>
+          Pendientes Producción ({productionPendingCount})
         </a>
         <a href={`/pendiente-revision?${buildQuery({ operationalView: 'unclassified', ...scopeParams })}`} className={`rounded-2xl border px-4 py-3 text-sm hover:bg-amber-100 ${currentOperationalView === 'unclassified' ? 'border-amber-400 bg-amber-100 text-amber-900' : 'border-amber-200 bg-amber-50 text-amber-800'}`}>
           Fuera de flujo ({operationalCounts?.unclassified ?? 0})
@@ -116,7 +131,7 @@ export function ReviewFilters({
         </a>
       </div>
 
-      <form className="grid gap-4 rounded-2xl bg-white p-4 shadow-sm md:grid-cols-5" method="get">
+      <form className="grid gap-4 rounded-2xl bg-white p-4 shadow-sm md:grid-cols-6" method="get">
       {currentPeriod ? (
         <input type="hidden" name="period" value={currentPeriod} />
       ) : (
@@ -161,6 +176,21 @@ export function ReviewFilters({
         >
           {STATUS_OPTIONS.map((option) => (
             <option key={option.value || 'all-status'} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <label className="mb-1 block text-sm font-medium text-slate-700">Publicación Producción</label>
+        <select
+          name="productionPublishStatus"
+          defaultValue={currentProductionPublishStatus}
+          className="w-full rounded-xl border border-slate-300 px-3 py-2 outline-none focus:border-slate-500"
+        >
+          {PRODUCTION_PUBLISH_OPTIONS.map((option) => (
+            <option key={option.value || 'all-production-publish'} value={option.value}>
               {option.label}
             </option>
           ))}

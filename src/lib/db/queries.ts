@@ -503,9 +503,10 @@ export async function listReviewCases(
     bucket?: string;
     status?: string;
     sandboxPublishStatus?: string;
+    productionPublishStatus?: string;
     monthScope?: 'active' | 'all';
     period?: DashboardPeriod;
-    operationalView?: 'automatic' | 'posted' | 'pending' | 'unclassified' | 'excluded' | 'new_vendors';
+    operationalView?: 'automatic' | 'posted' | 'pending' | 'production_pending' | 'unclassified' | 'excluded' | 'new_vendors';
   },
 ) {
   const hasProductionPublishStatus = await hasProductionPublishStatusColumn();
@@ -522,6 +523,13 @@ export async function listReviewCases(
     if (filters.sandboxPublishStatus) {
       values.push(filters.sandboxPublishStatus);
       conditions.push(`coalesce(sandbox_publish_status, 'not_ready') = $${values.length}`);
+    }
+
+    if (filters.productionPublishStatus === 'pending') {
+      conditions.push(readyForProductionWhereClause('review_cases'));
+    } else if (filters.productionPublishStatus && hasProductionPublishStatus) {
+      values.push(filters.productionPublishStatus);
+      conditions.push(`coalesce(production_publish_status, 'not_ready') = $${values.length}`);
     }
 
     const productionPublishSelect = hasProductionPublishStatus
@@ -579,6 +587,13 @@ export async function listReviewCases(
     conditions.push(`coalesce(sandbox_publish_status, 'not_ready') = $${values.length}`);
   }
 
+  if (filters?.productionPublishStatus === 'pending') {
+    conditions.push(readyForProductionWhereClause('review_cases'));
+  } else if (filters?.productionPublishStatus && hasProductionPublishStatus) {
+    values.push(filters.productionPublishStatus);
+    conditions.push(`coalesce(production_publish_status, 'not_ready') = $${values.length}`);
+  }
+
   if (filters?.operationalView === 'posted') {
     conditions.push(`status = 'resolved'`);
     conditions.push(`bucket <> 'approved_auto'`);
@@ -586,6 +601,10 @@ export async function listReviewCases(
 
   if (filters?.operationalView === 'pending') {
     conditions.push(`status <> 'resolved'`);
+  }
+
+  if (filters?.operationalView === 'production_pending') {
+    conditions.push(readyForProductionWhereClause('review_cases'));
   }
 
   if (filters?.operationalView === 'excluded') {

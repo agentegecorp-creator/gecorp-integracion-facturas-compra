@@ -75,15 +75,17 @@ export default async function PendingReviewPage({
   searchParams?: Promise<{
     bucket?: string;
     status?: string;
+    productionPublishStatus?: string;
     monthScope?: 'active' | 'all';
     period?: string;
-    operationalView?: 'automatic' | 'posted' | 'pending' | 'unclassified' | 'excluded' | 'new_vendors';
+    operationalView?: 'automatic' | 'posted' | 'pending' | 'production_pending' | 'unclassified' | 'excluded' | 'new_vendors';
   }>;
 }) {
   await requireSession();
   const resolvedSearchParams = (await searchParams) ?? {};
   const bucket = resolvedSearchParams.bucket || '';
   const status = resolvedSearchParams.status || '';
+  const productionPublishStatus = resolvedSearchParams.productionPublishStatus || '';
   const reviewPeriod = getReviewPeriod(resolvedSearchParams.period, resolvedSearchParams.monthScope);
   const monthScope = reviewPeriod.key === 'all' ? 'all' : 'active';
   const datePeriod: DatePeriod | undefined = reviewPeriod.key === 'all'
@@ -94,6 +96,7 @@ export default async function PendingReviewPage({
     listReviewCases(100, {
       bucket: bucket || undefined,
       status: status || undefined,
+      productionPublishStatus: productionPublishStatus || undefined,
       monthScope,
       period: datePeriod,
       operationalView: operationalView || undefined,
@@ -126,6 +129,7 @@ export default async function PendingReviewPage({
             href={`/pendiente-revision?${new URLSearchParams({
               ...(bucket ? { bucket } : {}),
               ...(status ? { status } : {}),
+              ...(productionPublishStatus ? { productionPublishStatus } : {}),
               ...(operationalView ? { operationalView } : {}),
               period: 'current',
             }).toString()}`}
@@ -137,6 +141,7 @@ export default async function PendingReviewPage({
             href={`/pendiente-revision?${new URLSearchParams({
               ...(bucket ? { bucket } : {}),
               ...(status ? { status } : {}),
+              ...(productionPublishStatus ? { productionPublishStatus } : {}),
               ...(operationalView ? { operationalView } : {}),
               period: 'previous',
             }).toString()}`}
@@ -148,6 +153,7 @@ export default async function PendingReviewPage({
             href={`/pendiente-revision?${new URLSearchParams({
               ...(bucket ? { bucket } : {}),
               ...(status ? { status } : {}),
+              ...(productionPublishStatus ? { productionPublishStatus } : {}),
               ...(operationalView ? { operationalView } : {}),
               period: 'all',
             }).toString()}`}
@@ -160,10 +166,12 @@ export default async function PendingReviewPage({
         <ReviewFilters
           currentBucket={bucket}
           currentStatus={status}
+          currentProductionPublishStatus={productionPublishStatus}
           currentMonthScope={monthScope}
           currentPeriod={reviewPeriod.key}
           currentOperationalView={operationalView}
           counts={counts}
+          productionPendingCount={readyForProductionCount}
         />
       </section>
 
