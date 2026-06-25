@@ -1,7 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { buildSandboxPayload, findExistingTransaction, hasNetSuiteProductionConfig, requestNetSuite } from '@/lib/netsuite/sandbox-publisher';
-import { listReadyForProduction } from '@/lib/db/queries';
+import { hasNetSuiteProductionConfig, requestNetSuite } from '@/lib/netsuite/sandbox-publisher';
 
 function loadEnvFile(filename: string) {
   const filePath = path.resolve(process.cwd(), filename);
@@ -33,7 +32,7 @@ async function assertProductionConnection() {
   const result = await requestNetSuite(
     'POST',
     '/services/rest/query/v1/suiteql',
-    { q: 'SELECT id, name FROM subsidiary WHERE rownum <= 1' },
+    { q: 'SELECT id, tranId FROM transaction WHERE rownum <= 1' },
     { prefer: 'transient' },
     'production',
   );
@@ -61,6 +60,8 @@ async function main() {
     return;
   }
 
+  const { listReadyForProduction } = await import('@/lib/db/queries');
+  const { buildSandboxPayload, findExistingTransaction } = await import('@/lib/netsuite/sandbox-publisher');
   const limitParam = Number(argValue('--limit', '5'));
   const limit = Number.isFinite(limitParam) ? Math.max(1, Math.min(Math.trunc(limitParam), 20)) : 5;
   const items = await listReadyForProduction(limit);
@@ -79,6 +80,10 @@ async function main() {
 }
 
 main().catch((error) => {
-  console.error(error instanceof Error ? error.message : error);
+  if (error instanceof Error) {
+    console.error(error.message || error.stack || String(error));
+  } else {
+    console.error(error);
+  }
   process.exit(1);
 });
