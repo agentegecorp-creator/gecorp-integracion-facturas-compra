@@ -115,7 +115,7 @@ export function ReviewFilters({
 
       <div className="grid gap-3 md:grid-cols-3 xl:grid-cols-5">
         <a href={`/pendiente-revision?${new URLSearchParams({ bucket: 'rejected_sii', status: 'new', ...scopeParams }).toString()}`} className="rounded-2xl border border-orange-200 bg-orange-50 px-4 py-3 text-sm text-orange-800 hover:bg-orange-100">
-          Ver rechazos SII nuevos ({quickCounts?.rejected_sii_new ?? 0})
+          Ver revisión OC histórica ({quickCounts?.rejected_sii_new ?? 0})
         </a>
         <a href={`/pendiente-revision?${new URLSearchParams({ bucket: 'error_real', status: 'new', ...scopeParams }).toString()}`} className="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800 hover:bg-rose-100">
           Ver errores contables nuevos ({quickCounts?.error_real_new ?? 0})

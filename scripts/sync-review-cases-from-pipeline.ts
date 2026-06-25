@@ -194,11 +194,6 @@ function buildStageSummary(item: CaseInput) {
     return [item.vendorName, amountText, politicaOc, motivo].filter(Boolean).join(' · ');
   }
 
-  if (item.bucket === 'rejected_sii') {
-    const motivo = typeof context.motivo === 'string' ? context.motivo : item.summaryText;
-    return [item.vendorName, amountText, 'Rechazo SII', motivo].filter(Boolean).join(' · ');
-  }
-
   return item.summaryText;
 }
 
@@ -432,15 +427,15 @@ async function main() {
       vendorRut: item.rut,
       folio: item.folio,
       documentType: '33',
-      bucket: 'rejected_sii',
+      bucket: 'revision_oc',
       status: 'new',
       summaryText: item.motivo,
       payloadJson: {
         source: 'mission-control dashboard',
         updatedAt: dashboard.updatedAt,
         classification: {
-          bucket: 'rejected_sii',
-          reasonCode: 'sii_rejected_missing_oc_reference',
+          bucket: 'revision_oc',
+          reasonCode: 'missing_oc_reference',
           summary: item.motivo,
         },
         context: {

@@ -212,7 +212,7 @@ export default async function DashboardPage({
   const pendingCount = summary.byStatus.find((row) => row.status === 'new')?.total ?? 0;
   const resolvedCount = summary.byStatus.find((row) => row.status === 'resolved')?.total ?? 0;
   const exceptionCount = summary.byStatus.find((row) => row.status === 'exception')?.total ?? 0;
-  const rejectedSiiCount = summary.byBucket.find((row) => row.bucket === 'rejected_sii')?.total ?? 0;
+  const ocHistoricalCount = summary.byBucket.find((row) => row.bucket === 'rejected_sii')?.total ?? 0;
   const revisionOcCount = summary.byBucket.find((row) => row.bucket === 'revision_oc')?.total ?? 0;
   const errorRealCount = summary.byBucket.find((row) => row.bucket === 'error_real')?.total ?? 0;
   const operationalSummary = summary.operationalSummary;
@@ -282,7 +282,7 @@ export default async function DashboardPage({
           <StatCard
             label="Revisión manual"
             value={operationalSummary.porContabilizar}
-            help="Pendientes, rechazos, OC referencial y proveedor nuevo"
+            help="Pendientes, OC referencial y proveedor nuevo"
             href={`/pendiente-revision?${new URLSearchParams({ operationalView: 'pending', period: dashboardPeriods.selected.key }).toString()}`}
           />
           <StatCard
@@ -346,8 +346,8 @@ export default async function DashboardPage({
             <div className="mt-4 space-y-3 text-sm text-slate-600">
               <p>• Cuadratura: {rcvTotalDocuments} RCV = {operationalSummary.clasificadosPipeline} clasificados por pipeline + {operationalSummary.fueraDeFlujo} fuera de flujo + {operationalSummary.diferenciaRcv} diferencia.</p>
               <p>• Total documentos RCV del período: {rcvTotalDocuments} documentos por {formatCurrency(rcvTotalAmount)}.</p>
-              <p>• Revisión manual: {operationalSummary.porContabilizar} documentos, incluyendo {revisionOcCount} con revisión de OC y {operationalSummary.nuevosProveedores} proveedores nuevos.</p>
-              <p>• Rechazos SII: {rejectedSiiCount}. Errores contables: {errorRealCount}. Fuera de flujo/excluidos: {operationalSummary.excluidos}.</p>
+              <p>• Revisión manual: {operationalSummary.porContabilizar} documentos, incluyendo {revisionOcCount + ocHistoricalCount} con revisión de OC y {operationalSummary.nuevosProveedores} proveedores nuevos.</p>
+              <p>• Errores contables: {errorRealCount}. Fuera de flujo/excluidos: {operationalSummary.excluidos}.</p>
             </div>
           </div>
 
@@ -356,7 +356,7 @@ export default async function DashboardPage({
             <div className="mt-4 space-y-3 text-sm text-slate-600">
               <p>• Corrida principal 6:00 AM hábil.</p>
               <p>• Corrida adicional 11:45 PM hábil.</p>
-              <p>• La cola sigue priorizando rechazos SII, errores contables y revisión de OC.</p>
+              <p>• La cola sigue priorizando errores contables, revisión de OC y pendientes de Producción.</p>
             </div>
           </div>
 

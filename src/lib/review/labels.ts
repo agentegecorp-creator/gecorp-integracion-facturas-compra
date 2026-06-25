@@ -3,7 +3,7 @@ export function etapaLabel(bucket: string) {
     pending_review: 'Pendiente de revisión',
     revision_oc: 'Revisión de OC',
     error_real: 'Error contable',
-    rejected_sii: 'Rechazo SII',
+    rejected_sii: 'Revisión de OC',
     approved_auto: 'Aprobado automático',
   };
 

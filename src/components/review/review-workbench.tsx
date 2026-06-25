@@ -185,7 +185,7 @@ function statusChipClass(status: string) {
 function priorityLabel(bucket: string) {
   if (bucket === 'approved_auto') return 'Cerrado';
   if (bucket === 'error_real') return 'Crítico';
-  if (bucket === 'rejected_sii') return 'Alto';
+  if (bucket === 'rejected_sii') return 'Medio';
   if (bucket === 'revision_oc') return 'Medio';
   return 'Normal';
 }
@@ -239,7 +239,7 @@ function nextActionLabel(bucket: string) {
     return 'Gestionar publicación a Producción';
   }
   if (bucket === 'error_real') return 'Definir corrección contable';
-  if (bucket === 'rejected_sii') return 'Gestionar rechazo con proveedor';
+  if (bucket === 'rejected_sii') return 'Validar contra OC real';
   if (bucket === 'revision_oc') return 'Validar contra OC real';
   return 'Revisar y decidir';
 }

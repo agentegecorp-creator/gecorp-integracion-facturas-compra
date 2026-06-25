@@ -82,8 +82,13 @@ const inputPath = '/Users/agentegecorp/.openclaw/workspace/proyectos/sii-netsuit
 function bucketFromCase(item: BuilderCase) {
   if (String(item.document_type) === '61') return 'pending_review';
   if ((item.review_reason || '').toLowerCase().includes('sin cuenta contable')) return 'error_real';
-  if ((item.oc_category || '').toUpperCase() === 'RECHAZO_SII') return 'rejected_sii';
+  if ((item.oc_category || '').toUpperCase() === 'RECHAZO_SII') return 'revision_oc';
   return 'revision_oc';
+}
+
+function normalizeOcCategory(value: string | null) {
+  if ((value || '').toUpperCase() === 'RECHAZO_SII') return 'REVISION_OC';
+  return value;
 }
 
 function summaryFromCase(item: BuilderCase) {
@@ -191,8 +196,8 @@ async function main() {
         trabajaConOc: item.oc_reference_proposed,
         pagoPorTef: item.payment_tef_label,
         terminosNs: item.payment_terms_label,
-        ocCategory: item.oc_category,
-        expenseCategory: item.expense_category || item.oc_category,
+        ocCategory: normalizeOcCategory(item.oc_category),
+        expenseCategory: normalizeOcCategory(item.expense_category || item.oc_category),
         postingStatus: item.posting_status,
         confidenceLevel: item.confidence_level,
         paymentTermsLabel: item.payment_terms_label,
