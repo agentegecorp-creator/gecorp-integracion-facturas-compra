@@ -1,7 +1,7 @@
 {
   "2026-02": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202602.csv",
-    "generatedAt": "2026-06-25T10:01:48.356Z",
+    "generatedAt": "2026-06-26T03:46:56.992Z",
     "rows": [
       {
         "documentType": "33",
@@ -51,7 +51,7 @@
   },
   "2026-03": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202603.csv",
-    "generatedAt": "2026-06-25T10:01:48.375Z",
+    "generatedAt": "2026-06-26T03:46:57.010Z",
     "rows": [
       {
         "documentType": "33",
@@ -101,7 +101,7 @@
   },
   "2026-04": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202604.csv",
-    "generatedAt": "2026-06-25T10:01:48.377Z",
+    "generatedAt": "2026-06-26T03:46:57.013Z",
     "rows": [
       {
         "documentType": "33",
@@ -140,7 +140,7 @@
   },
   "2026-05": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202605.csv",
-    "generatedAt": "2026-06-25T10:01:48.378Z",
+    "generatedAt": "2026-06-26T03:46:57.015Z",
     "rows": [
       {
         "documentType": "33",
@@ -179,29 +179,29 @@
   },
   "2026-06": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202606.csv",
-    "generatedAt": "2026-06-25T10:01:48.381Z",
+    "generatedAt": "2026-06-26T03:46:57.017Z",
     "rows": [
       {
         "documentType": "33",
-        "totalDocuments": 86,
+        "totalDocuments": 99,
         "montoExento": 157658,
-        "montoNeto": 91456571,
-        "ivaRecuperable": 17376749,
+        "montoNeto": 131059165,
+        "ivaRecuperable": 24901242,
         "ivaUsoComun": 0,
         "ivaNoRecuperable": 0,
-        "montoOtrosImpuestos": 129950,
-        "montoTotal": 109120928
+        "montoOtrosImpuestos": 140525,
+        "montoTotal": 156258590
       },
       {
         "documentType": "34",
-        "totalDocuments": 19,
-        "montoExento": 9392949,
+        "totalDocuments": 21,
+        "montoExento": 9610169,
         "montoNeto": 0,
         "ivaRecuperable": 0,
         "ivaUsoComun": 0,
         "ivaNoRecuperable": 0,
         "montoOtrosImpuestos": 0,
-        "montoTotal": 9392949
+        "montoTotal": 9610169
       },
       {
         "documentType": "56",
