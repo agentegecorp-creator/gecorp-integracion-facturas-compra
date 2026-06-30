@@ -62,9 +62,12 @@ async function main() {
   const apply = process.argv.includes('--apply');
   const limitParam = Number(argValue('--limit', '300'));
   const limit = Number.isFinite(limitParam) ? Math.max(1, Math.min(Math.trunc(limitParam), 500)) : 300;
+  const startDate = argValue('--start-date', '');
+  const endDate = argValue('--end-date', '');
+  const period = startDate && endDate ? { startDate, endDate } : undefined;
 
   const { listReadyForProduction, markProductionPublishResult } = await import('@/lib/db/queries');
-  const cases = await listReadyForProduction(limit);
+  const cases = await listReadyForProduction(limit, period);
 
   let exactMatches = 0;
   let noExisting = 0;
@@ -76,6 +79,7 @@ async function main() {
 
     if (!existing) {
       noExisting += 1;
+      console.log(`NO_EXISTE ${item.vendor_name ?? 'Proveedor sin nombre'} F-${built.tranId}: app ${built.recordType} ${normalizeAmount(item.amount_total)}`);
       continue;
     }
 
@@ -114,7 +118,7 @@ async function main() {
     }
   }
 
-  console.log(JSON.stringify({ checked: cases.length, exactMatches, noExisting, mismatches, applied: apply }, null, 2));
+  console.log(JSON.stringify({ checked: cases.length, exactMatches, noExisting, mismatches, applied: apply, period }, null, 2));
 }
 
 main().catch((error) => {
