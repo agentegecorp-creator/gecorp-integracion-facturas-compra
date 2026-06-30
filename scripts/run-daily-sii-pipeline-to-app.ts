@@ -1,6 +1,7 @@
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
+import { isOcManagedVendorRut } from '../src/lib/review/oc-managed-vendors';
 
 const envPath = path.resolve('.env.local');
 if (fs.existsSync(envPath)) {
@@ -221,6 +222,7 @@ function updateAutomaticCreatedDocuments(month: string, year: string, runDir: st
     const documentTypeNs = (dryRunData.custbody_gd_tipo_documento as { id?: string } | undefined)?.id ?? null;
     const vendorName = String(siiRow.vendorName ?? item.proveedor ?? '');
     const vendorRut = String(siiRow.vendorRut ?? item.rut_proveedor ?? item.rut ?? entityId ?? '').trim();
+    const ocManaged = isOcManagedVendorRut(vendorRut);
 
     return {
       id: `auto-${key}-${documentType}-${folio}-${vendorRut || entityId || 'sin-rut'}`,
@@ -235,9 +237,11 @@ function updateAutomaticCreatedDocuments(month: string, year: string, runDir: st
       bucket: 'approved_auto',
       status: 'resolved',
       amount_total: String(siiRow.amountTotal ?? item.monto ?? 0),
-      summary_text: `Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.`,
+      summary_text: ocManaged
+        ? `Proveedor contabilizado desde OC en NetSuite; pendiente de control de existencia en Producción.`
+        : `Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.`,
       sandbox_publish_status: 'ready',
-      production_publish_status: 'ready',
+      production_publish_status: ocManaged ? 'external_pending' : 'ready',
       payload_json: {
         document: {
           documentType,

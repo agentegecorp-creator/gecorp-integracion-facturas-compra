@@ -12,11 +12,14 @@ import {
   paymentTermDays,
   paymentTermsOptions,
 } from '@/lib/review/catalogs';
+import { OC_MANAGED_VENDOR_RUTS, isOcManagedVendorRut } from '@/lib/review/oc-managed-vendors';
 
 let cachedHasSandboxPublishStatus: boolean | null = null;
 let sandboxPublishSchemaReady: boolean | null = null;
 let cachedHasProductionPublishStatus: boolean | null = null;
 let productionPublishSchemaReady: boolean | null = null;
+
+const OC_MANAGED_VENDOR_RUT_SQL_LIST = OC_MANAGED_VENDOR_RUTS.map((rut) => `'${rut}'`).join(', ');
 
 export async function ensureSandboxPublishSchema() {
   if (sandboxPublishSchemaReady) {
@@ -169,10 +172,31 @@ function readyForSandboxWhereClause(alias = 'review_cases') {
   `;
 }
 
+function normalizedVendorRutExpression(alias = 'review_cases') {
+  return `regexp_replace(upper(coalesce(${alias}.vendor_rut, ${alias}.payload_json->'context'->>'vendorRut', ${alias}.payload_json->'document'->>'vendorRut', '')), '[^0-9K]', '', 'g')`;
+}
+
+function ocManagedVendorWhereClause(alias = 'review_cases') {
+  return `${normalizedVendorRutExpression(alias)} in (${OC_MANAGED_VENDOR_RUT_SQL_LIST})`;
+}
+
+function notOcManagedVendorWhereClause(alias = 'review_cases') {
+  return `${normalizedVendorRutExpression(alias)} not in (${OC_MANAGED_VENDOR_RUT_SQL_LIST})`;
+}
+
+function ocManagedProductionMonitorWhereClause(alias = 'review_cases') {
+  return `
+    ${alias}.status = 'resolved'
+    and ${ocManagedVendorWhereClause(alias)}
+    and coalesce(${alias}.production_publish_status, 'not_ready') <> 'published'
+  `;
+}
+
 function readyForProductionWhereClause(alias = 'review_cases') {
   return `
     ${alias}.status = 'resolved'
     and coalesce(${alias}.production_publish_status, 'not_ready') in ('ready', 'failed')
+    and ${notOcManagedVendorWhereClause(alias)}
     and coalesce(${alias}.payload_json->'context'->>'requiereRevisionManual', '') not in ('si', 'SI', 'true', 'TRUE', 'nuevo_proveedor')
     and coalesce(${alias}.payload_json->'context'->>'error', '') = ''
     and coalesce(${alias}.payload_json->'context'->>'vendorIdProposed', ${alias}.payload_json->'context'->>'entity', '') ~ '^[0-9]+$'
@@ -507,7 +531,7 @@ export async function listReviewCases(
     productionPublishStatus?: string;
     monthScope?: 'active' | 'all';
     period?: DashboardPeriod;
-    operationalView?: 'automatic' | 'posted' | 'pending' | 'production_pending' | 'unclassified' | 'excluded' | 'new_vendors';
+    operationalView?: 'automatic' | 'posted' | 'pending' | 'production_pending' | 'oc_managed' | 'unclassified' | 'excluded' | 'new_vendors';
   },
 ) {
   const hasProductionPublishStatus = await hasProductionPublishStatusColumn();
@@ -608,6 +632,10 @@ export async function listReviewCases(
     conditions.push(readyForProductionWhereClause('review_cases'));
   }
 
+  if (filters?.operationalView === 'oc_managed') {
+    conditions.push(ocManagedProductionMonitorWhereClause('review_cases'));
+  }
+
   if (filters?.operationalView === 'excluded') {
     conditions.push(`(
       upper(coalesce(vendor_name, '')) like '%DIN%'
@@ -670,6 +698,7 @@ export async function listReviewCases(
 }
 
 export async function getReviewQueueCounts(monthScope: 'active' | 'all' = 'active', period?: DashboardPeriod) {
+  const hasProductionPublishStatus = await hasProductionPublishStatusColumn();
   const conditions: string[] = [];
   const values: string[] = [];
 
@@ -681,8 +710,11 @@ export async function getReviewQueueCounts(monthScope: 'active' | 'all' = 'activ
   }
 
   const whereClause = conditions.length > 0 ? `where ${conditions.join(' and ')}` : '';
+  const productionPublishSelect = hasProductionPublishStatus
+    ? `coalesce(production_publish_status, 'not_ready')`
+    : `'not_ready'`;
   const result = await db.query(
-    `select bucket, status, vendor_name, payload_json
+    `select bucket, status, vendor_name, vendor_rut, payload_json, ${productionPublishSelect} as production_publish_status
      from review_cases
      ${whereClause}`,
     values,
@@ -696,6 +728,7 @@ export async function getReviewQueueCounts(monthScope: 'active' | 'all' = 'activ
       unclassified: unclassifiedDocumentsForPeriod(period).length,
       excluded: 0,
       new_vendors: 0,
+      oc_managed: 0,
     },
     quick: {
       rejected_sii_new: 0,
@@ -724,6 +757,10 @@ export async function getReviewQueueCounts(monthScope: 'active' | 'all' = 'activ
 
     if (String(context.motivo || '').toLowerCase().includes('proveedor nuevo') || String(context.requiereRevisionManual || '').toLowerCase() === 'nuevo_proveedor') {
       counts.operational.new_vendors += 1;
+    }
+
+    if (row.status === 'resolved' && row.production_publish_status !== 'published' && isOcManagedVendorRut(row.vendor_rut)) {
+      counts.operational.oc_managed += 1;
     }
 
     if (row.bucket === 'rejected_sii' && row.status === 'new') counts.quick.rejected_sii_new += 1;
@@ -852,6 +889,48 @@ export async function countReadyForProduction(period?: DashboardPeriod) {
   );
 
   return Number(result.rows[0]?.total ?? 0);
+}
+
+export async function listOcManagedProductionMonitor(limit = 100, period?: DashboardPeriod) {
+  await ensureProductionPublishSchema();
+  const values: Array<string | number> = [limit];
+  const conditions = [ocManagedProductionMonitorWhereClause('review_cases')];
+
+  if (period) {
+    values.push(period.startDate, period.endDate);
+    conditions.push(`issue_date >= $${values.length - 1}::date and issue_date < $${values.length}::date`);
+  }
+
+  const result = await db.query(
+    `select id,
+            source_document_id,
+            vendor_name,
+            vendor_rut,
+            folio,
+            document_type,
+            issue_date,
+            reception_date,
+            amount_total,
+            bucket,
+            status,
+            coalesce(sandbox_publish_status, 'not_ready') as sandbox_publish_status,
+            sandbox_record_id,
+            sandbox_record_type,
+            coalesce(production_publish_status, 'not_ready') as production_publish_status,
+            production_record_id,
+            production_record_type,
+            payload_json,
+            summary_text,
+            created_at,
+            updated_at
+     from review_cases
+     where ${conditions.join(' and ')}
+     order by updated_at desc nulls last, created_at desc
+     limit $1`,
+    values,
+  );
+
+  return result.rows;
 }
 
 export async function createSandboxPublishRun(userId: string, limitCount: number) {
@@ -1072,7 +1151,7 @@ export async function markSandboxPublishResult(params: {
 
 export async function markProductionPublishResult(params: {
   caseId: string;
-  status: 'published' | 'failed';
+  status: 'published' | 'failed' | 'external_pending';
   recordType: string;
   recordId?: string | null;
   errorText?: string | null;

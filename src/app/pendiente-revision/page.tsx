@@ -78,7 +78,7 @@ export default async function PendingReviewPage({
     productionPublishStatus?: string;
     monthScope?: 'active' | 'all';
     period?: string;
-    operationalView?: 'automatic' | 'posted' | 'pending' | 'production_pending' | 'unclassified' | 'excluded' | 'new_vendors';
+    operationalView?: 'automatic' | 'posted' | 'pending' | 'production_pending' | 'oc_managed' | 'unclassified' | 'excluded' | 'new_vendors';
   }>;
 }) {
   await requireSession();

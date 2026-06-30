@@ -16,6 +16,7 @@ import {
   hasNetSuiteProductionConfig,
   normalizeRecordId,
 } from '@/lib/netsuite/sandbox-publisher';
+import { isOcManagedVendorRut } from '@/lib/review/oc-managed-vendors';
 
 export const runtime = 'nodejs';
 
@@ -86,6 +87,30 @@ export async function POST(request: Request) {
           result: { reason: 'already_claimed_or_not_ready' },
         });
         results.push({ caseId: item.id, folio: item.folio, status: 'skipped', reason: 'already_claimed_or_not_ready' });
+        continue;
+      }
+
+      if (isOcManagedVendorRut(item.vendor_rut)) {
+        skippedCount += 1;
+        const errorText = 'Proveedor contabilizado desde OC en NetSuite: no se crea desde Centro Operativo; queda en control de existencia.';
+        await recordProductionPublishItem({
+          runId,
+          caseId: item.id,
+          recordType: '',
+          tranId: String(item.folio ?? ''),
+          entityId: '',
+          status: 'skipped',
+          errorText,
+          result: { reason: 'oc_managed_vendor' },
+        });
+        await markProductionPublishResult({
+          caseId: item.id,
+          status: 'external_pending',
+          recordType: '',
+          recordId: null,
+          errorText,
+        });
+        results.push({ caseId: item.id, folio: item.folio, status: 'skipped', reason: 'oc_managed_vendor' });
         continue;
       }
 

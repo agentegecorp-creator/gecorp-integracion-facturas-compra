@@ -202,6 +202,7 @@ function productionPublishLabel(status: string | null | undefined) {
   if (status === 'ready') return 'Listo para Producción';
   if (status === 'published') return 'Publicado en Producción';
   if (status === 'failed') return 'Falló publicación Producción';
+  if (status === 'external_pending') return 'Control OC NetSuite';
   return 'No listo para Producción';
 }
 
@@ -217,6 +218,7 @@ function productionPublishChipClass(status: string | null | undefined) {
   if (status === 'ready') return 'bg-emerald-50 text-emerald-700 ring-emerald-200';
   if (status === 'published') return 'bg-green-50 text-green-700 ring-green-200';
   if (status === 'failed') return 'bg-rose-50 text-rose-700 ring-rose-200';
+  if (status === 'external_pending') return 'bg-sky-50 text-sky-700 ring-sky-200';
   return 'bg-slate-100 text-slate-700 ring-slate-200';
 }
 
@@ -251,6 +253,7 @@ function nextActionLabel(bucket: string) {
 function nextProductionActionLabel(item: ReviewItem) {
   if (item.production_publish_status === 'published') return 'Ya publicado en Producción';
   if (item.production_publish_status === 'failed') return 'Reintentar publicación a Producción';
+  if (item.production_publish_status === 'external_pending') return 'Verificar existencia en NetSuite';
   if (item.production_publish_status === 'ready') return 'Publicar a Producción cuando corresponda';
   return null;
 }

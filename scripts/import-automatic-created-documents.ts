@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { isOcManagedVendorRut } from '../src/lib/review/oc-managed-vendors';
 
 const envPath = path.resolve('.env.local');
 if (fs.existsSync(envPath)) {
@@ -106,6 +107,8 @@ function publishStatus(item: AutomaticDocument) {
 function productionPublishStatus(item: AutomaticDocument) {
   if (item.production_publish_status === 'published') return 'published';
   if (item.production_publish_status === 'publishing') return 'publishing';
+  if (isOcManagedVendorRut(item.vendor_rut)) return 'external_pending';
+  if (item.production_publish_status === 'external_pending') return 'external_pending';
   return 'ready';
 }
 
@@ -210,8 +213,10 @@ async function main() {
         amount(item.amount_total ?? document.amountTotal),
         'approved_auto',
         'resolved',
-        item.summary_text?.replace('pendiente de publicación manual a Sandbox', 'pendiente de publicación manual a Producción')
-          ?? 'Aprobada automáticamente por pipeline; pendiente de publicación manual a Producción.',
+        isOcManagedVendorRut(item.vendor_rut)
+          ? 'Proveedor contabilizado desde OC en NetSuite; pendiente de control de existencia en Producción.'
+          : item.summary_text?.replace('pendiente de publicación manual a Sandbox', 'pendiente de publicación manual a Producción')
+            ?? 'Aprobada automáticamente por pipeline; pendiente de publicación manual a Producción.',
         JSON.stringify(payloadJson),
         publishStatus(item),
         productionPublishStatus(item),

@@ -65,9 +65,12 @@ async function main() {
   const startDate = argValue('--start-date', '');
   const endDate = argValue('--end-date', '');
   const period = startDate && endDate ? { startDate, endDate } : undefined;
+  const ocManagedOnly = process.argv.includes('--oc-managed');
 
-  const { listReadyForProduction, markProductionPublishResult } = await import('@/lib/db/queries');
-  const cases = await listReadyForProduction(limit, period);
+  const { listOcManagedProductionMonitor, listReadyForProduction, markProductionPublishResult } = await import('@/lib/db/queries');
+  const cases = ocManagedOnly
+    ? await listOcManagedProductionMonitor(limit, period)
+    : await listReadyForProduction(limit, period);
 
   let exactMatches = 0;
   let noExisting = 0;
@@ -118,7 +121,7 @@ async function main() {
     }
   }
 
-  console.log(JSON.stringify({ checked: cases.length, exactMatches, noExisting, mismatches, applied: apply, period }, null, 2));
+  console.log(JSON.stringify({ checked: cases.length, exactMatches, noExisting, mismatches, applied: apply, ocManagedOnly, period }, null, 2));
 }
 
 main().catch((error) => {

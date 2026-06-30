@@ -16,6 +16,7 @@ type FilterProps = {
       unclassified: number;
       excluded: number;
       new_vendors: number;
+      oc_managed: number;
     };
     quick: {
       rejected_sii_new: number;
@@ -51,6 +52,7 @@ const OPERATIONAL_VIEW_OPTIONS = [
   { value: 'posted', label: 'Creadas manuales' },
   { value: 'pending', label: 'Por contabilizar' },
   { value: 'production_pending', label: 'Pendientes Producción' },
+  { value: 'oc_managed', label: 'Control OC NetSuite' },
   { value: 'unclassified', label: 'Fuera de flujo' },
   { value: 'excluded', label: 'Excluidos' },
   { value: 'new_vendors', label: 'Facturas nuevos proveedores' },
@@ -59,6 +61,7 @@ const OPERATIONAL_VIEW_OPTIONS = [
 const PRODUCTION_PUBLISH_OPTIONS = [
   { value: '', label: 'Producción: todos' },
   { value: 'pending', label: 'Pendientes de publicación' },
+  { value: 'external_pending', label: 'Control OC NetSuite' },
   { value: 'published', label: 'Ya publicados' },
   { value: 'failed', label: 'Con fallo de publicación' },
 ];
@@ -89,7 +92,7 @@ export function ReviewFilters({
 
   return (
     <div className="mt-6 space-y-4">
-      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-7">
+      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
         <a href={`/pendiente-revision?${buildQuery({ operationalView: 'automatic', ...scopeParams })}`} className={`rounded-2xl border px-4 py-3 text-sm hover:bg-cyan-100 ${currentOperationalView === 'automatic' ? 'border-cyan-400 bg-cyan-100 text-cyan-900' : 'border-cyan-200 bg-cyan-50 text-cyan-800'}`}>
           Creadas automáticas ({operationalCounts?.automatic ?? 0})
         </a>
@@ -101,6 +104,9 @@ export function ReviewFilters({
         </a>
         <a href={`/pendiente-revision?${buildQuery({ productionPublishStatus: 'pending', ...scopeParams })}`} className={`rounded-2xl border px-4 py-3 text-sm hover:bg-emerald-100 ${currentProductionPublishStatus === 'pending' ? 'border-emerald-400 bg-emerald-100 text-emerald-900' : 'border-emerald-200 bg-emerald-50 text-emerald-800'}`}>
           Pendientes Producción ({productionPendingCount})
+        </a>
+        <a href={`/pendiente-revision?${buildQuery({ operationalView: 'oc_managed', ...scopeParams })}`} className={`rounded-2xl border px-4 py-3 text-sm hover:bg-sky-100 ${currentOperationalView === 'oc_managed' ? 'border-sky-400 bg-sky-100 text-sky-900' : 'border-sky-200 bg-sky-50 text-sky-800'}`}>
+          Control OC NetSuite ({operationalCounts?.oc_managed ?? 0})
         </a>
         <a href={`/pendiente-revision?${buildQuery({ operationalView: 'unclassified', ...scopeParams })}`} className={`rounded-2xl border px-4 py-3 text-sm hover:bg-amber-100 ${currentOperationalView === 'unclassified' ? 'border-amber-400 bg-amber-100 text-amber-900' : 'border-amber-200 bg-amber-50 text-amber-800'}`}>
           Fuera de flujo ({operationalCounts?.unclassified ?? 0})
