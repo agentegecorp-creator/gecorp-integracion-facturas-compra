@@ -171,11 +171,12 @@ function readyForSandboxWhereClause(alias = 'review_cases') {
 
 function readyForProductionWhereClause(alias = 'review_cases') {
   return `
-    ${readyForSandboxWhereClause(alias).replace(
-      `coalesce(${alias}.sandbox_publish_status, 'not_ready') = 'ready'`,
-      `coalesce(${alias}.sandbox_publish_status, 'not_ready') = 'published'`,
-    )}
-    and coalesce(${alias}.production_publish_status, 'ready') in ('not_ready', 'ready', 'failed')
+    ${alias}.status = 'resolved'
+    and coalesce(${alias}.production_publish_status, 'not_ready') in ('ready', 'failed')
+    and coalesce(${alias}.payload_json->'context'->>'requiereRevisionManual', '') not in ('si', 'SI', 'true', 'TRUE', 'nuevo_proveedor')
+    and coalesce(${alias}.payload_json->'context'->>'error', '') = ''
+    and coalesce(${alias}.payload_json->'context'->>'vendorIdProposed', ${alias}.payload_json->'context'->>'entity', '') ~ '^[0-9]+$'
+    and coalesce(${alias}.payload_json->'context'->>'accountIdProposed', ${alias}.payload_json->'context'->>'referenciaAccount', ${alias}.payload_json->'document'->>'accountId', '') ~ '^[0-9]+$'
   `;
 }
 
@@ -368,7 +369,7 @@ export async function getDashboardSummary(period?: DashboardPeriod) {
     const docType = String(document.documentType || row.document_type || 'Sin tipo');
 
     if (row.bucket === 'approved_auto') {
-      // Las automáticas son aprobadas por regla, pero requieren publicación manual a Sandbox.
+      // Las automáticas son aprobadas por regla y quedan pendientes de publicación manual a Producción.
     } else if (row.status === 'resolved') {
       operationalSummary.creadasManuales += 1;
     } else {
@@ -996,7 +997,7 @@ export async function claimProductionPublishCase(caseId: string) {
          production_publish_error = null,
          updated_at = now()
      where id = $1
-       and coalesce(production_publish_status, 'not_ready') = 'ready'
+       and coalesce(production_publish_status, 'not_ready') in ('ready', 'failed')
      returning id`,
     [caseId],
   );
@@ -1194,7 +1195,7 @@ export async function getReviewDecisionsByCaseId(caseId: string) {
   return result.rows;
 }
 
-function inferSandboxPublishStatus(caseRow: {
+function inferPublishStatus(caseRow: {
   bucket: string;
   payload_json?: { context?: Record<string, unknown> } | null;
 }, decisionType: 'approve' | 'correct_and_approve' | 'exception' | 'reject_for_learning') {
@@ -1555,6 +1556,7 @@ export async function createReviewDecision(params: {
     reject_for_learning: 'rejected_for_learning',
   } as const;
 
+  await ensureProductionPublishSchema();
   const client = await db.connect();
 
   try {
@@ -1587,23 +1589,25 @@ export async function createReviewDecision(params: {
       ...caseRow,
       payload_json: correctedPatch.payload_json ?? caseRow.payload_json,
     };
-    const sandboxPublishStatus = inferSandboxPublishStatus(previewCaseRow, params.decisionType);
+    const publishStatus = inferPublishStatus(previewCaseRow, params.decisionType);
 
     if (hasSandboxPublishStatus) {
       await client.query(
         `update review_cases
          set status = $2,
              sandbox_publish_status = $3,
-             vendor_name = coalesce($4, vendor_name),
-             document_type = coalesce($5, document_type),
-             issue_date = coalesce($6::timestamptz, issue_date),
-             payload_json = $7::jsonb,
+             production_publish_status = $4,
+             vendor_name = coalesce($5, vendor_name),
+             document_type = coalesce($6, document_type),
+             issue_date = coalesce($7::timestamptz, issue_date),
+             payload_json = $8::jsonb,
              updated_at = now()
          where id = $1`,
         [
           params.caseId,
           nextStatus,
-          sandboxPublishStatus,
+          publishStatus,
+          publishStatus,
           correctedPatch.vendor_name ?? null,
           correctedPatch.document_type ?? null,
           correctedPatch.issue_date ?? null,
@@ -1642,7 +1646,7 @@ export async function createReviewDecision(params: {
         JSON.stringify({
           decisionType: params.decisionType,
           nextStatus,
-          sandboxPublishStatus,
+          publishStatus,
           notes: params.notes ?? null,
           correctionJson: params.correctionJson ?? {},
           correctionChanges: correctionChanges(beforeCorrectionValues, params.correctionJson),

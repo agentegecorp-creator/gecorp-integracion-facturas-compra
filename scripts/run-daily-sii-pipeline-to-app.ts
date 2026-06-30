@@ -179,7 +179,7 @@ function updatePipelineRunSummary(month: string, year: string, runDir: string, r
   existing[key] = {
     sourceRun,
     generatedAt: report.timestamp ?? new Date().toISOString(),
-    mode: 'dry-run / pendiente de publicación manual a Sandbox real',
+    mode: 'dry-run / pendiente de publicación manual a Producción',
     createdAutomatically: Number(resumen.creadas ?? 0),
     duplicates: Number(resumen.duplicadas ?? 0),
     pendingApproval: Number(resumen.pendientes_aprobacion ?? 0),
@@ -235,8 +235,9 @@ function updateAutomaticCreatedDocuments(month: string, year: string, runDir: st
       bucket: 'approved_auto',
       status: 'resolved',
       amount_total: String(siiRow.amountTotal ?? item.monto ?? 0),
-      summary_text: `Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.`,
+      summary_text: `Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.`,
       sandbox_publish_status: 'ready',
+      production_publish_status: 'ready',
       payload_json: {
         document: {
           documentType,
@@ -267,7 +268,7 @@ function updateAutomaticCreatedDocuments(month: string, year: string, runDir: st
           accountingDateProposed: dryRunData.tranDate ?? siiRow.issueDate ?? null,
           dueDate: dryRunData.dueDate ?? siiRow.issueDate ?? null,
           sourceRun,
-          automaticCreationMode: 'Pipeline automático; pendiente de Sandbox real',
+          automaticCreationMode: 'Pipeline automático; pendiente de Producción',
         },
       },
     };

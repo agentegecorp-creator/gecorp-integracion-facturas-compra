@@ -223,7 +223,9 @@ function productionPublishChipClass(status: string | null | undefined) {
 function pipelineModeLabel(mode: string | null | undefined) {
   if (!mode) return '-';
   if (mode.includes('STUB')) return 'Simulación del pipeline, no publicación real';
-  return mode;
+  return mode
+    .replace('pendiente de Sandbox real', 'pendiente de Producción')
+    .replace('pendiente de publicación manual a Sandbox', 'pendiente de publicación manual a Producción');
 }
 
 function displaySummaryText(item: ReviewItem) {
@@ -231,7 +233,9 @@ function displaySummaryText(item: ReviewItem) {
     return item.summary_text.replace(' (Sandbox-STUB)', '; pendiente de publicación a Producción');
   }
 
-  return item.summary_text || 'Sin resumen.';
+  return item.summary_text
+    ?.replace('pendiente de publicación manual a Sandbox', 'pendiente de publicación manual a Producción')
+    || 'Sin resumen.';
 }
 
 function nextActionLabel(bucket: string) {
@@ -247,7 +251,7 @@ function nextActionLabel(bucket: string) {
 function nextProductionActionLabel(item: ReviewItem) {
   if (item.production_publish_status === 'published') return 'Ya publicado en Producción';
   if (item.production_publish_status === 'failed') return 'Reintentar publicación a Producción';
-  if (item.sandbox_publish_status === 'published') return 'Publicar a Producción cuando corresponda';
+  if (item.production_publish_status === 'ready') return 'Publicar a Producción cuando corresponda';
   return null;
 }
 
@@ -488,7 +492,7 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                   </div>
                 </>
               ) : null}
-              {isAutomaticCreated && selected.sandbox_publish_status !== 'published' ? (
+              {isAutomaticCreated && selected.production_publish_status !== 'published' ? (
                 <div className="rounded-2xl bg-cyan-50 p-4 md:col-span-2">
                   <p className="text-sm text-cyan-700">Origen automático</p>
                   <p className="mt-1 font-medium text-slate-900">{pipelineModeLabel(context?.automaticCreationMode)}</p>

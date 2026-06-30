@@ -28,6 +28,7 @@ type AutomaticDocument = {
   amount_total?: string | number | null;
   summary_text?: string | null;
   sandbox_publish_status?: string | null;
+  production_publish_status?: string | null;
   payload_json?: {
     document?: Record<string, unknown>;
     context?: Record<string, unknown>;
@@ -99,6 +100,12 @@ function safePaymentDate(document: Record<string, unknown>, context: Record<stri
 function publishStatus(item: AutomaticDocument) {
   const mode = String(item.payload_json?.context?.automaticCreationMode ?? '');
   if (item.sandbox_publish_status === 'published' && !mode.includes('STUB')) return 'published';
+  return 'ready';
+}
+
+function productionPublishStatus(item: AutomaticDocument) {
+  if (item.production_publish_status === 'published') return 'published';
+  if (item.production_publish_status === 'publishing') return 'publishing';
   return 'ready';
 }
 
@@ -203,9 +210,11 @@ async function main() {
         amount(item.amount_total ?? document.amountTotal),
         'approved_auto',
         'resolved',
-        item.summary_text ?? 'Aprobada automáticamente por pipeline; pendiente de publicación manual a Sandbox.',
+        item.summary_text?.replace('pendiente de publicación manual a Sandbox', 'pendiente de publicación manual a Producción')
+          ?? 'Aprobada automáticamente por pipeline; pendiente de publicación manual a Producción.',
         JSON.stringify(payloadJson),
         publishStatus(item),
+        productionPublishStatus(item),
       ];
 
       if (exists.rows[0]?.id) {
@@ -230,8 +239,12 @@ async function main() {
                  when coalesce(sandbox_publish_status, 'not_ready') in ('published', 'publishing', 'failed') then sandbox_publish_status
                  else $16
                end,
+               production_publish_status = case
+                 when coalesce(production_publish_status, 'not_ready') in ('published', 'publishing') then production_publish_status
+                 else $17
+               end,
                updated_at = now()
-           where id = $17`,
+           where id = $18`,
           [...params, exists.rows[0].id],
         );
         updated += 1;
@@ -256,9 +269,10 @@ async function main() {
           status,
           summary_text,
           payload_json,
-          sandbox_publish_status
+          sandbox_publish_status,
+          production_publish_status
         ) values (
-          $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,'CLP',$12,$13,$14,$15::jsonb,$16
+          $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,'CLP',$12,$13,$14,$15::jsonb,$16,$17
         )`,
         params,
       );

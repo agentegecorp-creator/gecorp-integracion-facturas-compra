@@ -13,7 +13,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "101150",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -32,7 +32,7 @@
           "categoriaOc": "OC_RECOMENDADA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -49,7 +49,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "86025",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -68,7 +68,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -85,7 +85,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "63242",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -104,7 +104,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -121,7 +121,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "31074",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -140,7 +140,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -157,7 +157,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "860515",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -176,7 +176,7 @@
           "categoriaOc": "OC_OBLIGATORIA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -193,7 +193,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "181052",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -212,7 +212,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -229,7 +229,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "1936623",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -248,7 +248,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -265,7 +265,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "1237600",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -284,7 +284,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -301,7 +301,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "172040",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -320,7 +320,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -337,7 +337,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "716146",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -356,7 +356,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -373,7 +373,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "59057",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -392,7 +392,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -409,7 +409,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "484279",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -428,7 +428,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -445,7 +445,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "215799",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -464,7 +464,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -481,7 +481,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "25136",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -500,7 +500,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -517,7 +517,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "40874",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -536,7 +536,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -553,7 +553,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "20530",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -572,7 +572,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -589,7 +589,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "245735",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -608,7 +608,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -625,7 +625,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "2963981",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -644,7 +644,7 @@
           "categoriaOc": "OC_OBLIGATORIA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -661,7 +661,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "2313777",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -680,7 +680,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -697,7 +697,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "143336",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -716,7 +716,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -733,7 +733,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "475369",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -752,7 +752,7 @@
           "categoriaOc": "OC_OBLIGATORIA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -769,7 +769,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "1179958",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -788,7 +788,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -805,7 +805,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "156078",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -824,7 +824,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -841,7 +841,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "220150",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -860,7 +860,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -877,7 +877,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "39275",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -896,7 +896,7 @@
           "categoriaOc": "OC_OBLIGATORIA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -913,7 +913,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "67093",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -932,7 +932,7 @@
           "categoriaOc": "OC_OBLIGATORIA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -949,7 +949,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "18990",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -968,7 +968,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -985,7 +985,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "131424",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1004,7 +1004,7 @@
           "categoriaOc": "OC_OBLIGATORIA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -1021,7 +1021,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "3179992",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1040,7 +1040,7 @@
           "categoriaOc": "OC_OBLIGATORIA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -1057,7 +1057,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "119000",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1076,7 +1076,7 @@
           "categoriaOc": "OC_RECOMENDADA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -1093,7 +1093,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "95200",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1112,7 +1112,7 @@
           "categoriaOc": "OC_RECOMENDADA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -1129,7 +1129,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "572916",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1148,7 +1148,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -1165,7 +1165,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "158258",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1184,7 +1184,7 @@
           "categoriaOc": "OC_RECOMENDADA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -1201,7 +1201,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "89250",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1220,7 +1220,7 @@
           "categoriaOc": "OC_OBLIGATORIA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -1237,7 +1237,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "202300",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1256,7 +1256,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -1273,7 +1273,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "111093",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1292,7 +1292,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -1309,7 +1309,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "402438",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1328,7 +1328,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -1345,7 +1345,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "176011",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1364,7 +1364,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -1381,7 +1381,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "324275",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1400,7 +1400,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -1417,7 +1417,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "211755",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1436,7 +1436,7 @@
           "categoriaOc": "OC_RECOMENDADA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -1453,7 +1453,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "158258",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1472,7 +1472,7 @@
           "categoriaOc": "OC_RECOMENDADA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -1489,7 +1489,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "468930",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1508,7 +1508,7 @@
           "categoriaOc": "OC_RECOMENDADA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -1525,7 +1525,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "35700",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1544,7 +1544,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -1561,7 +1561,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "499800",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1580,7 +1580,7 @@
           "categoriaOc": "OC_RECOMENDADA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -1597,7 +1597,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "117768",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1616,7 +1616,7 @@
           "categoriaOc": "OC_RECOMENDADA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -1633,7 +1633,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "583100",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1652,7 +1652,7 @@
           "categoriaOc": "OC_RECOMENDADA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -1669,7 +1669,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "158258",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1688,7 +1688,7 @@
           "categoriaOc": "OC_RECOMENDADA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -1705,7 +1705,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "324275",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1724,7 +1724,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -1741,7 +1741,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "137396",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1760,7 +1760,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -1777,7 +1777,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "53550",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1796,7 +1796,7 @@
           "categoriaOc": "OC_OBLIGATORIA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -1813,7 +1813,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "158258",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1832,7 +1832,7 @@
           "categoriaOc": "OC_RECOMENDADA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -1849,7 +1849,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "158258",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1868,7 +1868,7 @@
           "categoriaOc": "OC_RECOMENDADA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -1885,7 +1885,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "334757",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1904,7 +1904,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -1921,7 +1921,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "338005",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1940,7 +1940,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -1957,7 +1957,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "158258",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -1976,7 +1976,7 @@
           "categoriaOc": "OC_RECOMENDADA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -1993,7 +1993,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "1000000",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2012,7 +2012,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -2029,7 +2029,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "153299",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2048,7 +2048,7 @@
           "categoriaOc": "OC_RECOMENDADA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -2065,7 +2065,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "76760",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2084,7 +2084,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -2101,7 +2101,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "9149",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2120,7 +2120,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -2137,7 +2137,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "7523248",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2156,7 +2156,7 @@
           "categoriaOc": "OC_RECOMENDADA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -2173,7 +2173,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "2524395",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2192,7 +2192,7 @@
           "categoriaOc": "OC_RECOMENDADA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -2209,7 +2209,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "161984",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2228,7 +2228,7 @@
           "categoriaOc": "OC_RECOMENDADA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -2245,7 +2245,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "82378",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2264,7 +2264,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -2281,7 +2281,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "68237",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2300,7 +2300,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -2317,7 +2317,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "7655926",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2336,7 +2336,7 @@
           "categoriaOc": "OC_RECOMENDADA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -2353,7 +2353,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "137214",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2372,7 +2372,7 @@
           "categoriaOc": "OC_OBLIGATORIA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -2389,7 +2389,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "3055656",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2408,7 +2408,7 @@
           "categoriaOc": "OC_OBLIGATORIA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -2425,7 +2425,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "688930",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2444,7 +2444,7 @@
           "categoriaOc": "OC_RECOMENDADA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -2461,7 +2461,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "202546",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2480,7 +2480,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -2497,7 +2497,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "243056",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2516,7 +2516,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -2533,7 +2533,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "19683",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2552,7 +2552,7 @@
           "categoriaOc": "OC_OBLIGATORIA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -2569,7 +2569,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "282620",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2588,7 +2588,7 @@
           "categoriaOc": "OC_OBLIGATORIA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -2605,7 +2605,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "22728",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2624,7 +2624,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -2641,7 +2641,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "108325",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2660,7 +2660,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -2677,7 +2677,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "39900",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2696,7 +2696,7 @@
           "categoriaOc": "SIN_OC",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -2713,7 +2713,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "693677",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2732,7 +2732,7 @@
           "categoriaOc": "OC_RECOMENDADA",
           "simulatedNsId": "SIMULATED-VENDORBILL-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -2749,7 +2749,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "7523248",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2768,7 +2768,7 @@
           "categoriaOc": "OC_RECOMENDADA",
           "simulatedNsId": "SIMULATED-VENDORCREDIT-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -2785,7 +2785,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "464922",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox real.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "published",
       "payload_json": {
         "document": {
@@ -2804,7 +2804,7 @@
           "categoriaOc": "OC_RECOMENDADA",
           "simulatedNsId": "SIMULATED-VENDORCREDIT-001",
           "sourceRun": "runs/sii_to_pipeline/20260602-060334",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     }
@@ -2823,7 +2823,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "31426",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -2855,7 +2855,7 @@
           "accountingDateProposed": "2026-06-01",
           "dueDate": "2026-06-16",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -2872,7 +2872,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "2170775",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -2904,7 +2904,7 @@
           "accountingDateProposed": "2026-06-01",
           "dueDate": "2026-06-01",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -2921,7 +2921,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "103172",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -2953,7 +2953,7 @@
           "accountingDateProposed": "2026-06-01",
           "dueDate": "2026-06-01",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -2970,7 +2970,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "23990",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -3002,7 +3002,7 @@
           "accountingDateProposed": "2026-06-01",
           "dueDate": "2026-06-01",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -3019,7 +3019,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "309400",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -3051,7 +3051,7 @@
           "accountingDateProposed": "2026-06-01",
           "dueDate": "2026-07-01",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -3068,7 +3068,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "54789",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -3100,7 +3100,7 @@
           "accountingDateProposed": "2026-06-01",
           "dueDate": "2026-07-01",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -3117,7 +3117,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "41650",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -3149,7 +3149,7 @@
           "accountingDateProposed": "2026-06-02",
           "dueDate": "2026-07-02",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -3166,7 +3166,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "70411",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -3198,7 +3198,7 @@
           "accountingDateProposed": "2026-06-02",
           "dueDate": "2026-06-02",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -3215,7 +3215,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "409122",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -3247,7 +3247,7 @@
           "accountingDateProposed": "2026-06-02",
           "dueDate": "2026-07-02",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -3264,7 +3264,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "258790",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -3296,7 +3296,7 @@
           "accountingDateProposed": "2026-06-01",
           "dueDate": "2026-07-01",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -3313,7 +3313,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "83198",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -3345,7 +3345,7 @@
           "accountingDateProposed": "2026-06-03",
           "dueDate": "2026-06-03",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -3362,7 +3362,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "41978",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -3394,7 +3394,7 @@
           "accountingDateProposed": "2026-05-31",
           "dueDate": "2026-05-31",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -3411,7 +3411,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "2824644",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -3443,7 +3443,7 @@
           "accountingDateProposed": "2026-06-03",
           "dueDate": "2026-07-03",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -3460,7 +3460,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "724900",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -3492,7 +3492,7 @@
           "accountingDateProposed": "2026-06-01",
           "dueDate": "2026-07-01",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -3509,7 +3509,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "25287",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -3541,7 +3541,7 @@
           "accountingDateProposed": "2026-05-31",
           "dueDate": "2026-05-31",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -3558,7 +3558,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "174139",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -3590,7 +3590,7 @@
           "accountingDateProposed": "2026-06-05",
           "dueDate": "2026-07-05",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -3607,7 +3607,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "104374",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -3639,7 +3639,7 @@
           "accountingDateProposed": "2026-06-05",
           "dueDate": "2026-06-05",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -3656,7 +3656,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "209812",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -3688,7 +3688,7 @@
           "accountingDateProposed": "2026-06-05",
           "dueDate": "2026-06-05",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -3705,7 +3705,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "15935",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -3737,7 +3737,7 @@
           "accountingDateProposed": "2026-06-05",
           "dueDate": "2026-06-05",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -3754,7 +3754,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "583100",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -3786,7 +3786,7 @@
           "accountingDateProposed": "2026-06-09",
           "dueDate": "2026-06-09",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -3803,7 +3803,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "489888",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -3835,7 +3835,7 @@
           "accountingDateProposed": "2026-06-09",
           "dueDate": "2026-06-09",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -3852,7 +3852,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "489888",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -3884,7 +3884,7 @@
           "accountingDateProposed": "2026-06-09",
           "dueDate": "2026-06-09",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -3901,7 +3901,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "160418",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -3933,7 +3933,7 @@
           "accountingDateProposed": "2026-06-10",
           "dueDate": "2026-06-10",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -3950,7 +3950,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "487673",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -3982,7 +3982,7 @@
           "accountingDateProposed": "2026-06-10",
           "dueDate": "2026-06-10",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -3999,7 +3999,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "487673",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -4031,7 +4031,7 @@
           "accountingDateProposed": "2026-06-10",
           "dueDate": "2026-06-10",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -4048,7 +4048,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "5413782",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -4080,7 +4080,7 @@
           "accountingDateProposed": "2026-06-10",
           "dueDate": "2026-08-09",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -4097,7 +4097,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "196923",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -4129,7 +4129,7 @@
           "accountingDateProposed": "2026-06-10",
           "dueDate": "2026-06-10",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -4146,7 +4146,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "523600",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -4178,7 +4178,7 @@
           "accountingDateProposed": "2026-06-11",
           "dueDate": "2026-06-11",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -4195,7 +4195,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "583100",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -4227,7 +4227,7 @@
           "accountingDateProposed": "2026-06-11",
           "dueDate": "2026-06-11",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -4244,7 +4244,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "158053",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -4276,7 +4276,7 @@
           "accountingDateProposed": "2026-06-11",
           "dueDate": "2026-07-11",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -4293,7 +4293,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "142800",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -4325,7 +4325,7 @@
           "accountingDateProposed": "2026-06-12",
           "dueDate": "2026-07-12",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -4342,7 +4342,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "571200",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -4374,7 +4374,7 @@
           "accountingDateProposed": "2026-06-12",
           "dueDate": "2026-07-12",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -4391,7 +4391,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "884592",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -4423,7 +4423,7 @@
           "accountingDateProposed": "2026-06-12",
           "dueDate": "2026-07-12",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -4440,7 +4440,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "85251",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -4472,7 +4472,7 @@
           "accountingDateProposed": "2026-06-12",
           "dueDate": "2026-07-12",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -4489,7 +4489,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "21490",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -4521,7 +4521,7 @@
           "accountingDateProposed": "2026-06-13",
           "dueDate": "2026-06-28",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -4538,7 +4538,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "220150",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -4570,7 +4570,7 @@
           "accountingDateProposed": "2026-06-13",
           "dueDate": "2026-07-13",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -4587,7 +4587,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "160418",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -4619,7 +4619,7 @@
           "accountingDateProposed": "2026-06-15",
           "dueDate": "2026-06-15",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -4636,7 +4636,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "160418",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -4668,7 +4668,7 @@
           "accountingDateProposed": "2026-06-15",
           "dueDate": "2026-06-15",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -4685,7 +4685,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "236338",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -4717,7 +4717,7 @@
           "accountingDateProposed": "2026-06-13",
           "dueDate": "2026-06-13",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -4734,7 +4734,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "81616",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -4766,7 +4766,7 @@
           "accountingDateProposed": "2026-06-15",
           "dueDate": "2026-07-15",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -4783,7 +4783,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "71066",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -4815,7 +4815,7 @@
           "accountingDateProposed": "2026-06-15",
           "dueDate": "2026-06-15",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -4832,7 +4832,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "160418",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -4864,7 +4864,7 @@
           "accountingDateProposed": "2026-06-16",
           "dueDate": "2026-06-16",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -4881,7 +4881,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "579920",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -4913,7 +4913,7 @@
           "accountingDateProposed": "2026-06-16",
           "dueDate": "2026-07-16",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -4930,7 +4930,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "474085",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -4962,7 +4962,7 @@
           "accountingDateProposed": "2026-06-17",
           "dueDate": "2026-07-17",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -4979,7 +4979,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "102221",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -5011,7 +5011,7 @@
           "accountingDateProposed": "2026-06-19",
           "dueDate": "2026-07-19",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -5028,7 +5028,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "856913",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -5060,7 +5060,7 @@
           "accountingDateProposed": "2026-06-23",
           "dueDate": "2026-07-23",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -5077,7 +5077,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "622334",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -5109,7 +5109,7 @@
           "accountingDateProposed": "2026-06-23",
           "dueDate": "2026-06-23",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -5126,7 +5126,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "208250",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -5158,7 +5158,7 @@
           "accountingDateProposed": "2026-06-23",
           "dueDate": "2026-07-23",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -5175,7 +5175,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "160418",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -5207,7 +5207,7 @@
           "accountingDateProposed": "2026-06-24",
           "dueDate": "2026-06-24",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -5224,7 +5224,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "48612",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -5256,7 +5256,7 @@
           "accountingDateProposed": "2026-06-30",
           "dueDate": "2026-06-30",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -5273,7 +5273,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "1000000",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -5305,7 +5305,7 @@
           "accountingDateProposed": "2026-06-01",
           "dueDate": "2026-06-01",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -5322,7 +5322,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "674345",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -5354,7 +5354,7 @@
           "accountingDateProposed": "2026-06-03",
           "dueDate": "2026-07-03",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -5371,7 +5371,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "15821",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -5403,7 +5403,7 @@
           "accountingDateProposed": "2026-06-06",
           "dueDate": "2026-07-06",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -5420,7 +5420,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "5212",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -5452,7 +5452,7 @@
           "accountingDateProposed": "2026-06-06",
           "dueDate": "2026-07-06",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -5469,7 +5469,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "96935",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -5501,7 +5501,7 @@
           "accountingDateProposed": "2026-06-08",
           "dueDate": "2026-06-08",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -5518,7 +5518,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "163852",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -5550,7 +5550,7 @@
           "accountingDateProposed": "2026-06-08",
           "dueDate": "2026-07-08",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -5567,7 +5567,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "7319",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -5599,7 +5599,7 @@
           "accountingDateProposed": "2026-06-08",
           "dueDate": "2026-07-08",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -5616,7 +5616,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "13600",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -5648,7 +5648,7 @@
           "accountingDateProposed": "2026-06-10",
           "dueDate": "2026-06-10",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -5665,7 +5665,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "1005357",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -5697,7 +5697,7 @@
           "accountingDateProposed": "2026-06-12",
           "dueDate": "2026-07-12",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -5714,7 +5714,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "19998",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -5746,7 +5746,7 @@
           "accountingDateProposed": "2026-06-12",
           "dueDate": "2026-07-12",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -5763,7 +5763,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "75605",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -5795,7 +5795,7 @@
           "accountingDateProposed": "2026-06-12",
           "dueDate": "2026-07-12",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -5812,7 +5812,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "78665",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -5844,7 +5844,7 @@
           "accountingDateProposed": "2026-06-12",
           "dueDate": "2026-07-12",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -5861,7 +5861,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "8388",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -5893,7 +5893,7 @@
           "accountingDateProposed": "2026-06-13",
           "dueDate": "2026-06-28",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -5910,7 +5910,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "13200",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -5942,7 +5942,7 @@
           "accountingDateProposed": "2026-06-23",
           "dueDate": "2026-07-08",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -5959,7 +5959,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "204020",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -5991,7 +5991,7 @@
           "accountingDateProposed": "2026-06-24",
           "dueDate": "2026-07-24",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -6008,7 +6008,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "23845",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -6040,7 +6040,7 @@
           "accountingDateProposed": "2026-06-09",
           "dueDate": "2026-06-09",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -6057,7 +6057,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "20260",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -6089,7 +6089,7 @@
           "accountingDateProposed": "2026-06-01",
           "dueDate": "2026-07-31",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -6106,7 +6106,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "95914",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -6138,7 +6138,7 @@
           "accountingDateProposed": "2026-06-03",
           "dueDate": "2026-06-03",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -6155,7 +6155,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "35996",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -6187,7 +6187,7 @@
           "accountingDateProposed": "2026-06-04",
           "dueDate": "2026-07-04",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
@@ -6204,7 +6204,7 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "163852",
-      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Sandbox.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
       "payload_json": {
         "document": {
@@ -6236,7 +6236,7 @@
           "accountingDateProposed": "2026-06-23",
           "dueDate": "2026-07-23",
           "sourceRun": "runs/sii_to_pipeline/20260630-060202",
-          "automaticCreationMode": "Pipeline automático; pendiente de Sandbox real"
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     }
