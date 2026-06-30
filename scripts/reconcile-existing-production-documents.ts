@@ -36,6 +36,27 @@ function normalizeAmount(value: unknown) {
   return Number.isFinite(numeric) ? Math.abs(Math.round(numeric)) : null;
 }
 
+function numericId(...values: unknown[]) {
+  for (const value of values) {
+    const normalized = String(value ?? '').replace(/[^0-9]/g, '');
+    if (normalized) return normalized;
+  }
+  return '';
+}
+
+function buildOcManagedMonitorKey(item: Record<string, unknown>) {
+  const payload = (item.payload_json ?? {}) as { context?: Record<string, unknown>; document?: Record<string, unknown> };
+  const context = payload.context ?? {};
+  const document = payload.document ?? {};
+  const documentType = String(document.documentType ?? item.document_type ?? '');
+  return {
+    recordType: documentType === '61' ? 'vendorcredit' : 'vendorbill',
+    tranId: String(item.folio ?? document.folio ?? '').trim(),
+    entityId: numericId(context.vendorIdProposed, context.entity, document.vendorId, document.entityId),
+    payload: {},
+  };
+}
+
 async function fetchTransactionHeader(id: string) {
   const result = await requestNetSuite(
     'POST',
@@ -75,9 +96,15 @@ async function main() {
   let exactMatches = 0;
   let noExisting = 0;
   let mismatches = 0;
+  let missingEntity = 0;
 
   for (const item of cases) {
-    const built = buildSandboxPayload(item);
+    const built = ocManagedOnly ? buildOcManagedMonitorKey(item) : buildSandboxPayload(item);
+    if (!built.entityId) {
+      missingEntity += 1;
+      console.log(`SIN_ENTITY ${item.vendor_name ?? 'Proveedor sin nombre'} F-${built.tranId}: no se puede cruzar automaticamente sin ID proveedor NetSuite`);
+      continue;
+    }
     const existing = await findExistingTransaction(built.tranId, built.entityId, 'production');
 
     if (!existing) {
@@ -130,7 +157,7 @@ async function main() {
     }
   }
 
-  console.log(JSON.stringify({ checked: cases.length, exactMatches, noExisting, mismatches, applied: apply, ocManagedOnly, period }, null, 2));
+  console.log(JSON.stringify({ checked: cases.length, exactMatches, noExisting, mismatches, missingEntity, applied: apply, ocManagedOnly, period }, null, 2));
 }
 
 main().catch((error) => {
