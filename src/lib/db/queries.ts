@@ -1151,7 +1151,7 @@ export async function markSandboxPublishResult(params: {
 
 export async function markProductionPublishResult(params: {
   caseId: string;
-  status: 'published' | 'failed' | 'external_pending';
+  status: 'published' | 'failed' | 'external_pending' | 'external_mismatch';
   recordType: string;
   recordId?: string | null;
   errorText?: string | null;

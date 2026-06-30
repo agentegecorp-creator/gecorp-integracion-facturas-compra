@@ -104,6 +104,15 @@ async function main() {
       console.log(
         `MISMATCH ${item.vendor_name ?? 'Proveedor sin nombre'} F-${built.tranId}: app ${built.recordType} ${appAmount}, NS ${header?.type} ${nsAmount} id ${existing.id}`,
       );
+      if (apply && ocManagedOnly) {
+        await markProductionPublishResult({
+          caseId: item.id,
+          status: 'external_mismatch',
+          recordType: built.recordType,
+          recordId: existing.id,
+          errorText: `Existe en NetSuite Producción pero requiere conciliación: app ${built.recordType} monto ${appAmount ?? 'N/A'}, NetSuite ${header?.type} monto ${nsAmount ?? 'N/A'} id ${existing.id}`,
+        });
+      }
       continue;
     }
 

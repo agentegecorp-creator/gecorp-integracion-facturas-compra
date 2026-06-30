@@ -62,6 +62,7 @@ const PRODUCTION_PUBLISH_OPTIONS = [
   { value: '', label: 'Producción: todos' },
   { value: 'pending', label: 'Pendientes de publicación' },
   { value: 'external_pending', label: 'Control OC NetSuite' },
+  { value: 'external_mismatch', label: 'Revisión conciliación OC' },
   { value: 'published', label: 'Ya publicados' },
   { value: 'failed', label: 'Con fallo de publicación' },
 ];

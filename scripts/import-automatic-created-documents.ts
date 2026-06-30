@@ -107,6 +107,7 @@ function publishStatus(item: AutomaticDocument) {
 function productionPublishStatus(item: AutomaticDocument) {
   if (item.production_publish_status === 'published') return 'published';
   if (item.production_publish_status === 'publishing') return 'publishing';
+  if (item.production_publish_status === 'external_mismatch') return 'external_mismatch';
   if (isOcManagedVendorRut(item.vendor_rut)) return 'external_pending';
   if (item.production_publish_status === 'external_pending') return 'external_pending';
   return 'ready';

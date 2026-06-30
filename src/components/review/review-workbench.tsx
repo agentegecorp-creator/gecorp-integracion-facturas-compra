@@ -203,12 +203,13 @@ function productionPublishLabel(status: string | null | undefined) {
   if (status === 'published') return 'Publicado en Producción';
   if (status === 'failed') return 'Falló publicación Producción';
   if (status === 'external_pending') return 'Control OC NetSuite';
+  if (status === 'external_mismatch') return 'Revisión conciliación OC';
   return 'No listo para Producción';
 }
 
 function productionPublishDisplay(item: { production_publish_status?: string | null; production_record_id?: string | null }) {
   const label = productionPublishLabel(item.production_publish_status);
-  if (item.production_publish_status === 'published' && item.production_record_id) {
+  if (item.production_record_id && (item.production_publish_status === 'published' || item.production_publish_status === 'external_mismatch')) {
     return `${label} #${item.production_record_id}`;
   }
   return label;
@@ -219,6 +220,7 @@ function productionPublishChipClass(status: string | null | undefined) {
   if (status === 'published') return 'bg-green-50 text-green-700 ring-green-200';
   if (status === 'failed') return 'bg-rose-50 text-rose-700 ring-rose-200';
   if (status === 'external_pending') return 'bg-sky-50 text-sky-700 ring-sky-200';
+  if (status === 'external_mismatch') return 'bg-amber-50 text-amber-700 ring-amber-200';
   return 'bg-slate-100 text-slate-700 ring-slate-200';
 }
 
@@ -254,6 +256,7 @@ function nextProductionActionLabel(item: ReviewItem) {
   if (item.production_publish_status === 'published') return 'Ya publicado en Producción';
   if (item.production_publish_status === 'failed') return 'Reintentar publicación a Producción';
   if (item.production_publish_status === 'external_pending') return 'Verificar existencia en NetSuite';
+  if (item.production_publish_status === 'external_mismatch') return 'Revisar conciliación contra NetSuite';
   if (item.production_publish_status === 'ready') return 'Publicar a Producción cuando corresponda';
   return null;
 }
