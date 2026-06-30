@@ -19,6 +19,16 @@ import {
 
 export const runtime = 'nodejs';
 
+function expectedNetSuiteType(recordType: string) {
+  if (recordType === 'vendorcredit') return 'VendCred';
+  return 'VendBill';
+}
+
+function normalizeAmount(value: unknown) {
+  const numeric = Number(String(value ?? '').replace(/[^\d.-]/g, ''));
+  return Number.isFinite(numeric) ? Math.abs(Math.round(numeric)) : null;
+}
+
 export async function POST(request: Request) {
   const session = await getSessionFromCookie();
   if (!session) {
@@ -83,6 +93,43 @@ export async function POST(request: Request) {
       const existing = await findExistingTransaction(built.tranId, built.entityId, 'production');
 
       if (existing) {
+        const appAmount = normalizeAmount(item.amount_total);
+        const nsAmount = normalizeAmount(existing.foreignTotal);
+        const expectedType = expectedNetSuiteType(built.recordType);
+        const exactMatch =
+          String(existing.tranId) === String(built.tranId)
+          && String(existing.entityId) === String(built.entityId)
+          && String(existing.type) === expectedType
+          && appAmount !== null
+          && nsAmount !== null
+          && appAmount === nsAmount;
+
+        if (!exactMatch) {
+          failedCount += 1;
+          const errorText = `Transacción existente no coincide: app ${built.recordType} monto ${appAmount ?? 'N/A'}, NetSuite ${existing.type} monto ${nsAmount ?? 'N/A'} id ${existing.id}`;
+          await recordProductionPublishItem({
+            runId,
+            caseId: item.id,
+            recordType: built.recordType,
+            tranId: built.tranId,
+            entityId: built.entityId,
+            status: 'failed',
+            netsuiteRecordId: existing.id,
+            errorText,
+            payload: built.payload,
+            result: existing,
+          });
+          await markProductionPublishResult({
+            caseId: item.id,
+            status: 'failed',
+            recordType: built.recordType,
+            recordId: null,
+            errorText,
+          });
+          results.push({ caseId: item.id, folio: built.tranId, status: 'failed', recordId: existing.id, error: errorText });
+          continue;
+        }
+
         const taxDetailsResult = await enforceZeroTaxDetailsForExemptDocument(
           built.recordType,
           existing.id,
