@@ -92,6 +92,16 @@ function monthKey(month: string, year: string) {
   return `${year}-${String(Number(month)).padStart(2, '0')}`;
 }
 
+function periodBounds(month: string, year: string) {
+  const monthIndex = Number(month) - 1;
+  const start = new Date(Date.UTC(Number(year), monthIndex, 1));
+  const end = new Date(Date.UTC(Number(year), monthIndex + 1, 1));
+  return {
+    startDate: start.toISOString().slice(0, 10),
+    endDate: end.toISOString().slice(0, 10),
+  };
+}
+
 function parseNumber(value: string | undefined) {
   if (!value) return 0;
   return Number(value.replace(/\./g, '').replace(',', '.')) || 0;
@@ -396,6 +406,23 @@ function main() {
   run('npx', ['tsx', 'scripts/generate-rcv-sii-summary.ts'], appProjectDir);
   run('npx', ['tsx', 'scripts/import-review-cases-from-builder-json.ts'], appProjectDir);
   run('npx', ['tsx', 'scripts/import-automatic-created-documents.ts', monthKey(month, year)], appProjectDir);
+  const period = periodBounds(month, year);
+  run(
+    'npx',
+    [
+      'tsx',
+      'scripts/reconcile-existing-production-documents.ts',
+      '--oc-managed',
+      '--apply',
+      '--start-date',
+      period.startDate,
+      '--end-date',
+      period.endDate,
+      '--limit',
+      '500',
+    ],
+    appProjectDir,
+  );
   deployDashboardData(month, year);
 
   console.log('\nFlujo operativo completo ejecutado:');
