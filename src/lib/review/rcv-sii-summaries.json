@@ -1,7 +1,7 @@
 {
   "2026-02": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202602.csv",
-    "generatedAt": "2026-06-30T10:02:25.606Z",
+    "generatedAt": "2026-07-01T03:47:26.063Z",
     "rows": [
       {
         "documentType": "33",
@@ -51,7 +51,7 @@
   },
   "2026-03": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202603.csv",
-    "generatedAt": "2026-06-30T10:02:25.623Z",
+    "generatedAt": "2026-07-01T03:47:26.082Z",
     "rows": [
       {
         "documentType": "33",
@@ -101,7 +101,7 @@
   },
   "2026-04": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202604.csv",
-    "generatedAt": "2026-06-30T10:02:25.625Z",
+    "generatedAt": "2026-07-01T03:47:26.084Z",
     "rows": [
       {
         "documentType": "33",
@@ -140,7 +140,7 @@
   },
   "2026-05": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202605.csv",
-    "generatedAt": "2026-06-30T10:02:25.627Z",
+    "generatedAt": "2026-07-01T03:47:26.086Z",
     "rows": [
       {
         "documentType": "33",
@@ -179,29 +179,29 @@
   },
   "2026-06": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202606.csv",
-    "generatedAt": "2026-06-30T10:02:25.629Z",
+    "generatedAt": "2026-07-01T03:47:26.088Z",
     "rows": [
       {
         "documentType": "33",
-        "totalDocuments": 101,
+        "totalDocuments": 106,
         "montoExento": 157658,
-        "montoNeto": 131320015,
-        "ivaRecuperable": 24950804,
+        "montoNeto": 132488735,
+        "ivaRecuperable": 25172861,
         "ivaUsoComun": 0,
         "ivaNoRecuperable": 0,
         "montoOtrosImpuestos": 140525,
-        "montoTotal": 156569002
+        "montoTotal": 157959779
       },
       {
         "documentType": "34",
-        "totalDocuments": 22,
-        "montoExento": 9610169,
+        "totalDocuments": 23,
+        "montoExento": 9645876,
         "montoNeto": 0,
         "ivaRecuperable": 0,
         "ivaUsoComun": 0,
         "ivaNoRecuperable": 0,
         "montoOtrosImpuestos": 0,
-        "montoTotal": 9610169
+        "montoTotal": 9645876
       },
       {
         "documentType": "56",
