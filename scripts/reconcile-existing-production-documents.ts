@@ -44,6 +44,19 @@ function numericId(...values: unknown[]) {
   return '';
 }
 
+function sqlString(value: string) {
+  return value.replace(/'/g, "''");
+}
+
+function normalizeRut(value: unknown) {
+  return String(value ?? '').toUpperCase().replace(/[^0-9K]/g, '');
+}
+
+function rutBody(value: unknown) {
+  const normalized = normalizeRut(value);
+  return normalized.length > 1 ? normalized.slice(0, -1) : normalized;
+}
+
 function buildOcManagedMonitorKey(item: Record<string, unknown>) {
   const payload = (item.payload_json ?? {}) as { context?: Record<string, unknown>; document?: Record<string, unknown> };
   const context = payload.context ?? {};
@@ -76,6 +89,42 @@ async function fetchTransactionHeader(id: string) {
   return body.items?.[0] ?? null;
 }
 
+async function findActiveVendorByRut(item: Record<string, unknown>) {
+  const body = rutBody(item.vendor_rut);
+  if (!body) return null;
+
+  const result = await requestNetSuite(
+    'POST',
+    '/services/rest/query/v1/suiteql',
+    {
+      q: `
+        SELECT id, entityid, altname, isinactive
+        FROM vendor
+        WHERE isinactive = 'F'
+          AND (
+            entityid LIKE '%${sqlString(body)}%'
+            OR altname LIKE '%${sqlString(body)}%'
+          )
+      `,
+    },
+    { prefer: 'transient' },
+    'production',
+  );
+
+  if (!result.success) {
+    throw new Error(`No se pudo buscar proveedor Produccion ${item.vendor_name ?? ''} (${item.vendor_rut ?? ''}): HTTP ${result.status}`);
+  }
+
+  const rows = ((result.body as { items?: Array<Record<string, unknown>> }).items ?? [])
+    .filter((row) => String(row.id ?? '').match(/^[0-9]+$/));
+
+  if (rows.length !== 1) {
+    return null;
+  }
+
+  return rows[0];
+}
+
 async function main() {
   loadEnvFile('.env.local');
   loadEnvFile('.env');
@@ -88,7 +137,7 @@ async function main() {
   const period = startDate && endDate ? { startDate, endDate } : undefined;
   const ocManagedOnly = process.argv.includes('--oc-managed');
 
-  const { listOcManagedProductionMonitor, listReadyForProduction, markProductionPublishResult } = await import('@/lib/db/queries');
+  const { listOcManagedProductionMonitor, listReadyForProduction, markProductionPublishResult, updateReviewCaseVendorEntity } = await import('@/lib/db/queries');
   const cases = ocManagedOnly
     ? await listOcManagedProductionMonitor(limit, period)
     : await listReadyForProduction(limit, period);
@@ -101,9 +150,18 @@ async function main() {
   for (const item of cases) {
     const built = ocManagedOnly ? buildOcManagedMonitorKey(item) : buildSandboxPayload(item);
     if (!built.entityId) {
-      missingEntity += 1;
-      console.log(`SIN_ENTITY ${item.vendor_name ?? 'Proveedor sin nombre'} F-${built.tranId}: no se puede cruzar automaticamente sin ID proveedor NetSuite`);
-      continue;
+      const vendor = ocManagedOnly ? await findActiveVendorByRut(item) : null;
+      if (vendor?.id) {
+        built.entityId = String(vendor.id);
+        console.log(`ENTITY_RESOLVED ${apply ? 'APPLY' : 'DRY'} ${item.vendor_name ?? 'Proveedor sin nombre'} (${item.vendor_rut ?? 'sin RUT'}) -> vendor ${vendor.id}`);
+        if (apply) {
+          await updateReviewCaseVendorEntity(String(item.id), String(vendor.id));
+        }
+      } else {
+        missingEntity += 1;
+        console.log(`SIN_ENTITY ${item.vendor_name ?? 'Proveedor sin nombre'} F-${built.tranId}: no se encontro un proveedor NetSuite activo unico por RUT`);
+        continue;
+      }
     }
     const existing = await findExistingTransaction(built.tranId, built.entityId, 'production');
 

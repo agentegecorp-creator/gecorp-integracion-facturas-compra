@@ -1176,6 +1176,44 @@ export async function markProductionPublishResult(params: {
   );
 }
 
+export async function updateReviewCaseVendorEntity(caseId: string, vendorEntityId: string) {
+  const result = await db.query(
+    `select payload_json
+     from review_cases
+     where id = $1
+     limit 1`,
+    [caseId],
+  );
+
+  const row = result.rows[0];
+  if (!row) {
+    throw new Error(`Caso ${caseId} no encontrado`);
+  }
+
+  const numericEntity = Number(vendorEntityId);
+  const entityValue = Number.isFinite(numericEntity) ? Math.trunc(numericEntity) : vendorEntityId;
+  const payload = { ...(row.payload_json ?? {}) };
+  const document = { ...((payload.document as Record<string, unknown> | undefined) ?? {}) };
+  const context = { ...((payload.context as Record<string, unknown> | undefined) ?? {}) };
+
+  context.entity = entityValue;
+  context.vendorIdProposed = entityValue;
+  context.vendorEntityResolvedAt = new Date().toISOString();
+  context.vendorEntityResolvedSource = 'NetSuite Produccion';
+  document.entityId = entityValue;
+  document.vendorId = entityValue;
+  payload.context = context;
+  payload.document = document;
+
+  await db.query(
+    `update review_cases
+     set payload_json = $2::jsonb,
+         updated_at = now()
+     where id = $1`,
+    [caseId, JSON.stringify(payload)],
+  );
+}
+
 export async function getReviewCaseById(id: string) {
   if (id.startsWith('auto-')) {
     return automaticDocumentsForPeriod().find((item) => item.id === id) ?? null;
