@@ -27,6 +27,7 @@ type BuilderCase = {
   document_type: number | null;
   document_type_label?: string | null;
   document_date: string | null;
+  operational_date?: string | null;
   reception_date: string | null;
   accounting_date_proposed?: string | null;
   due_date?: string | null;
@@ -142,6 +143,7 @@ async function main() {
     const exists = await db.query(`select id from review_cases where source_document_id = $1 limit 1`, [sourceDocumentId]);
     const approvalGroup = proposedApprovalGroup(item);
     const paymentDate = safePaymentDate(item);
+    const operationalDate = normalizeDateOnly(item.operational_date ?? item.accounting_date_proposed) ?? item.document_date;
 
     const payloadJson = {
       source: 'builder review_cases.json',
@@ -155,6 +157,7 @@ async function main() {
         documentType: item.document_type ? String(item.document_type) : null,
         documentTypeLabel: item.document_type_label,
         issueDate: item.document_date,
+        operationalDate,
         receptionDate: item.reception_date,
         accountingDateProposed: item.accounting_date_proposed,
         dueDate: item.due_date,
@@ -235,7 +238,7 @@ async function main() {
           item.supplier_rut,
           item.folio,
           item.document_type ? String(item.document_type) : null,
-          item.document_date,
+          operationalDate,
           item.reception_date,
           item.amount_net,
           item.amount_vat,
@@ -274,11 +277,11 @@ async function main() {
         'builder_april_2026',
         sourceDocumentId,
         item.supplier_name,
-        item.supplier_rut,
-        item.folio,
-        item.document_type ? String(item.document_type) : null,
-        item.document_date,
-        item.reception_date,
+          item.supplier_rut,
+          item.folio,
+          item.document_type ? String(item.document_type) : null,
+          operationalDate,
+          item.reception_date,
         item.amount_net,
         item.amount_vat,
         item.amount_total,

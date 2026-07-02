@@ -233,6 +233,7 @@ function updateAutomaticCreatedDocuments(month: string, year: string, runDir: st
     const vendorName = String(siiRow.vendorName ?? item.proveedor ?? '');
     const vendorRut = String(siiRow.vendorRut ?? item.rut_proveedor ?? item.rut ?? entityId ?? '').trim();
     const ocManaged = isOcManagedVendorRut(vendorRut);
+    const operationalDate = String(dryRunData.tranDate ?? siiRow.issueDate ?? '').slice(0, 10) || null;
 
     return {
       id: `auto-${key}-${documentType}-${folio}-${vendorRut || entityId || 'sin-rut'}`,
@@ -242,7 +243,7 @@ function updateAutomaticCreatedDocuments(month: string, year: string, runDir: st
       vendor_rut: vendorRut || null,
       folio,
       document_type: documentType,
-      issue_date: siiRow.issueDate ?? null,
+      issue_date: operationalDate,
       reception_date: siiRow.receptionDate ?? null,
       bucket: 'approved_auto',
       status: 'resolved',
@@ -256,6 +257,8 @@ function updateAutomaticCreatedDocuments(month: string, year: string, runDir: st
         document: {
           documentType,
           documentTypeLabel: documentType === '61' ? 'Nota de Crédito Electrónica (61)' : `Documento SII ${documentType}`,
+          issueDate: siiRow.issueDate ?? null,
+          operationalDate,
           amountExempt: siiRow.amountExempt ?? 0,
           amountNet: siiRow.amountNet ?? 0,
           amountVat: siiRow.amountVat ?? 0,
@@ -279,7 +282,7 @@ function updateAutomaticCreatedDocuments(month: string, year: string, runDir: st
           departmentIdProposed: departmentId,
           requesterIdProposed: requesterId,
           documentTypeNsProposed: documentTypeNs,
-          accountingDateProposed: dryRunData.tranDate ?? siiRow.issueDate ?? null,
+          accountingDateProposed: operationalDate,
           dueDate: dryRunData.dueDate ?? siiRow.issueDate ?? null,
           sourceRun,
           automaticCreationMode: 'Pipeline automático; pendiente de Producción',
