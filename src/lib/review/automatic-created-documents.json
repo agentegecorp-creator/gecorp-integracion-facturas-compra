@@ -6414,8 +6414,8 @@
   "2026-07": [
     {
       "id": "auto-2026-07-33-167573-96357000-7",
-      "sourceRun": "runs/sii_to_pipeline/20260702-100626",
-      "generatedAt": "2026-07-02T10:06:48.625777",
+      "sourceRun": "runs/sii_to_pipeline/20260702-103703",
+      "generatedAt": "2026-07-02T10:37:26.564474",
       "vendor_name": "COMUNICACIONES BERMANN SPA",
       "vendor_rut": "96357000-7",
       "folio": "167573",
@@ -6432,6 +6432,8 @@
         "document": {
           "documentType": "33",
           "documentTypeLabel": "Documento SII 33",
+          "issueDate": "2026-07-01",
+          "operationalDate": "2026-07-01",
           "amountExempt": "0",
           "amountNet": "26535",
           "amountVat": "5042",
@@ -6457,15 +6459,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-07-01",
           "dueDate": "2026-07-16",
-          "sourceRun": "runs/sii_to_pipeline/20260702-100626",
+          "sourceRun": "runs/sii_to_pipeline/20260702-103703",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-07-33-67366-76178665-2",
-      "sourceRun": "runs/sii_to_pipeline/20260702-100626",
-      "generatedAt": "2026-07-02T10:06:48.625777",
+      "sourceRun": "runs/sii_to_pipeline/20260702-103703",
+      "generatedAt": "2026-07-02T10:37:26.564474",
       "vendor_name": "Megacentro Chile SpA",
       "vendor_rut": "76178665-2",
       "folio": "67366",
@@ -6482,6 +6484,8 @@
         "document": {
           "documentType": "33",
           "documentTypeLabel": "Documento SII 33",
+          "issueDate": "2026-07-01",
+          "operationalDate": "2026-07-01",
           "amountExempt": "0",
           "amountNet": "1832955",
           "amountVat": "348261",
@@ -6507,15 +6511,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-07-01",
           "dueDate": "2026-07-01",
-          "sourceRun": "runs/sii_to_pipeline/20260702-100626",
+          "sourceRun": "runs/sii_to_pipeline/20260702-103703",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-07-34-277-78318440-0",
-      "sourceRun": "runs/sii_to_pipeline/20260702-100626",
-      "generatedAt": "2026-07-02T10:06:48.625777",
+      "sourceRun": "runs/sii_to_pipeline/20260702-103703",
+      "generatedAt": "2026-07-02T10:37:26.564474",
       "vendor_name": "SOC COMERCIAL LOS CANELOS LIMITADA",
       "vendor_rut": "78318440-0",
       "folio": "277",
@@ -6532,6 +6536,8 @@
         "document": {
           "documentType": "34",
           "documentTypeLabel": "Documento SII 34",
+          "issueDate": "2026-07-01",
+          "operationalDate": "2026-07-01",
           "amountExempt": "1000000",
           "amountNet": "0",
           "amountVat": "0",
@@ -6557,15 +6563,15 @@
           "documentTypeNsProposed": "104",
           "accountingDateProposed": "2026-07-01",
           "dueDate": "2026-07-01",
-          "sourceRun": "runs/sii_to_pipeline/20260702-100626",
+          "sourceRun": "runs/sii_to_pipeline/20260702-103703",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-07-61-1089-91942000-6",
-      "sourceRun": "runs/sii_to_pipeline/20260702-100626",
-      "generatedAt": "2026-07-02T10:06:48.625777",
+      "sourceRun": "runs/sii_to_pipeline/20260702-103703",
+      "generatedAt": "2026-07-02T10:37:26.564474",
       "vendor_name": "MALTEXCO S.A.",
       "vendor_rut": "91942000-6",
       "folio": "1089",
@@ -6582,6 +6588,8 @@
         "document": {
           "documentType": "61",
           "documentTypeLabel": "Nota de Crédito Electrónica (61)",
+          "issueDate": "2026-06-30",
+          "operationalDate": "2026-06-30",
           "amountExempt": "0",
           "amountNet": "3835000",
           "amountVat": "728650",
@@ -6607,7 +6615,7 @@
           "documentTypeNsProposed": "107",
           "accountingDateProposed": "2026-06-30",
           "dueDate": "2026-08-29",
-          "sourceRun": "runs/sii_to_pipeline/20260702-100626",
+          "sourceRun": "runs/sii_to_pipeline/20260702-103703",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
