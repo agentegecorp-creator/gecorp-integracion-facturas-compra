@@ -22,5 +22,17 @@
     "rejectedSii": 11,
     "accountingErrors": 0,
     "revisionOcReferential": 29
+  },
+  "2026-07": {
+    "sourceRun": "runs/sii_to_pipeline/20260702-100626",
+    "generatedAt": "2026-07-02T10:06:48.625777",
+    "mode": "dry-run / pendiente de publicación manual a Producción",
+    "createdAutomatically": 4,
+    "duplicates": 0,
+    "pendingApproval": 0,
+    "newVendors": 5,
+    "rejectedSii": 2,
+    "accountingErrors": 0,
+    "revisionOcReferential": 3
   }
 }
