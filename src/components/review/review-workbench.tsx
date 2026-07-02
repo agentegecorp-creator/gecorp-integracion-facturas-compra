@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import { ReviewDecisionForm } from '@/components/review/review-decision-form';
 import { estadoLabel, etapaLabel, fieldLabel } from '@/lib/review/labels';
-import { approvalGroupValueFromIds } from '@/lib/review/catalogs';
+import { accountOptions, approvalGroupValueFromIds, optionLabel } from '@/lib/review/catalogs';
 
 type ReviewItem = {
   id: string;
@@ -313,6 +313,10 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
   const invoiceNote = document?.invoiceNote || context?.invoiceNote;
   const invoiceDetail = document?.invoiceDetail || context?.invoiceDetail;
   const documentMemo = invoiceDetail || document?.serviceDescription || document?.memo || document?.description || document?.summary;
+  const accountId = document?.accountId || context?.accountIdProposed || context?.referenciaAccount;
+  const accountLabel = context?.accountCorrecta
+    || context?.accountSuggestedB2
+    || (accountId ? optionLabel(accountOptions, String(accountId)) : null);
   const proposedApprovalGroup = context?.approvalGroup
     || context?.approverGroup
     || approvalGroupValueFromIds(context?.approverIdsProposed);
@@ -530,7 +534,7 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                       </div>
                       <div>
                         <p className="text-xs uppercase tracking-wide text-violet-700">Cuenta contable</p>
-                        <p className="mt-1 text-sm font-medium text-slate-900">{context.accountCorrecta || context.accountSuggestedB2 || 'Pendiente de definir'}</p>
+                        <p className="mt-1 text-sm font-medium text-slate-900">{accountLabel || 'Pendiente de definir'}</p>
                       </div>
                       <div>
                         <p className="text-xs uppercase tracking-wide text-violet-700">Categoría Gasto</p>
@@ -674,10 +678,10 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                     <p className="mt-1 font-medium text-slate-900">{context.terminosNs}</p>
                   </div>
                 ) : null}
-                {context.accountCorrecta ? (
+                {accountLabel ? (
                   <div className="rounded-2xl bg-slate-50 p-4">
                     <p className="text-sm text-slate-500">{fieldLabel('accountCorrecta')}</p>
-                    <p className="mt-1 font-medium text-slate-900">{context.accountCorrecta}</p>
+                    <p className="mt-1 font-medium text-slate-900">{accountLabel}</p>
                   </div>
                 ) : null}
                 {context.ocPolicyCorrecta || context.categoriaOc ? (
