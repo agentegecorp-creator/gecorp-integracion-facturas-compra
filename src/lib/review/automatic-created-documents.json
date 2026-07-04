@@ -6414,8 +6414,8 @@
   "2026-07": [
     {
       "id": "auto-2026-07-33-167573-96357000-7",
-      "sourceRun": "runs/sii_to_pipeline/20260703-060244",
-      "generatedAt": "2026-07-03T06:03:05.796240",
+      "sourceRun": "runs/sii_to_pipeline/20260703-234753",
+      "generatedAt": "2026-07-03T23:48:15.510390",
       "vendor_name": "COMUNICACIONES BERMANN SPA",
       "vendor_rut": "96357000-7",
       "folio": "167573",
@@ -6459,15 +6459,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-07-01",
           "dueDate": "2026-07-16",
-          "sourceRun": "runs/sii_to_pipeline/20260703-060244",
+          "sourceRun": "runs/sii_to_pipeline/20260703-234753",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-07-33-67366-76178665-2",
-      "sourceRun": "runs/sii_to_pipeline/20260703-060244",
-      "generatedAt": "2026-07-03T06:03:05.796240",
+      "sourceRun": "runs/sii_to_pipeline/20260703-234753",
+      "generatedAt": "2026-07-03T23:48:15.510390",
       "vendor_name": "Megacentro Chile SpA",
       "vendor_rut": "76178665-2",
       "folio": "67366",
@@ -6511,15 +6511,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-07-01",
           "dueDate": "2026-07-01",
-          "sourceRun": "runs/sii_to_pipeline/20260703-060244",
+          "sourceRun": "runs/sii_to_pipeline/20260703-234753",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-07-33-277499-76207726-4",
-      "sourceRun": "runs/sii_to_pipeline/20260703-060244",
-      "generatedAt": "2026-07-03T06:03:05.796240",
+      "sourceRun": "runs/sii_to_pipeline/20260703-234753",
+      "generatedAt": "2026-07-03T23:48:15.510390",
       "vendor_name": "TRANSPORTES SUSAN TALADRIZ EIRL",
       "vendor_rut": "76207726-4",
       "folio": "277499",
@@ -6563,15 +6563,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-07-01",
           "dueDate": "2026-07-31",
-          "sourceRun": "runs/sii_to_pipeline/20260703-060244",
+          "sourceRun": "runs/sii_to_pipeline/20260703-234753",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-07-33-67911-76178665-2",
-      "sourceRun": "runs/sii_to_pipeline/20260703-060244",
-      "generatedAt": "2026-07-03T06:03:05.796240",
+      "sourceRun": "runs/sii_to_pipeline/20260703-234753",
+      "generatedAt": "2026-07-03T23:48:15.510390",
       "vendor_name": "Megacentro Chile SpA",
       "vendor_rut": "76178665-2",
       "folio": "67911",
@@ -6615,15 +6615,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-07-02",
           "dueDate": "2026-07-02",
-          "sourceRun": "runs/sii_to_pipeline/20260703-060244",
+          "sourceRun": "runs/sii_to_pipeline/20260703-234753",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-07-33-1371-76369311-2",
-      "sourceRun": "runs/sii_to_pipeline/20260703-060244",
-      "generatedAt": "2026-07-03T06:03:05.796240",
+      "sourceRun": "runs/sii_to_pipeline/20260703-234753",
+      "generatedAt": "2026-07-03T23:48:15.510390",
       "vendor_name": "EL GROWLER SPA",
       "vendor_rut": "76369311-2",
       "folio": "1371",
@@ -6667,15 +6667,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-07-02",
           "dueDate": "2026-07-02",
-          "sourceRun": "runs/sii_to_pipeline/20260703-060244",
+          "sourceRun": "runs/sii_to_pipeline/20260703-234753",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-07-33-73564475-76124890-1",
-      "sourceRun": "runs/sii_to_pipeline/20260703-060244",
-      "generatedAt": "2026-07-03T06:03:05.796240",
+      "sourceRun": "runs/sii_to_pipeline/20260703-234753",
+      "generatedAt": "2026-07-03T23:48:15.510390",
       "vendor_name": "Telefónica Móviles Chile S.A.",
       "vendor_rut": "76124890-1",
       "folio": "73564475",
@@ -6719,15 +6719,119 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-07-01",
           "dueDate": "2026-07-31",
-          "sourceRun": "runs/sii_to_pipeline/20260703-060244",
+          "sourceRun": "runs/sii_to_pipeline/20260703-234753",
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-07-33-4176767-85896100-9",
+      "sourceRun": "runs/sii_to_pipeline/20260703-234753",
+      "generatedAt": "2026-07-03T23:48:15.510390",
+      "vendor_name": "SERVICIOS EQUIFAX CHILE LIMITADA",
+      "vendor_rut": "85896100-9",
+      "folio": "4176767",
+      "document_type": "33",
+      "issue_date": "2026-07-01",
+      "reception_date": "2026-07-03",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "195277",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
+      "sandbox_publish_status": "ready",
+      "production_publish_status": "ready",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "issueDate": "2026-07-01",
+          "operationalDate": "2026-07-01",
+          "amountExempt": "0",
+          "amountNet": "164098",
+          "amountVat": "31179",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "195277",
+          "purchaseOrderReference": null,
+          "accountId": "701",
+          "locationId": "5",
+          "classId": null,
+          "departmentId": null,
+          "memo": "RCV F-4176767 SERVICIOS EQUIFAX CHILE LIMITADA"
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "simulatedNsId": "STUB-VENDORBILL-001",
+          "vendorIdProposed": "3278",
+          "accountIdProposed": "701",
+          "locationIdProposed": "5",
+          "classIdProposed": null,
+          "departmentIdProposed": null,
+          "requesterIdProposed": "731",
+          "documentTypeNsProposed": "2",
+          "accountingDateProposed": "2026-07-01",
+          "dueDate": "2026-07-31",
+          "sourceRun": "runs/sii_to_pipeline/20260703-234753",
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-07-33-3331-76871367-7",
+      "sourceRun": "runs/sii_to_pipeline/20260703-234753",
+      "generatedAt": "2026-07-03T23:48:15.510390",
+      "vendor_name": "MI FIBRA SPA",
+      "vendor_rut": "76871367-7",
+      "folio": "3331",
+      "document_type": "33",
+      "issue_date": "2026-07-03",
+      "reception_date": "2026-07-03",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "23990",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
+      "sandbox_publish_status": "ready",
+      "production_publish_status": "ready",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "issueDate": "2026-07-03",
+          "operationalDate": "2026-07-03",
+          "amountExempt": "0",
+          "amountNet": "20160",
+          "amountVat": "3830",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "23990",
+          "purchaseOrderReference": null,
+          "accountId": "715",
+          "locationId": "5",
+          "classId": "1",
+          "departmentId": "2",
+          "memo": "RCV F-3331 MI FIBRA SPA"
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "simulatedNsId": "STUB-VENDORBILL-001",
+          "vendorIdProposed": "4890",
+          "accountIdProposed": "715",
+          "locationIdProposed": "5",
+          "classIdProposed": "1",
+          "departmentIdProposed": "2",
+          "requesterIdProposed": null,
+          "documentTypeNsProposed": "2",
+          "accountingDateProposed": "2026-07-03",
+          "dueDate": "2026-07-03",
+          "sourceRun": "runs/sii_to_pipeline/20260703-234753",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-07-34-277-78318440-0",
-      "sourceRun": "runs/sii_to_pipeline/20260703-060244",
-      "generatedAt": "2026-07-03T06:03:05.796240",
+      "sourceRun": "runs/sii_to_pipeline/20260703-234753",
+      "generatedAt": "2026-07-03T23:48:15.510390",
       "vendor_name": "SOC COMERCIAL LOS CANELOS LIMITADA",
       "vendor_rut": "78318440-0",
       "folio": "277",
@@ -6771,15 +6875,15 @@
           "documentTypeNsProposed": "104",
           "accountingDateProposed": "2026-07-01",
           "dueDate": "2026-07-01",
-          "sourceRun": "runs/sii_to_pipeline/20260703-060244",
+          "sourceRun": "runs/sii_to_pipeline/20260703-234753",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-07-61-1089-91942000-6",
-      "sourceRun": "runs/sii_to_pipeline/20260703-060244",
-      "generatedAt": "2026-07-03T06:03:05.796240",
+      "sourceRun": "runs/sii_to_pipeline/20260703-234753",
+      "generatedAt": "2026-07-03T23:48:15.510390",
       "vendor_name": "MALTEXCO S.A.",
       "vendor_rut": "91942000-6",
       "folio": "1089",
@@ -6823,15 +6927,15 @@
           "documentTypeNsProposed": "107",
           "accountingDateProposed": "2026-07-01",
           "dueDate": "2026-08-29",
-          "sourceRun": "runs/sii_to_pipeline/20260703-060244",
+          "sourceRun": "runs/sii_to_pipeline/20260703-234753",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-07-61-6203-76085857-9",
-      "sourceRun": "runs/sii_to_pipeline/20260703-060244",
-      "generatedAt": "2026-07-03T06:03:05.796240",
+      "sourceRun": "runs/sii_to_pipeline/20260703-234753",
+      "generatedAt": "2026-07-03T23:48:15.510390",
       "vendor_name": "GLOBE EXPRESS SERVICES CHILE SPA",
       "vendor_rut": "76085857-9",
       "folio": "6203",
@@ -6875,7 +6979,7 @@
           "documentTypeNsProposed": "107",
           "accountingDateProposed": "2026-07-02",
           "dueDate": "2026-08-01",
-          "sourceRun": "runs/sii_to_pipeline/20260703-060244",
+          "sourceRun": "runs/sii_to_pipeline/20260703-234753",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
