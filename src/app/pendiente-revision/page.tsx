@@ -6,6 +6,9 @@ import { ReviewWorkbench } from '@/components/review/review-workbench';
 import { ProductionPublishPanel } from '@/components/review/production-publish-panel';
 import { hasNetSuiteProductionConfig } from '@/lib/netsuite/sandbox-publisher';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 type ReviewPeriod =
   | {
       key: 'current' | 'previous';

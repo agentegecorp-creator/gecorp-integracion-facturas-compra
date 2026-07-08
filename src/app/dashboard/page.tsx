@@ -3,6 +3,9 @@ import { requireSession } from '@/lib/auth/guards';
 import { getDashboardSummary, listReviewCases } from '@/lib/db/queries';
 import { estadoLabel, etapaLabel } from '@/lib/review/labels';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 function StatCard({ label, value, help, href }: { label: string; value: string | number; help: string; href?: string }) {
   const className = "block rounded-2xl bg-indigo-50 p-4 shadow-sm ring-1 ring-indigo-100 transition hover:bg-indigo-100";
   const content = (

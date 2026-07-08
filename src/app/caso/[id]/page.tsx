@@ -5,6 +5,9 @@ import { ReviewDecisionForm } from '@/components/review/review-decision-form';
 import { decisionLabel, estadoLabel, etapaLabel } from '@/lib/review/labels';
 import { approvalGroupValueFromIds } from '@/lib/review/catalogs';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 function formatDateTime(value: string | null | undefined) {
   if (!value) return '-';
   const date = new Date(value);
