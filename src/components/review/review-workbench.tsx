@@ -122,6 +122,11 @@ function bucketLabel(bucket: string) {
   return etapaLabel(bucket);
 }
 
+function stageLabel(item: Pick<ReviewItem, 'bucket' | 'production_publish_status'>) {
+  if (item.production_publish_status === 'published') return 'Publicado en Producción';
+  return bucketLabel(item.bucket);
+}
+
 function bucketChipClass(bucket: string) {
   const styles: Record<string, string> = {
     pending_review: 'bg-slate-100 text-slate-700 ring-slate-200',
@@ -132,6 +137,11 @@ function bucketChipClass(bucket: string) {
   };
 
   return styles[bucket] || 'bg-slate-100 text-slate-700 ring-slate-200';
+}
+
+function stageChipClass(item: Pick<ReviewItem, 'bucket' | 'production_publish_status'>) {
+  if (item.production_publish_status === 'published') return productionPublishChipClass('published');
+  return bucketChipClass(item.bucket);
 }
 
 function formatCurrency(value: string | number | null | undefined) {
@@ -190,12 +200,22 @@ function priorityLabel(bucket: string) {
   return 'Normal';
 }
 
+function priorityDisplay(item: Pick<ReviewItem, 'bucket' | 'production_publish_status'>) {
+  if (item.production_publish_status === 'published') return 'Prioridad Cerrada';
+  return `Prioridad ${priorityLabel(item.bucket)}`;
+}
+
 function priorityChipClass(bucket: string) {
   if (bucket === 'error_real') return 'bg-rose-50 text-rose-700 ring-rose-200';
   if (bucket === 'approved_auto') return 'bg-cyan-50 text-cyan-700 ring-cyan-200';
   if (bucket === 'rejected_sii') return 'bg-orange-50 text-orange-700 ring-orange-200';
   if (bucket === 'revision_oc') return 'bg-amber-50 text-amber-700 ring-amber-200';
   return 'bg-slate-100 text-slate-700 ring-slate-200';
+}
+
+function priorityDisplayChipClass(item: Pick<ReviewItem, 'bucket' | 'production_publish_status'>) {
+  if (item.production_publish_status === 'published') return productionPublishChipClass('published');
+  return priorityChipClass(item.bucket);
 }
 
 function productionPublishLabel(status: string | null | undefined) {
@@ -233,6 +253,12 @@ function pipelineModeLabel(mode: string | null | undefined) {
 }
 
 function displaySummaryText(item: ReviewItem) {
+  if (item.production_publish_status === 'published') {
+    return item.production_record_id
+      ? `Publicado en Producción #${item.production_record_id}.`
+      : 'Publicado en Producción.';
+  }
+
   if (item.bucket === 'approved_auto' && item.summary_text?.includes('Sandbox-STUB')) {
     return item.summary_text.replace(' (Sandbox-STUB)', '; pendiente de publicación a Producción');
   }
@@ -242,13 +268,14 @@ function displaySummaryText(item: ReviewItem) {
     || 'Sin resumen.';
 }
 
-function nextActionLabel(bucket: string) {
-  if (bucket === 'approved_auto') {
+function nextActionLabel(item: Pick<ReviewItem, 'bucket' | 'production_publish_status'>) {
+  if (item.production_publish_status === 'published') return 'Sin acción pendiente';
+  if (item.bucket === 'approved_auto') {
     return 'Gestionar publicación a Producción';
   }
-  if (bucket === 'error_real') return 'Definir corrección contable';
-  if (bucket === 'rejected_sii') return 'Validar contra OC real';
-  if (bucket === 'revision_oc') return 'Validar contra OC real';
+  if (item.bucket === 'error_real') return 'Definir corrección contable';
+  if (item.bucket === 'rejected_sii') return 'Validar contra OC real';
+  if (item.bucket === 'revision_oc') return 'Validar contra OC real';
   return 'Revisar y decidir';
 }
 
@@ -360,11 +387,11 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                     <div className={`inline-flex rounded-full px-2 py-0.5 ring-1 ${statusChipClass(item.status)}`}>
                       {statusLabel(item.status)}
                     </div>
-                    <div className={`mt-1 inline-flex rounded-full px-2 py-0.5 ring-1 ${bucketChipClass(item.bucket)}`}>
-                      {bucketLabel(item.bucket)}
+                    <div className={`mt-1 inline-flex rounded-full px-2 py-0.5 ring-1 ${stageChipClass(item)}`}>
+                      {stageLabel(item)}
                     </div>
-                    <div className={`mt-1 inline-flex rounded-full px-2 py-0.5 ring-1 ${priorityChipClass(item.bucket)}`}>
-                      Prioridad {priorityLabel(item.bucket)}
+                    <div className={`mt-1 inline-flex rounded-full px-2 py-0.5 ring-1 ${priorityDisplayChipClass(item)}`}>
+                      {priorityDisplay(item)}
                     </div>
                     <div className={`mt-1 inline-flex rounded-full px-2 py-0.5 ring-1 ${productionPublishChipClass(item.production_publish_status)}`}>
                       {productionPublishDisplay(item)}
@@ -372,7 +399,7 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                   </div>
                 </div>
                 <p className="mt-3 text-sm text-slate-600">{displaySummaryText(item)}</p>
-                <p className="mt-2 text-xs font-medium text-slate-500">Siguiente acción sugerida: {nextActionLabel(item.bucket)}</p>
+                <p className="mt-2 text-xs font-medium text-slate-500">Siguiente acción sugerida: {nextActionLabel(item)}</p>
                 {nextProductionActionLabel(item) ? (
                   <p className="mt-1 text-xs font-medium text-slate-500">Producción: {nextProductionActionLabel(item)}</p>
                 ) : null}
@@ -398,11 +425,11 @@ export function ReviewWorkbench({ items }: { items: ReviewItem[] }) {
                   <span className={`inline-flex rounded-full px-2.5 py-1 text-sm font-medium ring-1 ${statusChipClass(selected.status)}`}>
                     {statusLabel(selected.status)}
                   </span>
-                  <span className={`inline-flex rounded-full px-2.5 py-1 text-sm font-medium ring-1 ${bucketChipClass(selected.bucket)}`}>
-                    {bucketLabel(selected.bucket)}
+                  <span className={`inline-flex rounded-full px-2.5 py-1 text-sm font-medium ring-1 ${stageChipClass(selected)}`}>
+                    {stageLabel(selected)}
                   </span>
-                  <span className={`inline-flex rounded-full px-2.5 py-1 text-sm font-medium ring-1 ${priorityChipClass(selected.bucket)}`}>
-                    Prioridad {priorityLabel(selected.bucket)}
+                  <span className={`inline-flex rounded-full px-2.5 py-1 text-sm font-medium ring-1 ${priorityDisplayChipClass(selected)}`}>
+                    {priorityDisplay(selected)}
                   </span>
                   <span className={`inline-flex rounded-full px-2.5 py-1 text-sm font-medium ring-1 ${productionPublishChipClass(selected.production_publish_status)}`}>
                     {productionPublishDisplay(selected)}

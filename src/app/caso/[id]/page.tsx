@@ -25,6 +25,20 @@ function formValue(value: unknown) {
   return undefined;
 }
 
+function etapaOperativaLabel(item: { bucket: string; production_publish_status?: string | null }) {
+  if (item.production_publish_status === 'published') return 'Publicado en Producción';
+  return etapaLabel(item.bucket);
+}
+
+function resumenOperativo(item: { summary_text?: string | null; production_publish_status?: string | null; production_record_id?: string | null }) {
+  if (item.production_publish_status === 'published') {
+    return item.production_record_id
+      ? `Publicado en Producción #${item.production_record_id}`
+      : 'Publicado en Producción';
+  }
+  return item.summary_text || '-';
+}
+
 type CaseDetailPageProps = {
   params: Promise<{
     id: string;
@@ -77,7 +91,7 @@ export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
                   <p className="mt-1 text-sm text-slate-600">{item.vendor_rut || 'RUT no informado'} · Folio {item.folio || '-'}</p>
                 </div>
                 <div className="rounded-2xl bg-slate-50 px-4 py-3 text-sm text-slate-700 ring-1 ring-slate-200">
-                  Etapa del caso: <strong>{etapaLabel(item.bucket)}</strong>
+                  Etapa del caso: <strong>{etapaOperativaLabel(item)}</strong>
                 </div>
               </div>
 
@@ -100,7 +114,7 @@ export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
                 </div>
                 <div className="rounded-2xl bg-slate-50 p-4 md:col-span-2">
                   <p className="text-sm text-slate-500">Resumen</p>
-                  <p className="mt-1 font-medium text-slate-900">{item.summary_text || '-'}</p>
+                  <p className="mt-1 font-medium text-slate-900">{resumenOperativo(item)}</p>
                 </div>
               </div>
             </div>

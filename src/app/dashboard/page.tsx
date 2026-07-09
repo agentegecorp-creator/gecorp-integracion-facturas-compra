@@ -33,6 +33,20 @@ function formatCurrency(value: number) {
   }).format(value || 0);
 }
 
+function etapaOperativaLabel(item: { bucket: string; production_publish_status?: string | null }) {
+  if (item.production_publish_status === 'published') return 'Publicado en Producción';
+  return etapaLabel(item.bucket);
+}
+
+function resumenOperativo(item: { summary_text?: string | null; production_publish_status?: string | null; production_record_id?: string | null }) {
+  if (item.production_publish_status === 'published') {
+    return item.production_record_id
+      ? `Publicado en Producción #${item.production_record_id}`
+      : 'Publicado en Producción';
+  }
+  return item.summary_text || '-';
+}
+
 function formatPeriodLabel(date: Date) {
   return new Intl.DateTimeFormat('es-CL', { month: 'long', year: 'numeric' }).format(date);
 }
@@ -333,9 +347,9 @@ export default async function DashboardPage({
                   <tr key={item.id} className="hover:bg-slate-50">
                     <td className="px-4 py-3">{item.vendor_name || '-'}</td>
                     <td className="px-4 py-3">{item.folio || '-'}</td>
-                    <td className="px-4 py-3">{etapaLabel(item.bucket)}</td>
+                    <td className="px-4 py-3">{etapaOperativaLabel(item)}</td>
                     <td className="px-4 py-3">{estadoLabel(item.status)}</td>
-                    <td className="px-4 py-3 text-xs text-slate-600">{item.summary_text || '-'}</td>
+                    <td className="px-4 py-3 text-xs text-slate-600">{resumenOperativo(item)}</td>
                   </tr>
                 ))}
               </tbody>
