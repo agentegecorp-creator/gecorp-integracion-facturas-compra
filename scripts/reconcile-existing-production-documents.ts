@@ -36,6 +36,13 @@ function normalizeAmount(value: unknown) {
   return Number.isFinite(numeric) ? Math.abs(Math.round(numeric)) : null;
 }
 
+const NATIONAL_CURRENCY_AMOUNT_TOLERANCE_CLP = 5;
+
+function amountsMatch(appAmount: number | null, nsAmount: number | null) {
+  if (appAmount === null || nsAmount === null) return false;
+  return Math.abs(appAmount - nsAmount) <= NATIONAL_CURRENCY_AMOUNT_TOLERANCE_CLP;
+}
+
 function numericId(...values: unknown[]) {
   for (const value of values) {
     const normalized = String(value ?? '').replace(/[^0-9]/g, '');
@@ -75,7 +82,7 @@ async function fetchTransactionHeader(id: string) {
     'POST',
     '/services/rest/query/v1/suiteql',
     {
-      q: `SELECT id, type, tranId, entity, foreigntotal FROM transaction WHERE id = ${Number(id)}`,
+      q: `SELECT id, type, tranId, entity, total, foreigntotal, currency, exchangerate FROM transaction WHERE id = ${Number(id)}`,
     },
     { prefer: 'transient' },
     'production',
@@ -173,21 +180,19 @@ async function main() {
 
     const header = await fetchTransactionHeader(existing.id);
     const appAmount = normalizeAmount(item.amount_total);
-    const nsAmount = normalizeAmount(header?.foreigntotal);
+    const nsAmount = normalizeAmount(header?.total);
     const expectedType = expectedNetSuiteType(built.recordType);
     const exact =
       header &&
       String(header.tranid ?? header.tranId) === String(built.tranId) &&
       String(header.entity) === String(built.entityId) &&
       String(header.type) === expectedType &&
-      appAmount !== null &&
-      nsAmount !== null &&
-      appAmount === nsAmount;
+      amountsMatch(appAmount, nsAmount);
 
     if (!exact) {
       mismatches += 1;
       console.log(
-        `MISMATCH ${item.vendor_name ?? 'Proveedor sin nombre'} F-${built.tranId}: app ${built.recordType} ${appAmount}, NS ${header?.type} ${nsAmount} id ${existing.id}`,
+        `MISMATCH ${item.vendor_name ?? 'Proveedor sin nombre'} F-${built.tranId}: app ${built.recordType} ${appAmount}, NS ${header?.type} nacional ${nsAmount} foreign ${header?.foreigntotal ?? 'N/A'} id ${existing.id}`,
       );
       if (apply && ocManagedOnly) {
         await markProductionPublishResult({
@@ -195,7 +200,7 @@ async function main() {
           status: 'external_mismatch',
           recordType: built.recordType,
           recordId: existing.id,
-          errorText: `Existe en NetSuite Producción pero requiere conciliación: app ${built.recordType} monto ${appAmount ?? 'N/A'}, NetSuite ${header?.type} monto ${nsAmount ?? 'N/A'} id ${existing.id}`,
+          errorText: `Existe en NetSuite Producción pero requiere conciliación: app ${built.recordType} monto ${appAmount ?? 'N/A'}, NetSuite ${header?.type} monto nacional ${nsAmount ?? 'N/A'} foreign ${header?.foreigntotal ?? 'N/A'} id ${existing.id}`,
         });
       }
       continue;
