@@ -30,6 +30,13 @@ function normalizeAmount(value: unknown) {
   return Number.isFinite(numeric) ? Math.abs(Math.round(numeric)) : null;
 }
 
+const NATIONAL_CURRENCY_AMOUNT_TOLERANCE_CLP = 5;
+
+function amountsMatch(appAmount: number | null, nsAmount: number | null) {
+  if (appAmount === null || nsAmount === null) return false;
+  return Math.abs(appAmount - nsAmount) <= NATIONAL_CURRENCY_AMOUNT_TOLERANCE_CLP;
+}
+
 export async function POST(request: Request) {
   const session = await getSessionFromCookie();
   if (!session) {
@@ -119,19 +126,17 @@ export async function POST(request: Request) {
 
       if (existing) {
         const appAmount = normalizeAmount(item.amount_total);
-        const nsAmount = normalizeAmount(existing.foreignTotal);
+        const nsAmount = normalizeAmount(existing.total);
         const expectedType = expectedNetSuiteType(built.recordType);
         const exactMatch =
           String(existing.tranId) === String(built.tranId)
           && String(existing.entityId) === String(built.entityId)
           && String(existing.type) === expectedType
-          && appAmount !== null
-          && nsAmount !== null
-          && appAmount === nsAmount;
+          && amountsMatch(appAmount, nsAmount);
 
         if (!exactMatch) {
           failedCount += 1;
-          const errorText = `Transacción existente no coincide: app ${built.recordType} monto ${appAmount ?? 'N/A'}, NetSuite ${existing.type} monto ${nsAmount ?? 'N/A'} id ${existing.id}`;
+          const errorText = `Transacción existente no coincide: app ${built.recordType} monto ${appAmount ?? 'N/A'}, NetSuite ${existing.type} monto nacional ${nsAmount ?? 'N/A'} foreign ${existing.foreignTotal || 'N/A'} id ${existing.id}`;
           await recordProductionPublishItem({
             runId,
             caseId: item.id,

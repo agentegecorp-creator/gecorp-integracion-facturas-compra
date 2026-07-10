@@ -453,7 +453,7 @@ export async function findExistingTransaction(tranId: string, entityId: string, 
   const safeTranId = tranId.replace(/'/g, "''");
   const safeEntityId = entityId.replace(/[^0-9]/g, '');
   const rows = await suiteql(`
-    SELECT t.id, t.tranId, t.type, t.entity, t.foreignTotal
+    SELECT t.id, t.tranId, t.type, t.entity, t.total, t.foreignTotal
     FROM transaction t
     WHERE t.type IN ('VendBill','VendCred')
       AND t.tranId = '${safeTranId}'
@@ -466,6 +466,7 @@ export async function findExistingTransaction(tranId: string, entityId: string, 
     tranId: String(row.tranid ?? row.tranId ?? tranId),
     type: String(row.type ?? ''),
     entityId: String(row.entity ?? entityId),
+    total: String(row.total ?? ''),
     foreignTotal: String(row.foreigntotal ?? row.foreignTotal ?? ''),
   };
 }
