@@ -402,8 +402,8 @@
   "2026-07": [
     {
       "id": "unclassified-2026-07-34-17454585-0",
-      "sourceRun": "runs/sii_to_pipeline/20260710-234646",
-      "generatedAt": "2026-07-10T23:47:11.416705",
+      "sourceRun": "runs/sii_to_pipeline/20260713-060128",
+      "generatedAt": "2026-07-13T06:01:53.607340",
       "vendor_name": "SCOTIABANK CHILE",
       "vendor_rut": "97018000-1",
       "folio": "17454585",
@@ -429,7 +429,7 @@
         },
         "context": {
           "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260710-234646"
+          "sourceRun": "runs/sii_to_pipeline/20260713-060128"
         }
       }
     }
