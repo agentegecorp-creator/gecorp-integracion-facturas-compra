@@ -16,6 +16,8 @@ export const OC_MANAGED_VENDORS: OcManagedVendor[] = [
   { rut: '76164832-2', normalizedRut: '761648322', name: 'REFRIGERACION Y ELECTRICIDAD INDUSTRIAL ALTO FRIO LIMITADA' },
   { rut: '99587850-K', normalizedRut: '99587850K', name: 'COMACO SERVICIOS LOGISTICOS SPA' },
   { rut: '96556940-5', normalizedRut: '965569405', name: 'PROVEEDORES INTEGRALES PRISA S A' },
+  { rut: '77084730-3', normalizedRut: '770847303', name: 'MARYUN SEGURIDAD INDUSTRIAL SPA' },
+  { rut: '77271012-7', normalizedRut: '772710127', name: 'AMBIQUIM RP SPA' },
 ];
 
 export const OC_MANAGED_VENDOR_RUTS = OC_MANAGED_VENDORS.map((vendor) => vendor.normalizedRut);
