@@ -99,6 +99,15 @@ function summaryFromCase(item: BuilderCase) {
   return [item.supplier_name, amountText, item.review_reason].filter(Boolean).join(' · ');
 }
 
+function normalizeRut(value: string | null | undefined) {
+  return String(value ?? '').toUpperCase().replace(/[^0-9K]/g, '');
+}
+
+function roundedAbsAmount(value: number | null | undefined) {
+  const numeric = Number(value ?? 0);
+  return Number.isFinite(numeric) ? Math.abs(Math.round(numeric)) : 0;
+}
+
 function proposedApprovalGroup(item: BuilderCase) {
   return item.approver_group_proposed
     || approvalGroupValueFromIds(item.approver_ids_proposed)
@@ -135,6 +144,7 @@ async function main() {
   const items = JSON.parse(raw) as BuilderCase[];
   let inserted = 0;
   let updated = 0;
+  let skippedPublishedDuplicates = 0;
 
   for (const item of items) {
     const sourceDocumentId = `builder_${item.case_id}`;
@@ -144,6 +154,7 @@ async function main() {
     const approvalGroup = proposedApprovalGroup(item);
     const paymentDate = safePaymentDate(item);
     const operationalDate = normalizeDateOnly(item.operational_date ?? item.accounting_date_proposed) ?? item.document_date;
+    const documentType = item.document_type ? String(item.document_type) : null;
 
     const payloadJson = {
       source: 'builder review_cases.json',
@@ -237,7 +248,7 @@ async function main() {
           item.supplier_name,
           item.supplier_rut,
           item.folio,
-          item.document_type ? String(item.document_type) : null,
+          documentType,
           operationalDate,
           item.reception_date,
           item.amount_net,
@@ -249,6 +260,28 @@ async function main() {
         ],
       );
       updated += 1;
+      continue;
+    }
+
+    const duplicatePublished = await db.query(
+      `select id, production_record_id
+       from review_cases
+       where regexp_replace(upper(coalesce(vendor_rut, '')), '[^0-9K]', '', 'g') = $1
+         and coalesce(folio, '') = $2
+         and coalesce(document_type, '') = coalesce($3, '')
+         and round(abs(coalesce(amount_total, 0))) = $4
+         and coalesce(production_publish_status, 'not_ready') = 'published'
+       limit 1`,
+      [
+        normalizeRut(item.supplier_rut),
+        item.folio,
+        documentType,
+        roundedAbsAmount(item.amount_total),
+      ],
+    );
+
+    if (duplicatePublished.rows[0]?.id) {
+      skippedPublishedDuplicates += 1;
       continue;
     }
 
@@ -279,7 +312,7 @@ async function main() {
         item.supplier_name,
           item.supplier_rut,
           item.folio,
-          item.document_type ? String(item.document_type) : null,
+          documentType,
           operationalDate,
           item.reception_date,
         item.amount_net,
@@ -293,7 +326,7 @@ async function main() {
     inserted += 1;
   }
 
-  console.log(JSON.stringify({ inputPath, total: items.length, inserted, updated }, null, 2));
+  console.log(JSON.stringify({ inputPath, total: items.length, inserted, updated, skippedPublishedDuplicates }, null, 2));
   await db.end();
 }
 
