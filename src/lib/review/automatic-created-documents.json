@@ -7207,7 +7207,7 @@
       "amount_total": "119000",
       "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "ready",
+      "production_publish_status": "published",
       "payload_json": {
         "document": {
           "documentType": "33",
@@ -7242,7 +7242,11 @@
           "sourceRun": "runs/sii_to_pipeline/20260714-083346",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
-      }
+      },
+      "production_record_type": "vendorbill",
+      "production_record_id": "891406",
+      "production_published_at": "2026-07-14T12:39:51.941Z",
+      "production_publish_error": null
     },
     {
       "id": "auto-2026-07-33-80925-76006532-3",
@@ -7571,7 +7575,7 @@
       "amount_total": "1249496",
       "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "ready",
+      "production_publish_status": "published",
       "payload_json": {
         "document": {
           "documentType": "34",
@@ -7606,7 +7610,11 @@
           "sourceRun": "runs/sii_to_pipeline/20260714-083346",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
-      }
+      },
+      "production_record_type": "vendorbill",
+      "production_record_id": "892440",
+      "production_published_at": "2026-07-14T12:39:51.942Z",
+      "production_publish_error": null
     },
     {
       "id": "auto-2026-07-34-7426904-89862200-2",
