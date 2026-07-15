@@ -402,8 +402,8 @@
   "2026-07": [
     {
       "id": "unclassified-2026-07-34-17454585-0",
-      "sourceRun": "runs/sii_to_pipeline/20260714-234645",
-      "generatedAt": "2026-07-14T23:47:10.997611",
+      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+      "generatedAt": "2026-07-15T06:01:56.227178",
       "vendor_name": "SCOTIABANK CHILE",
       "vendor_rut": "97018000-1",
       "folio": "17454585",
@@ -429,7 +429,40 @@
         },
         "context": {
           "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260714-234645"
+          "sourceRun": "runs/sii_to_pipeline/20260715-060131"
+        }
+      }
+    },
+    {
+      "id": "unclassified-2026-07-914-3660318108-1",
+      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+      "generatedAt": "2026-07-15T06:01:56.227178",
+      "vendor_name": "Importación",
+      "vendor_rut": "55555555-5",
+      "folio": "3660318108",
+      "document_type": "914",
+      "issue_date": "2026-07-14",
+      "reception_date": "2026-07-14",
+      "bucket": "unclassified_rcv",
+      "status": "exception",
+      "amount_total": "22407332",
+      "summary_text": "Documento del RCV sin clasificación operativa en la corrida SII → NetSuite.",
+      "sandbox_publish_status": "not_ready",
+      "payload_json": {
+        "document": {
+          "documentType": "914",
+          "documentTypeLabel": "Documento SII 914",
+          "amountExempt": "0",
+          "amountNet": "18829690",
+          "amountVat": "3577641",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "22407332",
+          "memo": "RCV F-3660318108 Importación"
+        },
+        "context": {
+          "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
+          "sourceRun": "runs/sii_to_pipeline/20260715-060131"
         }
       }
     }
