@@ -6414,8 +6414,8 @@
   "2026-07": [
     {
       "id": "auto-2026-07-33-53027-91942000-6",
-      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
-      "generatedAt": "2026-07-15T06:01:56.227178",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
       "vendor_name": "MALTEXCO S.A.",
       "vendor_rut": "91942000-6",
       "folio": "53027",
@@ -6425,9 +6425,9 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "4563650",
-      "summary_text": "Publicado en Producción #888868.",
+      "summary_text": "Proveedor contabilizado desde OC en NetSuite; pendiente de control de existencia en Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "published",
+      "production_publish_status": "external_pending",
       "payload_json": {
         "document": {
           "documentType": "33",
@@ -6459,16 +6459,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-07-01",
           "dueDate": "2026-08-29",
-          "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
-      },
-      "production_record_id": "888868"
+      }
     },
     {
       "id": "auto-2026-07-33-167573-96357000-7",
-      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
-      "generatedAt": "2026-07-15T06:01:56.227178",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
       "vendor_name": "COMUNICACIONES BERMANN SPA",
       "vendor_rut": "96357000-7",
       "folio": "167573",
@@ -6478,9 +6477,9 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "31577",
-      "summary_text": "Publicado en Producción #888407.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "published",
+      "production_publish_status": "ready",
       "payload_json": {
         "document": {
           "documentType": "33",
@@ -6512,16 +6511,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-07-01",
           "dueDate": "2026-07-16",
-          "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
-      },
-      "production_record_id": "888407"
+      }
     },
     {
       "id": "auto-2026-07-33-67366-76178665-2",
-      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
-      "generatedAt": "2026-07-15T06:01:56.227178",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
       "vendor_name": "Megacentro Chile SpA",
       "vendor_rut": "76178665-2",
       "folio": "67366",
@@ -6531,9 +6529,9 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "2181216",
-      "summary_text": "Publicado en Producción #888401.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "published",
+      "production_publish_status": "ready",
       "payload_json": {
         "document": {
           "documentType": "33",
@@ -6565,16 +6563,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-07-01",
           "dueDate": "2026-07-01",
-          "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
-      },
-      "production_record_id": "888401"
+      }
     },
     {
       "id": "auto-2026-07-33-277499-76207726-4",
-      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
-      "generatedAt": "2026-07-15T06:01:56.227178",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
       "vendor_name": "TRANSPORTES SUSAN TALADRIZ EIRL",
       "vendor_rut": "76207726-4",
       "folio": "277499",
@@ -6584,9 +6581,9 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "1309000",
-      "summary_text": "Publicado en Producción #888896.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "published",
+      "production_publish_status": "ready",
       "payload_json": {
         "document": {
           "documentType": "33",
@@ -6618,16 +6615,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-07-01",
           "dueDate": "2026-07-31",
-          "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
-      },
-      "production_record_id": "888896"
+      }
     },
     {
       "id": "auto-2026-07-33-67911-76178665-2",
-      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
-      "generatedAt": "2026-07-15T06:01:56.227178",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
       "vendor_name": "Megacentro Chile SpA",
       "vendor_rut": "76178665-2",
       "folio": "67911",
@@ -6637,9 +6633,9 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "94656",
-      "summary_text": "Publicado en Producción #888895.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "published",
+      "production_publish_status": "ready",
       "payload_json": {
         "document": {
           "documentType": "33",
@@ -6671,16 +6667,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-07-02",
           "dueDate": "2026-07-02",
-          "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
-      },
-      "production_record_id": "888895"
+      }
     },
     {
       "id": "auto-2026-07-33-1371-76369311-2",
-      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
-      "generatedAt": "2026-07-15T06:01:56.227178",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
       "vendor_name": "EL GROWLER SPA",
       "vendor_rut": "76369311-2",
       "folio": "1371",
@@ -6690,9 +6685,9 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "340078",
-      "summary_text": "Publicado en Producción #888894.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "published",
+      "production_publish_status": "ready",
       "payload_json": {
         "document": {
           "documentType": "33",
@@ -6724,16 +6719,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-07-02",
           "dueDate": "2026-07-02",
-          "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
-      },
-      "production_record_id": "888894"
+      }
     },
     {
       "id": "auto-2026-07-33-73564475-76124890-1",
-      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
-      "generatedAt": "2026-07-15T06:01:56.227178",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
       "vendor_name": "Telefónica Móviles Chile S.A.",
       "vendor_rut": "76124890-1",
       "folio": "73564475",
@@ -6743,9 +6737,9 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "56162",
-      "summary_text": "Publicado en Producción #888989.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "published",
+      "production_publish_status": "ready",
       "payload_json": {
         "document": {
           "documentType": "33",
@@ -6777,16 +6771,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-07-01",
           "dueDate": "2026-07-31",
-          "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
-      },
-      "production_record_id": "888989"
+      }
     },
     {
       "id": "auto-2026-07-33-4176767-85896100-9",
-      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
-      "generatedAt": "2026-07-15T06:01:56.227178",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
       "vendor_name": "SERVICIOS EQUIFAX CHILE LIMITADA",
       "vendor_rut": "85896100-9",
       "folio": "4176767",
@@ -6796,9 +6789,9 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "195277",
-      "summary_text": "Publicado en Producción #889462.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "published",
+      "production_publish_status": "ready",
       "payload_json": {
         "document": {
           "documentType": "33",
@@ -6830,16 +6823,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-07-01",
           "dueDate": "2026-07-31",
-          "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
-      },
-      "production_record_id": "889462"
+      }
     },
     {
       "id": "auto-2026-07-33-3331-76871367-7",
-      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
-      "generatedAt": "2026-07-15T06:01:56.227178",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
       "vendor_name": "MI FIBRA SPA",
       "vendor_rut": "76871367-7",
       "folio": "3331",
@@ -6849,9 +6841,9 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "23990",
-      "summary_text": "Publicado en Producción #889461.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "published",
+      "production_publish_status": "ready",
       "payload_json": {
         "document": {
           "documentType": "33",
@@ -6883,16 +6875,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-07-03",
           "dueDate": "2026-07-03",
-          "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
-      },
-      "production_record_id": "889461"
+      }
     },
     {
       "id": "auto-2026-07-33-164248-83274700-9",
-      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
-      "generatedAt": "2026-07-15T06:01:56.227178",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
       "vendor_name": "Navarro y Cia Spa",
       "vendor_rut": "83274700-9",
       "folio": "164248",
@@ -6902,9 +6893,9 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "3743434",
-      "summary_text": "Publicado en Producción #889820.",
+      "summary_text": "Proveedor contabilizado desde OC en NetSuite; pendiente de control de existencia en Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "published",
+      "production_publish_status": "external_pending",
       "payload_json": {
         "document": {
           "documentType": "33",
@@ -6936,16 +6927,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-07-03",
           "dueDate": "2026-09-01",
-          "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
-      },
-      "production_record_id": "889820"
+      }
     },
     {
       "id": "auto-2026-07-33-53074-91942000-6",
-      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
-      "generatedAt": "2026-07-15T06:01:56.227178",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
       "vendor_name": "MALTEXCO S.A.",
       "vendor_rut": "91942000-6",
       "folio": "53074",
@@ -6955,9 +6945,9 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "21845306",
-      "summary_text": "Publicado en Producción #890066.",
+      "summary_text": "Proveedor contabilizado desde OC en NetSuite; pendiente de control de existencia en Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "published",
+      "production_publish_status": "external_pending",
       "payload_json": {
         "document": {
           "documentType": "33",
@@ -6989,16 +6979,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-07-03",
           "dueDate": "2026-09-01",
-          "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
-      },
-      "production_record_id": "890066"
+      }
     },
     {
       "id": "auto-2026-07-33-6601295-96711590-8",
-      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
-      "generatedAt": "2026-07-15T06:01:56.227178",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
       "vendor_name": "Manantial S.A",
       "vendor_rut": "96711590-8",
       "folio": "6601295",
@@ -7008,9 +6997,9 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "41978",
-      "summary_text": "Publicado en Producción #890326.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "published",
+      "production_publish_status": "ready",
       "payload_json": {
         "document": {
           "documentType": "33",
@@ -7042,16 +7031,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-07-01",
           "dueDate": "2026-06-30",
-          "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
-      },
-      "production_record_id": "890326"
+      }
     },
     {
       "id": "auto-2026-07-33-3065584-93737000-8",
-      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
-      "generatedAt": "2026-07-15T06:01:56.227178",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
       "vendor_name": "GTD MANQUEHUE S.A.",
       "vendor_rut": "93737000-8",
       "folio": "3065584",
@@ -7061,9 +7049,9 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "175041",
-      "summary_text": "Publicado en Producción #890325.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "published",
+      "production_publish_status": "ready",
       "payload_json": {
         "document": {
           "documentType": "33",
@@ -7095,16 +7083,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-07-05",
           "dueDate": "2026-08-04",
-          "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
-      },
-      "production_record_id": "890325"
+      }
     },
     {
       "id": "auto-2026-07-33-8463-76067893-7",
-      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
-      "generatedAt": "2026-07-15T06:01:56.227178",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
       "vendor_name": "EGA KAT DISTRIBUCION CHILE S.A.",
       "vendor_rut": "76067893-7",
       "folio": "8463",
@@ -7114,9 +7101,9 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "1462629",
-      "summary_text": "Publicado en Producción #890324.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "published",
+      "production_publish_status": "ready",
       "payload_json": {
         "document": {
           "documentType": "33",
@@ -7148,16 +7135,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-07-01",
           "dueDate": "2026-07-31",
-          "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
-      },
-      "production_record_id": "890324"
+      }
     },
     {
       "id": "auto-2026-07-33-47924250-97004000-5",
-      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
-      "generatedAt": "2026-07-15T06:01:56.227178",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
       "vendor_name": "Banco de Chile",
       "vendor_rut": "97004000-5",
       "folio": "47924250",
@@ -7167,9 +7153,9 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "33518",
-      "summary_text": "Publicado en Producción #891408.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "published",
+      "production_publish_status": "ready",
       "payload_json": {
         "document": {
           "documentType": "33",
@@ -7201,16 +7187,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-07-06",
           "dueDate": "2026-07-06",
-          "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
-      },
-      "production_record_id": "891408"
+      }
     },
     {
       "id": "auto-2026-07-33-6408-77077483-7",
-      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
-      "generatedAt": "2026-07-15T06:01:56.227178",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
       "vendor_name": "FULTER LOGISTICS CHILE SPA.",
       "vendor_rut": "77077483-7",
       "folio": "6408",
@@ -7220,9 +7205,9 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "119000",
-      "summary_text": "Publicado en Producción #891406.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "published",
+      "production_publish_status": "ready",
       "payload_json": {
         "document": {
           "documentType": "33",
@@ -7254,16 +7239,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-07-07",
           "dueDate": "2026-08-06",
-          "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
-      },
-      "production_record_id": "891406"
+      }
     },
     {
       "id": "auto-2026-07-33-80925-76006532-3",
-      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
-      "generatedAt": "2026-07-15T06:01:56.227178",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
       "vendor_name": "AIRSEALOGISTICS SPA",
       "vendor_rut": "76006532-3",
       "folio": "80925",
@@ -7273,9 +7257,9 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "77350",
-      "summary_text": "Publicado en Producción #892005.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "published",
+      "production_publish_status": "ready",
       "payload_json": {
         "document": {
           "documentType": "33",
@@ -7307,16 +7291,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-07-07",
           "dueDate": "2026-08-06",
-          "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
-      },
-      "production_record_id": "892005"
+      }
     },
     {
       "id": "auto-2026-07-33-53127-91942000-6",
-      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
-      "generatedAt": "2026-07-15T06:01:56.227178",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
       "vendor_name": "MALTEXCO S.A.",
       "vendor_rut": "91942000-6",
       "folio": "53127",
@@ -7326,9 +7309,9 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "21955500",
-      "summary_text": "Publicado en Producción #891894.",
+      "summary_text": "Proveedor contabilizado desde OC en NetSuite; pendiente de control de existencia en Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "published",
+      "production_publish_status": "external_pending",
       "payload_json": {
         "document": {
           "documentType": "33",
@@ -7360,16 +7343,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-07-08",
           "dueDate": "2026-09-06",
-          "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
-      },
-      "production_record_id": "891894"
+      }
     },
     {
       "id": "auto-2026-07-33-188511-99588060-1",
-      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
-      "generatedAt": "2026-07-15T06:01:56.227178",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
       "vendor_name": "CHUBB SEGUROS DE VIDA CHILE S.A.",
       "vendor_rut": "99588060-1",
       "folio": "188511",
@@ -7379,9 +7361,9 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "25568",
-      "summary_text": "Publicado en Producción #892883.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "published",
+      "production_publish_status": "ready",
       "payload_json": {
         "document": {
           "documentType": "33",
@@ -7413,16 +7395,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-07-01",
           "dueDate": "2026-06-30",
-          "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
-      },
-      "production_record_id": "892883"
+      }
     },
     {
       "id": "auto-2026-07-33-326257-76691442-K",
-      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
-      "generatedAt": "2026-07-15T06:01:56.227178",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
       "vendor_name": "BUK SPA",
       "vendor_rut": "76691442-K",
       "folio": "326257",
@@ -7432,9 +7413,9 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "162246",
-      "summary_text": "Publicado en Producción #893626.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "published",
+      "production_publish_status": "ready",
       "payload_json": {
         "document": {
           "documentType": "33",
@@ -7466,16 +7447,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-07-10",
           "dueDate": "2026-08-09",
-          "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
-      },
-      "production_record_id": "893626"
+      }
     },
     {
       "id": "auto-2026-07-33-2658680-94675000-K",
-      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
-      "generatedAt": "2026-07-15T06:01:56.227178",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
       "vendor_name": "Claro Comunicaciones S.p.A.",
       "vendor_rut": "94675000-K",
       "folio": "2658680",
@@ -7485,9 +7465,9 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "18990",
-      "summary_text": "Publicado en Producción #894573.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "published",
+      "production_publish_status": "ready",
       "payload_json": {
         "document": {
           "documentType": "33",
@@ -7519,16 +7499,119 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-07-13",
           "dueDate": "2026-07-28",
-          "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
-      },
-      "production_record_id": "894573"
+      }
+    },
+    {
+      "id": "auto-2026-07-33-81073-76006532-3",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
+      "vendor_name": "AIRSEALOGISTICS SPA",
+      "vendor_rut": "76006532-3",
+      "folio": "81073",
+      "document_type": "33",
+      "issue_date": "2026-07-14",
+      "reception_date": "2026-07-14",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "53550",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
+      "sandbox_publish_status": "ready",
+      "production_publish_status": "ready",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "issueDate": "2026-07-14",
+          "operationalDate": "2026-07-14",
+          "amountExempt": "0",
+          "amountNet": "45000",
+          "amountVat": "8550",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "53550",
+          "purchaseOrderReference": null,
+          "accountId": "1048",
+          "locationId": "5",
+          "classId": "1",
+          "departmentId": "2",
+          "memo": "RCV F-81073 AIRSEALOGISTICS SPA"
+        },
+        "context": {
+          "categoriaOc": "OC_OBLIGATORIA",
+          "simulatedNsId": "STUB-VENDORBILL-001",
+          "vendorIdProposed": "6074",
+          "accountIdProposed": "1048",
+          "locationIdProposed": "5",
+          "classIdProposed": "1",
+          "departmentIdProposed": "2",
+          "requesterIdProposed": "731",
+          "documentTypeNsProposed": "2",
+          "accountingDateProposed": "2026-07-14",
+          "dueDate": "2026-08-13",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-07-33-535-76969089-1",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
+      "vendor_name": "TRANSPORTES ELADIO ARNOLDO GONZÁLEZ KAEMPFER  E.I.R.L.",
+      "vendor_rut": "76969089-1",
+      "folio": "535",
+      "document_type": "33",
+      "issue_date": "2026-07-14",
+      "reception_date": "2026-07-14",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "1484882",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
+      "sandbox_publish_status": "ready",
+      "production_publish_status": "ready",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "issueDate": "2026-07-14",
+          "operationalDate": "2026-07-14",
+          "amountExempt": "0",
+          "amountNet": "1247800",
+          "amountVat": "237082",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "1484882",
+          "purchaseOrderReference": null,
+          "accountId": "686",
+          "locationId": "5",
+          "classId": "1",
+          "departmentId": "2",
+          "memo": "RCV F-535 TRANSPORTES ELADIO ARNOLDO GONZÁLEZ KAEMPFER  E.I.R.L."
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "simulatedNsId": "STUB-VENDORBILL-001",
+          "vendorIdProposed": "3240",
+          "accountIdProposed": "686",
+          "locationIdProposed": "5",
+          "classIdProposed": "1",
+          "departmentIdProposed": "2",
+          "requesterIdProposed": null,
+          "documentTypeNsProposed": "2",
+          "accountingDateProposed": "2026-07-14",
+          "dueDate": "2026-08-13",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
+        }
+      }
     },
     {
       "id": "auto-2026-07-33-3117036-94058000-5",
-      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
-      "generatedAt": "2026-07-15T06:01:56.227178",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
       "vendor_name": "SERVICIOS AEROPORTUARIOS AEROSAN SA",
       "vendor_rut": "94058000-5",
       "folio": "3117036",
@@ -7572,15 +7655,67 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-07-14",
           "dueDate": "2026-07-14",
-          "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-07-33-6465-77077483-7",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
+      "vendor_name": "FULTER LOGISTICS CHILE SPA.",
+      "vendor_rut": "77077483-7",
+      "folio": "6465",
+      "document_type": "33",
+      "issue_date": "2026-07-15",
+      "reception_date": "2026-07-15",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "78159",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
+      "sandbox_publish_status": "ready",
+      "production_publish_status": "ready",
+      "payload_json": {
+        "document": {
+          "documentType": "33",
+          "documentTypeLabel": "Documento SII 33",
+          "issueDate": "2026-07-15",
+          "operationalDate": "2026-07-15",
+          "amountExempt": "0",
+          "amountNet": "65680",
+          "amountVat": "12479",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "78159",
+          "purchaseOrderReference": null,
+          "accountId": "1048",
+          "locationId": "5",
+          "classId": null,
+          "departmentId": null,
+          "memo": "RCV F-6465 FULTER LOGISTICS CHILE SPA."
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "simulatedNsId": "STUB-VENDORBILL-001",
+          "vendorIdProposed": "6598",
+          "accountIdProposed": "1048",
+          "locationIdProposed": "5",
+          "classIdProposed": null,
+          "departmentIdProposed": null,
+          "requesterIdProposed": null,
+          "documentTypeNsProposed": "2",
+          "accountingDateProposed": "2026-07-15",
+          "dueDate": "2026-08-14",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-07-34-277-78318440-0",
-      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
-      "generatedAt": "2026-07-15T06:01:56.227178",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
       "vendor_name": "SOC COMERCIAL LOS CANELOS LIMITADA",
       "vendor_rut": "78318440-0",
       "folio": "277",
@@ -7590,9 +7725,9 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "1000000",
-      "summary_text": "Publicado en Producción #888400.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "published",
+      "production_publish_status": "ready",
       "payload_json": {
         "document": {
           "documentType": "34",
@@ -7624,16 +7759,15 @@
           "documentTypeNsProposed": "104",
           "accountingDateProposed": "2026-07-01",
           "dueDate": "2026-07-01",
-          "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
-      },
-      "production_record_id": "888400"
+      }
     },
     {
       "id": "auto-2026-07-34-8260-77077483-7",
-      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
-      "generatedAt": "2026-07-15T06:01:56.227178",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
       "vendor_name": "FULTER LOGISTICS CHILE SPA.",
       "vendor_rut": "77077483-7",
       "folio": "8260",
@@ -7643,9 +7777,9 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "1249496",
-      "summary_text": "Publicado en Producción #892440.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "published",
+      "production_publish_status": "ready",
       "payload_json": {
         "document": {
           "documentType": "34",
@@ -7677,16 +7811,15 @@
           "documentTypeNsProposed": "104",
           "accountingDateProposed": "2026-07-07",
           "dueDate": "2026-08-06",
-          "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
-      },
-      "production_record_id": "892440"
+      }
     },
     {
       "id": "auto-2026-07-34-7426904-89862200-2",
-      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
-      "generatedAt": "2026-07-15T06:01:56.227178",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
       "vendor_name": "LATAM AIRLINES GROUP SA",
       "vendor_rut": "89862200-2",
       "folio": "7426904",
@@ -7696,9 +7829,9 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "328374",
-      "summary_text": "Publicado en Producción #891407.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "published",
+      "production_publish_status": "ready",
       "payload_json": {
         "document": {
           "documentType": "34",
@@ -7730,16 +7863,15 @@
           "documentTypeNsProposed": "104",
           "accountingDateProposed": "2026-07-07",
           "dueDate": "2026-07-07",
-          "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
-      },
-      "production_record_id": "891407"
+      }
     },
     {
       "id": "auto-2026-07-34-77553-76006532-3",
-      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
-      "generatedAt": "2026-07-15T06:01:56.227178",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
       "vendor_name": "AIRSEALOGISTICS SPA",
       "vendor_rut": "76006532-3",
       "folio": "77553",
@@ -7749,9 +7881,9 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "5415322",
-      "summary_text": "Publicado en Producción #891906.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "published",
+      "production_publish_status": "ready",
       "payload_json": {
         "document": {
           "documentType": "34",
@@ -7783,16 +7915,15 @@
           "documentTypeNsProposed": "104",
           "accountingDateProposed": "2026-07-07",
           "dueDate": "2026-08-06",
-          "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
-      },
-      "production_record_id": "891906"
+      }
     },
     {
       "id": "auto-2026-07-34-20325628-96945440-8",
-      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
-      "generatedAt": "2026-07-15T06:01:56.227178",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
       "vendor_name": "SOC CONCESIONARIA AUTOPISTA CENTRAL S A",
       "vendor_rut": "96945440-8",
       "folio": "20325628",
@@ -7802,9 +7933,9 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "622",
-      "summary_text": "Publicado en Producción #893527.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "published",
+      "production_publish_status": "ready",
       "payload_json": {
         "document": {
           "documentType": "34",
@@ -7836,16 +7967,15 @@
           "documentTypeNsProposed": "104",
           "accountingDateProposed": "2026-07-09",
           "dueDate": "2026-08-08",
-          "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
-      },
-      "production_record_id": "893527"
+      }
     },
     {
       "id": "auto-2026-07-34-3372218-76376061-8",
-      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
-      "generatedAt": "2026-07-15T06:01:56.227178",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
       "vendor_name": "SOCIEDAD CONCESIONARIA VESPUCIO ORIENTE S.A.",
       "vendor_rut": "76376061-8",
       "folio": "3372218",
@@ -7889,15 +8019,171 @@
           "documentTypeNsProposed": "104",
           "accountingDateProposed": "2026-07-14",
           "dueDate": "2026-07-29",
-          "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-07-34-77723-76006532-3",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
+      "vendor_name": "AIRSEALOGISTICS SPA",
+      "vendor_rut": "76006532-3",
+      "folio": "77723",
+      "document_type": "34",
+      "issue_date": "2026-07-14",
+      "reception_date": "2026-07-14",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "1742039",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
+      "sandbox_publish_status": "ready",
+      "production_publish_status": "ready",
+      "payload_json": {
+        "document": {
+          "documentType": "34",
+          "documentTypeLabel": "Documento SII 34",
+          "issueDate": "2026-07-14",
+          "operationalDate": "2026-07-14",
+          "amountExempt": "1742039",
+          "amountNet": "0",
+          "amountVat": "0",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "1742039",
+          "purchaseOrderReference": null,
+          "accountId": "1048",
+          "locationId": "5",
+          "classId": "1",
+          "departmentId": "2",
+          "memo": "RCV F-77723 AIRSEALOGISTICS SPA"
+        },
+        "context": {
+          "categoriaOc": "OC_OBLIGATORIA",
+          "simulatedNsId": "STUB-VENDORBILL-001",
+          "vendorIdProposed": "6074",
+          "accountIdProposed": "1048",
+          "locationIdProposed": "5",
+          "classIdProposed": "1",
+          "departmentIdProposed": "2",
+          "requesterIdProposed": "731",
+          "documentTypeNsProposed": "104",
+          "accountingDateProposed": "2026-07-14",
+          "dueDate": "2026-08-13",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-07-34-12309579-76496130-7",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
+      "vendor_name": "Sociedad Concesionaria Costanera Norte S.A.",
+      "vendor_rut": "76496130-7",
+      "folio": "12309579",
+      "document_type": "34",
+      "issue_date": "2026-07-14",
+      "reception_date": "2026-07-14",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "92044",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
+      "sandbox_publish_status": "ready",
+      "production_publish_status": "ready",
+      "payload_json": {
+        "document": {
+          "documentType": "34",
+          "documentTypeLabel": "Documento SII 34",
+          "issueDate": "2026-07-14",
+          "operationalDate": "2026-07-14",
+          "amountExempt": "92044",
+          "amountNet": "0",
+          "amountVat": "0",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "92044",
+          "purchaseOrderReference": null,
+          "accountId": "686",
+          "locationId": "5",
+          "classId": null,
+          "departmentId": null,
+          "memo": "RCV F-12309579 Sociedad Concesionaria Costanera Norte S.A."
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "simulatedNsId": "STUB-VENDORBILL-001",
+          "vendorIdProposed": "3217",
+          "accountIdProposed": "686",
+          "locationIdProposed": "5",
+          "classIdProposed": null,
+          "departmentIdProposed": null,
+          "requesterIdProposed": "731",
+          "documentTypeNsProposed": "104",
+          "accountingDateProposed": "2026-07-14",
+          "dueDate": "2026-08-13",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+          "automaticCreationMode": "Pipeline automático; pendiente de Producción"
+        }
+      }
+    },
+    {
+      "id": "auto-2026-07-34-12310144-76496130-7",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
+      "vendor_name": "Sociedad Concesionaria Costanera Norte S.A.",
+      "vendor_rut": "76496130-7",
+      "folio": "12310144",
+      "document_type": "34",
+      "issue_date": "2026-07-14",
+      "reception_date": "2026-07-14",
+      "bucket": "approved_auto",
+      "status": "resolved",
+      "amount_total": "102146",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
+      "sandbox_publish_status": "ready",
+      "production_publish_status": "ready",
+      "payload_json": {
+        "document": {
+          "documentType": "34",
+          "documentTypeLabel": "Documento SII 34",
+          "issueDate": "2026-07-14",
+          "operationalDate": "2026-07-14",
+          "amountExempt": "102146",
+          "amountNet": "0",
+          "amountVat": "0",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "102146",
+          "purchaseOrderReference": null,
+          "accountId": "686",
+          "locationId": "5",
+          "classId": null,
+          "departmentId": null,
+          "memo": "RCV F-12310144 Sociedad Concesionaria Costanera Norte S.A."
+        },
+        "context": {
+          "categoriaOc": "SIN_OC",
+          "simulatedNsId": "STUB-VENDORBILL-001",
+          "vendorIdProposed": "3217",
+          "accountIdProposed": "686",
+          "locationIdProposed": "5",
+          "classIdProposed": null,
+          "departmentIdProposed": null,
+          "requesterIdProposed": "731",
+          "documentTypeNsProposed": "104",
+          "accountingDateProposed": "2026-07-14",
+          "dueDate": "2026-08-13",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-07-61-1089-91942000-6",
-      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
-      "generatedAt": "2026-07-15T06:01:56.227178",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
       "vendor_name": "MALTEXCO S.A.",
       "vendor_rut": "91942000-6",
       "folio": "1089",
@@ -7907,9 +8193,9 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "4563650",
-      "summary_text": "Publicado en Producción #889314.",
+      "summary_text": "Proveedor contabilizado desde OC en NetSuite; pendiente de control de existencia en Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "published",
+      "production_publish_status": "external_pending",
       "payload_json": {
         "document": {
           "documentType": "61",
@@ -7941,16 +8227,15 @@
           "documentTypeNsProposed": "107",
           "accountingDateProposed": "2026-07-01",
           "dueDate": "2026-08-29",
-          "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
-      },
-      "production_record_id": "889314"
+      }
     },
     {
       "id": "auto-2026-07-61-6203-76085857-9",
-      "sourceRun": "runs/sii_to_pipeline/20260715-060131",
-      "generatedAt": "2026-07-15T06:01:56.227178",
+      "sourceRun": "runs/sii_to_pipeline/20260715-234754",
+      "generatedAt": "2026-07-15T23:48:20.275864",
       "vendor_name": "GLOBE EXPRESS SERVICES CHILE SPA",
       "vendor_rut": "76085857-9",
       "folio": "6203",
@@ -7960,9 +8245,9 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "236052",
-      "summary_text": "Publicado en Producción #888893.",
+      "summary_text": "Aprobada automáticamente por pipeline SII → NetSuite; pendiente de publicación manual a Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "published",
+      "production_publish_status": "ready",
       "payload_json": {
         "document": {
           "documentType": "61",
@@ -7994,11 +8279,10 @@
           "documentTypeNsProposed": "107",
           "accountingDateProposed": "2026-07-02",
           "dueDate": "2026-08-01",
-          "sourceRun": "runs/sii_to_pipeline/20260715-060131",
+          "sourceRun": "runs/sii_to_pipeline/20260715-234754",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
-      },
-      "production_record_id": "888893"
+      }
     }
   ]
 }
