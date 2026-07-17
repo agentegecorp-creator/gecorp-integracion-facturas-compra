@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "resolve:not-ready": "tsx scripts/resolve-not-ready-production-cases.ts"
   },
   "dependencies": {
     "bcryptjs": "2.4.3",
