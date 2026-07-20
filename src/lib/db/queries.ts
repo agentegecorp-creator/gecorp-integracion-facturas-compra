@@ -620,12 +620,17 @@ export async function listReviewCases(
   }
 
   if (filters?.operationalView === 'posted') {
-    conditions.push(`status = 'resolved'`);
+    conditions.push(hasProductionPublishStatus
+      ? `(status = 'resolved' or coalesce(production_publish_status, 'not_ready') = 'published')`
+      : `status = 'resolved'`);
     conditions.push(`bucket <> 'approved_auto'`);
   }
 
   if (filters?.operationalView === 'pending') {
     conditions.push(`status <> 'resolved'`);
+    if (hasProductionPublishStatus) {
+      conditions.push(`coalesce(production_publish_status, 'not_ready') <> 'published'`);
+    }
   }
 
   if (filters?.operationalView === 'production_pending') {
@@ -748,7 +753,7 @@ export async function getReviewQueueCounts(monthScope: 'active' | 'all' = 'activ
 
     if (row.bucket === 'approved_auto') {
       // Las automaticas tienen aprobacion de regla, pero pertenecen a su propia vista operativa.
-    } else if (row.status === 'resolved') counts.operational.posted += 1;
+    } else if (row.status === 'resolved' || row.production_publish_status === 'published') counts.operational.posted += 1;
     else counts.operational.pending += 1;
 
     if (vendorName.includes('DIN') || vendorName.includes('SCOTIABANK SIN VALOR') || docType === '914') {
