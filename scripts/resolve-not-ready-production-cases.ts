@@ -34,7 +34,7 @@ type Resolution = {
   applied: boolean;
 };
 
-const NATIONAL_CURRENCY_AMOUNT_TOLERANCE_CLP = 5;
+const NATIONAL_CURRENCY_AMOUNT_TOLERANCE_RATE = 0.0005; // 0.05%
 
 function loadEnvFile(filename: string) {
   const filePath = path.resolve(process.cwd(), filename);
@@ -113,7 +113,8 @@ function normalizeAmount(value: unknown) {
 
 function amountsMatch(appAmount: number | null, nsAmount: number | null) {
   if (appAmount === null || nsAmount === null) return false;
-  return Math.abs(appAmount - nsAmount) <= NATIONAL_CURRENCY_AMOUNT_TOLERANCE_CLP;
+  const tolerance = Math.max(appAmount, nsAmount) * NATIONAL_CURRENCY_AMOUNT_TOLERANCE_RATE;
+  return Math.abs(appAmount - nsAmount) <= tolerance;
 }
 
 function expectedNetSuiteType(documentType: string | null) {

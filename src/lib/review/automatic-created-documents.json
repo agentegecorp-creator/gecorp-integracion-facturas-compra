@@ -7517,9 +7517,9 @@
       "bucket": "approved_auto",
       "status": "resolved",
       "amount_total": "29236542",
-      "summary_text": "Proveedor contabilizado desde OC en NetSuite; pendiente de control de existencia en Producción.",
+      "summary_text": "Proveedor contabilizado desde OC en NetSuite; existencia validada en Producción.",
       "sandbox_publish_status": "ready",
-      "production_publish_status": "external_pending",
+      "production_publish_status": "published",
       "payload_json": {
         "document": {
           "documentType": "33",

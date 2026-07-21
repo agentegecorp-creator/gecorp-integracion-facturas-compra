@@ -36,11 +36,12 @@ function normalizeAmount(value: unknown) {
   return Number.isFinite(numeric) ? Math.abs(Math.round(numeric)) : null;
 }
 
-const NATIONAL_CURRENCY_AMOUNT_TOLERANCE_CLP = 5;
+const NATIONAL_CURRENCY_AMOUNT_TOLERANCE_RATE = 0.0005; // 0.05%
 
 function amountsMatch(appAmount: number | null, nsAmount: number | null) {
   if (appAmount === null || nsAmount === null) return false;
-  return Math.abs(appAmount - nsAmount) <= NATIONAL_CURRENCY_AMOUNT_TOLERANCE_CLP;
+  const tolerance = Math.max(appAmount, nsAmount) * NATIONAL_CURRENCY_AMOUNT_TOLERANCE_RATE;
+  return Math.abs(appAmount - nsAmount) <= tolerance;
 }
 
 function numericId(...values: unknown[]) {
