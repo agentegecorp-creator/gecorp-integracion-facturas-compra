@@ -265,6 +265,31 @@ async function verifyExemptVendorBillTaxIsZero(recordType: string, recordId: str
   return { ...result, verified };
 }
 
+async function verifyVendorBillTaxDetails(recordType: string, recordId: string, expectedTaxDetails: Record<string, unknown>, target: NetSuiteTarget = 'sandbox') {
+  const result = await requestNetSuite('GET', `/services/rest/record/v1/${recordType}/${recordId}?expandSubResources=true`, undefined, undefined, target);
+  if (!result.success) return { ...result, verified: false };
+
+  const body = result.body as {
+    taxDetailsOverride?: unknown;
+    userTaxTotal?: unknown;
+    taxDetails?: { items?: Array<{ taxAmount?: unknown; taxBasis?: unknown; taxRate?: unknown; netAmount?: unknown }> };
+  };
+  const expectedItems = ((expectedTaxDetails.taxDetails as { items?: Array<Record<string, unknown>> } | undefined)?.items ?? []);
+  const actualItems = Array.isArray(body.taxDetails?.items) ? body.taxDetails.items : [];
+  const expectedTotal = expectedItems.reduce((sum, item) => sum + numberValue(item.taxAmount), 0);
+  const actualTotal = actualItems.reduce((sum, item) => sum + numberValue(item.taxAmount), 0);
+  const expectedBasis = expectedItems.reduce((sum, item) => sum + numberValue(item.taxBasis ?? item.netAmount), 0);
+  const actualBasis = actualItems.reduce((sum, item) => sum + numberValue(item.taxBasis ?? item.netAmount), 0);
+  const verified =
+    body.taxDetailsOverride === true &&
+    actualItems.length >= expectedItems.length &&
+    numberValue(body.userTaxTotal) === expectedTotal &&
+    actualTotal === expectedTotal &&
+    actualBasis === expectedBasis;
+
+  return { ...result, verified };
+}
+
 function isoDate(value: unknown) {
   if (!value) return null;
   if (value instanceof Date) return value.toISOString().slice(0, 10);
@@ -295,6 +320,25 @@ function postingPeriodId(date: string) {
 function recordIdFromLocation(value: string) {
   const match = value.match(/\/([^/?]+)(?:\?.*)?$/);
   return match?.[1] ?? value;
+}
+
+function taxDetailItem(
+  lineNumber: number,
+  taxCodeId: number,
+  taxTypeId: string,
+  taxBasis: number,
+  taxRate: number,
+  taxAmount: number,
+) {
+  return {
+    taxDetailsReference: `__RECORD_ID___${lineNumber}`,
+    taxType: { id: taxTypeId },
+    taxCode: { id: String(taxCodeId) },
+    taxBasis,
+    taxRate,
+    taxAmount,
+    netAmount: taxBasis,
+  };
 }
 
 export function buildSandboxPayload(row: ReviewCaseRow) {
@@ -397,38 +441,51 @@ export function buildSandboxPayload(row: ReviewCaseRow) {
     expenseItems.push(nonTaxedLine);
   }
 
-  const zeroTaxDetails = documentType === '34'
-    ? {
-        taxDetails: {
-          items: [
-            {
-              taxDetailsReference: '__RECORD_ID___1',
-              taxType: { id: '6' },
-              taxCode: { id: String(TAX_CODE['34']) },
-              taxBasis: lineAmount,
-              taxRate: 0,
-              taxAmount: 0,
-              netAmount: lineAmount,
-            },
-          ],
-        },
-      }
-    : null;
+  const taxDetailsItems = [];
+  if (documentType === '34') {
+    taxDetailsItems.push(taxDetailItem(1, TAX_CODE['34'], '6', lineAmount, 0, 0));
+  } else if (documentType === '33' && hasTaxOverride) {
+    if (lineAmount > 0) {
+      taxDetailsItems.push(taxDetailItem(1, TAX_CODE['33'], '2', lineAmount, 19, amountVat));
+    }
+    if (nonTaxedAmount > 0) {
+      taxDetailsItems.push(taxDetailItem(expenseItems.length, TAX_CODE['34'], '6', nonTaxedAmount, 0, 0));
+    }
+  }
+  const taxDetailsOverride = taxDetailsItems.length > 0 ? { taxDetails: { items: taxDetailsItems } } : null;
 
   header.expense = { items: expenseItems };
-  return { recordType, payload: header, tranId: folio, entityId, documentType, zeroTaxDetails };
+  return { recordType, payload: header, tranId: folio, entityId, documentType, taxDetailsOverride, zeroTaxDetails: taxDetailsOverride };
 }
 
-export async function enforceZeroTaxDetailsForExemptDocument(
+export async function enforceTaxDetailsForOverriddenDocument(
   recordType: string,
   recordId: string,
-  zeroTaxDetails: Record<string, unknown> | null,
+  taxDetailsOverride: Record<string, unknown> | null,
   target: NetSuiteTarget = 'sandbox',
 ) {
-  if (!zeroTaxDetails || recordType !== 'vendorbill') return null;
-  const payload = JSON.parse(JSON.stringify(zeroTaxDetails).replace(/__RECORD_ID__/g, recordId)) as Record<string, unknown>;
+  if (!taxDetailsOverride || recordType !== 'vendorbill') return null;
+  const payload = JSON.parse(JSON.stringify(taxDetailsOverride).replace(/__RECORD_ID__/g, recordId)) as Record<string, unknown>;
   const replaceResult = await replaceRecordTaxDetails(recordType, recordId, payload, target);
   if (replaceResult.success) return replaceResult;
+
+  const taxDetailsVerification = await verifyVendorBillTaxDetails(recordType, recordId, payload, target);
+  if (taxDetailsVerification.verified) {
+    return {
+      ...replaceResult,
+      success: true,
+      status: taxDetailsVerification.status,
+      body: {
+        fallback: 'verified_tax_details_after_replace_failure',
+        replaceResult: replaceResult.body,
+        verification: taxDetailsVerification.body,
+      },
+      raw: JSON.stringify({
+        fallback: 'verified_tax_details_after_replace_failure',
+        replaceStatus: replaceResult.status,
+      }),
+    };
+  }
 
   const verification = await verifyExemptVendorBillTaxIsZero(recordType, recordId, target);
   if (!verification.verified) return replaceResult;
@@ -448,6 +505,8 @@ export async function enforceZeroTaxDetailsForExemptDocument(
     }),
   };
 }
+
+export const enforceZeroTaxDetailsForExemptDocument = enforceTaxDetailsForOverriddenDocument;
 
 export async function findExistingTransaction(tranId: string, entityId: string, target: NetSuiteTarget = 'sandbox') {
   const safeTranId = tranId.replace(/'/g, "''");
