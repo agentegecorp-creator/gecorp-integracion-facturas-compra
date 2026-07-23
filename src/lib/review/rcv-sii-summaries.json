@@ -1,7 +1,7 @@
 {
   "2026-02": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202602.csv",
-    "generatedAt": "2026-07-22T10:01:58.397Z",
+    "generatedAt": "2026-07-23T03:46:59.978Z",
     "rows": [
       {
         "documentType": "33",
@@ -51,7 +51,7 @@
   },
   "2026-03": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202603.csv",
-    "generatedAt": "2026-07-22T10:01:58.414Z",
+    "generatedAt": "2026-07-23T03:46:59.995Z",
     "rows": [
       {
         "documentType": "33",
@@ -101,7 +101,7 @@
   },
   "2026-04": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202604.csv",
-    "generatedAt": "2026-07-22T10:01:58.416Z",
+    "generatedAt": "2026-07-23T03:46:59.997Z",
     "rows": [
       {
         "documentType": "33",
@@ -140,7 +140,7 @@
   },
   "2026-05": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202605.csv",
-    "generatedAt": "2026-07-22T10:01:58.420Z",
+    "generatedAt": "2026-07-23T03:46:59.998Z",
     "rows": [
       {
         "documentType": "33",
@@ -179,7 +179,7 @@
   },
   "2026-06": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202606.csv",
-    "generatedAt": "2026-07-22T10:01:58.422Z",
+    "generatedAt": "2026-07-23T03:47:00.000Z",
     "rows": [
       {
         "documentType": "33",
@@ -240,18 +240,18 @@
   },
   "2026-07": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202607.csv",
-    "generatedAt": "2026-07-22T10:01:58.424Z",
+    "generatedAt": "2026-07-23T03:47:00.002Z",
     "rows": [
       {
         "documentType": "33",
-        "totalDocuments": 77,
-        "montoExento": 203854,
-        "montoNeto": 95660551,
-        "ivaRecuperable": 18175507,
+        "totalDocuments": 79,
+        "montoExento": 485562,
+        "montoNeto": 95861870,
+        "ivaRecuperable": 18213758,
         "ivaUsoComun": 0,
         "ivaNoRecuperable": 0,
-        "montoOtrosImpuestos": 222290,
-        "montoTotal": 114262202
+        "montoOtrosImpuestos": 257235,
+        "montoTotal": 114818425
       },
       {
         "documentType": "34",
