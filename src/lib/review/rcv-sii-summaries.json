@@ -1,7 +1,7 @@
 {
   "2026-02": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202602.csv",
-    "generatedAt": "2026-07-31T10:02:23.217Z",
+    "generatedAt": "2026-08-01T03:47:03.419Z",
     "rows": [
       {
         "documentType": "33",
@@ -51,7 +51,7 @@
   },
   "2026-03": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202603.csv",
-    "generatedAt": "2026-07-31T10:02:23.235Z",
+    "generatedAt": "2026-08-01T03:47:03.437Z",
     "rows": [
       {
         "documentType": "33",
@@ -101,7 +101,7 @@
   },
   "2026-04": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202604.csv",
-    "generatedAt": "2026-07-31T10:02:23.237Z",
+    "generatedAt": "2026-08-01T03:47:03.440Z",
     "rows": [
       {
         "documentType": "33",
@@ -140,7 +140,7 @@
   },
   "2026-05": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202605.csv",
-    "generatedAt": "2026-07-31T10:02:23.239Z",
+    "generatedAt": "2026-08-01T03:47:03.442Z",
     "rows": [
       {
         "documentType": "33",
@@ -179,7 +179,7 @@
   },
   "2026-06": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202606.csv",
-    "generatedAt": "2026-07-31T10:02:23.241Z",
+    "generatedAt": "2026-08-01T03:47:03.444Z",
     "rows": [
       {
         "documentType": "33",
@@ -240,22 +240,22 @@
   },
   "2026-07": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202607.csv",
-    "generatedAt": "2026-07-31T10:02:23.242Z",
+    "generatedAt": "2026-08-01T03:47:03.446Z",
     "rows": [
       {
         "documentType": "33",
-        "totalDocuments": 106,
+        "totalDocuments": 112,
         "montoExento": 485562,
-        "montoNeto": 128666176,
-        "ivaRecuperable": 24446579,
+        "montoNeto": 130497665,
+        "ivaRecuperable": 24794562,
         "ivaUsoComun": 0,
         "ivaNoRecuperable": 0,
         "montoOtrosImpuestos": 257236,
-        "montoTotal": 153852338
+        "montoTotal": 156031810
       },
       {
         "documentType": "34",
-        "totalDocuments": 22,
+        "totalDocuments": 23,
         "montoExento": 26528710,
         "montoNeto": 0,
         "ivaRecuperable": 0,
