@@ -362,23 +362,6 @@ async function resolveCase(item: ReviewCase, apply: boolean): Promise<Resolution
     };
   }
 
-  const globalTransactions = await findTransactionsByFolio(item.folio);
-  if (globalTransactions.length > 0) {
-    const detail = `El folio existe en otro proveedor: ${globalTransactions
-      .map((transaction) => `${transaction.type ?? 'tipo'} ${transaction.id ?? 'sin id'} entity ${transaction.entity ?? 'sin entity'}`)
-      .join('; ')}`;
-    if (apply) await setBlockedReason(item.id, 'external_mismatch', detail);
-    return {
-      caseId: item.id,
-      label,
-      action: 'blocked',
-      reasonCode: 'external_mismatch',
-      detail,
-      vendorId,
-      applied: apply,
-    };
-  }
-
   if (item.status !== 'resolved') {
     const detail = `Caso aun no esta resuelto por mesa: status=${item.status ?? 'sin status'}`;
     if (apply) await setBlockedReason(item.id, 'waiting_internal_decision', detail);
