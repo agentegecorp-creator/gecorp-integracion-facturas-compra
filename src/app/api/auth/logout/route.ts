@@ -16,7 +16,7 @@ export async function POST() {
     response.cookies.set(appConfig.sessionCookieName, '', {
       httpOnly: true,
       sameSite: 'lax',
-      secure: true,
+      secure: appConfig.secureCookies,
       path: '/',
       expires: new Date(0),
     });

@@ -267,11 +267,6 @@ export default async function DashboardPage({
             </div>
             <PeriodSelector periods={dashboardPeriods} />
           </div>
-          <form action="/api/auth/logout" method="post">
-            <button className="rounded-xl border border-slate-300 px-4 py-2 text-sm hover:bg-slate-100">
-              Cerrar sesión
-            </button>
-          </form>
         </div>
 
         <div className="mt-8 grid gap-4 md:grid-cols-3 xl:grid-cols-6">
