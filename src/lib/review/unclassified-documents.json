@@ -764,5 +764,39 @@
       }
     }
   ],
-  "2026-08": []
+  "2026-08": [
+    {
+      "id": "unclassified-2026-08-34-17469697-0",
+      "sourceRun": "runs/sii_to_pipeline/20260804-234649",
+      "generatedAt": "2026-08-04T23:47:15.216624",
+      "vendor_name": "SCOTIABANK CHILE",
+      "vendor_rut": "97018000-1",
+      "folio": "17469697",
+      "document_type": "34",
+      "issue_date": "2026-07-31",
+      "reception_date": "2026-08-04",
+      "bucket": "unclassified_rcv",
+      "status": "exception",
+      "amount_total": "0",
+      "summary_text": "Documento del RCV sin clasificación operativa en la corrida SII → NetSuite.",
+      "sandbox_publish_status": "not_ready",
+      "payload_json": {
+        "document": {
+          "documentType": "34",
+          "documentTypeLabel": "Documento SII 34",
+          "amountExempt": "0",
+          "amountNet": "0",
+          "amountVat": "0",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "0",
+          "memo": "RCV F-17469697 SCOTIABANK CHILE"
+        },
+        "context": {
+          "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
+          "sourceRun": "runs/sii_to_pipeline/20260804-234649"
+        }
+      }
+    }
+  ]
 }
