@@ -382,6 +382,7 @@ export async function getDashboardSummary(period?: DashboardPeriod) {
     totalRcvControl: 0,
     diferenciaRcv: 0,
   };
+  let liveAutomaticCount = 0;
 
   const documentTypeSummaryMap = new Map<string, DocumentTypeSummaryRow>();
 
@@ -393,7 +394,8 @@ export async function getDashboardSummary(period?: DashboardPeriod) {
     const docType = String(document.documentType || row.document_type || 'Sin tipo');
 
     if (row.bucket === 'approved_auto') {
-      // Las automáticas son aprobadas por regla y quedan pendientes de publicación manual a Producción.
+      // Las automáticas se agrupan aparte; la publicación se lee desde production_publish_status.
+      liveAutomaticCount += 1;
     } else if (row.status === 'resolved') {
       operationalSummary.creadasManuales += 1;
     } else {
@@ -413,7 +415,8 @@ export async function getDashboardSummary(period?: DashboardPeriod) {
   const pipelineSummary = pipelineRunSummaries()[monthKey];
 
   if (pipelineSummary) {
-    operationalSummary.creadasAutomaticas = pipelineSummary.createdAutomatically;
+    const automaticCount = liveAutomaticCount || pipelineSummary.createdAutomatically;
+    operationalSummary.creadasAutomaticas = automaticCount;
     operationalSummary.porContabilizar =
       pipelineSummary.pendingApproval
       + pipelineSummary.newVendors
@@ -422,7 +425,7 @@ export async function getDashboardSummary(period?: DashboardPeriod) {
       + pipelineSummary.revisionOcReferential;
     operationalSummary.nuevosProveedores = pipelineSummary.newVendors;
     operationalSummary.clasificadosPipeline =
-      pipelineSummary.createdAutomatically
+      automaticCount
       + pipelineSummary.pendingApproval
       + pipelineSummary.newVendors
       + pipelineSummary.rejectedSii
@@ -727,7 +730,7 @@ export async function getReviewQueueCounts(monthScope: 'active' | 'all' = 'activ
 
   const counts = {
     operational: {
-      automatic: automaticDocumentsForPeriod(period).length,
+      automatic: 0,
       posted: 0,
       pending: 0,
       unclassified: unclassifiedDocumentsForPeriod(period).length,
@@ -753,6 +756,7 @@ export async function getReviewQueueCounts(monthScope: 'active' | 'all' = 'activ
 
     if (row.bucket === 'approved_auto') {
       // Las automaticas tienen aprobacion de regla, pero pertenecen a su propia vista operativa.
+      counts.operational.automatic += 1;
     } else if (row.status === 'resolved' || row.production_publish_status === 'published') counts.operational.posted += 1;
     else counts.operational.pending += 1;
 
@@ -772,6 +776,10 @@ export async function getReviewQueueCounts(monthScope: 'active' | 'all' = 'activ
     if (row.bucket === 'error_real' && row.status === 'new') counts.quick.error_real_new += 1;
     if (row.bucket === 'revision_oc' && row.status === 'new') counts.quick.revision_oc_new += 1;
     if (row.status === 'in_review') counts.quick.in_review += 1;
+  }
+
+  if (counts.operational.automatic === 0) {
+    counts.operational.automatic = automaticDocumentsForPeriod(period).length;
   }
 
   return counts;

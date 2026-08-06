@@ -253,7 +253,7 @@ export default async function DashboardPage({
             </p>
             {pipelineSummary ? (
               <p className="mt-2 text-xs font-medium text-emerald-700">
-                Última corrida SII: {pipelineSummary.createdAutomatically} creadas automáticas en {pipelineSummary.mode}; los casos manuales siguen en la Mesa.
+                Última corrida SII: {operationalSummary.creadasAutomaticas} automáticas visibles en la base operativa; los casos manuales siguen en la Mesa.
               </p>
             ) : (
               <p className="mt-2 text-xs font-medium text-emerald-700">Última corrida SII importada visible en la cola de revisión.</p>
@@ -288,7 +288,7 @@ export default async function DashboardPage({
           <StatCard
             label="Creadas automáticas"
             value={operationalSummary.creadasAutomaticas}
-            help="Documentos auto-creables por el pipeline SII → NetSuite"
+            help="Documentos automáticos según estado vivo de la mesa"
             href={`/pendiente-revision?${new URLSearchParams({ operationalView: 'automatic', period: dashboardPeriods.selected.key }).toString()}`}
           />
           <StatCard
