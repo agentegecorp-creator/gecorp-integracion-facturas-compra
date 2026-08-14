@@ -767,8 +767,8 @@
   "2026-08": [
     {
       "id": "unclassified-2026-08-34-17469697-0",
-      "sourceRun": "runs/sii_to_pipeline/20260813-234635",
-      "generatedAt": "2026-08-13T23:47:00.763089",
+      "sourceRun": "runs/sii_to_pipeline/20260814-060152",
+      "generatedAt": "2026-08-14T06:02:17.089727",
       "vendor_name": "SCOTIABANK CHILE",
       "vendor_rut": "97018000-1",
       "folio": "17469697",
@@ -794,14 +794,14 @@
         },
         "context": {
           "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260813-234635"
+          "sourceRun": "runs/sii_to_pipeline/20260814-060152"
         }
       }
     },
     {
       "id": "unclassified-2026-08-34-17470354-1",
-      "sourceRun": "runs/sii_to_pipeline/20260813-234635",
-      "generatedAt": "2026-08-13T23:47:00.763089",
+      "sourceRun": "runs/sii_to_pipeline/20260814-060152",
+      "generatedAt": "2026-08-14T06:02:17.089727",
       "vendor_name": "SCOTIABANK CHILE",
       "vendor_rut": "97018000-1",
       "folio": "17470354",
@@ -827,7 +827,7 @@
         },
         "context": {
           "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260813-234635"
+          "sourceRun": "runs/sii_to_pipeline/20260814-060152"
         }
       }
     }
