@@ -36,8 +36,8 @@
     "revisionOcReferential": 38
   },
   "2026-08": {
-    "sourceRun": "runs/sii_to_pipeline/20260820-060137",
-    "generatedAt": "2026-08-20T06:02:02.061974",
+    "sourceRun": "runs/sii_to_pipeline/20260820-114650",
+    "generatedAt": "2026-08-20T11:47:15.720798",
     "mode": "dry-run / pendiente de publicación manual a Producción",
     "createdAutomatically": 52,
     "duplicates": 0,
