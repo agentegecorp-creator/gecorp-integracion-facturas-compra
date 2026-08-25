@@ -767,8 +767,8 @@
   "2026-08": [
     {
       "id": "unclassified-2026-08-34-17469697-0",
-      "sourceRun": "runs/sii_to_pipeline/20260824-170409",
-      "generatedAt": "2026-08-24T17:04:35.850417",
+      "sourceRun": "runs/sii_to_pipeline/20260825-060333",
+      "generatedAt": "2026-08-25T06:03:59.110343",
       "vendor_name": "SCOTIABANK CHILE",
       "vendor_rut": "97018000-1",
       "folio": "17469697",
@@ -794,14 +794,14 @@
         },
         "context": {
           "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260824-170409"
+          "sourceRun": "runs/sii_to_pipeline/20260825-060333"
         }
       }
     },
     {
       "id": "unclassified-2026-08-34-17470354-1",
-      "sourceRun": "runs/sii_to_pipeline/20260824-170409",
-      "generatedAt": "2026-08-24T17:04:35.850417",
+      "sourceRun": "runs/sii_to_pipeline/20260825-060333",
+      "generatedAt": "2026-08-25T06:03:59.110343",
       "vendor_name": "SCOTIABANK CHILE",
       "vendor_rut": "97018000-1",
       "folio": "17470354",
@@ -827,14 +827,14 @@
         },
         "context": {
           "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260824-170409"
+          "sourceRun": "runs/sii_to_pipeline/20260825-060333"
         }
       }
     },
     {
       "id": "unclassified-2026-08-34-17471963-2",
-      "sourceRun": "runs/sii_to_pipeline/20260824-170409",
-      "generatedAt": "2026-08-24T17:04:35.850417",
+      "sourceRun": "runs/sii_to_pipeline/20260825-060333",
+      "generatedAt": "2026-08-25T06:03:59.110343",
       "vendor_name": "SCOTIABANK CHILE",
       "vendor_rut": "97018000-1",
       "folio": "17471963",
@@ -860,14 +860,14 @@
         },
         "context": {
           "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260824-170409"
+          "sourceRun": "runs/sii_to_pipeline/20260825-060333"
         }
       }
     },
     {
       "id": "unclassified-2026-08-34-17473794-3",
-      "sourceRun": "runs/sii_to_pipeline/20260824-170409",
-      "generatedAt": "2026-08-24T17:04:35.850417",
+      "sourceRun": "runs/sii_to_pipeline/20260825-060333",
+      "generatedAt": "2026-08-25T06:03:59.110343",
       "vendor_name": "SCOTIABANK CHILE",
       "vendor_rut": "97018000-1",
       "folio": "17473794",
@@ -893,14 +893,14 @@
         },
         "context": {
           "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260824-170409"
+          "sourceRun": "runs/sii_to_pipeline/20260825-060333"
         }
       }
     },
     {
       "id": "unclassified-2026-08-914-3660319134-4",
-      "sourceRun": "runs/sii_to_pipeline/20260824-170409",
-      "generatedAt": "2026-08-24T17:04:35.850417",
+      "sourceRun": "runs/sii_to_pipeline/20260825-060333",
+      "generatedAt": "2026-08-25T06:03:59.110343",
       "vendor_name": "Importación",
       "vendor_rut": "55555555-5",
       "folio": "3660319134",
@@ -926,14 +926,14 @@
         },
         "context": {
           "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260824-170409"
+          "sourceRun": "runs/sii_to_pipeline/20260825-060333"
         }
       }
     },
     {
       "id": "unclassified-2026-08-914-3660319154-5",
-      "sourceRun": "runs/sii_to_pipeline/20260824-170409",
-      "generatedAt": "2026-08-24T17:04:35.850417",
+      "sourceRun": "runs/sii_to_pipeline/20260825-060333",
+      "generatedAt": "2026-08-25T06:03:59.110343",
       "vendor_name": "Importación",
       "vendor_rut": "55555555-5",
       "folio": "3660319154",
@@ -959,7 +959,40 @@
         },
         "context": {
           "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260824-170409"
+          "sourceRun": "runs/sii_to_pipeline/20260825-060333"
+        }
+      }
+    },
+    {
+      "id": "unclassified-2026-08-914-3660319080-6",
+      "sourceRun": "runs/sii_to_pipeline/20260825-060333",
+      "generatedAt": "2026-08-25T06:03:59.110343",
+      "vendor_name": "Importación",
+      "vendor_rut": "55555555-5",
+      "folio": "3660319080",
+      "document_type": "914",
+      "issue_date": "2026-08-24",
+      "reception_date": "2026-08-24",
+      "bucket": "unclassified_rcv",
+      "status": "exception",
+      "amount_total": "27481866",
+      "summary_text": "Documento del RCV sin clasificación operativa en la corrida SII → NetSuite.",
+      "sandbox_publish_status": "not_ready",
+      "payload_json": {
+        "document": {
+          "documentType": "914",
+          "documentTypeLabel": "Documento SII 914",
+          "amountExempt": "0",
+          "amountNet": "23094004",
+          "amountVat": "4387861",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "27481866",
+          "memo": "RCV F-3660319080 Importación"
+        },
+        "context": {
+          "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
+          "sourceRun": "runs/sii_to_pipeline/20260825-060333"
         }
       }
     }
