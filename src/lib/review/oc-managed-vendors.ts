@@ -18,6 +18,7 @@ export const OC_MANAGED_VENDORS: OcManagedVendor[] = [
   { rut: '96556940-5', normalizedRut: '965569405', name: 'PROVEEDORES INTEGRALES PRISA S A' },
   { rut: '77084730-3', normalizedRut: '770847303', name: 'MARYUN SEGURIDAD INDUSTRIAL SPA' },
   { rut: '77271012-7', normalizedRut: '772710127', name: 'AMBIQUIM RP SPA' },
+  { rut: '96607770-0', normalizedRut: '966077700', name: 'COMERCIAL VENSER S.A' },
 ];
 
 export const OC_MANAGED_VENDOR_RUTS = OC_MANAGED_VENDORS.map((vendor) => vendor.normalizedRut);
