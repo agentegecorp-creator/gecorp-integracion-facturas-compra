@@ -138,6 +138,91 @@ function safePaymentDate(item: BuilderCase) {
   return nextPaymentDateOnOrAfter(dueDate, withTef);
 }
 
+function hasValue(value: unknown) {
+  return value !== null && value !== undefined && String(value).trim() !== '';
+}
+
+function preserveValue(
+  target: Record<string, unknown>,
+  source: Record<string, unknown>,
+  key: string,
+) {
+  if (hasValue(source[key])) {
+    target[key] = source[key];
+  }
+}
+
+function preserveManualReviewPayload(existingPayload: Record<string, any> | null | undefined, nextPayload: Record<string, any>) {
+  const existingDocument = existingPayload?.document as Record<string, unknown> | undefined;
+  const existingContext = existingPayload?.context as Record<string, unknown> | undefined;
+  if (!existingDocument && !existingContext) return nextPayload;
+
+  const document = { ...(nextPayload.document as Record<string, unknown>) };
+  const context = { ...(nextPayload.context as Record<string, unknown>) };
+
+  for (const key of [
+    'accountId',
+    'classId',
+    'departmentId',
+    'locationId',
+    'paymentTermsId',
+    'paymentTermsLabel',
+    'dueDate',
+    'dueDateRule',
+    'paymentDate',
+    'paymentDateRule',
+    'accountingDateProposed',
+    'invoiceNote',
+    'invoiceDetail',
+    'serviceDescription',
+    'entityId',
+    'vendorId',
+  ]) {
+    preserveValue(document, existingDocument ?? {}, key);
+  }
+
+  for (const key of [
+    'accountIdProposed',
+    'referenciaAccount',
+    'accountCorrecta',
+    'classIdProposed',
+    'classCorrecta',
+    'departmentIdProposed',
+    'departmentCorrecta',
+    'locationIdProposed',
+    'locationCorrecta',
+    'paymentTermsId',
+    'paymentTermsLabel',
+    'terminosNs',
+    'diasCreditoNs',
+    'dueDate',
+    'paymentDate',
+    'paymentDateRule',
+    'accountingDateProposed',
+    'approvalGroup',
+    'approverIdsProposed',
+    'approverSource',
+    'ocPolicyCorrecta',
+    'ocCategory',
+    'categoriaOc',
+    'entity',
+    'vendorIdProposed',
+    'vendorEntityResolvedAt',
+    'vendorEntityResolvedSource',
+    'invoiceNote',
+    'invoiceDetail',
+    'accountingDimensionRule',
+  ]) {
+    preserveValue(context, existingContext ?? {}, key);
+  }
+
+  return {
+    ...nextPayload,
+    document,
+    context,
+  };
+}
+
 async function main() {
   const { db } = await import('../src/lib/db/client');
   const raw = fs.readFileSync(inputPath, 'utf8');
@@ -150,7 +235,7 @@ async function main() {
     const sourceDocumentId = `builder_${item.case_id}`;
     const bucket = bucketFromCase(item);
     const summaryText = summaryFromCase(item);
-    const exists = await db.query(`select id from review_cases where source_document_id = $1 limit 1`, [sourceDocumentId]);
+    const exists = await db.query(`select id, payload_json from review_cases where source_document_id = $1 limit 1`, [sourceDocumentId]);
     const approvalGroup = proposedApprovalGroup(item);
     const paymentDate = safePaymentDate(item);
     const operationalDate = normalizeDateOnly(item.operational_date ?? item.accounting_date_proposed) ?? item.document_date;
@@ -227,6 +312,7 @@ async function main() {
     };
 
     if (exists.rows[0]?.id) {
+      const mergedPayloadJson = preserveManualReviewPayload(exists.rows[0].payload_json, payloadJson);
       await db.query(
         `update review_cases
          set vendor_name = $2,
@@ -256,7 +342,7 @@ async function main() {
           item.amount_total,
           bucket,
           summaryText,
-          JSON.stringify(payloadJson),
+          JSON.stringify(mergedPayloadJson),
         ],
       );
       updated += 1;
