@@ -1,7 +1,7 @@
 {
   "2026-02": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202602.csv",
-    "generatedAt": "2026-09-04T10:06:44.346Z",
+    "generatedAt": "2026-09-04T15:47:43.755Z",
     "rows": [
       {
         "documentType": "33",
@@ -51,7 +51,7 @@
   },
   "2026-03": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202603.csv",
-    "generatedAt": "2026-09-04T10:06:44.362Z",
+    "generatedAt": "2026-09-04T15:47:43.780Z",
     "rows": [
       {
         "documentType": "33",
@@ -101,7 +101,7 @@
   },
   "2026-04": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202604.csv",
-    "generatedAt": "2026-09-04T10:06:44.363Z",
+    "generatedAt": "2026-09-04T15:47:43.783Z",
     "rows": [
       {
         "documentType": "33",
@@ -140,7 +140,7 @@
   },
   "2026-05": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202605.csv",
-    "generatedAt": "2026-09-04T10:06:44.364Z",
+    "generatedAt": "2026-09-04T15:47:43.793Z",
     "rows": [
       {
         "documentType": "33",
@@ -179,7 +179,7 @@
   },
   "2026-06": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202606.csv",
-    "generatedAt": "2026-09-04T10:06:44.365Z",
+    "generatedAt": "2026-09-04T15:47:43.800Z",
     "rows": [
       {
         "documentType": "33",
@@ -240,7 +240,7 @@
   },
   "2026-07": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202607.csv",
-    "generatedAt": "2026-09-04T10:06:44.365Z",
+    "generatedAt": "2026-09-04T15:47:43.802Z",
     "rows": [
       {
         "documentType": "33",
@@ -290,7 +290,7 @@
   },
   "2026-08": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202608.csv",
-    "generatedAt": "2026-09-04T10:06:44.366Z",
+    "generatedAt": "2026-09-04T15:47:43.809Z",
     "rows": [
       {
         "documentType": "33",
@@ -340,7 +340,7 @@
   },
   "2026-09": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202609.csv",
-    "generatedAt": "2026-09-04T10:06:44.368Z",
+    "generatedAt": "2026-09-04T15:47:43.810Z",
     "rows": [
       {
         "documentType": "33",
@@ -355,7 +355,7 @@
       },
       {
         "documentType": "34",
-        "totalDocuments": 3,
+        "totalDocuments": 4,
         "montoExento": 1004087,
         "montoNeto": 0,
         "ivaRecuperable": 0,
