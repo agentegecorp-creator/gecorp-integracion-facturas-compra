@@ -1,5 +1,6 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs';
+import { accountOptions, optionValueFromLabel } from '@/lib/review/catalogs';
 
 type ReviewCaseRow = {
   id: string;
@@ -308,6 +309,17 @@ function numericId(...values: unknown[]) {
   return null;
 }
 
+function numericAccountId(...values: unknown[]) {
+  for (const value of values) {
+    if (value === null || value === undefined || value === '') continue;
+    const direct = numericId(value);
+    if (direct) return direct;
+    const matchedValue = optionValueFromLabel(accountOptions, String(value));
+    if (matchedValue) return matchedValue;
+  }
+  return null;
+}
+
 function numberValue(value: unknown) {
   const parsed = Number(value ?? 0);
   return Number.isFinite(parsed) ? parsed : 0;
@@ -350,7 +362,7 @@ export function buildSandboxPayload(row: ReviewCaseRow) {
   const tranDate = isoDate(context.accountingDateProposed ?? document.accountingDateProposed ?? document.issueDate ?? row.issue_date);
   const dueDate = isoDate(document.dueDate ?? context.dueDate ?? tranDate);
   const entityId = numericId(context.vendorIdProposed, context.entity, document.vendorId, document.entityId);
-  const accountId = numericId(document.accountId, context.accountIdProposed, context.referenciaAccount);
+  const accountId = numericAccountId(document.accountId, context.accountIdProposed, context.referenciaAccount);
   const locationId = numericId(document.locationId, context.locationIdProposed) ?? '5';
   const classId = numericId(document.classId, context.classIdProposed);
   const departmentId = numericId(document.departmentId, context.departmentIdProposed);

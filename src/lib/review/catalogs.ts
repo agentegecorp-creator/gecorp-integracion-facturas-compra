@@ -151,6 +151,12 @@ export function optionName(options: CatalogOption[], value: string) {
   return option?.name ?? option?.label ?? value;
 }
 
+export function optionValueFromLabel(options: CatalogOption[], label: string) {
+  const normalizedLabel = label.trim().toLowerCase();
+  const option = options.find((item) => item.label.trim().toLowerCase() === normalizedLabel);
+  return option?.value ?? null;
+}
+
 export function paymentTermDays(value: string) {
   return paymentTermsOptions.find((option) => option.value === value)?.daysUntilDue ?? 0;
 }

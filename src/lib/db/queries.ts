@@ -20,6 +20,8 @@ let cachedHasProductionPublishStatus: boolean | null = null;
 let productionPublishSchemaReady: boolean | null = null;
 
 const OC_MANAGED_VENDOR_RUT_SQL_LIST = OC_MANAGED_VENDOR_RUTS.map((rut) => `'${rut}'`).join(', ');
+const sqlStringLiteral = (value: string) => `'${value.replace(/'/g, "''")}'`;
+const ACCOUNT_LABEL_SQL_LIST = accountOptions.map((option) => sqlStringLiteral(option.label)).join(', ');
 
 export async function ensureSandboxPublishSchema() {
   if (sandboxPublishSchemaReady) {
@@ -193,6 +195,8 @@ function ocManagedProductionMonitorWhereClause(alias = 'review_cases') {
 }
 
 function readyForProductionWhereClause(alias = 'review_cases') {
+  const accountReference = `coalesce(${alias}.payload_json->'context'->>'accountIdProposed', ${alias}.payload_json->'context'->>'referenciaAccount', ${alias}.payload_json->'document'->>'accountId', '')`;
+
   return `
     ${alias}.status = 'resolved'
     and coalesce(${alias}.production_publish_status, 'not_ready') in ('ready', 'failed')
@@ -200,7 +204,7 @@ function readyForProductionWhereClause(alias = 'review_cases') {
     and coalesce(${alias}.payload_json->'context'->>'requiereRevisionManual', '') not in ('si', 'SI', 'true', 'TRUE', 'nuevo_proveedor')
     and coalesce(${alias}.payload_json->'context'->>'error', '') = ''
     and coalesce(${alias}.payload_json->'context'->>'vendorIdProposed', ${alias}.payload_json->'context'->>'entity', '') ~ '^[0-9]+$'
-    and coalesce(${alias}.payload_json->'context'->>'accountIdProposed', ${alias}.payload_json->'context'->>'referenciaAccount', ${alias}.payload_json->'document'->>'accountId', '') ~ '^[0-9]+$'
+    and (${accountReference} ~ '^[0-9]+$' or ${accountReference} in (${ACCOUNT_LABEL_SQL_LIST}))
   `;
 }
 
