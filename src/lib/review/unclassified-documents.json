@@ -1132,8 +1132,8 @@
   "2026-09": [
     {
       "id": "unclassified-2026-09-34-17485238-0",
-      "sourceRun": "runs/sii_to_pipeline/20260907-114614",
-      "generatedAt": "2026-09-07T11:46:39.156842",
+      "sourceRun": "runs/sii_to_pipeline/20260907-170321",
+      "generatedAt": "2026-09-07T17:03:46.782283",
       "vendor_name": "SCOTIABANK CHILE",
       "vendor_rut": "97018000-1",
       "folio": "17485238",
@@ -1159,14 +1159,14 @@
         },
         "context": {
           "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260907-114614"
+          "sourceRun": "runs/sii_to_pipeline/20260907-170321"
         }
       }
     },
     {
       "id": "unclassified-2026-09-34-17486288-1",
-      "sourceRun": "runs/sii_to_pipeline/20260907-114614",
-      "generatedAt": "2026-09-07T11:46:39.156842",
+      "sourceRun": "runs/sii_to_pipeline/20260907-170321",
+      "generatedAt": "2026-09-07T17:03:46.782283",
       "vendor_name": "SCOTIABANK CHILE",
       "vendor_rut": "97018000-1",
       "folio": "17486288",
@@ -1192,14 +1192,14 @@
         },
         "context": {
           "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260907-114614"
+          "sourceRun": "runs/sii_to_pipeline/20260907-170321"
         }
       }
     },
     {
       "id": "unclassified-2026-09-914-3660319672-2",
-      "sourceRun": "runs/sii_to_pipeline/20260907-114614",
-      "generatedAt": "2026-09-07T11:46:39.156842",
+      "sourceRun": "runs/sii_to_pipeline/20260907-170321",
+      "generatedAt": "2026-09-07T17:03:46.782283",
       "vendor_name": "Importación",
       "vendor_rut": "55555555-5",
       "folio": "3660319672",
@@ -1225,7 +1225,7 @@
         },
         "context": {
           "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260907-114614"
+          "sourceRun": "runs/sii_to_pipeline/20260907-170321"
         }
       }
     }
