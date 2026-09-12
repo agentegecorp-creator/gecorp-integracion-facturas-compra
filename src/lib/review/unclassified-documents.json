@@ -1132,8 +1132,8 @@
   "2026-09": [
     {
       "id": "unclassified-2026-09-34-17485238-0",
-      "sourceRun": "runs/sii_to_pipeline/20260909-114653",
-      "generatedAt": "2026-09-09T11:47:18.711087",
+      "sourceRun": "runs/sii_to_pipeline/20260912-161416",
+      "generatedAt": "2026-09-12T16:14:43.828638",
       "vendor_name": "SCOTIABANK CHILE",
       "vendor_rut": "97018000-1",
       "folio": "17485238",
@@ -1159,14 +1159,14 @@
         },
         "context": {
           "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260909-114653"
+          "sourceRun": "runs/sii_to_pipeline/20260912-161416"
         }
       }
     },
     {
       "id": "unclassified-2026-09-34-17486288-1",
-      "sourceRun": "runs/sii_to_pipeline/20260909-114653",
-      "generatedAt": "2026-09-09T11:47:18.711087",
+      "sourceRun": "runs/sii_to_pipeline/20260912-161416",
+      "generatedAt": "2026-09-12T16:14:43.828638",
       "vendor_name": "SCOTIABANK CHILE",
       "vendor_rut": "97018000-1",
       "folio": "17486288",
@@ -1192,14 +1192,47 @@
         },
         "context": {
           "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260909-114653"
+          "sourceRun": "runs/sii_to_pipeline/20260912-161416"
         }
       }
     },
     {
-      "id": "unclassified-2026-09-914-3660319672-2",
-      "sourceRun": "runs/sii_to_pipeline/20260909-114653",
-      "generatedAt": "2026-09-09T11:47:18.711087",
+      "id": "unclassified-2026-09-34-17487580-2",
+      "sourceRun": "runs/sii_to_pipeline/20260912-161416",
+      "generatedAt": "2026-09-12T16:14:43.828638",
+      "vendor_name": "SCOTIABANK CHILE",
+      "vendor_rut": "97018000-1",
+      "folio": "17487580",
+      "document_type": "34",
+      "issue_date": "2026-09-11",
+      "reception_date": "2026-09-11",
+      "bucket": "unclassified_rcv",
+      "status": "exception",
+      "amount_total": "0",
+      "summary_text": "Documento del RCV sin clasificación operativa en la corrida SII → NetSuite.",
+      "sandbox_publish_status": "not_ready",
+      "payload_json": {
+        "document": {
+          "documentType": "34",
+          "documentTypeLabel": "Documento SII 34",
+          "amountExempt": "0",
+          "amountNet": "0",
+          "amountVat": "0",
+          "amountVatNonRecoverable": "0",
+          "amountOtherTax": "0",
+          "amountTotal": "0",
+          "memo": "RCV F-17487580 SCOTIABANK CHILE"
+        },
+        "context": {
+          "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
+          "sourceRun": "runs/sii_to_pipeline/20260912-161416"
+        }
+      }
+    },
+    {
+      "id": "unclassified-2026-09-914-3660319672-3",
+      "sourceRun": "runs/sii_to_pipeline/20260912-161416",
+      "generatedAt": "2026-09-12T16:14:43.828638",
       "vendor_name": "Importación",
       "vendor_rut": "55555555-5",
       "folio": "3660319672",
@@ -1225,7 +1258,7 @@
         },
         "context": {
           "motivo": "No aparece en creadas automáticas, revisión, errores, rechazos ni proveedores nuevos del reporte pipeline.",
-          "sourceRun": "runs/sii_to_pipeline/20260909-114653"
+          "sourceRun": "runs/sii_to_pipeline/20260912-161416"
         }
       }
     }
