@@ -1,7 +1,7 @@
 {
   "2026-02": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202602.csv",
-    "generatedAt": "2026-09-16T09:02:00.492Z",
+    "generatedAt": "2026-09-16T14:46:53.914Z",
     "rows": [
       {
         "documentType": "33",
@@ -51,7 +51,7 @@
   },
   "2026-03": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202603.csv",
-    "generatedAt": "2026-09-16T09:02:00.510Z",
+    "generatedAt": "2026-09-16T14:46:53.932Z",
     "rows": [
       {
         "documentType": "33",
@@ -101,7 +101,7 @@
   },
   "2026-04": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202604.csv",
-    "generatedAt": "2026-09-16T09:02:00.513Z",
+    "generatedAt": "2026-09-16T14:46:53.935Z",
     "rows": [
       {
         "documentType": "33",
@@ -140,7 +140,7 @@
   },
   "2026-05": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202605.csv",
-    "generatedAt": "2026-09-16T09:02:00.515Z",
+    "generatedAt": "2026-09-16T14:46:53.937Z",
     "rows": [
       {
         "documentType": "33",
@@ -179,7 +179,7 @@
   },
   "2026-06": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202606.csv",
-    "generatedAt": "2026-09-16T09:02:00.518Z",
+    "generatedAt": "2026-09-16T14:46:53.938Z",
     "rows": [
       {
         "documentType": "33",
@@ -240,7 +240,7 @@
   },
   "2026-07": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202607.csv",
-    "generatedAt": "2026-09-16T09:02:00.521Z",
+    "generatedAt": "2026-09-16T14:46:53.940Z",
     "rows": [
       {
         "documentType": "33",
@@ -290,7 +290,7 @@
   },
   "2026-08": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202608.csv",
-    "generatedAt": "2026-09-16T09:02:00.524Z",
+    "generatedAt": "2026-09-16T14:46:53.942Z",
     "rows": [
       {
         "documentType": "33",
@@ -340,29 +340,29 @@
   },
   "2026-09": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202609.csv",
-    "generatedAt": "2026-09-16T09:02:00.528Z",
+    "generatedAt": "2026-09-16T14:46:53.945Z",
     "rows": [
       {
         "documentType": "33",
-        "totalDocuments": 67,
-        "montoExento": 272901,
-        "montoNeto": 134839639,
-        "ivaRecuperable": 25619533,
+        "totalDocuments": 72,
+        "montoExento": 375317,
+        "montoNeto": 138035805,
+        "ivaRecuperable": 26226805,
         "ivaUsoComun": 0,
         "ivaNoRecuperable": 0,
         "montoOtrosImpuestos": 19695,
-        "montoTotal": 160721212
+        "montoTotal": 164627066
       },
       {
         "documentType": "34",
-        "totalDocuments": 10,
-        "montoExento": 7057404,
+        "totalDocuments": 12,
+        "montoExento": 7287713,
         "montoNeto": 0,
         "ivaRecuperable": 0,
         "ivaUsoComun": 0,
         "ivaNoRecuperable": 0,
         "montoOtrosImpuestos": 0,
-        "montoTotal": 7057404
+        "montoTotal": 7287713
       },
       {
         "documentType": "61",
