@@ -224,14 +224,18 @@ function preserveManualReviewPayload(existingPayload: Record<string, any> | null
 }
 
 async function main() {
-  const { db } = await import('../src/lib/db/client');
+  const pg = await import('pg');
+  const Client = pg.Client ?? pg.default.Client;
+  const db = new Client({ connectionString: process.env.DATABASE_URL });
+  await db.connect();
   const raw = fs.readFileSync(inputPath, 'utf8');
   const items = JSON.parse(raw) as BuilderCase[];
   let inserted = 0;
   let updated = 0;
   let skippedPublishedDuplicates = 0;
 
-  for (const item of items) {
+  for (const [index, item] of items.entries()) {
+    if (index % 25 === 0) console.log(`Importando caso ${index + 1}/${items.length}: ${item.case_id}`);
     const sourceDocumentId = `builder_${item.case_id}`;
     const bucket = bucketFromCase(item);
     const summaryText = summaryFromCase(item);
