@@ -60,8 +60,8 @@
     "revisionOcReferential": 35
   },
   "2026-10": {
-    "sourceRun": "runs/sii_to_pipeline/20261006-060132",
-    "generatedAt": "2026-10-06T06:01:58.050769",
+    "sourceRun": "runs/sii_to_pipeline/20261006-114626",
+    "generatedAt": "2026-10-06T11:46:51.662954",
     "mode": "dry-run / pendiente de publicación manual a Producción",
     "createdAutomatically": 12,
     "duplicates": 0,
@@ -69,6 +69,6 @@
     "newVendors": 7,
     "rejectedSii": 2,
     "accountingErrors": 0,
-    "revisionOcReferential": 4
+    "revisionOcReferential": 5
   }
 }
