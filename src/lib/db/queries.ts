@@ -419,7 +419,8 @@ export async function getDashboardSummary(period?: DashboardPeriod) {
   const pipelineSummary = pipelineRunSummaries()[monthKey];
 
   if (pipelineSummary) {
-    const automaticCount = liveAutomaticCount || pipelineSummary.createdAutomatically;
+    const automaticDocuments = automaticDocumentsForPeriod(period);
+    const automaticCount = automaticDocuments.length || pipelineSummary.createdAutomatically;
     operationalSummary.creadasAutomaticas = automaticCount;
     operationalSummary.porContabilizar =
       pipelineSummary.pendingApproval
