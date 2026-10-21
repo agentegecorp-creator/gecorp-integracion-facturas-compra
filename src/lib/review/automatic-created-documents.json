@@ -15364,8 +15364,8 @@
   "2026-10": [
     {
       "id": "auto-2026-10-33-1381-76369311-2",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "EL GROWLER SPA",
       "vendor_rut": "76369311-2",
       "folio": "1381",
@@ -15409,15 +15409,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-10-01",
           "dueDate": "2026-10-01",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-33-69662-76178665-2",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "Megacentro Chile SpA",
       "vendor_rut": "76178665-2",
       "folio": "69662",
@@ -15461,15 +15461,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-10-01",
           "dueDate": "2026-10-01",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-33-69944-76178665-2",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "Megacentro Chile SpA",
       "vendor_rut": "76178665-2",
       "folio": "69944",
@@ -15513,15 +15513,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-10-01",
           "dueDate": "2026-10-01",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-33-4242561-85896100-9",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "SERVICIOS EQUIFAX CHILE LIMITADA",
       "vendor_rut": "85896100-9",
       "folio": "4242561",
@@ -15565,15 +15565,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-10-01",
           "dueDate": "2026-10-31",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-33-170639-96357000-7",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "COMUNICACIONES BERMANN SPA",
       "vendor_rut": "96357000-7",
       "folio": "170639",
@@ -15617,15 +15617,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-10-01",
           "dueDate": "2026-10-16",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-33-1030-15480941-4",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "GIOVANNI OSVALDO DIAZ SILVA",
       "vendor_rut": "15480941-4",
       "folio": "1030",
@@ -15669,15 +15669,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-10-05",
           "dueDate": "2026-11-04",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-33-3193796-93737000-8",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "GTD MANQUEHUE S.A.",
       "vendor_rut": "93737000-8",
       "folio": "3193796",
@@ -15721,15 +15721,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-10-05",
           "dueDate": "2026-11-04",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-33-3649-76871367-7",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "MI FIBRA SPA",
       "vendor_rut": "76871367-7",
       "folio": "3649",
@@ -15773,15 +15773,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-10-05",
           "dueDate": "2026-10-05",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-33-167040-83274700-9",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "Navarro y Cia Spa",
       "vendor_rut": "83274700-9",
       "folio": "167040",
@@ -15825,15 +15825,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-10-05",
           "dueDate": "2026-12-04",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-33-6723993-96711590-8",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "Manantial S.A",
       "vendor_rut": "96711590-8",
       "folio": "6723993",
@@ -15877,15 +15877,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-10-01",
           "dueDate": "2026-09-30",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-33-167077-83274700-9",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "Navarro y Cia Spa",
       "vendor_rut": "83274700-9",
       "folio": "167077",
@@ -15929,15 +15929,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-10-06",
           "dueDate": "2026-12-05",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-33-167078-83274700-9",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "Navarro y Cia Spa",
       "vendor_rut": "83274700-9",
       "folio": "167078",
@@ -15981,15 +15981,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-10-06",
           "dueDate": "2026-12-05",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-33-48881464-97004000-5",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "Banco de Chile",
       "vendor_rut": "97004000-5",
       "folio": "48881464",
@@ -16033,15 +16033,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-10-05",
           "dueDate": "2026-10-05",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-33-8472-76067893-7",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "EGA KAT DISTRIBUCION CHILE S.A.",
       "vendor_rut": "76067893-7",
       "folio": "8472",
@@ -16085,15 +16085,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-10-05",
           "dueDate": "2026-11-04",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-33-12969-96993560-0",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "IMPORTADORA Y EXPORTADORA GIRONA .S.A",
       "vendor_rut": "96993560-0",
       "folio": "12969",
@@ -16137,15 +16137,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-10-08",
           "dueDate": "2026-11-07",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-33-579-76969089-1",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "TRANSPORTES ELADIO ARNOLDO GONZÁLEZ KAEMPFER  E.I.R.L.",
       "vendor_rut": "76969089-1",
       "folio": "579",
@@ -16189,15 +16189,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-10-08",
           "dueDate": "2026-11-07",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-33-207173-99588060-1",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "CHUBB SEGUROS DE VIDA CHILE S.A.",
       "vendor_rut": "99588060-1",
       "folio": "207173",
@@ -16241,15 +16241,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-10-01",
           "dueDate": "2026-09-30",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-33-2782386-94675000-K",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "Claro Comunicaciones S.p.A.",
       "vendor_rut": "94675000-K",
       "folio": "2782386",
@@ -16293,15 +16293,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-10-13",
           "dueDate": "2026-10-28",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-33-1345861-78936330-7",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "Innovacion y Tecnologia Empresarial ITEM Ltda.",
       "vendor_rut": "78936330-7",
       "folio": "1345861",
@@ -16345,15 +16345,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-10-13",
           "dueDate": "2026-10-13",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-33-82767-76006532-3",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "AIRSEALOGISTICS SPA",
       "vendor_rut": "76006532-3",
       "folio": "82767",
@@ -16397,15 +16397,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-10-14",
           "dueDate": "2026-11-13",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-33-73952254-76124890-1",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "Telefónica Móviles Chile S.A.",
       "vendor_rut": "76124890-1",
       "folio": "73952254",
@@ -16449,15 +16449,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-10-01",
           "dueDate": "2026-10-31",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-33-356164-76691442-K",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "BUK SPA",
       "vendor_rut": "76691442-K",
       "folio": "356164",
@@ -16501,15 +16501,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-10-07",
           "dueDate": "2026-11-06",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-33-14064384-96945440-8",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "SOC CONCESIONARIA AUTOPISTA CENTRAL S A",
       "vendor_rut": "96945440-8",
       "folio": "14064384",
@@ -16553,15 +16553,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-10-16",
           "dueDate": "2026-11-15",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-33-2603-76281026-3",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "CESAR MILTON SANCHEZ FAJARDO TRANSPORTES SAN FELIPE EMPRESA INDIVIDUAL",
       "vendor_rut": "76281026-3",
       "folio": "2603",
@@ -16605,15 +16605,15 @@
           "documentTypeNsProposed": "2",
           "accountingDateProposed": "2026-10-19",
           "dueDate": "2026-11-18",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-34-283-78318440-0",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "SOC COMERCIAL LOS CANELOS LIMITADA",
       "vendor_rut": "78318440-0",
       "folio": "283",
@@ -16657,15 +16657,15 @@
           "documentTypeNsProposed": "104",
           "accountingDateProposed": "2026-10-01",
           "dueDate": "2026-10-01",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-34-7634064-89862200-2",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "LATAM AIRLINES GROUP SA",
       "vendor_rut": "89862200-2",
       "folio": "7634064",
@@ -16709,15 +16709,15 @@
           "documentTypeNsProposed": "104",
           "accountingDateProposed": "2026-10-07",
           "dueDate": "2026-10-07",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-34-7637895-89862200-2",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "LATAM AIRLINES GROUP SA",
       "vendor_rut": "89862200-2",
       "folio": "7637895",
@@ -16761,15 +16761,15 @@
           "documentTypeNsProposed": "104",
           "accountingDateProposed": "2026-10-08",
           "dueDate": "2026-10-08",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-34-3626586-76376061-8",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "SOCIEDAD CONCESIONARIA VESPUCIO ORIENTE S.A.",
       "vendor_rut": "76376061-8",
       "folio": "3626586",
@@ -16813,15 +16813,15 @@
           "documentTypeNsProposed": "104",
           "accountingDateProposed": "2026-10-13",
           "dueDate": "2026-10-28",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-34-79602-76006532-3",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "AIRSEALOGISTICS SPA",
       "vendor_rut": "76006532-3",
       "folio": "79602",
@@ -16865,15 +16865,15 @@
           "documentTypeNsProposed": "104",
           "accountingDateProposed": "2026-10-14",
           "dueDate": "2026-11-13",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-34-79603-76006532-3",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "AIRSEALOGISTICS SPA",
       "vendor_rut": "76006532-3",
       "folio": "79603",
@@ -16917,15 +16917,15 @@
           "documentTypeNsProposed": "104",
           "accountingDateProposed": "2026-10-14",
           "dueDate": "2026-11-13",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-34-12630193-76496130-7",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "Sociedad Concesionaria Costanera Norte S.A.",
       "vendor_rut": "76496130-7",
       "folio": "12630193",
@@ -16969,15 +16969,15 @@
           "documentTypeNsProposed": "104",
           "accountingDateProposed": "2026-10-14",
           "dueDate": "2026-11-13",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-34-12630738-76496130-7",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "Sociedad Concesionaria Costanera Norte S.A.",
       "vendor_rut": "76496130-7",
       "folio": "12630738",
@@ -17021,15 +17021,15 @@
           "documentTypeNsProposed": "104",
           "accountingDateProposed": "2026-10-14",
           "dueDate": "2026-11-13",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-34-7652155-89862200-2",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "LATAM AIRLINES GROUP SA",
       "vendor_rut": "89862200-2",
       "folio": "7652155",
@@ -17073,15 +17073,15 @@
           "documentTypeNsProposed": "104",
           "accountingDateProposed": "2026-10-15",
           "dueDate": "2026-10-15",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-61-1297-91942000-6",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "MALTEXCO S.A.",
       "vendor_rut": "91942000-6",
       "folio": "1297",
@@ -17125,15 +17125,15 @@
           "documentTypeNsProposed": "107",
           "accountingDateProposed": "2026-10-06",
           "dueDate": "2026-12-05",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
     },
     {
       "id": "auto-2026-10-61-1456962-89862200-2",
-      "sourceRun": "runs/sii_to_pipeline/20261021-060104",
-      "generatedAt": "2026-10-21T06:01:26.947752",
+      "sourceRun": "runs/sii_to_pipeline/20261021-114558",
+      "generatedAt": "2026-10-21T11:46:20.917389",
       "vendor_name": "LATAM AIRLINES GROUP SA",
       "vendor_rut": "89862200-2",
       "folio": "1456962",
@@ -17177,7 +17177,7 @@
           "documentTypeNsProposed": "107",
           "accountingDateProposed": "2026-10-15",
           "dueDate": "2026-10-15",
-          "sourceRun": "runs/sii_to_pipeline/20261021-060104",
+          "sourceRun": "runs/sii_to_pipeline/20261021-114558",
           "automaticCreationMode": "Pipeline automático; pendiente de Producción"
         }
       }
