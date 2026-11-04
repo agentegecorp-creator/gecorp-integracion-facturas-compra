@@ -1,7 +1,7 @@
 {
   "2026-02": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202602.csv",
-    "generatedAt": "2026-11-04T09:06:52.494Z",
+    "generatedAt": "2026-11-04T14:51:44.192Z",
     "rows": [
       {
         "documentType": "33",
@@ -51,7 +51,7 @@
   },
   "2026-03": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202603.csv",
-    "generatedAt": "2026-11-04T09:06:52.498Z",
+    "generatedAt": "2026-11-04T14:51:44.195Z",
     "rows": [
       {
         "documentType": "33",
@@ -101,7 +101,7 @@
   },
   "2026-04": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202604.csv",
-    "generatedAt": "2026-11-04T09:06:52.498Z",
+    "generatedAt": "2026-11-04T14:51:44.196Z",
     "rows": [
       {
         "documentType": "33",
@@ -140,7 +140,7 @@
   },
   "2026-05": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202605.csv",
-    "generatedAt": "2026-11-04T09:06:52.499Z",
+    "generatedAt": "2026-11-04T14:51:44.196Z",
     "rows": [
       {
         "documentType": "33",
@@ -179,7 +179,7 @@
   },
   "2026-06": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202606.csv",
-    "generatedAt": "2026-11-04T09:06:52.499Z",
+    "generatedAt": "2026-11-04T14:51:44.196Z",
     "rows": [
       {
         "documentType": "33",
@@ -240,7 +240,7 @@
   },
   "2026-07": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202607.csv",
-    "generatedAt": "2026-11-04T09:06:52.499Z",
+    "generatedAt": "2026-11-04T14:51:44.196Z",
     "rows": [
       {
         "documentType": "33",
@@ -290,7 +290,7 @@
   },
   "2026-08": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202608.csv",
-    "generatedAt": "2026-11-04T09:06:52.500Z",
+    "generatedAt": "2026-11-04T14:51:44.196Z",
     "rows": [
       {
         "documentType": "33",
@@ -340,7 +340,7 @@
   },
   "2026-09": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202609.csv",
-    "generatedAt": "2026-11-04T09:06:52.500Z",
+    "generatedAt": "2026-11-04T14:51:44.196Z",
     "rows": [
       {
         "documentType": "33",
@@ -401,7 +401,7 @@
   },
   "2026-10": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202610.csv",
-    "generatedAt": "2026-11-04T09:06:52.500Z",
+    "generatedAt": "2026-11-04T14:51:44.197Z",
     "rows": [
       {
         "documentType": "33",
@@ -451,18 +451,18 @@
   },
   "2026-11": {
     "sourceFile": "RCV_COMPRA_REGISTRO_76047831-8_202611.csv",
-    "generatedAt": "2026-11-04T09:06:52.500Z",
+    "generatedAt": "2026-11-04T14:51:44.197Z",
     "rows": [
       {
         "documentType": "33",
-        "totalDocuments": 24,
+        "totalDocuments": 25,
         "montoExento": 0,
-        "montoNeto": 27634378,
-        "ivaRecuperable": 5250533,
+        "montoNeto": 27715154,
+        "ivaRecuperable": 5265881,
         "ivaUsoComun": 0,
         "ivaNoRecuperable": 0,
-        "montoOtrosImpuestos": 13520,
-        "montoTotal": 32898431
+        "montoOtrosImpuestos": 13521,
+        "montoTotal": 32985330
       },
       {
         "documentType": "34",
