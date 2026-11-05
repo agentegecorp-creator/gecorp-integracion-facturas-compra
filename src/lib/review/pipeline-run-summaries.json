@@ -60,8 +60,8 @@
     "revisionOcReferential": 35
   },
   "2026-10": {
-    "sourceRun": "runs/sii_to_pipeline/20261105-115057",
-    "generatedAt": "2026-11-05T11:51:20.104895",
+    "sourceRun": "runs/sii_to_pipeline/20261105-170754",
+    "generatedAt": "2026-11-05T17:08:16.909214",
     "mode": "dry-run / pendiente de publicación manual a Producción",
     "createdAutomatically": 60,
     "duplicates": 0,
@@ -72,10 +72,10 @@
     "revisionOcReferential": 24
   },
   "2026-11": {
-    "sourceRun": "runs/sii_to_pipeline/20261105-114558",
-    "generatedAt": "2026-11-05T11:46:21.211032",
+    "sourceRun": "runs/sii_to_pipeline/20261105-170102",
+    "generatedAt": "2026-11-05T17:01:25.414621",
     "mode": "dry-run / pendiente de publicación manual a Producción",
-    "createdAutomatically": 14,
+    "createdAutomatically": 15,
     "duplicates": 0,
     "pendingApproval": 6,
     "newVendors": 4,
