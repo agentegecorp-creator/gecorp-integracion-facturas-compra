@@ -72,8 +72,8 @@
     "revisionOcReferential": 24
   },
   "2026-11": {
-    "sourceRun": "runs/sii_to_pipeline/20261119-114538",
-    "generatedAt": "2026-11-19T11:46:01.521952",
+    "sourceRun": "runs/sii_to_pipeline/20261119-170051",
+    "generatedAt": "2026-11-19T17:01:14.521798",
     "mode": "dry-run / pendiente de publicación manual a Producción",
     "createdAutomatically": 40,
     "duplicates": 0,
