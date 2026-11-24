@@ -1,3 +1,4 @@
+import { findActiveVendorsByFiscalRut } from '@/lib/netsuite/vendors-by-rut';
 import fs from 'node:fs';
 import path from 'node:path';
 import { requestNetSuite } from '@/lib/netsuite/sandbox-publisher';
@@ -89,15 +90,6 @@ function sqlString(value: string) {
   return value.replace(/'/g, "''");
 }
 
-function normalizeRut(value: unknown) {
-  return String(value ?? '').toUpperCase().replace(/[^0-9K]/g, '');
-}
-
-function rutBody(value: unknown) {
-  const normalized = normalizeRut(value);
-  return normalized.length > 1 ? normalized.slice(0, -1) : normalized;
-}
-
 function numericId(...values: unknown[]) {
   for (const value of values) {
     const normalized = String(value ?? '').replace(/[^0-9]/g, '');
@@ -143,21 +135,6 @@ async function suiteql(query: string) {
   }
 
   return ((result.body as { items?: NetSuiteRow[] }).items ?? []);
-}
-
-async function findActiveVendorsByRut(vendorRut: string | null) {
-  const body = rutBody(vendorRut);
-  if (!body) return [];
-
-  return suiteql(`
-    SELECT id, entityid, altname, isinactive
-    FROM vendor
-    WHERE isinactive = 'F'
-      AND (
-        entityid LIKE '%${sqlString(body)}%'
-        OR altname LIKE '%${sqlString(body)}%'
-      )
-  `);
 }
 
 async function findTransactionsByFolio(folio: string, vendorIds?: string[]) {
@@ -281,7 +258,7 @@ async function resolveCase(item: ReviewCase, apply: boolean): Promise<Resolution
   const existingVendorId = numericId(context.vendorIdProposed, context.entity, document.vendorId, document.entityId);
   const vendors = existingVendorId
     ? [{ id: existingVendorId }]
-    : await findActiveVendorsByRut(item.vendor_rut);
+    : await findActiveVendorsByFiscalRut(item.vendor_rut);
   const vendorIds = vendors
     .map((vendor) => String(vendor.id ?? ''))
     .filter((id) => /^\d+$/.test(id));
